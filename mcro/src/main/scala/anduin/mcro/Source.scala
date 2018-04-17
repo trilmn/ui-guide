@@ -1,4 +1,6 @@
-package anduin.guide
+// source: https://github.com/japgolly/scalajs-react/blob/master/gh-pages-macros/src/main/scala/ghpages/GhPagesMacros.scala
+
+package anduin.mcro
 
 import java.util.regex.Pattern
 
@@ -52,10 +54,14 @@ class SourceMacroImpls(val c: Context) extends MacroUtils {
     val egContent = betweenMarkers(fileContent, exampleStart, exampleEnd)
 
     val lines =
-      egContent.split('\n').toStream
+      egContent
+        .split('\n')
+        .toStream
         .map(trimRight.replaceFirstIn(_, ""))
         .dropWhile(blankLine)
-        .reverse.dropWhile(blankLine).reverse
+        .reverse
+        .dropWhile(blankLine)
+        .reverse
 
     val output = trimLeftAll(lines) mkString "\n"
 

@@ -3,8 +3,8 @@ package anduin.guide.page
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.Button
+import anduin.mcro.SourceMacro
 import anduin.style.Style
-import anduin.guide.SourceMacro
 
 object PageButton {
 

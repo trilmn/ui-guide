@@ -42,6 +42,7 @@ class SourceMacroImpls(val c: Context) extends MacroUtils {
     else if (x.length > 2)
       fail(s"Duplicate marker found: // $marker")
     (x(0), x(1))
+
   }
 
   def betweenMarkers(s: String, a: String, b: String): String = {
@@ -50,6 +51,7 @@ class SourceMacroImpls(val c: Context) extends MacroUtils {
   }
 
   def exampleSource: c.Expr[String] = {
+
     val fileContent = String valueOf c.enclosingPosition.source.content
     val egContent = betweenMarkers(fileContent, exampleStart, exampleEnd)
 
@@ -63,7 +65,8 @@ class SourceMacroImpls(val c: Context) extends MacroUtils {
         .dropWhile(blankLine)
         .reverse
 
-    val output = trimLeftAll(lines) mkString "\n"
+    var output = trimLeftAll(lines) mkString "\n"
+    output = fileContent
 
     c.Expr[String](Literal(Constant(output)))
   }

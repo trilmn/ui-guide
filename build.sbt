@@ -4,7 +4,8 @@ lazy val commonSettings = Seq(
   organization := "co.anduin",
   version := "0.1",
   scalaVersion := "2.12.5",
-  libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.2.0"
+  libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.2.0",
+  scalacOptions += "-Yrangepos"
 )
 
 lazy val mcro = (project in file("mcro"))

@@ -21,4 +21,6 @@ core_js=${core_src}/scala/anduin
 core_js_style=${core_js}/style
 core_js_component=${core_js}/component
 
+core_target=./core/target/scala-2.12
+
 docs=./docs

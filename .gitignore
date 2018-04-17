@@ -1,0 +1,19 @@
+# Scala & SBT
+target
+
+# Linked JS
+core/src/main/scala/anduin/component
+core/src/main/scala/anduin/style
+
+# Linked CSS
+core/src/main/resources/stylesheets/tachyons
+core/src/main/resources/stylesheets/_base.scss
+
+# Generated CSS (dev)
+core/src/main/resources/stylesheets/core-fastopt.css
+
+# IDE
+.idea
+
+# NOTE: Don't put "docs" here, we need it for
+# ghpages publishing

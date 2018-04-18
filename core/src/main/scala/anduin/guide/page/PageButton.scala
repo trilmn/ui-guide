@@ -83,18 +83,14 @@ object PageButton {
             """.stripMargin)(),
           Example(
             Source.annotate(
-              <.div(
+              /*>*/<.div(
                 Style.flexbox.flex,
-                <.div(Button()("Default")),
-                <.div(Button(color = Button.ColorPrimary)("Primary"),
-                      Style.margin.left16),
-                <.div(Button(color = Button.ColorSuccess)("Success"),
-                      Style.margin.left16),
-                <.div(Button(color = Button.ColorWarning)("Warning"),
-                      Style.margin.left16),
-                <.div(Button(color = Button.ColorDanger)("Danger"),
-                      Style.margin.left16)
-              )
+                <.div(/*<*/Button()("Default")/*>*/),
+                <.div(/*<*/Button(color = Button.ColorPrimary)("Primary")/*>*/, Style.margin.left16),
+                <.div(/*<*/Button(color = Button.ColorSuccess)("Success")/*>*/, Style.margin.left16),
+                <.div(/*<*/Button(color = Button.ColorWarning)("Warning")/*>*/, Style.margin.left16),
+                <.div(/*<*/Button(color = Button.ColorDanger)("Danger")/*>*/, Style.margin.left16)
+              )/*<*/
             )
           )()
         ),
@@ -106,13 +102,12 @@ object PageButton {
             """.stripMargin)(),
           Example(
             Source.annotate(
-              <.div(
+              /*>*/<.div(
                 Style.flexbox.flex,
-                <.div(Button(size = Button.SizeSmall)("Small"),
-                      Style.margin.right16),
-                <.div(Button()("Medium"), Style.margin.right16),
-                <.div(Button(size = Button.SizeLarge)("Large"))
-              )
+                <.div(/*<*/Button(size = Button.SizeSmall)("Small"),/*>*/ Style.margin.right16),
+                <.div(/*<*/Button()("Medium"),/*>*/ Style.margin.right16),
+                <.div(/*<*/Button(size = Button.SizeLarge)("Large"))
+              )/*<*/
             )
           )()
         )

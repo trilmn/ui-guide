@@ -3,12 +3,12 @@ package anduin.guide.page
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.Button
-import anduin.mcro.Foo
+import anduin.mcro.Source
 import anduin.style.Style
 
 object PageWelcome {
   val render: VdomElement = {
-    val (text1, node1) = Foo.hello(
+    val (text1, node1) = Source.annotate(
       <.div(
         Style.flexbox.flex,
         <.div(
@@ -21,16 +21,11 @@ object PageWelcome {
         )
       )
     )
-    val (text2, node2) = Foo.hello(
-      <.div("lala2")
-      /* end */
-    )
     <.div(
+      Style.whiteSpace.pre,
       "Welcome",
-      text1,
-      node1,
-      text2,
-      node2
+      <.div(text1),
+      <.div(node1)
     )
   }
 }

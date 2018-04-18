@@ -1,4 +1,4 @@
-name := "ui"
+name := "ui-guide"
 
 lazy val commonSettings = Seq(
   organization := "co.anduin",

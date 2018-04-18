@@ -32,8 +32,11 @@ object Source {
     val raw = String valueOf pos.source.content.slice(start, pos.end)
 
     // format the source (trim indentation)
-    val lines = raw.split('\n')
-    val source = trimLeftAll(lines) mkString "\n"
+    var lines = raw.split("\n")
+    if (lines(0).contains("Source.annotate")) {
+      lines = lines.dropRight(1).drop(1)
+    }
+    val source = trimLeftAll(lines).mkString("\n")
 
     c.Expr[AntType](q"""($source, $element)""")
   }

@@ -8,7 +8,7 @@ import anduin.component.util.ComponentUtils
 import anduin.style.Style
 
 final case class Markdown(
-  source: String
+    source: String
 ) {
   def apply(): VdomElement = {
     Markdown.component(this)
@@ -21,17 +21,35 @@ object Markdown {
 
   private final val ComponentName = ComponentUtils.name(this)
 
-  private val renderHead = (content: String, depth: Int) => {
-    rnd(<.p(content, depth.toString))
+  private val renderHead = (content: String, level: Int) => {
+    val id = content.toLowerCase().replaceAll("[^\\w]+", "-")
+    val tag = level match {
+      case 1 => <.h2
+      case 2 => <.h3
+      case 3 => <.h4
+    }
+    val element = tag(
+      Style.padding.bottom12.padding.top24,
+      <.span(^.dangerouslySetInnerHtml := content),
+      <.a(Style.margin.left8, ^.id := id, ^.href := s"#$id", "#")
+    )
+    rnd(element)
   }
 
   private val renderParagraph = (content: String) => {
-    println(content)
     rnd(<.p(Style.padding.ver12, ^.dangerouslySetInnerHtml := content))
+  }
+
+  private val renderCodespan = (content: String) => {
+    val styles = TagMod(Style.fontFamily.mono.backgroundColor.gray2,
+                        Style.padding.hor8.padding.ver4)
+    val html = ^.dangerouslySetInnerHtml := content
+    rnd(<.code(styles, html))
   }
 
   private val renderer = MarkedRenderer(
     heading = renderHead,
+    codespan = renderCodespan,
     paragraph = renderParagraph
   )
 
@@ -40,7 +58,6 @@ object Markdown {
   private case class Backend(scope: BackendScope[Markdown, _]) {
     def render(props: Markdown): VdomElement = {
       val html = Marked(props.source, options)
-      println(html)
       <.div(^.dangerouslySetInnerHtml := html)
     }
   }

@@ -7,7 +7,7 @@ import anduin.component.util.ComponentUtils
 import anduin.style.Style
 
 final case class Example(
-  content: (String, VdomElement)
+    content: (String, VdomElement)
 ) {
   def apply(): VdomElement = {
     Example.component(this)
@@ -22,16 +22,9 @@ object Example {
     def render(props: Example): VdomElement = {
       val (source, element) = props.content
       <.div(
-        Style.flexbox.flex.backgroundColor.gray1.padding.all4,
-        <.div(
-          Style.flexbox.fixed,
-          CodeBlock()(source)
-        ),
-        <.div(
-          Style.flexbox.none.backgroundColor.white.padding.all16,
-          ^.width := "320px",
-          element
-        )
+        Style.backgroundColor.gray1.padding.all4,
+        <.div(Style.backgroundColor.white.padding.all16, element),
+        <.div(CodeBlock(source)())
       )
     }
   }

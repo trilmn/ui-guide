@@ -13,22 +13,26 @@ object PageWelcome {
       Style.whiteSpace.pre,
       "Welcome",
       Markdown("""
-        |asdasd *a*
+        | # heading 1
+        | ## heading 2a
+        | ### heading 3
+        | asdasd *a*
         |""".stripMargin)(),
-      Example(Source.annotate(
-        <.div(
-          Style.flexbox.flex,
+      Example(
+        Source.annotate(
           <.div(
-            Button()("Action")
-          ),
-          <.div(
-            Style.margin.left12,
-            Button(
-              color = Button.ColorPrimary
-            )("Submit")
+            Style.flexbox.flex,
+            <.div(
+              Button()("Action")
+            ),
+            <.div(
+              Style.margin.left12,
+              Button(
+                color = Button.ColorPrimary
+              )("Submit")
+            )
           )
-        )
-      ))()
+        ))()
     )
   }
 }

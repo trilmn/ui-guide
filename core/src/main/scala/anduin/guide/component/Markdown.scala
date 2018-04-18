@@ -5,6 +5,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.util.ComponentUtils
+import anduin.style.Style
 
 final case class Markdown(
   source: String
@@ -16,18 +17,30 @@ final case class Markdown(
 
 object Markdown {
 
+  private val rnd = ReactDOMServer.renderToStaticMarkup _
+
   private final val ComponentName = ComponentUtils.name(this)
 
-  private val head = (text: String, depth: Int) => {
-    val element = <.p(text, depth.toString)
-    ReactDOMServer.renderToStaticMarkup(element)
+  private val renderHead = (content: String, depth: Int) => {
+    rnd(<.p(content, depth.toString))
   }
 
-  private val options = MarkedOptions(renderer = MarkedRenderer(heading = head))
+  private val renderParagraph = (content: String) => {
+    println(content)
+    rnd(<.p(Style.padding.ver12, ^.dangerouslySetInnerHtml := content))
+  }
+
+  private val renderer = MarkedRenderer(
+    heading = renderHead,
+    paragraph = renderParagraph
+  )
+
+  private val options: MarkedOptions = MarkedOptions(renderer = renderer)
 
   private case class Backend(scope: BackendScope[Markdown, _]) {
     def render(props: Markdown): VdomElement = {
       val html = Marked(props.source, options)
+      println(html)
       <.div(^.dangerouslySetInnerHtml := html)
     }
   }

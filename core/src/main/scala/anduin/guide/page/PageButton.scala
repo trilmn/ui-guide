@@ -12,8 +12,8 @@ object PageButton {
       Style.flexbox.flex,
       <.div(
         ^.cls := "guide",
-        <.pre(
-          <.code(
+        <.div(
+          <.div(
             ^.cls := "language-scala",
             "Button()(\"Action\")"
           )

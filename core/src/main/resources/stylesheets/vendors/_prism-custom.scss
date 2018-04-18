@@ -1,16 +1,4 @@
-/* Override Prism colors */
-
-pre[class*=language-] {
-  margin: 0;
-}
-
-:not(pre) > code[class*=language-], pre[class*=language-] {
-  background: var(--color-gray-1);
-}
-
-code[class*=language-], pre[class*=language-] {
-  color: var(--color-gray-8);
-}
+/* Token */
 
 .token.punctuation {
   color: var(--color-gray-6);
@@ -31,4 +19,63 @@ code[class*=language-], pre[class*=language-] {
 
 .token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted {
   color: var(--color-warning-5);
+}
+
+.token.comment, .token.prolog, .token.doctype, .token.cdata {
+	color: slategray;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.function, .token.class-name {
+	color: #DD4A68;
+}
+
+.token.regex, .token.important, .token.variable {
+	color: #e90;
+}
+
+.token.important, .token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+/* LINE NUMBERS */
+
+pre.line-numbers {
+  position: relative;
+  padding-left: 40px;
+  counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+  position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute; top: 0; left: -40px;
+  width: 40px; padding-right: 16px;
+
+  pointer-events: none; user-select: none;
+
+  text-align: right;
+  color: var(--color-gray-4);
+}
+
+.line-numbers-rows > span {
+  display: block;
+  counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  display: block;
 }

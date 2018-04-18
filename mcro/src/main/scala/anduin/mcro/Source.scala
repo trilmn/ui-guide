@@ -28,7 +28,7 @@ object Source {
     // get original source
     val pos = element.tree.pos
     // don't use pos.start here since we want to capture the whole line
-    val start = pos.point - pos.column
+    val start = pos.point - pos.column + 1
     val raw = String valueOf pos.source.content.slice(start, pos.end)
 
     // format the source (trim indentation)

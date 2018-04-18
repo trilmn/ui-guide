@@ -14,6 +14,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: com.github.japgolly.scalajs-react:core_sjs0.6_2.12:1.2.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.webjars.npm:react-dom:16.3.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.webjars.npm:react:16.3.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.webjars.npm:marked:0.3.19:jar" level="project" />
     <orderEntry type="module" module-name="mcro" exported="" />
     <orderEntry type="library" name="sbt: com.github.japgolly.scalajs-react:extra_sjs0.6_2.12:1.2.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.lihaoyi:sourcecode_sjs0.6_2.12:0.1.4:jar" level="project" />
@@ -38,10 +41,9 @@
     <orderEntry type="library" name="sbt: org.webjars.npm:object-assign:4.1.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.webjars.npm:promise:7.3.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.webjars.npm:prop-types:15.6.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.webjars.npm:react:16.2.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.webjars.npm:react-dom:16.2.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.webjars.npm:setimmediate:1.0.5:jar" level="project" />
     <orderEntry type="library" name="sbt: org.webjars.npm:ua-parser-js:0.7.17:jar" level="project" />
     <orderEntry type="library" name="sbt: org.webjars.npm:whatwg-fetch:0.10.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.karasiq:scalajs-marked_sjs0.6_2.12:1.0.2:jar" level="project" />
   </component>
 </module>

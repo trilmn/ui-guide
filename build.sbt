@@ -23,19 +23,29 @@ lazy val core = (project in file("core"))
     libraryDependencies ++= Seq(
       "org.scalatest" %% "scalatest" % "3.0.5" % Test,
       "org.scala-js" %%% "scalajs-dom" % "0.9.5",
-      "com.github.japgolly.scalajs-react" %%% "extra" % "1.2.0"
+      "com.github.japgolly.scalajs-react" %%% "extra" % "1.2.0",
+      "com.github.karasiq" %%% "scalajs-marked" % "1.0.2"
     ),
     jsDependencies ++= Seq(
-      "org.webjars.npm" % "react" % "16.2.0"
+      "org.webjars.npm" % "react" % "16.3.1"
         / "umd/react.development.js"
         minified "umd/react.production.min.js"
         commonJSName "React",
-      "org.webjars.npm" % "react-dom" % "16.2.0"
+      "org.webjars.npm" % "react-dom" % "16.3.1"
         / "umd/react-dom.development.js"
         minified "umd/react-dom.production.min.js"
         dependsOn "umd/react.development.js"
         commonJSName "ReactDOM",
-      ProvidedJS / "prism.js"
+      "org.webjars.npm" % "react-dom" % "16.3.1"
+        / "umd/react-dom-server.browser.development.js"
+        minified "umd/react-dom-server.browser.production.min.js"
+        dependsOn "umd/react-dom.development.js"
+        commonJSName "ReactDOMServer",
+      ProvidedJS / "prism.js",
+      "org.webjars.npm" % "marked" % "0.3.19"
+        / "lib/marked.js"
+        minified "marked.min.js"
+        commonJSName "Marked"
     )
   )
   .dependsOn(mcro)

@@ -9,7 +9,7 @@ import anduin.guide.component.{Example, Header, Markdown}
 import anduin.mcro.Source
 
 object PageStyleLayoutSpace {
-  val render: VdomElement = {
+  def render: VdomElement = {
     <.div(
       <.header(
         Style.margin.bottom32,

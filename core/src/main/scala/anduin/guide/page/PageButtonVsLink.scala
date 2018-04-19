@@ -5,7 +5,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 import anduin.guide.component.Markdown
 
 object PageButtonVsLink {
-  val render: VdomElement = {
+  def render: VdomElement = {
     <.div(
       <.h1("Button vs Link"),
       Markdown(

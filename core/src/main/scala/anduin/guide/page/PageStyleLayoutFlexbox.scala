@@ -8,7 +8,7 @@ import anduin.guide.component.{Example, Header, Markdown}
 import anduin.mcro.Source
 
 object PageStyleLayoutFlexbox {
-  val render: VdomElement = {
+  def render: VdomElement = {
     <.div(
       <.header(
         Style.margin.bottom32,
@@ -108,18 +108,18 @@ object PageStyleLayoutFlexbox {
           |In these cases, most of the time you will want an `overflow: hidden` on these flex items to let them free to shrink.
           |""".stripMargin)(),
       Example(
+        // format: off
         Source.annotate(
-          <.div(Style.whiteSpace.noWrap,
+          /*>*/<.div(Style.whiteSpace.noWrap,
             <.div(Style.flexbox.flex,
-              <.div(Style.flexbox.fixed, "11111111111111111111111111111111111111"),
-              <.div(Style.flexbox.fixed, "22222222222222222222222222222222222222")
-            ),
+              /*<*/<.div(Style.flexbox.fixed, "11111111111111111111111111111111111111"),
+              <.div(Style.flexbox.fixed, "22222222222222222222222222222222222222")/*>*/),
             <.div(Style.flexbox.flex,
-              <.div(Style.flexbox.fixed.overflow.hidden, "11111111111111111111111111111111111111"),
-              <.div(Style.flexbox.fixed.overflow.hidden, "22222222222222222222222222222222222222")
-            )
-          )
+              /*<*/<.div(Style.flexbox.fixed.overflow.hidden, "11111111111111111111111111111111111111"),
+              <.div(Style.flexbox.fixed.overflow.hidden, "22222222222222222222222222222222222222")/*>*/)
+          )/*<*/
         )
+        // format: on
       )(),
       Markdown(
         """
@@ -133,16 +133,21 @@ object PageStyleLayoutFlexbox {
           |- If they should be placed vertically (on top of each other), try using block elements first:
           |""".stripMargin)(),
       Example(
+        // format: off
         Source.annotate(
-          <.div(
-            Style.flexbox.flex.flexbox.justifyAround,
+          /*>*/<.div(
+            Style.flexbox.flex.flexbox.justifyAround,/*<*/
+
             // Bad: Unnecessary flex column
             <.div(Style.flexbox.flex.flexbox.column,
-                  <.span("First"), <.p("Second")),
+                  <.span("First"),
+                  <.p("Second")),
+
             // Good: Use block elements instead
-            <.div(<.p("First"), <.p("Second"))
-          )
+            <.div(<.p("First"), <.p("Second"))/*>*/
+          )/*<*/
         )
+        // format: on
       )(),
       Markdown(
         """
@@ -162,18 +167,20 @@ object PageStyleLayoutFlexbox {
       Example(
         // format: off
         Source.annotate({
-          val image = <.div(Style.backgroundColor.primary4.width.px64.height.px64)
+          /*>*/val image = <.div(Style.backgroundColor.primary4, ^.width := "40px", ^.height := "40px")
           val info = <.div(Style.margin.left8, <.p("Title"), <.p("Description"))
           val button = <.div(Style.margin.left8, Button()("Action"))
           val flex = Style.flexbox.flex.flexbox.itemsCenter
-          <.div(
+          <.div(/*<*/
+
             // Bad: Unnecessary nested flex
-            <.div(flex, Style.margin.bottom16,
+            <.div(flex, /*>*/Style.margin.bottom16,/*<*/
                   <.div(flex, image, info),
                   <.div(flex, button)),
+
             // Good: Single level of flex
-            <.div(flex, image, info, button)
-          )
+            <.div(flex, image, info, button)/*>*/
+          )/*<*/
         })
         // format: on
       )()

@@ -6,7 +6,7 @@ import anduin.style.Style
 import anduin.guide.component.{Header, Markdown}
 
 object PageStyle {
-  val render: VdomElement = {
+  def render: VdomElement = {
     <.div(
       <.header(
         Style.margin.bottom32,
@@ -19,7 +19,7 @@ object PageStyle {
       ),
       Markdown(
         """
-            |### Style is a global package.
+            |## Style is a global package.
             |It should be available anywhere in our apps.
             |```scala
             |import anduin.style.Style
@@ -27,17 +27,13 @@ object PageStyle {
             |<.div(Style.property.value)
             |```
             |
-            |---
-            |
-            |### Style defines simple, single-purpose visual properties.
+            |## Style defines simple, single-purpose visual properties.
             |For example: `color` or `margin`. `Style` does not cover
             |combination of properties, so don't expect to find concrete
             |elements like `Style.table` or `Style.heading`. They should be
             |covered in Components instead.
             |
-            |---
-            |
-            |### Under the hood, Style simply adds corresponding classes.
+            |## Under the hood, Style simply adds corresponding classes.
             |This was done using `TagMod`. Although simple, this brings many
             |benefits such as code completion, easier maintenance and reducing
             |of human mistakes.
@@ -57,16 +53,12 @@ object PageStyle {
             |>the near future, it might be machine-generated for performance
             |>purpose.
             |
-            |---
-            |
-            |### Numeric values are often prefixed with unit
+            |## Numeric values are often prefixed with unit
             |For example: `Style.fontSize.px20` or `Style.width.percent100`.
             |Moreover, the values themselves are often literal values, such
             |as `Style.padding.left16` means a 16-pixel left padding.
             |
-            |---
-            |
-            |### Style can (and should be) chained.
+            |## Style can (and should be) chained.
             |Multiple attributes can be defined together under one or several
             |`Style`. The order of attributes in `Style` does not matter,
             |so it is good to group related ones under one `Style`.
@@ -79,9 +71,7 @@ object PageStyle {
             |)/*<*/
             |```
             |
-            |---
-            |
-            |### Style can be used together with literal classes.
+            |## Style can be used together with literal classes.
             |However, you should rarely see this since classes should never be
             |used for styling purpose, thus is rarely be used in general.
             |Current usages of literal classes in our system should mostly are

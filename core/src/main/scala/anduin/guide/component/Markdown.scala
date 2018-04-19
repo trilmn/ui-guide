@@ -22,7 +22,7 @@ object Markdown {
   private final val ComponentName = ComponentUtils.name(this)
 
   private val renderHead = (content: String, level: Int) => {
-    val styles = Style.padding.bottom12.padding.top24
+    val styles = Style.padding.bottom12.padding.top32
     val heading = Heading(content = content, level = level)()
     rnd(<.div(styles, heading))
   }

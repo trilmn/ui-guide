@@ -8,7 +8,7 @@ import anduin.mcro.Source
 import anduin.style.Style
 
 object PageWelcome {
-  val render: VdomElement = {
+  def render: VdomElement = {
     <.div(
       Style.whiteSpace.pre,
       "Welcome",

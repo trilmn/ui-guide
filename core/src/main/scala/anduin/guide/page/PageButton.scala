@@ -9,7 +9,7 @@ import anduin.mcro.Source
 import anduin.style.Style
 
 object PageButton {
-  val render: VdomElement = {
+  def render: VdomElement = {
     <.div(
       // Content
       <.section(

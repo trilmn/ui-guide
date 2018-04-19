@@ -7,7 +7,7 @@ import anduin.component.util.ComponentUtils
 import anduin.style.Style
 
 final case class Example(
-    content: (String, VdomElement)
+  content: (String, VdomElement)
 ) {
   def apply(): VdomElement = {
     Example.component(this)
@@ -23,7 +23,16 @@ object Example {
       val (source, element) = props.content
       <.div(
         Style.backgroundColor.gray1.padding.all4,
-        <.div(Style.backgroundColor.white.padding.all16, element),
+        <.div(
+          Style.backgroundColor.white.padding.all16,
+          // Ensure the example is shown in correct font size
+          // and line height (since these values in Guide is
+          // bigger than in the actual app
+          Style.fontSize.px14,
+          // @TODO: Make this a valid Style.lineHeight
+          ^.lineHeight := "20px",
+          element
+        ),
         <.div(CodeBlock(content = source)())
       )
     }

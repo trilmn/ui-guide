@@ -24,7 +24,7 @@ object Example {
       <.div(
         Style.backgroundColor.gray1.padding.all4,
         <.div(Style.backgroundColor.white.padding.all16, element),
-        <.div(CodeBlock(source)())
+        <.div(CodeBlock(content = source)())
       )
     }
   }

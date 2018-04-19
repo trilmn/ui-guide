@@ -8,7 +8,6 @@ import anduin.guide.component.{Example, Markdown}
 import anduin.mcro.Source
 import anduin.style.Style
 
-// format: off
 object PageButton {
   val render: VdomElement = {
     <.div(
@@ -22,6 +21,7 @@ object PageButton {
               | WIP
             """.stripMargin)(),
           Example(
+            // format: off
             Source.annotate({
               /*>*/val icon = IconAcl(name = IconAcl.NameLightBolt)()
               <.div(
@@ -31,6 +31,7 @@ object PageButton {
                 <.div(/*<*/Button()("Text", <.span(Style.margin.left8, icon))/*>*/)
               )/*<*/
             })
+            // format: on
           )()
         )
       ),
@@ -44,13 +45,15 @@ object PageButton {
               | Try hover and right click:
             """.stripMargin)(),
           Example(
+            // format: off
             Source.annotate(
               /*>*/<.div(
                 Style.flexbox.flex,
                 <.div(/*<*/Button()("Button")/*>*/, Style.margin.right16),
-                <.div(/*<*/Button(tpe = Button.TpeLink)("Link")/*>*/)
+                <.div(/*<*/Button(tpe = Button.TpeLink, href = "https://google.com")("Link")/*>*/)
               )/*<*/
             )
+            // format: on
           )()
         ),
         // isDisabled
@@ -60,6 +63,7 @@ object PageButton {
               | WIP
             """.stripMargin)(),
           Example(
+            // format: off
             Source.annotate(
               /*>*/<.div(
                 Style.flexbox.flex,
@@ -69,6 +73,7 @@ object PageButton {
                 <.div(/*<*/Button(isDisabled = true, isMinimal = true)("Minimal")()/*>*/)
               )/*<*/
             )
+            // format: on
           )()
         )
       ),
@@ -82,6 +87,7 @@ object PageButton {
               | WIP
             """.stripMargin)(),
           Example(
+            // format: off
             Source.annotate(
               /*>*/<.div(
                 Style.flexbox.flex,
@@ -92,6 +98,7 @@ object PageButton {
                 <.div(/*<*/Button(color = Button.ColorDanger)("Danger")/*>*/, Style.margin.left16)
               )/*<*/
             )
+            // format: on
           )()
         ),
         // size
@@ -101,6 +108,7 @@ object PageButton {
               | WIP
             """.stripMargin)(),
           Example(
+            // format: off
             Source.annotate(
               /*>*/<.div(
                 Style.flexbox.flex,
@@ -109,6 +117,7 @@ object PageButton {
                 <.div(/*<*/Button(size = Button.SizeLarge)("Large"))
               )/*<*/
             )
+            // format: on
           )()
         )
       )

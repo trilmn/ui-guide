@@ -1,7 +1,5 @@
 package anduin.guide.component
 
-import scala.util.matching.Regex
-
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
@@ -9,7 +7,8 @@ import anduin.component.util.ComponentUtils
 import anduin.style.Style
 
 final case class CodeBlock(
-    content: String
+    content: String,
+    language: String = "scala",
 ) {
   def apply(): VdomElement = {
     CodeBlock.component(this)
@@ -22,17 +21,20 @@ object CodeBlock {
 
   private case class Backend(scope: BackendScope[CodeBlock, _]) {
     def render(props: CodeBlock): VdomElement = {
-      val content = props.content
+      val htmlContent = props.content
         .replace("/*>*/", "<span style=\"opacity: 0.3\">")
         .replace("/*<*/", "</span>")
-      val mod = ^.dangerouslySetInnerHtml := content
+      val content: TagMod = if (props.language == "scala") {
+        ^.dangerouslySetInnerHtml := htmlContent
+      } else htmlContent
+      val cls = ^.cls := s"language-${props.language}"
       <.div(
         Style.backgroundColor.gray1.padding.ver12.padding.hor8,
         Style.overflow.auto,
         <.pre(
           Style.fontFamily.mono,
           ^.cls := "line-numbers",
-          <.code(Style.display.block, ^.cls := "language-scala", mod)
+          <.code(Style.display.block, cls, content)
         )
       )
     }

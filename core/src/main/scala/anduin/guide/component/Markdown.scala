@@ -22,18 +22,13 @@ object Markdown {
   private final val ComponentName = ComponentUtils.name(this)
 
   private val renderHead = (content: String, level: Int) => {
-    val id = content.toLowerCase().replaceAll("[^\\w]+", "-")
-    val tag = level match {
-      case 1 => <.h2
-      case 2 => <.h3
-      case 3 => <.h4
-    }
-    val element = tag(
-      Style.padding.bottom12.padding.top24,
-      <.span(^.dangerouslySetInnerHtml := content),
-      <.a(Style.margin.left8, ^.id := id, ^.href := s"#$id", "#")
-    )
-    rnd(element)
+    val styles = Style.padding.bottom12.padding.top24
+    val heading = Heading(content = content, level = level)()
+    rnd(<.div(styles, heading))
+  }
+
+  private val renderHr = () => {
+    rnd(<.hr(^.height := "48px"))
   }
 
   private val renderParagraph = (content: String) => {
@@ -42,18 +37,66 @@ object Markdown {
 
   private val renderCodespan = (content: String) => {
     val styles = TagMod(Style.fontFamily.mono.backgroundColor.gray2,
-                        Style.padding.hor8.padding.ver4)
+                        ^.padding := "2px 4px")
     val html = ^.dangerouslySetInnerHtml := content
     rnd(<.code(styles, html))
   }
 
-  private val renderer = MarkedRenderer(
-    heading = renderHead,
-    codespan = renderCodespan,
-    paragraph = renderParagraph
-  )
+  private val renderCode = (content: String, language: String) => {
+    val codeBlock = CodeBlock(content = content, language = language)()
+    rnd(<.div(Style.padding.ver12, codeBlock))
+  }
 
-  private val options: MarkedOptions = MarkedOptions(renderer = renderer)
+  private val renderBlockquote = (content: String) => {
+    val quoteBlock = QuoteBlock(content = content)()
+    rnd(<.div(Style.padding.ver12, quoteBlock))
+  }
+
+  private val renderList = (content: String, ordered: Boolean) => {
+    val tag = if (ordered) <.ol else <.ul
+    val html = ^.dangerouslySetInnerHtml := content
+    rnd(tag(Style.padding.left32.padding.ver12, html))
+  }
+
+  private val renderTable = (header: String, body: String) => {
+    val element = <.table(
+      Style.table.collapse.width.pc100,
+      <.thead(Style.backgroundColor.gray1, ^.dangerouslySetInnerHtml := header),
+      <.tbody(^.dangerouslySetInnerHtml := body)
+    )
+    rnd(<.div(Style.padding.ver12, element))
+  }
+
+  private val renderTableCell =
+    (content: String, flags: scala.scalajs.js.Object) => {
+      val isHeader: Boolean = flags
+        .asInstanceOf[scala.scalajs.js.Dynamic]
+        .selectDynamic("header")
+        .asInstanceOf[Boolean]
+
+      val styles = TagMod(
+        Style.border.all.borderColor.gray2.borderWidth.px1,
+        Style.padding.all12.textAlign.left.fontWeight.normal
+      )
+      val html = ^.dangerouslySetInnerHtml := content
+      val tag = if (isHeader) <.th else <.td
+      rnd(tag(styles, html))
+    }
+
+  private val options: MarkedOptions = MarkedOptions(
+    renderer = MarkedRenderer(
+      heading = renderHead,
+      codespan = renderCodespan,
+      code = renderCode,
+      hr = renderHr,
+      blockquote = renderBlockquote,
+      list = renderList,
+      table = renderTable,
+      tablecell = renderTableCell,
+      paragraph = renderParagraph
+    ),
+    smartypants = false
+  )
 
   private case class Backend(scope: BackendScope[Markdown, _]) {
     def render(props: Markdown): VdomElement = {

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-source ./scripts/_prepare.sh
+. ./scripts/_prepare.sh
 
 # Resources
 echo "[info] Copying resources ..."
 cp ${core_res}/404.html ${docs}/
-cp ${core_res}/index.html ${docs}/
+cp ${core_res}/index-opt.html ${docs}/index.html
 cp ${core_res}/icon.png ${docs}/
 sass ${core_css_main} ${docs}/app.css --style=compressed
 
@@ -16,4 +16,4 @@ echo "[info] Copying JS ..."
 cp ${core_target}/core-opt.js ${docs}/app.js
 cp ${core_target}/core-jsdeps.min.js ${docs}/dep.js
 
-echo -e "[\e[32msuccess\e[0m] Successfully built"
+echo "[success] Successfully built"

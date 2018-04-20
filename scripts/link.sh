@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./scripts/_prepare.sh
+. ./scripts/_prepare.sh
 
 echo "Please enter the absolute path to stargazer on your local:"
 read sgz_src
@@ -37,4 +37,4 @@ do
     ln -sf ${sgz_js}/component/${name} ${core_js}/component/${name}
 done
 
-echo -e "[\e[32msuccess\e[0m] Successfully linked"
+echo "[success] Successfully linked"

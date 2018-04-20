@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# Ensure this script was run at project root
-files=$(ls)
-
-if [[ ${files} != *"build.sbt"* ]]; then
-  echo -e "[\e[31merror\e[0m] Scripts must be run at project root"
-  exit
-fi
-
 core_src=./core/src/main
 
 core_res=${core_src}/resources

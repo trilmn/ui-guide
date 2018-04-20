@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./scripts/_prepare.sh
+. ./scripts/_prepare.sh
 
 echo "[info] Clearing linked JS: anduin.style ..."
 rm -rf ${core_js_style}
@@ -22,4 +22,4 @@ mkdir ${docs}
 echo "[info] Clearing sbt (target) ..."
 sbt clean >/dev/null 2>&1
 
-echo -e "[\e[32msuccess\e[0m] Successfully cleaned"
+echo "[success] Successfully cleaned"

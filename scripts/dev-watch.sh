@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-source ./scripts/_prepare.sh
-
-echo -e "[\e[33mwarn\e[0m] This one compiles CSS and start ~fastOptJS."
-echo -e "[\e[33mwarn\e[0m] Please have another tab for \"dev-2\"."
+. ./scripts/_prepare.sh
 
 # CSS
 echo "[info] Compiling CSS ..."

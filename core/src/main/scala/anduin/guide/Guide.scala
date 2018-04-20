@@ -24,25 +24,22 @@ object Guide {
   private val postRenderFn = (prev: Option[Guide.Page], _: Guide.Page) =>
     Callback { if (prev.isDefined) { js.Dynamic.global.Prism.highlightAll() } }
 
-  private val isLocal = dom.window.location.hostname == "0.0.0.0"
-
-  private val hash = if (isLocal) "#" else ""
-
   private val routerConfig = RouterConfigDsl[Page].buildConfig { dsl =>
     import dsl._
     (trimSlashes
       | staticRoute(root, Welcome) ~> render(PageWelcome.render)
-      | staticRoute(s"${hash}style", Style) ~> render(PageStyle.render)
-      | staticRoute(s"${hash}space", StyleLayoutSpace) ~> render(PageStyleLayoutSpace.render)
-      | staticRoute(s"${hash}color", StyleColor) ~> render(PageStyleColor.render)
-      | staticRoute(s"${hash}flexbox", StyleLayoutFlexbox) ~> render(PageStyleLayoutFlexbox.render)
-      | staticRoute(s"${hash}button", Button) ~> render(PageButton.render)
-      | staticRoute(s"${hash}button-vs-link", ButtonVsLink) ~> render(PageButtonVsLink.render))
+      | staticRoute("style", Style) ~> render(PageStyle.render)
+      | staticRoute("space", StyleLayoutSpace) ~> render(PageStyleLayoutSpace.render)
+      | staticRoute("color", StyleColor) ~> render(PageStyleColor.render)
+      | staticRoute("flexbox", StyleLayoutFlexbox) ~> render(PageStyleLayoutFlexbox.render)
+      | staticRoute("button", Button) ~> render(PageButton.render)
+      | staticRoute("button-vs-link", ButtonVsLink) ~> render(PageButtonVsLink.render))
       .notFound(redirectToPage(Welcome)(Redirect.Replace))
       .renderWith(Layout.render)
       .onPostRender(postRenderFn)
   }
 
+  private val isLocal = dom.window.location.hostname == "localhost"
   private val baseUrlPath = if (isLocal) "" else "ui-guide/"
   private val baseUrl = BaseUrl.fromWindowOrigin / baseUrlPath
 

@@ -17,3 +17,6 @@ core/src/main/resources/stylesheets/core-fastopt.css
 
 # NOTE: Don't put "docs" here, we need it for
 # ghpages publishing
+
+# NPM
+scripts/dev-serve/node_modules

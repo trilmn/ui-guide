@@ -4,7 +4,8 @@ source ./scripts/_prepare.sh
 
 # Resources
 echo "[info] Copying resources ..."
-cp ${core_res}/template.index.html ${docs}/index.html
+cp ${core_res}/404.html ${docs}/
+cp ${core_res}/index.html ${docs}/
 cp ${core_res}/icon.png ${docs}/
 sass ${core_css_main} ${docs}/app.css --style=compressed
 

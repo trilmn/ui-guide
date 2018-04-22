@@ -22,17 +22,19 @@ object Heading {
   private case class Backend(scope: BackendScope[Heading, _]) {
     def render(props: Heading): VdomElement = {
       val id = props.content
-        .replaceAll("<.*?>", "")
+        .replaceAll("<.*?>", "") // HTML tags like <code>Foo</code>
         .toLowerCase()
-        .replaceAll("[^\\w]+", "-")
+        .replaceAll("[^\\w]+", "-") // symbols like "," "." "("
+        .replaceAll("-$", "") // trailing "-" (originally ".")
       val tag = props.level match {
         case 1 => <.h2
         case 2 => <.h3
         case 3 => <.h4
       }
       tag(
+        ^.id := id,
         <.span(^.dangerouslySetInnerHtml := props.content),
-        <.a(Style.margin.left8, ^.id := id, ^.href := s"#$id", "#")
+        <.a(Style.margin.left8, ^.href := s"#$id", "#")
       )
     }
   }

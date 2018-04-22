@@ -15,8 +15,8 @@ object Layout {
   private val navMenu = ScalaComponent
     .builder[RouterCtl[Guide.Page]]("Menu")
     .render_P { ctl =>
-      def link(name: String, target: Guide.Page = Guide.WIP) =
-        if (target == Guide.WIP) <.p(Style.color.gray6, name)
+      def link(name: String, target: Guide.Page = Guide.WIP()) =
+        if (target == Guide.WIP()) <.p(Style.color.gray6, name)
         else ctl.link(target)(Style.color.inherit, name)
 
       <.div(
@@ -24,21 +24,21 @@ object Layout {
         Style.lineHeight.px40,
         ul(
           <.li(
-            link("Style", Guide.Style),
+            link("Style", Guide.Style()),
             ul(
               <.li(
                 link("Layout"),
-                ul(<.li(link("Space", Guide.StyleLayoutSpace)), <.li(link("Flexbox", Guide.StyleLayoutFlexbox)))
+                ul(<.li(link("Space", Guide.StyleLayoutSpace())), <.li(link("Flexbox", Guide.StyleLayoutFlexbox())))
               ),
-              <.li(link("Color", Guide.StyleColor)),
+              <.li(link("Color", Guide.StyleColor())),
               <.li(link("Typography"))
             )
           ),
           <.li(
             link("Components"),
             ul(<.li(
-                 link("Button", Guide.Button),
-                 ul(<.li(link("Button Group")), <.li(link("Button vs Link", Guide.ButtonVsLink)))
+                 link("Button", Guide.Button()),
+                 ul(<.li(link("Button Group")), <.li(link("Button vs Link", Guide.ButtonVsLink())))
                ),
                <.li(
                  link("Icon")

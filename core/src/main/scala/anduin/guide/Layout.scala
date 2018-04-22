@@ -31,7 +31,7 @@ object Layout {
                 ul(<.li(link("Space", Guide.StyleLayoutSpace())), <.li(link("Flexbox", Guide.StyleLayoutFlexbox())))
               ),
               <.li(link("Color", Guide.StyleColor())),
-              <.li(link("Typography"))
+              <.li(link("Typography", Guide.StyleTypography()))
             )
           ),
           <.li(

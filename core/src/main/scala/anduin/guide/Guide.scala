@@ -15,6 +15,7 @@ object Guide {
   case class StyleLayoutSpace(hash: String = "")   extends Page
   case class StyleLayoutFlexbox(hash: String = "") extends Page
   case class StyleColor(hash: String = "")         extends Page
+  case class StyleTypography(hash: String = "")    extends Page
   case class Button(hash: String = "")             extends Page
   case class ButtonVsLink(hash: String = "")       extends Page
   case class WIP(hash: String = "")                extends Page
@@ -37,6 +38,7 @@ object Guide {
       | dynamicRouteCT("color" ~ hash.caseClass[StyleColor]) ~> render(PageStyleColor.render)
       | dynamicRouteCT("space" ~ hash.caseClass[StyleLayoutSpace]) ~> render(PageStyleLayoutSpace.render)
       | dynamicRouteCT("flexbox" ~ hash.caseClass[StyleLayoutFlexbox]) ~> render(PageStyleLayoutFlexbox.render)
+      | dynamicRouteCT("typography" ~ hash.caseClass[StyleTypography]) ~> render(PageStyleTypography.render)
 
       | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> render(PageButton.render)
       | dynamicRouteCT("button-vs-link" ~ hash.caseClass[ButtonVsLink]) ~> render(PageButtonVsLink.render))

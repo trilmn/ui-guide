@@ -28,10 +28,13 @@ object Layout {
             ul(
               <.li(
                 link("Layout"),
-                ul(<.li(link("Space", Guide.StyleLayoutSpace())), <.li(link("Flexbox", Guide.StyleLayoutFlexbox())))
+                ul(<.li(link("Space", Guide.Space())), <.li(link("Flexbox", Guide.Flexbox())))
               ),
-              <.li(link("Color", Guide.StyleColor())),
-              <.li(link("Typography", Guide.StyleTypography()))
+              <.li(link("Color", Guide.Color())),
+              <.li(
+                link("Typography", Guide.Typography()),
+                ul(<.li(link("Why fixed line height", Guide.FixedLineHeight())))
+              )
             )
           ),
           <.li(
@@ -40,9 +43,8 @@ object Layout {
                  link("Button", Guide.Button()),
                  ul(<.li(link("Button Group")), <.li(link("Button vs Link", Guide.ButtonVsLink())))
                ),
-               <.li(
-                 link("Icon")
-               ))
+               <.li(link("Icon", Guide.Icon()))
+            )
           )
         )
       )
@@ -53,7 +55,7 @@ object Layout {
   def render(c: RouterCtl[Guide.Page], r: Resolution[Guide.Page]): VdomElement =
     <.div(
       Style.flexbox.flex.fontSize.px16.lineHeight.px24,
-      <.div(^.width := "256px", navMenu(c)),
+      <.div(^.width := "320px", navMenu(c)),
       <.div(^.width := "640px", Style.backgroundColor.white, ^.padding := "64px", r.render())
     )
 }

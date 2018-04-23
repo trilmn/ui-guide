@@ -3,12 +3,13 @@ package anduin.guide.page
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.Button
+import anduin.guide.Guide
 import anduin.guide.component.{Example, Markdown}
 import anduin.mcro.Source
 import anduin.style.Style
 
 object PageWelcome {
-  def render: VdomElement = {
+  def render(ctl: Guide.Ctl): VdomElement = {
     <.div(
       Style.whiteSpace.pre,
       "Welcome",

@@ -20,9 +20,9 @@ object PageButtonGroup {
         )()
       ),
       Markdown("""
-          |>**Do not use this.** At the moment this is only implementation idea for discussion.
+          |>**Do not use this.** This is implementation idea for discussion only.
           |>
-          |>Please wait until we have `ButtonGroup` component.
+          |>Please wait until we have `ButtonGroup` component implemented.
           |""".stripMargin)(),
       Example(
         // format: off

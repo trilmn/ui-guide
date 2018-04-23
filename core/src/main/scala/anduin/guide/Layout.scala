@@ -41,10 +41,11 @@ object Layout {
             link("Components", Main.Component()),
             ul(<.li(
                  link("Button", Main.Button()),
-                 ul(<.li(link("Button Group")), <.li(link("Button vs Link", Main.ButtonVsLink())))
+                 ul(
+                   <.li(link("Button Group", Main.ButtonGroup())),
+                   <.li(link("Button vs Link", Main.ButtonVsLink())))
                ),
-               <.li(link("Icon", Main.Icon()))
-            )
+               <.li(link("Icon", Main.Icon())))
           )
         )
       )

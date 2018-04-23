@@ -20,6 +20,7 @@ object Main {
   case class Component(hash: String = "")    extends Page
   case class Icon(hash: String = "")         extends Page
   case class Button(hash: String = "")       extends Page
+  case class ButtonGroup(hash: String = "")  extends Page
   case class ButtonVsLink(hash: String = "") extends Page
   case class WIP(hash: String = "")          extends Page
 
@@ -33,7 +34,7 @@ object Main {
   private val routerConfig = RouterConfigDsl[Page].buildConfig { dsl =>
     import dsl._
 
-    val hash = string("#?.*")
+    val hash = string("(#.*|)$")
 
     (trimSlashes
       | staticRoute(root, Welcome) ~> renderR(PageWelcome.render)
@@ -48,6 +49,7 @@ object Main {
       | dynamicRouteCT("component" ~ hash.caseClass[Component]) ~> renderR(PageComponent.render)
       | dynamicRouteCT("icon" ~ hash.caseClass[Icon]) ~> renderR(PageIcon.render)
       | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> renderR(PageButton.render)
+      | dynamicRouteCT("button-group" ~ hash.caseClass[ButtonGroup]) ~> renderR(PageButtonGroup.render)
       | dynamicRouteCT("button-vs-link" ~ hash.caseClass[ButtonVsLink]) ~> renderR(PageButtonVsLink.render)
 
       | emptyRule)

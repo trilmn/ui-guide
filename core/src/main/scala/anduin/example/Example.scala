@@ -1,9 +1,10 @@
-package anduin.guide.component
+package anduin.example
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.util.ComponentUtils
+import anduin.markdown.CodeBlock
 import anduin.style.Style
 
 final case class Example(

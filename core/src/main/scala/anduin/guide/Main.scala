@@ -6,9 +6,7 @@ import japgolly.scalajs.react.Callback
 import japgolly.scalajs.react.extra.router._
 import org.scalajs.dom
 
-import page._
-
-object Guide {
+object Main {
   sealed trait Page {}
   case object Welcome extends Page
 
@@ -19,6 +17,7 @@ object Guide {
   case class Typography(hash: String = "")      extends Page
   case class FixedLineHeight(hash: String = "") extends Page
 
+  case class Component(hash: String = "")    extends Page
   case class Icon(hash: String = "")         extends Page
   case class Button(hash: String = "")       extends Page
   case class ButtonVsLink(hash: String = "") extends Page
@@ -28,7 +27,7 @@ object Guide {
 
   // Prism only runs once on page load, so we need to manually tell it to
   // run again on client routing
-  private val postRenderFn = (prev: Option[Guide.Page], _: Guide.Page) =>
+  private val postRenderFn = (prev: Option[Main.Page], _: Main.Page) =>
     Callback { if (prev.isDefined) { js.Dynamic.global.Prism.highlightAll() } }
 
   private val routerConfig = RouterConfigDsl[Page].buildConfig { dsl =>
@@ -46,6 +45,7 @@ object Guide {
       | dynamicRouteCT("typography" ~ hash.caseClass[Typography]) ~> renderR(PageTypography.render)
       | dynamicRouteCT("fixed-line-height" ~ hash.caseClass[FixedLineHeight]) ~> renderR(PageFixedLineHeight.render)
 
+      | dynamicRouteCT("component" ~ hash.caseClass[Component]) ~> renderR(PageComponent.render)
       | dynamicRouteCT("icon" ~ hash.caseClass[Icon]) ~> renderR(PageIcon.render)
       | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> renderR(PageButton.render)
       | dynamicRouteCT("button-vs-link" ~ hash.caseClass[ButtonVsLink]) ~> renderR(PageButtonVsLink.render)

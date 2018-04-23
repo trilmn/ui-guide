@@ -13,10 +13,10 @@ object Layout {
     <.ul(Style.listing.list.padding.left16, content.toTagMod)
 
   private val navMenu = ScalaComponent
-    .builder[RouterCtl[Guide.Page]]("Menu")
+    .builder[RouterCtl[Main.Page]]("Menu")
     .render_P { ctl =>
-      def link(name: String, target: Guide.Page = Guide.WIP()) =
-        if (target == Guide.WIP()) <.p(Style.color.gray6, name)
+      def link(name: String, target: Main.Page = Main.WIP()) =
+        if (target == Main.WIP()) <.p(Style.color.gray6, name)
         else ctl.link(target)(Style.color.inherit, name)
 
       <.div(
@@ -24,26 +24,26 @@ object Layout {
         Style.lineHeight.px40,
         ul(
           <.li(
-            link("Style", Guide.Style()),
+            link("Style", Main.Style()),
             ul(
               <.li(
                 link("Layout"),
-                ul(<.li(link("Space", Guide.Space())), <.li(link("Flexbox", Guide.Flexbox())))
+                ul(<.li(link("Space", Main.Space())), <.li(link("Flexbox", Main.Flexbox())))
               ),
-              <.li(link("Color", Guide.Color())),
+              <.li(link("Color", Main.Color())),
               <.li(
-                link("Typography", Guide.Typography()),
-                ul(<.li(link("Why fixed line height", Guide.FixedLineHeight())))
+                link("Typography", Main.Typography()),
+                ul(<.li(link("Why fixed line height", Main.FixedLineHeight())))
               )
             )
           ),
           <.li(
-            link("Components"),
+            link("Components", Main.Component()),
             ul(<.li(
-                 link("Button", Guide.Button()),
-                 ul(<.li(link("Button Group")), <.li(link("Button vs Link", Guide.ButtonVsLink())))
+                 link("Button", Main.Button()),
+                 ul(<.li(link("Button Group")), <.li(link("Button vs Link", Main.ButtonVsLink())))
                ),
-               <.li(link("Icon", Guide.Icon()))
+               <.li(link("Icon", Main.Icon()))
             )
           )
         )
@@ -52,7 +52,7 @@ object Layout {
     .configure(Reusability.shouldComponentUpdate)
     .build
 
-  def render(c: RouterCtl[Guide.Page], r: Resolution[Guide.Page]): VdomElement =
+  def render(c: RouterCtl[Main.Page], r: Resolution[Main.Page]): VdomElement =
     <.div(
       Style.flexbox.flex.fontSize.px16.lineHeight.px24,
       <.div(^.width := "320px", navMenu(c)),

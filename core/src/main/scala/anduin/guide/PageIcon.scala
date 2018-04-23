@@ -1,10 +1,8 @@
-package anduin.guide.page
+package anduin.guide
 
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.icon.IconAcl
-import anduin.guide.Guide
-import anduin.guide.component.{Example, Header, Markdown}
 import anduin.mcro.Source
 import anduin.style.Style
 
@@ -240,7 +238,7 @@ object PageIcon {
     )
   }
 
-  def render(ctl: Guide.Ctl): VdomElement = {
+  def render(ctl: Main.Ctl): VdomElement = {
     <.div(
       <.header(
         Style.margin.bottom32,
@@ -278,8 +276,8 @@ object PageIcon {
       Example(
         Source.annotate(
           /*>*/ <.div(
-            Style.flexbox.flex.flexbox.itemsCenter,
-            /*<*/ IconAcl(name = IconAcl.NameOffice)() /*>*/,
+            Style.flexbox.flex.flexbox.itemsCenter, /*<*/
+            IconAcl(name = IconAcl.NameOffice)() /*>*/,
             <.span(Style.margin.left8, "Office")
           ) /*<*/
         )
@@ -300,7 +298,7 @@ object PageIcon {
           |Meanwhile, the `block` display prevents the default alignment, and placed the icon on its own row. This enforces the engineers to properly align the icon.
           |
           |- [This Codepen](https://codepen.io/dvkndn/pen/wmQmbm) explains in detail why we prefer `block` over `inline` icons.
-          |- For alignment, we suggest to see the [Flexbox guide](${ctl.urlFor(Guide.Flexbox()).value}).
+          |- For alignment, we suggest to see the [Flexbox guide](${ctl.urlFor(Main.Flexbox()).value}).
           |
           |### Icon's shape is designed to touch the bound
           |

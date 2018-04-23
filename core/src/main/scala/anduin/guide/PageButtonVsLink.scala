@@ -1,12 +1,9 @@
-package anduin.guide.page
+package anduin.guide
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.guide.Guide
-import anduin.guide.component.Markdown
-
 object PageButtonVsLink {
-  def render(ctl: Guide.Ctl): VdomElement = {
+  def render(ctl: Main.Ctl): VdomElement = {
     <.div(
       <.h1("Button vs Link"),
       Markdown(

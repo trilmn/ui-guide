@@ -1,4 +1,4 @@
-package anduin.guide.component
+package anduin.markdown
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._

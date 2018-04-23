@@ -1,14 +1,12 @@
-package anduin.guide.page
+package anduin.guide
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.guide.Guide
-import anduin.style.Style
-import anduin.guide.component.{Example, Header, Markdown}
 import anduin.mcro.Source
+import anduin.style.Style
 
 object PageTypography {
-  def render(ctl: Guide.Ctl): VdomElement = {
+  def render(ctl: Main.Ctl): VdomElement = {
     <.div(
       <.header(
         Style.margin.bottom32,
@@ -56,7 +54,7 @@ object PageTypography {
           |
           |# Line Height
           |
-          |We use a set of [fixed line height](${ctl.urlFor(Guide.FixedLineHeight()).value}), with the default value being 20 pixels. The default value should work for most use cases, including paragraph (since the default font size is 14 pixels) or short string of text on UI (e.g: label, information, value).
+          |We use a set of [fixed line height](${ctl.urlFor(Main.FixedLineHeight()).value}), with the default value being 20 pixels. The default value should work for most use cases, including paragraph (since the default font size is 14 pixels) or short string of text on UI (e.g: label, information, value).
           |
           |However, there are still cases where we want to change the line height, especially when we have a large font size as mentioned in the Font Size section. These should be done by choosing a value under `Style.lineHeight`:
           |

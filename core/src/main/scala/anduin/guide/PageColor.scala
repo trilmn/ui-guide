@@ -1,11 +1,9 @@
-package anduin.guide.page
+package anduin.guide
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.guide.Guide
-import anduin.style.Style
-import anduin.guide.component.{Example, Header, Markdown}
 import anduin.mcro.Source
+import anduin.style.Style
 
 object PageColor {
 
@@ -33,7 +31,7 @@ object PageColor {
   private val bg = Style.backgroundColor
   private val c  = Style.color
 
-  def render(ctl: Guide.Ctl): VdomElement = {
+  def render(ctl: Main.Ctl): VdomElement = {
     <.div(
       <.header(
         Style.margin.bottom32,

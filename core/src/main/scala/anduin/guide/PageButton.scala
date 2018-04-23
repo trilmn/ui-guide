@@ -1,16 +1,14 @@
-package anduin.guide.page
+package anduin.guide
 
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.Button
 import anduin.component.icon.IconAcl
-import anduin.guide.Guide
-import anduin.guide.component.{Example, Markdown}
 import anduin.mcro.Source
 import anduin.style.Style
 
 object PageButton {
-  def render(ctl: Guide.Ctl): VdomElement = {
+  def render(ctl: Main.Ctl): VdomElement = {
     <.div(
       // Content
       <.section(
@@ -71,7 +69,7 @@ object PageButton {
                 <.div(/*<*/Button(isDisabled = true)("Default")/*>*/, Style.margin.right16),
                 <.div(/*<*/Button(isDisabled = true, color = Button.ColorPrimary)("Primary")/*>*/, Style.margin.right16),
                 <.div(/*<*/Button(isDisabled = true)(IconAcl(name = IconAcl.NameLayer)())/*>*/, Style.margin.right16),
-                <.div(/*<*/Button(isDisabled = true, isMinimal = true)("Minimal")()/*>*/)
+                <.div(/*<*/Button(isDisabled = true, style = Button.StyleMinimal)("Minimal")()/*>*/)
               )/*<*/
             )
             // format: on

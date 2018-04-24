@@ -4,3 +4,13 @@
 
 /* Our own */
 @import "vendors/prism-custom";
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: var(--color-gray-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-4);
+}

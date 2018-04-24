@@ -39,13 +39,13 @@ object Layout {
           ),
           <.li(
             link("Components", Main.Component()),
-            ul(<.li(
-                 link("Button", Main.Button()),
-                 ul(
-                   <.li(link("Button Group", Main.ButtonGroup())),
-                   <.li(link("Button vs Link", Main.ButtonVsLink())))
-               ),
-               <.li(link("Icon", Main.Icon())))
+            ul(
+              <.li(
+                link("Button", Main.Button()),
+                ul(<.li(link("Button Group", Main.ButtonGroup())), <.li(link("Button vs Link", Main.ButtonVsLink())))
+              ),
+              <.li(link("Icon", Main.Icon()))
+            )
           )
         )
       )
@@ -55,8 +55,19 @@ object Layout {
 
   def render(c: RouterCtl[Main.Page], r: Resolution[Main.Page]): VdomElement =
     <.div(
-      Style.flexbox.flex.fontSize.px16.lineHeight.px24,
-      <.div(^.width := "320px", navMenu(c)),
-      <.div(^.width := "640px", Style.backgroundColor.white, ^.padding := "64px", r.render())
+      Style.fontSize.px16.lineHeight.px24,
+      ^.paddingLeft := "288px",
+      <.div(
+        ^.width := "288px",
+        Style.position.fixed.coordinate.left0.coordinate.top0,
+        Style.height.pc100.overflow.auto,
+        navMenu(c)
+      ),
+      <.div(
+        ^.width := "768px",
+        Style.backgroundColor.white,
+        ^.padding := "64px 96px",
+        r.render()
+      )
     )
 }

@@ -1,11 +1,11 @@
-package anduin.guide
+package anduin.guide.page
 
 import com.karasiq.markedjs.{Marked, MarkedOptions, MarkedRenderer}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.util.ComponentUtils
-import anduin.markdown._
+import anduin.guide.component._
 import anduin.style.Style
 
 final case class Markdown(

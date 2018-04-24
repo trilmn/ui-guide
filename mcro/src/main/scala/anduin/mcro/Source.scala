@@ -42,4 +42,28 @@ object Source {
   }
 
   def annotate(element: VdomElement): AntType = macro antImpl
+
+  // ===
+  // ===
+  // ===
+
+  private val headingRx = "(#+) (.*)".r
+
+  def tocImpl(c: blackbox.Context)(): c.Expr[List[(Int, String)]] = {
+    import c.universe.Quasiquote
+
+    val source = String valueOf c.enclosingPosition.source.content
+
+    val matches = headingRx.findAllIn(source).matchData.toList
+
+    val result: List[(Int, String)] = matches.map(m => {
+      val level = m.subgroups.head.length
+      val text = m.subgroups.last
+      (level, text)
+    })
+
+    c.Expr[List[(Int, String)]](q"""$result""")
+  }
+
+  def toc(): List[(Int, String)] = macro tocImpl
 }

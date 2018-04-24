@@ -1,15 +1,17 @@
-package anduin.guide
+package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.mcro.Source
 import anduin.component.button.Button
 import anduin.component.icon.IconAcl
+import anduin.guide._
+import anduin.mcro.Source
 import anduin.style.Style
 
 object PageButton {
   def render(ctl: Main.Ctl): VdomElement = {
     <.div(
+      Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
         Header(
@@ -19,7 +21,7 @@ object PageButton {
             """.stripMargin
         )()
       ),
-      Markdown("""
+      Markdown(s"""
           |# Snippet
           |
           |```scala
@@ -40,18 +42,36 @@ object PageButton {
           |
           |## `Tpe`
           |
-          |The `tpe` prop reflects the native `type` attribute of HTML `button` tag, thus it also has 3 values:
+          |### Button types
+          |
+          |The `tpe` prop has 3 values that reflect the native `type` attribute of the HTML `button` tag:
           |
           |- `TpeDefault` (equivalent to `button`)
           |- `TpeReset` (`reset`)
           |- `TpeSubmit` (`submit`).
           |
-          |Although their appearances are the same, it's strongly suggested to use the correct one to take advantage of their native functionality. For example, a `TpeSubmit` button correct submit button with an `onSubmit` handler allows user to submit by both clicking or pressing "enter", without the need to add any other event listener.
+          |Generally, `TpeReset` and `TpeSubmit` should be used in a `form` tag to take advantage of their native function (e.g: `TpeReset` clears all form's inputs on click). This means you often don't need to provide `onClick` for these 2 types.
           |
-          |That being said, most of the time it is suitable to use the default value, especially when the button is outside of a form.
+          |Meanwhile, `TpeDefault` should be used for all other cases, where the button is outside of a form and must have an `onClick` to make it do something.
           |
+          |```scala
+          |<.form(
+          |  ^.onSubmit := ...,
+          |  // this does not need `onClick`
+          |  Button(tpe = Button.TpeSubmit)("Submit")
+          |)
           |
+          |<.div(
+          |  // this needs `onClick`
+          |  Button(onClick = ...)("Do something")
+          |)
+          |```
           |
+          |### Link type
+          |
+          |The `tpe` prop also has a special `TpeLink` value to make it renders an actual link tag (`a`). This should be used when you want an actual link but looks like a button. Learn more in [Button vs Link](${ctl.urlFor(Main.ButtonVsLink()).value}) page.
+          |
+          |Example: (try hover and right click each)
           |""".stripMargin)(),
       Example(
         // format: off
@@ -64,21 +84,27 @@ object PageButton {
         )
         // format: off
       )(),
-      Markdown("""
+      Markdown(s"""
+          |As in the example above, since this is an actual link, you should provide a valid `href`. Moreover, the `onClick` callback is still available for `TpeLink` in order to override page change event.
           |
-          |## `onClick`
-          |
+          |One common use case of this is to allow the `RouterCtl` (of `scalajs-react`) to handle the `onClick` event, so page change happens immediately, while still have a valid `href` so it can be opened in new tab:
           |""".stripMargin)(),
       Example(
-        // format: off
-        Source.annotate(
-          <.div("placeholder")
-        )
-        // format: off
+        Source.annotate({
+          val page = Main.ButtonVsLink()
+          Button(
+            tpe = Button.TpeLink,
+            href = ctl.urlFor(page).value,
+            onClick = ctl.set(page)
+          )("Go to ButtonVsLink")
+        })
       )(),
-      Markdown("""
+      Markdown(
+        """
           |
-          |## `href`
+          |>**Note:** If you want an actual button that looks like a link (e.g: an inline text to open a modal) then use `StyleLink`. Learn more in [Style](${ctl.urlFor(Main.Button("style")).value}) section or [Button vs Link](${ctl.urlFor(Main.ButtonVsLink()).value}) page.
+          |
+          |## `onClick`
           |
           |""".stripMargin)(),
       Example(

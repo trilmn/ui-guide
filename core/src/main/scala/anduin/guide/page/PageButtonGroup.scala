@@ -1,9 +1,10 @@
-package anduin.guide
+package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.Button
 import anduin.component.icon.IconAcl
+import anduin.guide.Main
 import anduin.mcro.Source
 import anduin.style.Style
 

@@ -6,6 +6,8 @@ import japgolly.scalajs.react.Callback
 import japgolly.scalajs.react.extra.router._
 import org.scalajs.dom
 
+import anduin.guide.page._
+
 object Main {
   sealed trait Page {}
   case object Welcome extends Page

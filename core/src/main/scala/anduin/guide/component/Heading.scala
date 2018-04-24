@@ -1,4 +1,4 @@
-package anduin.markdown
+package anduin.guide.component
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
@@ -17,15 +17,17 @@ final case class Heading(
 
 object Heading {
 
+  def getId(text: String): String = text
+      .replaceAll("<.*?>", "") // HTML tags like <code>Foo</code>
+      .toLowerCase()
+      .replaceAll("[^\\w]+", "-") // symbols like "," "." "("
+      .replaceAll("-$", "") // trailing "-" (originally ".")
+
   private final val ComponentName = ComponentUtils.name(this)
 
   private case class Backend(scope: BackendScope[Heading, _]) {
     def render(props: Heading): VdomElement = {
-      val id = props.content
-        .replaceAll("<.*?>", "") // HTML tags like <code>Foo</code>
-        .toLowerCase()
-        .replaceAll("[^\\w]+", "-") // symbols like "," "." "("
-        .replaceAll("-$", "") // trailing "-" (originally ".")
+      val id = getId(props.content)
       val tag = props.level match {
         case 1 => <.h2
         case 2 => <.h3

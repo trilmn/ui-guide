@@ -1,11 +1,11 @@
-package anduin.guide
+package anduin.guide.page
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.util.ComponentUtils
 import anduin.style.Style
-import anduin.example.{Example => OrgExample}
+import anduin.guide.component.{Example => OrgExample}
 
 final case class Example(
   content: (String, VdomElement)

@@ -1,7 +1,8 @@
-package anduin.guide
+package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
+import anduin.guide.Main
 import anduin.mcro.Source
 import anduin.style.Style
 

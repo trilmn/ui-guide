@@ -247,7 +247,7 @@ object PageIcon {
           title = "Icon",
           description =
             """
-              |Icons are metaphors that represent, or provide additional information, for objects or actions in an effective space.
+              |Icons are metaphors that reflect or provide additional information in an effective space.
             """.stripMargin
         )()
       ),

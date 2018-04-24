@@ -32,6 +32,7 @@ object Toc {
           val text = rawText.replace("`", "")
           <.a(
             Style.color.inherit.display.block,
+            ^.key := text,
             ^.marginLeft := s"${level * 16}px",
             ^.href := s"#${Heading.getId(text)}",
             text

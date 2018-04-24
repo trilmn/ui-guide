@@ -7,8 +7,8 @@ import anduin.component.util.ComponentUtils
 import anduin.style.Style
 
 final case class Heading(
-  content: String,
-  level: Int,
+    content: String,
+    level: Int,
 ) {
   def apply(): VdomElement = {
     Heading.component(this)
@@ -17,7 +17,8 @@ final case class Heading(
 
 object Heading {
 
-  def getId(text: String): String = text
+  def getId(text: String): String =
+    text
       .replaceAll("<.*?>", "") // HTML tags like <code>Foo</code>
       .toLowerCase()
       .replaceAll("[^\\w]+", "-") // symbols like "," "." "("
@@ -33,11 +34,9 @@ object Heading {
         case 2 => <.h3
         case 3 => <.h4
       }
-      tag(
-        ^.id := id,
-        <.span(^.dangerouslySetInnerHtml := props.content),
-        <.a(Style.margin.left8, ^.href := s"#$id", "#")
-      )
+      val hash = <.a(Style.position.absolute, ^.right := "calc(100% + 0.5em)", ^.href := s"#$id", "#")
+      val content = <.span(^.dangerouslySetInnerHtml := props.content)
+      tag(Style.position.relative, ^.id := id, content, hash)
     }
   }
 

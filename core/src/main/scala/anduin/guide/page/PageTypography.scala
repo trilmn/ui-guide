@@ -26,7 +26,7 @@ object PageTypography {
           |
           |The only exception being when you want to display code then you should use mono-space fonts, available at `Style.fontFamily.mono`:
         """.stripMargin)(),
-      Example(
+      ExampleRich(
         Source.annotate(
           /*>*/<.div(
             <.span("Your secret code: "),

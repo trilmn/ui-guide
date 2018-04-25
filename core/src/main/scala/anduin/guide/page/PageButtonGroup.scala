@@ -25,7 +25,7 @@ object PageButtonGroup {
           |>
           |>Please wait until we have `ButtonGroup` component implemented.
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate({
           val border = Style.border.right.borderColor.gray4

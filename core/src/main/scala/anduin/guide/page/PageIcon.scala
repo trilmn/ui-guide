@@ -274,7 +274,7 @@ object PageIcon {
           |
           |Example:
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         Source.annotate(
           /*>*/ <.div(
             Style.flexbox.flex.flexbox.itemsCenter, /*<*/
@@ -305,7 +305,7 @@ object PageIcon {
           |
           |In other words, there is no inner space (padding) in an icon. Therefore, the engineers usually need to wrap the icon inside a `div` or `span`, then provide necessary spacing in that wrapper:
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         Source.annotate(
           /*>*/ <.div(
             Style.padding.all8, {
@@ -325,7 +325,7 @@ object PageIcon {
           |
           |To be more specific, the `fill` color of an icon is the same with its parent's (text) `color`. Thus, to change color of the icon, you will usually want to do that in its wrapper:
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         Source.annotate(
           /*>*/ <.div(/*<*/
             Style.color.primary4, /*>*/

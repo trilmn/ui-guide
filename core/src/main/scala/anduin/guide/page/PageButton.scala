@@ -43,7 +43,7 @@ object PageButton {
           |
           |Example:
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate({
           /*>*/val cancel =/*<*/
@@ -79,10 +79,12 @@ object PageButton {
           |
           |Meanwhile, `TpeReset` and `TpeSubmit` should be used inside a `form` to take advantage of their native function (e.g: `TpeSubmit` auto attached to its form's `onSubmit`). This means you often don't need to provide `onClick` for these 2 types.
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate({
-          /*>*/val formSubmit = (e: ReactEventFromInput) => e.preventDefaultCB >> Callback.alert("Form submitted")
+          /*>*/val formSubmit = (e: ReactEventFromInput) =>
+            e.preventDefaultCB >> Callback.alert("Form submitted")
+
           <.div(Style.flexbox.flex,
             <.form(^.onSubmit ==> formSubmit,/*<*/
               // this does not need `onClick`
@@ -95,17 +97,16 @@ object PageButton {
         })
         // format: on
       )(),
-      Markdown(
-        s"""
+      Markdown(s"""
           |### `isDisabled`
           |
-          |Since these are actual buttons, we can prevent them from user interaction via the `isDisabled` prop.
+          |Since these are actual buttons, we can prevent users from interacting with them via the `isDisabled` prop.
           |
-          |**On functional side,** this does nothing but use the native `disabled` attribute of `button`, which done a good job preventing interaction, via not only mouse but also keyboard, touch or voice.
+          |**On functional side,** this does nothing but use the native `disabled` attribute of `button`, which done a good job preventing interaction, including those via mouse, keyboard, touch or voice.
           |
-          |**On appearance side,** this observes other props to provides correct styling. For example, a [`StyleMinimal`](#style) button should have a simpler disabled style than a `StyleFull` (default) one. That being said, it is intentional that variations of [`Color`](#color) shared the same disabled style at the moment:
+          |**On appearance side,** this observes other props to provides correct styling. For example, a [`StyleMinimal`](#style) button would have a simpler disabled style than a `StyleFull` (default) one. That being said, it is intentional that variations of [`Color`](#color) (e.g: `Primary` or `Success`) shared the same disabled style at the moment:
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate(
           /*>*/<.div(
@@ -124,7 +125,7 @@ object PageButton {
           |
           |**Example:** (try hover and right click each)
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate(
           /*>*/<.div(Style.flexbox.flex,
@@ -137,7 +138,7 @@ object PageButton {
       Markdown(s"""
           |Since this is an actual link, `TpeLink` requires a valid `href`. Moreover, the `onClick` callback can also be used to override page change event. One common example is with `RouterCtl` (of `scalajs-react`):
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         Source.annotate({
           val page = Main.ButtonVsLink()
           Button(
@@ -160,29 +161,78 @@ object PageButton {
           |
           |## `Style`
           |
+          |The `style` controls a button's overall style, allow engineers to use button based on its semantic sense instead of appearance.
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate(
           /*>*/<.div(
             Style.flexbox.flex.flexbox.itemsCenter,
-            <.div(/*<*/Button(style = Button.StyleFull)("Full")/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(style = Button.StyleMinimal)("Minimal")/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(style = Button.StyleLink, href = "#")("Link")/*>*/, Style.margin.right16)
+            <.div(/*<*/Button(style = Button.StyleFull)("Full Style")/*>*/, Style.margin.right16),
+            <.div(/*<*/Button(style = Button.StyleMinimal)("Minimal Style")/*>*/, Style.margin.right16),
+            <.div(/*<*/Button(style = Button.StyleLink, href = "#")("Link Style")/*>*/, Style.margin.right16)
           )/*<*/
         )
-        // format: off
+        // format: on
       )(),
       Markdown(s"""
+          |**`StyleFull`** is the default value, which provides background, border and shadow to make the button looks interact-able and attractive. `StyleFull` should be used to make a button stand out from other types of content surrounding it.
           |
-          |> If you see yourself are using both `StyleLink` and `TpeLink`, that means you are doing it wrong. It should be a simple `a` tag instead. Learn more in [Button vs Link](${Main.ButtonVsLink()}) page.
+          |### `StyleMinimal`
+          |
+          |`StyleMinimal` is a subtle, text-only alternative that comes in handy when the button is repetitive (like action in each table row) or you have several buttons in a row (like in a toolbar):
+          |""".stripMargin)(), {
+        val button = Button(size = Button.SizeIcon, style = Button.StyleMinimal)
+        val sep    = <.div(Style.margin.left8.padding.left8.border.left.borderWidth.px2.borderColor.gray4)
+        ExampleSimple()(
+          <.div(
+            Style.flexbox.flex,
+            button(IconAcl(name = IconAcl.NameAlignLeft)()),
+            button(IconAcl(name = IconAcl.NameAlignCenter)()),
+            button(IconAcl(name = IconAcl.NameAlignRight)()),
+            button(IconAcl(name = IconAcl.NameAlignJustify)()),
+            sep,
+            button(IconAcl(name = IconAcl.NameBold)()),
+            button(IconAcl(name = IconAcl.NameItalic)()),
+            button(IconAcl(name = IconAcl.NameUnderline)()),
+            button(IconAcl(name = IconAcl.NameStrikeThrough)()),
+            sep,
+            button(IconAcl(name = IconAcl.NameListBullet)()),
+            button(IconAcl(name = IconAcl.NameListNumber)()),
+            button(IconAcl(name = IconAcl.NameTable3)())
+          )
+        )
+      },
+      Markdown(
+        """
+          |>`StyleMinimal` should only be used when there is enough context to call out the interaction. If it's not clear, use `StyleFull` to provide visual hint.
+          |
+          |### `StyleLink`
+          |
+          |`StyleLink` makes the button looks exactly like a link, commonly used as an `inline` element, like in a sentence or paragraph:
+          |""".stripMargin)(),
+      ExampleRich(
+        Source.annotate(
+          <.p(
+            "John has not accepted your invitation yet.",
+            " ",
+            Button(
+              onClick = Callback.alert("Reminded"),
+              style = Button.StyleLink
+            )("Remind him.")
+          )
+        )
+      )(),
+      Markdown(s"""
+          |>**`StyleLink` should not be used with `TpeLink`.** That case means you want something that works like a link and looks like a link, which is a simple `a` tag. Learn more in [Button vs Link](${ctl
+                    .urlFor(Main.ButtonVsLink())
+                    .value}) page.
           |
           |## `Color`
           |
-          |Use the `color` prop to communicate the intention
-          |
+          |Use the `color` prop to communicate the intention or result of the action:
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate(
           /*>*/<.div(
@@ -194,39 +244,86 @@ object PageButton {
             <.div(/*<*/Button(color = Button.ColorDanger)("Danger")/*>*/, Style.margin.left16)
           )/*<*/
         )
-        // format: off
+        // format: on
       )(),
-      Markdown("""
+      Markdown(
+        """
           |
-          |- Primary
-          |- Success
-          |- Warning
-          |- Danger
+          |**`ColorPrimary`** should be saved for the strongest action in the current view. Using multiple `ColorPrimary`, especially with the default `StyleFull`, could lead to a confuse and too heavy UI.
           |
+          |**`ColorSuccess`** is originally meant for positive actions. However, in reality it is rarely used since the positive actions are often the primary ones, thus used `ColorPrimary` already.
+          |
+          |**`ColorWarning`** is meant for warning actions and "Demo" mode. Since warning actions are quite close to danger ones, they often used `ColorDanger` anyway. Therefore, in reality most of `ColorWarning` instances are for "Demo"-related actions.
+          |
+          |**`ColorDanger`** should be used for actual destructive or negative actions, like in final or confirm step of deleting something. `ColorDanger` should not be used for all "possibly danger" or negative ones, since it would be too heavy.
+          |
+          |### Usage notes
+          |
+          |**Avoid having `ColorSuccess` and `ColorPrimary` in the same view,** as users might be confused about which action to take:
           |""".stripMargin)(),
-      <.div(
-        Style.flexbox.flex.padding.ver16,
-        <.div(Button(style = Button.StyleMinimal)("Default")),
-        <.div(Button(style = Button.StyleMinimal, color = Button.ColorPrimary)("Primary"), Style.margin.left16),
-        <.div(Button(style = Button.StyleMinimal, color = Button.ColorSuccess)("Success"), Style.margin.left16),
-        <.div(Button(style = Button.StyleMinimal, color = Button.ColorWarning)("Warning"), Style.margin.left16),
-        <.div(Button(style = Button.StyleMinimal, color = Button.ColorDanger)("Danger"), Style.margin.left16)
+      ExampleSimple("**GOOD:** Users know which is the primary action that should be taken")(
+        <.div(Style.flexbox.flex,
+              <.div(Button(color = Button.ColorPrimary)("Create Transaction")),
+              <.div(Button()("Create Organization"), Style.margin.left8))
       ),
-      <.div(
-        Style.flexbox.flex.padding.ver16,
-        <.div(Button(style = Button.StyleLink)("Default")),
-        <.div(Button(style = Button.StyleLink, color = Button.ColorPrimary)("Primary"), Style.margin.left16),
-        <.div(Button(style = Button.StyleLink, color = Button.ColorSuccess)("Success"), Style.margin.left16),
-        <.div(Button(style = Button.StyleLink, color = Button.ColorWarning)("Warning"), Style.margin.left16),
-        <.div(Button(style = Button.StyleLink, color = Button.ColorDanger)("Danger"), Style.margin.left16)
+      ExampleSimple("**NOT GOOD:** Users don't know which is action should be taken")(
+        <.div(
+          Style.flexbox.flex,
+          <.div(Button(color = Button.ColorPrimary)("Create Transaction")),
+          <.div(Button(color = Button.ColorSuccess)("Create Organization"), Style.margin.left8)
+        )
       ),
       Markdown(
         """
+          |**Avoid using `ColorDanger` for "possibly danger" actions** - those that have confirm step (e.g: "Remove user") or can be undo easily. Such actions can be shown in the default color (white), while the confirm button (e.g: "Confirm remove user") is the one that should use `ColorDanger`.
+          |""".stripMargin)(),
+      ExampleSimple()(
+        <.div(
+          Style.flexbox.flex,
+          <.div(Button()("Cancel"), Style.margin.right8),
+          <.div(Button(color = Button.ColorDanger)("Confirm remove"))
+        )
+      ),
+      Markdown("""
+          |**`color` prop works with all types of `style`:**
+          |""".stripMargin)(),
+      ExampleSimple()(
+        <.div(
+          Style.flexbox.flex.flexbox.itemsCenter,
+          <.p(Style.flexbox.none.width.pc10, "Full"),
+          <.div(Button()("Default"), Style.margin.left8),
+          <.div(Button(color = Button.ColorPrimary)("Primary"), Style.margin.left8),
+          <.div(Button(color = Button.ColorSuccess)("Success"), Style.margin.left8),
+          <.div(Button(color = Button.ColorWarning)("Warning"), Style.margin.left8),
+          <.div(Button(color = Button.ColorDanger)("Danger"), Style.margin.left8)
+        ),
+        <.div(
+          Style.flexbox.flex.flexbox.itemsCenter.margin.top16.padding.top16,
+          Style.border.top.borderColor.gray2.borderWidth.px2,
+          <.p(Style.flexbox.none.width.pc10, "Minimal"),
+          <.div(Button(style = Button.StyleMinimal)("Default"), Style.margin.left8),
+          <.div(Button(style = Button.StyleMinimal, color = Button.ColorPrimary)("Primary"), Style.margin.left8),
+          <.div(Button(style = Button.StyleMinimal, color = Button.ColorSuccess)("Success"), Style.margin.left8),
+          <.div(Button(style = Button.StyleMinimal, color = Button.ColorWarning)("Warning"), Style.margin.left8),
+          <.div(Button(style = Button.StyleMinimal, color = Button.ColorDanger)("Danger"), Style.margin.left8)
+        ),
+        <.div(
+          Style.flexbox.flex.flexbox.itemsCenter.margin.top16.padding.top16,
+          Style.border.top.borderColor.gray2.borderWidth.px2,
+          <.p(Style.flexbox.none.width.pc10, "Link"),
+          <.div(Button(style = Button.StyleLink)("Default"), Style.margin.left8),
+          <.div(Button(style = Button.StyleLink, color = Button.ColorPrimary)("Primary"), Style.margin.left8),
+          <.div(Button(style = Button.StyleLink, color = Button.ColorSuccess)("Success"), Style.margin.left8),
+          <.div(Button(style = Button.StyleLink, color = Button.ColorWarning)("Warning"), Style.margin.left8),
+          <.div(Button(style = Button.StyleLink, color = Button.ColorDanger)("Danger"), Style.margin.left8)
+        )
+      ),
+      Markdown("""
           |
           |## `Size`
           |
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate(
           /*>*/<.div(
@@ -243,7 +340,7 @@ object PageButton {
           |## `isFullWidth`
           |
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate(
           <.div("placeholder")
@@ -257,7 +354,7 @@ object PageButton {
           |## With icon
           |
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate({
           /*>*/val icon = IconAcl(name = IconAcl.NameLightBolt)()

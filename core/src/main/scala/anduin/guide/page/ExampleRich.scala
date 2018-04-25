@@ -7,21 +7,21 @@ import anduin.component.util.ComponentUtils
 import anduin.style.Style
 import anduin.guide.component.{Example => OrgExample}
 
-final case class Example(
+final case class ExampleRich(
   content: (String, VdomElement)
 ) {
   def apply(): VdomElement = {
-    Example.component(this)
+    ExampleRich.component(this)
   }
 }
 
-object Example {
+object ExampleRich {
 
   private final val ComponentName = ComponentUtils.name(this)
 
-  private case class Backend(scope: BackendScope[Example, _]) {
-    def render(props: Example): VdomElement = {
-      <.div(
+  private case class Backend(scope: BackendScope[ExampleRich, _]) {
+    def render(props: ExampleRich): VdomElement = {
+      <.figure(
         Style.padding.ver12,
         // original one
         OrgExample(props.content)()
@@ -30,7 +30,7 @@ object Example {
   }
 
   private val component = ScalaComponent
-    .builder[Example](ComponentName)
+    .builder[ExampleRich](ComponentName)
     .stateless
     .renderBackend[Backend]
     .build

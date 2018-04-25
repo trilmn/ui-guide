@@ -14,7 +14,7 @@ object PageButtonVsLink {
       <.h1("Button vs Link"),
       Markdown("""
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         Source.annotate(
           <.div(
             // actual button, looks like a button

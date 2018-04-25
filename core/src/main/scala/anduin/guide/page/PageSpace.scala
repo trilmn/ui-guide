@@ -39,7 +39,7 @@ object PageSpace {
           |
           |Example:
         """.stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate(
           /*>*/<.div(Style.backgroundColor.gray2.flexbox.flex.flexbox.itemsCenter,/*<*/

@@ -18,7 +18,7 @@ object PageWelcome {
         | ### heading 3
         | asdasd *a*
         |""".stripMargin)(),
-      Example(
+      ExampleRich(
         Source.annotate(
           <.div(
             Style.flexbox.flex,

@@ -61,7 +61,7 @@ object PageFlexbox {
           |
           |Example:
         """.stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate(
           /*>*/<.div(Style.textAlign.center,
@@ -107,7 +107,7 @@ object PageFlexbox {
           |
           |In these cases, most of the time you will want an `overflow: hidden` on these flex items to let them free to shrink.
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate(
           /*>*/<.div(Style.whiteSpace.noWrap,
@@ -132,7 +132,7 @@ object PageFlexbox {
           |- If the children are all text and/or can form a sentence, try inline first.
           |- If they should be placed vertically (on top of each other), try using block elements first:
           |""".stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate(
           /*>*/<.div(
@@ -164,7 +164,7 @@ object PageFlexbox {
           |
           |Example:
         """.stripMargin)(),
-      Example(
+      ExampleRich(
         // format: off
         Source.annotate({
           /*>*/val image = <.div(Style.backgroundColor.primary4, ^.width := "40px", ^.height := "40px")

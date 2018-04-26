@@ -21,6 +21,7 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameAlignJustify)(), " ", "AlignJustify"),
       <.div(flex, IconAcl(name = IconAcl.NameAlignLeft)(), " ", "AlignLeft"),
       <.div(flex, IconAcl(name = IconAcl.NameAlignRight)(), " ", "AlignRight"),
+      <.div(flex, IconAcl(name = IconAcl.NameArchive)(), " ", "Archive"),
       <.div(flex, IconAcl(name = IconAcl.NameArrowDown)(), " ", "ArrowDown"),
       <.div(flex, IconAcl(name = IconAcl.NameArrowDownLeft)(), " ", "ArrowDownLeft"),
       <.div(flex, IconAcl(name = IconAcl.NameArrowDownRight)(), " ", "ArrowDownRight"),
@@ -31,6 +32,7 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameArrowTopRight)(), " ", "ArrowTopRight"),
       <.div(flex, IconAcl(name = IconAcl.NameArrowUp)(), " ", "ArrowUp"),
       <.div(flex, IconAcl(name = IconAcl.NameArrowVertical)(), " ", "ArrowVertical"),
+      <.div(flex, IconAcl(name = IconAcl.NameAttention)(), " ", "Attention"),
       <.div(flex, IconAcl(name = IconAcl.NameAutoTrack)(), " ", "AutoTrack"),
       <.div(flex, IconAcl(name = IconAcl.NameBell)(), " ", "Bell"),
       <.div(flex, IconAcl(name = IconAcl.NameBell2)(), " ", "Bell2"),
@@ -132,6 +134,7 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameFileText)(), " ", "FileText"),
       <.div(flex, IconAcl(name = IconAcl.NameFileUnknown)(), " ", "FileUnknown"),
       <.div(flex, IconAcl(name = IconAcl.NameFileXls)(), " ", "FileXls"),
+      <.div(flex, IconAcl(name = IconAcl.NameFilter)(), " ", "Filter"),
       <.div(flex, IconAcl(name = IconAcl.NameFlag)(), " ", "Flag"),
       <.div(flex, IconAcl(name = IconAcl.NameFlagLine)(), " ", "FlagLine"),
       <.div(flex, IconAcl(name = IconAcl.NameFolder)(), " ", "Folder"),
@@ -140,6 +143,7 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameFolderLine)(), " ", "FolderLine"),
       <.div(flex, IconAcl(name = IconAcl.NameFolderOpen)(), " ", "FolderOpen"),
       <.div(flex, IconAcl(name = IconAcl.NameFolderOpenLine)(), " ", "FolderOpenLine"),
+      <.div(flex, IconAcl(name = IconAcl.NameGrillingKebab)(), " ", "GrillingKebab"),
       <.div(flex, IconAcl(name = IconAcl.NameHeader)(), " ", "Header"),
       <.div(flex, IconAcl(name = IconAcl.NameHeader1)(), " ", "Header1"),
       <.div(flex, IconAcl(name = IconAcl.NameHeader2)(), " ", "Header2"),
@@ -155,7 +159,9 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameInfoCircle)(), " ", "InfoCircle"),
       <.div(flex, IconAcl(name = IconAcl.NameInfoCircleLine)(), " ", "InfoCircleLine"),
       <.div(flex, IconAcl(name = IconAcl.NameInput)(), " ", "Input"),
+      <.div(flex, IconAcl(name = IconAcl.NameInValid)(), " ", "InValid"),
       <.div(flex, IconAcl(name = IconAcl.NameItalic)(), " ", "Italic"),
+      <.div(flex, IconAcl(name = IconAcl.NameKebab)(), " ", "Kebab"),
       <.div(flex, IconAcl(name = IconAcl.NameLabel)(), " ", "Label"),
       <.div(flex, IconAcl(name = IconAcl.NameLabelLine)(), " ", "LabelLine"),
       <.div(flex, IconAcl(name = IconAcl.NameLayer)(), " ", "Layer"),
@@ -174,6 +180,7 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameMinusSmall)(), " ", "MinusSmall"),
       <.div(flex, IconAcl(name = IconAcl.NameMultiSelect)(), " ", "MultiSelect"),
       <.div(flex, IconAcl(name = IconAcl.NameOffice)(), " ", "Office"),
+      <.div(flex, IconAcl(name = IconAcl.NameOffline)(), " ", "Offline"),
       <.div(flex, IconAcl(name = IconAcl.NameParagraph)(), " ", "Paragraph"),
       <.div(flex, IconAcl(name = IconAcl.NamePlus)(), " ", "Plus"),
       <.div(flex, IconAcl(name = IconAcl.NamePlusCircle)(), " ", "PlusCircle"),
@@ -186,13 +193,16 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameQuestionCircle)(), " ", "QuestionCircle"),
       <.div(flex, IconAcl(name = IconAcl.NameQuestionCircleLine)(), " ", "QuestionCircleLine"),
       <.div(flex, IconAcl(name = IconAcl.NameRedo)(), " ", "Redo"),
+      <.div(flex, IconAcl(name = IconAcl.NameRefresh)(), " ", "Refresh"),
       <.div(flex, IconAcl(name = IconAcl.NameRepeat)(), " ", "Repeat"),
       <.div(flex, IconAcl(name = IconAcl.NameReply)(), " ", "Reply"),
       <.div(flex, IconAcl(name = IconAcl.NameReplyAll)(), " ", "ReplyAll"),
       <.div(flex, IconAcl(name = IconAcl.NameReTweet)(), " ", "ReTweet"),
       <.div(flex, IconAcl(name = IconAcl.NameRollBack)(), " ", "RollBack"),
+      <.div(flex, IconAcl(name = IconAcl.NameSandClock)(), " ", "SandClock"),
       <.div(flex, IconAcl(name = IconAcl.NameSearch)(), " ", "Search"),
       <.div(flex, IconAcl(name = IconAcl.NameSearchInline)(), " ", "SearchInline"),
+      <.div(flex, IconAcl(name = IconAcl.NameShare)(), " ", "Share"),
       <.div(flex, IconAcl(name = IconAcl.NameSign)(), " ", "Sign"),
       <.div(flex, IconAcl(name = IconAcl.NameSort)(), " ", "Sort"),
       <.div(flex, IconAcl(name = IconAcl.NameSortAlphaAsc)(), " ", "SortAlphaAsc"),
@@ -212,6 +222,7 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameTable1)(), " ", "Table1"),
       <.div(flex, IconAcl(name = IconAcl.NameTable2)(), " ", "Table2"),
       <.div(flex, IconAcl(name = IconAcl.NameTable3)(), " ", "Table3"),
+      <.div(flex, IconAcl(name = IconAcl.NameTag)(), " ", "Tag"),
       <.div(flex, IconAcl(name = IconAcl.NameTextStyle)(), " ", "TextStyle"),
       <.div(flex, IconAcl(name = IconAcl.NameToolbox)(), " ", "Toolbox"),
       <.div(flex, IconAcl(name = IconAcl.NameToolboxLine)(), " ", "ToolboxLine"),
@@ -224,6 +235,7 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameUnlockLine)(), " ", "UnlockLine"),
       <.div(flex, IconAcl(name = IconAcl.NameUpload)(), " ", "Upload"),
       <.div(flex, IconAcl(name = IconAcl.NameUser)(), " ", "User"),
+      <.div(flex, IconAcl(name = IconAcl.NameUserAccept)(), " ", "UserAccept"),
       <.div(flex, IconAcl(name = IconAcl.NameUserAdd)(), " ", "UserAdd"),
       <.div(flex, IconAcl(name = IconAcl.NameUserBlock)(), " ", "UserBlock"),
       <.div(flex, IconAcl(name = IconAcl.NameUserCompany)(), " ", "UserCompany"),
@@ -231,22 +243,25 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameUserGroup)(), " ", "UserGroup"),
       <.div(flex, IconAcl(name = IconAcl.NameUserInvestor)(), " ", "UserInvestor"),
       <.div(flex, IconAcl(name = IconAcl.NameUserRemove)(), " ", "UserRemove"),
+      <.div(flex, IconAcl(name = IconAcl.NameValid)(), " ", "Valid"),
       <.div(flex, IconAcl(name = IconAcl.NameViewGrid)(), " ", "ViewGrid"),
       <.div(flex, IconAcl(name = IconAcl.NameViewList)(), " ", "ViewList"),
       <.div(flex, IconAcl(name = IconAcl.NameWaring)(), " ", "Waring"),
       <.div(flex, IconAcl(name = IconAcl.NameWaringLine)(), " ", "WaringLine"),
-      <.div(flex, IconAcl(name = IconAcl.NameWrench)(), " ", "Wrench")
+      <.div(flex, IconAcl(name = IconAcl.NameWrench)(), " ", "Wrench"),
+      <.div(flex, IconAcl(name = IconAcl.NameZoomIn)(), " ", "ZoomIn"),
+      <.div(flex, IconAcl(name = IconAcl.NameZoomOut)(), " ", "ZoomOut")
     )
   }
 
   def render(ctl: Main.Ctl): VdomElement = {
     <.div(
+      Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
         Header(
           title = "Icon",
-          description =
-            """
+          description = """
               |Icons are metaphors that reflect or provide additional information in an effective space.
             """.stripMargin
         )()
@@ -288,8 +303,7 @@ object PageIcon {
           |
           |""".stripMargin)(),
       renderIcons(),
-      Markdown(
-        s"""
+      Markdown(s"""
           |# Usage notes
           |
           |### Icon is always a block element
@@ -309,10 +323,9 @@ object PageIcon {
         Source.annotate(
           /*>*/ <.div(
             Style.padding.all8, {
-              val icon = <.span(/*<*/
-                Style.margin.right8, /*>*/
-                IconAcl(name = IconAcl.NameUpload)()
-              )/*<*/
+              val icon = <.span( /*<*/
+                                Style.margin.right8, /*>*/
+                                IconAcl(name = IconAcl.NameUpload)()) /*<*/
               val styles = Style.flexbox.flex.flexbox.itemsCenter /*>*/
               <.div(styles, icon, "Upload")
             }
@@ -327,10 +340,9 @@ object PageIcon {
           |""".stripMargin)(),
       ExampleRich(
         Source.annotate(
-          /*>*/ <.div(/*<*/
-            Style.color.primary4, /*>*/
-            IconAcl(name = IconAcl.NameLayer)()
-          ) /*<*/
+          /*>*/ <.div( /*<*/
+                      Style.color.primary4, /*>*/
+                      IconAcl(name = IconAcl.NameLayer)()) /*<*/
         )
       )(),
       Markdown(

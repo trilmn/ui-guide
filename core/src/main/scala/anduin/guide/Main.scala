@@ -58,7 +58,6 @@ object Main {
       .notFound(redirectToPage(Welcome)(Redirect.Replace))
       .renderWith(Layout.render)
       .onPostRender(postRenderFn)
-      .logToConsole
   }
 
   private val isLocal     = dom.window.location.hostname == "localhost"

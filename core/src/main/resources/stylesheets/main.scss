@@ -14,3 +14,7 @@
 ::-webkit-scrollbar-thumb {
   background: var(--color-gray-4);
 }
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--color-gray-5);
+}

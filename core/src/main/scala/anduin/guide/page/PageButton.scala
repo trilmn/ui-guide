@@ -142,11 +142,14 @@ object PageButton {
       ExampleRich(
         Source.annotate({
           val page = Main.ButtonVsLink()
-          Button(
-            tpe = Button.TpeLink,
-            href = ctl.urlFor(page).value,
-            onClick = ctl.set(page)
-          )("Go to ButtonVsLink")
+          <.div(
+            Style.flexbox.flex,
+            Button(
+              tpe = Button.TpeLink,
+              href = ctl.urlFor(page).value,
+              onClick = ctl.set(page)
+            )("Go to ButtonVsLink")
+          )
         })
       )(),
       Markdown(
@@ -156,7 +159,25 @@ object PageButton {
           |- The `onClick` event is handled by `RouterCtl`, so page change happens immediatelly on click.
           |- Meanwhile, it still has a valid `href`, so you can right click and open the link in new tab.
           |
-          |**Also note that `isDisabled` is not available for `TpeLink`,** since a link should always be accessible. The page at an URL might be 404 or 401, but nothing should prevent users from accessing that URL.
+          |### Usage Note
+          |
+          |**`TpeLink` takes 100% width by default,** due to browser's default rendering of `flex` display. However, this behaviour is eliminated if the button is placed inside another `flex`.
+          |
+          |""".stripMargin)(),
+      ExampleRich(
+        Source.annotate({
+          val button = Button(tpe = Button.TpeLink)("Link")
+          <.div(
+            <.div(Style.margin.bottom8, button),
+            <.div(Style.flexbox.flex, button)
+          )
+        })
+      )(),
+      Markdown(
+        """
+          |**`isDisabled` is not available,** since a link should always be accessible. The page at an URL might be 404 or 401, but nothing should prevent users from accessing that URL.
+          |
+          |**`isSelected` is not available,** since a link should not have this state at all.
           |
           |# Appearance
           |
@@ -370,7 +391,9 @@ object PageButton {
           |
           |## With icon
           |
-          |It's common to have icon inside a button to add information for the label. In these cases, simply put the icon on left or right side of the text, [with proper spacing](${ctl.urlFor(Main.Icon("#icon-s-shape-is-designed-to-touch-the-bound")).value}). Spacing can be put in either the text or the icon.
+          |It's common to have icon inside a button to add information for the label. In these cases, simply put the icon on left or right side of the text, [with proper spacing](${ctl
+                    .urlFor(Main.Icon("#icon-s-shape-is-designed-to-touch-the-bound"))
+                    .value}). Spacing can be put in either the text or the icon.
           |""".stripMargin)(),
       ExampleRich(
         // format: off

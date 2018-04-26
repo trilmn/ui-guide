@@ -4,7 +4,6 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.Button
 import anduin.guide.Main
-import anduin.mcro.Source
 import anduin.style.Style
 
 object PageWelcome {
@@ -15,24 +14,18 @@ object PageWelcome {
       Markdown("""
         | # heading 1
         | ## heading 2a
+        |""".stripMargin)(),
+      ExampleSimple()(
+        <.div(
+          Button()("a")
+        )
+      ),
+      Markdown(
+        """
+          |
         | ### heading 3
         | asdasd *a*
-        |""".stripMargin)(),
-      ExampleRich(
-        Source.annotate(
-          <.div(
-            Style.flexbox.flex,
-            <.div(
-              Button()("Action")
-            ),
-            <.div(
-              Style.margin.left12,
-              Button(
-                color = Button.ColorPrimary
-              )("Submit")
-            )
-          )
-        ))()
+        |""".stripMargin)()
     )
   }
 }

@@ -116,9 +116,10 @@ object PageButton {
             <.div(/*<*/Button(isDisabled = true, style = Button.StyleMinimal)("Minimal")()/*>*/)
           )/*<*/
         )
-        // format: off
+        // format: on
       )(),
-      Markdown("""
+      Markdown(
+        """
           |## Link type
           |
           |The `tpe` prop also has a special `TpeLink` value to render an actual link (`a` tag). This should be used when you want something that works like a link (i.e: change URL and can be opened in new tab) but looks like a button.
@@ -133,7 +134,7 @@ object PageButton {
             <.div(/*<*/Button(tpe = Button.TpeLink, href = "https://google.com")("Link")/*>*/)
           )/*<*/
         )
-        // format: off
+        // format: on
       )(),
       Markdown(s"""
           |Since this is an actual link, `TpeLink` requires a valid `href`. Moreover, the `onClick` callback can also be used to override page change event. One common example is with `RouterCtl` (of `scalajs-react`):
@@ -322,32 +323,48 @@ object PageButton {
           |
           |## `Size`
           |
+          |Use the `size` prop to enlarge button in spacious context.
           |""".stripMargin)(),
       ExampleRich(
         // format: off
         Source.annotate(
           /*>*/<.div(
             Style.flexbox.flex,
-            <.div(/*<*/Button(size = Button.SizeSmall)("Small"),/*>*/ Style.margin.right16),
             <.div(/*<*/Button()("Medium"),/*>*/ Style.margin.right16),
             <.div(/*<*/Button(size = Button.SizeLarge)("Large"))
           )/*<*/
         )
-        // format: off
+        // format: on
       )(),
-      Markdown("""
+      Markdown(
+        """
+          |`SizeLarge` often goes with `isFullWidth` and requires their surrounding elements to be large too. Thus, they are quite uncommon in practice.
+          |
+          |The default `SizeMedium` should works most of the time.
+          |
+          |There
           |
           |## `isFullWidth`
           |
+          |Although being a `block` element, the width of a `Button` depends on its content size. Set `isFullWidth` to `true` if you want the button's width to be 100% of its parent. This comes in handy in some situation like in a vertical form.
           |""".stripMargin)(),
       ExampleRich(
-        // format: off
         Source.annotate(
-          <.div("placeholder")
+          <.div(
+            Style.width.px128,
+            Button(
+              color = Button.ColorPrimary,
+              isFullWidth = true
+            )("Sign In")
+          )
         )
-        // format: off
       )(),
       Markdown("""
+          |Note that the content of a full-width button will be horizontally centered out of the box.
+          |
+          |## `isSelected`
+          |
+          |> This option is not available at the moment
           |
           |# Content
           |
@@ -365,13 +382,8 @@ object PageButton {
             <.div(/*<*/Button()("Text", <.span(Style.margin.left8, icon))/*>*/)
           )/*<*/
         })
-        // format: off
-      )(),
-      Markdown("""
-          |## `isSelected`
-          |
-          |> This option is not available at the moment
-        """.stripMargin)()
+        // format: on
+      )()
     )
   }
 }

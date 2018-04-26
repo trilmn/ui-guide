@@ -26,29 +26,24 @@ object PageButtonGroup {
           |>Please wait until we have `ButtonGroup` component implemented.
           |""".stripMargin)(),
       ExampleRich(
-        // format: off
         Source.annotate({
-          val border = Style.border.right.borderColor.gray4
+          val negMargin = ^.margin := "0 -1px"
+          val border    = Style.border.right.borderWidth.px1.borderColor.gray4
           <.div(
             Style.flexbox.flex,
             <.div(
-              Style.flexbox.flex.borderRadius.px2,
-              Style.backgroundColor.gray1.shadow.borderGray4s,
+              Style.flexbox.flex.backgroundColor.gray1.shadow.borderGray4s.borderRadius.px2,
+              <.div(<.div(Button(style = Button.StyleMinimal)("Refresh"), negMargin), border),
+              <.div(<.div(Button(style = Button.StyleMinimal)("Edit"), negMargin), border),
               <.div(
-                Button(style = Button.StyleMinimal)("Refresh"),
-                border),
-              <.div(
-                Button(style = Button.StyleMinimal)("Edit"),
-                border),
-              <.div(
-                Button(style = Button.StyleMinimal, color = Button.ColorDanger)(
-                  IconAcl(name = IconAcl.NameTrash)(),
-                  <.span(Style.margin.left8, "Remove")
-                ))
+                <.div(Button(style = Button.StyleMinimal, color = Button.ColorDanger)(
+                        IconAcl(name = IconAcl.NameTrash)(),
+                        <.span(Style.margin.left8, "Remove")
+                      ),
+                      negMargin))
             )
           )
         })
-        // format: on
       )(),
       Markdown("""
           |

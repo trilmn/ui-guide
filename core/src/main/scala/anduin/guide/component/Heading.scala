@@ -21,7 +21,7 @@ object Heading {
     text
       .replaceAll("<.*?>", "") // HTML tags like <code>Foo</code>
       .toLowerCase()
-      .replaceAll("[^\\w]+", "-") // symbols like "," "." "("
+      .replaceAll("[^a-z]+", "-") // symbols like "," "." "("
       .replaceAll("-$", "") // trailing "-" (originally ".")
 
   private final val ComponentName = ComponentUtils.name(this)

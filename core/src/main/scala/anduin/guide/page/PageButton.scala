@@ -342,7 +342,7 @@ object PageButton {
           |
           |The default `SizeMedium` should works most of the time.
           |
-          |There
+          |There is also a `SizeIcon` value to make icon-only button looks square, which is covered in [With icon](#with-icon) section below.
           |
           |## `isFullWidth`
           |
@@ -359,7 +359,7 @@ object PageButton {
           )
         )
       )(),
-      Markdown("""
+      Markdown(s"""
           |Note that the content of a full-width button will be horizontally centered out of the box.
           |
           |## `isSelected`
@@ -370,17 +370,32 @@ object PageButton {
           |
           |## With icon
           |
+          |It's common to have icon inside a button to add information for the label. In these cases, simply put the icon on left or right side of the text, [with proper spacing](${ctl.urlFor(Main.Icon("#icon-s-shape-is-designed-to-touch-the-bound")).value}). Spacing can be put in either the text or the icon.
+          |""".stripMargin)(),
+      ExampleRich(
+        // format: off
+        Source.annotate({
+          /*>*/val icon = IconAcl(name = IconAcl.NameLightBolt)()
+          val margin = Style.margin.right8
+          <.div(Style.flexbox.flex,
+            <.div(/*<*/Button()(<.span(margin, icon), "Text"/*>*/), Style.margin.right16),
+            <.div(/*<*/Button()(<.span(margin, "Text"), icon)/*>*/))/*<*/
+        })
+        // format: on
+      )(),
+      Markdown(
+        """
+          |Button can also be icon-only. In these cases make sure the action can be clearly implied without text. Icon-only are often being used as a row, like in a toolbar, so their meaning can support each other.
+          |
+          |By default, button has unequal vertical and horizontal padding, which result in a rectangle for icon-only case. This might not look nice in some cases like toolbar. In such cases, use `size = Button.SizeIcon` to make it square.
           |""".stripMargin)(),
       ExampleRich(
         // format: off
         Source.annotate({
           /*>*/val icon = IconAcl(name = IconAcl.NameLightBolt)()
           <.div(Style.flexbox.flex,
-            <.div(/*<*/Button(size = Button.SizeIcon)(icon)/*>*/, Style.margin.right16),
             <.div(/*<*/Button()(icon)/*>*/, Style.margin.right16),
-            <.div(/*<*/Button()(<.span(Style.margin.right8, icon), "Text"/*>*/), Style.margin.right16),
-            <.div(/*<*/Button()("Text", <.span(Style.margin.left8, icon))/*>*/)
-          )/*<*/
+            <.div(/*<*/Button(size = Button.SizeIcon)(icon)/*>*/))/*<*/
         })
         // format: on
       )()

@@ -385,8 +385,34 @@ object PageButton {
           |
           |## `isSelected`
           |
-          |> This option is not available at the moment
-          |
+          |Use the `isSelected` prop to have the `active` style always visible. This is useful when the button is being used to toggle something on and off, like a popover. It works with all values of `color`:
+          |""".stripMargin)(),
+      ExampleRich(
+        Source.annotate({
+          val margin = Style.margin.left16
+          <.div(
+            Style.flexbox.flex,
+            <.div(Button(isSelected = true)("Default")),
+            <.div(Button(isSelected = true, color = Button.ColorPrimary)("Primary"), margin),
+            <.div(Button(isSelected = true, color = Button.ColorSuccess)("Success"), margin),
+            <.div(Button(isSelected = true, color = Button.ColorWarning)("Warning"), margin),
+            <.div(Button(isSelected = true, color = Button.ColorDanger)("Danger"), margin)
+          )
+        })
+      )(),
+      Markdown(s"""
+          |Note that `isSelected` does not work with `TpeLink` or `StyleLink` as it would not make any sense. That being said, it works with both `StyleMinimal` and `StyleFull` though, and the results are intentionally identical:
+          |""".stripMargin)(),
+      ExampleRich(
+        Source.annotate(
+          <.div(
+            Style.flexbox.flex,
+            <.div(Button(isSelected = true)("Default"), Style.margin.right16),
+            <.div(Button(isSelected = true, style = Button.StyleMinimal)("Minimal"))
+          )
+        )
+      )(),
+      Markdown(s"""
           |# Content
           |
           |## With icon

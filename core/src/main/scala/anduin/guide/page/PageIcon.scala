@@ -8,6 +8,120 @@ import anduin.mcro.Source
 import anduin.style.Style
 
 object PageIcon {
+  def render(ctl: Main.Ctl): VdomElement = {
+    <.div(
+      Toc(content = Source.toc())(),
+      <.header(
+        Style.margin.bottom32,
+        Header(
+          title = "Icon",
+          description = """
+              |Icons are metaphors that reflect or provide additional information in an effective space.
+            """.stripMargin
+        )()
+      ),
+      Markdown(
+        """
+          |# Snippet
+          |
+          |```scala
+          |Icon(
+          |  name: Icon.Name,
+          |  size: Icon.Size = Icon.SizeMedium
+          |)()
+          |
+          |// Name
+          |case object NameChevronUp extends Name { val path: String = "M8 ... 079z" }
+          |...
+          |
+          |// Size
+          |case object SizeMedium extends Size { val value = "16" }
+          |case object SizeLarge extends Size { val value = "32" }
+          |```
+          |
+          |> Currently the name of this component is `IconAcl` instead of `Icon`. Its name will be changed back to `Icon` after completing migration.
+          |
+          |Example:
+          |""".stripMargin)(),
+      ExampleRich(
+        Source.annotate(
+          /*>*/ <.div(
+            Style.flexbox.flex.flexbox.itemsCenter, /*<*/
+            IconAcl(name = IconAcl.NameOffice)() /*>*/,
+            <.span(Style.margin.left8, "Office")
+          ) /*<*/
+        )
+      )(),
+      Markdown("""
+          |# Names
+          |
+          |""".stripMargin)(),
+      renderIcons(),
+      Markdown(s"""
+          |# Usage notes
+          |
+          |## Alignment
+          |
+          |**Icon is always a block element.** This is because out of the box, `inline` element is aligned in the same row with its surrounding siblings. However, this alignment based on "baseline", which usually not suitable for us, as we want absolute centering.
+          |
+          |Meanwhile, `block` display prevents the default alignment, and placed the icon on its own row. This enforces the engineers to properly align the icon. See example in the [Spacing](#spacing) section below.
+          |
+          |- [This Codepen](https://codepen.io/dvkndn/pen/wmQmbm) explains in detail why we prefer `block` over `inline` icons.
+          |- For alignment, we suggest to see the [Flexbox guide](${ctl.urlFor(Main.Flexbox()).value}).
+          |
+          |## Spacing
+          |
+          |**Icon's shape is designed to touch the bound.** In other words, there is no inner space (padding) in an icon. Therefore, the engineers usually need to wrap the icon inside a `div` or `span`, then provide necessary spacing in that wrapper:
+          |""".stripMargin)(),
+      ExampleRich(
+        Source.annotate(
+          // Wrap the icon
+          /*>*/ <.div(
+            Style.flexbox.flex.flexbox.itemsCenter, /*<*/
+            <.span(Style.margin.right8, IconAcl(name = IconAcl.NameDownload)()),
+            "Download" /*>*/
+          ) /*<*/
+        )
+      )(),
+      Markdown("""
+          |Or you can also wrap the adjacent element of the icon:
+        """.stripMargin)(),
+      ExampleRich(
+        Source.annotate(
+          // Wrap the adjacent text
+          /*>*/ <.div(
+            Style.flexbox.flex.flexbox.itemsCenter, /*<*/
+            IconAcl(name = IconAcl.NameUpload)(),
+            <.span(Style.margin.left8, "Upload") /*>*/
+          ) /*<*/
+        )
+      )(),
+      Markdown(
+        """
+          |## Color
+          |
+          |**Icon has one color, and it is inherited from the parent.** To be more specific, the `fill` color of an icon is the same with its parent's (text) `color`. Thus, to change color of the icon, you will usually want to do that in its wrapper:
+          |""".stripMargin)(),
+      ExampleRich(
+        Source.annotate(
+          <.div(
+            Style.color.primary4,
+            IconAcl(name = IconAcl.NameLayer)()
+          )
+        )
+      )(),
+      Markdown(
+        """
+          |## Meaning
+          |
+          |**Icons should follow industry standard metaphors** to ensure they are predictable for end users. Unique objects and actions that have no standard metaphors yet should have explicit label to support the icon.
+          |
+          |"Inscrutable icons litter the face of the devices even though the research community has long demonstrated that people cannot remember the meaning of more than a small number of icons […] – Don Norman"
+          |
+          |Source: [ia.net/topics/on-icons/​](​https://ia.net/topics/on-icons/)
+        """.stripMargin)()
+    )
+  }
 
   private def renderIcons: VdomElement = {
     val flex = TagMod(
@@ -159,7 +273,6 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameInfoCircle)(), " ", "InfoCircle"),
       <.div(flex, IconAcl(name = IconAcl.NameInfoCircleLine)(), " ", "InfoCircleLine"),
       <.div(flex, IconAcl(name = IconAcl.NameInput)(), " ", "Input"),
-      <.div(flex, IconAcl(name = IconAcl.NameInValid)(), " ", "InValid"),
       <.div(flex, IconAcl(name = IconAcl.NameItalic)(), " ", "Italic"),
       <.div(flex, IconAcl(name = IconAcl.NameKebab)(), " ", "Kebab"),
       <.div(flex, IconAcl(name = IconAcl.NameLabel)(), " ", "Label"),
@@ -243,7 +356,6 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameUserGroup)(), " ", "UserGroup"),
       <.div(flex, IconAcl(name = IconAcl.NameUserInvestor)(), " ", "UserInvestor"),
       <.div(flex, IconAcl(name = IconAcl.NameUserRemove)(), " ", "UserRemove"),
-      <.div(flex, IconAcl(name = IconAcl.NameValid)(), " ", "Valid"),
       <.div(flex, IconAcl(name = IconAcl.NameViewGrid)(), " ", "ViewGrid"),
       <.div(flex, IconAcl(name = IconAcl.NameViewList)(), " ", "ViewList"),
       <.div(flex, IconAcl(name = IconAcl.NameWaring)(), " ", "Waring"),
@@ -251,110 +363,6 @@ object PageIcon {
       <.div(flex, IconAcl(name = IconAcl.NameWrench)(), " ", "Wrench"),
       <.div(flex, IconAcl(name = IconAcl.NameZoomIn)(), " ", "ZoomIn"),
       <.div(flex, IconAcl(name = IconAcl.NameZoomOut)(), " ", "ZoomOut")
-    )
-  }
-
-  def render(ctl: Main.Ctl): VdomElement = {
-    <.div(
-      Toc(content = Source.toc())(),
-      <.header(
-        Style.margin.bottom32,
-        Header(
-          title = "Icon",
-          description = """
-              |Icons are metaphors that reflect or provide additional information in an effective space.
-            """.stripMargin
-        )()
-      ),
-      Markdown(
-        """
-          |# Snippet
-          |
-          |```scala
-          |Icon(
-          |  name: Icon.Name,
-          |  size: Icon.Size = Icon.SizeMedium
-          |)()
-          |
-          |// Name
-          |case object NameChevronUp extends Name { val path: String = "M8 ... 079z" }
-          |...
-          |
-          |// Size
-          |case object SizeMedium extends Size { val value = "16" }
-          |case object SizeLarge extends Size { val value = "32" }
-          |```
-          |
-          |> Currently the name of this component is `IconAcl` instead of `Icon`. Its name will be changed back to `Icon` after completing migration.
-          |
-          |Example:
-          |""".stripMargin)(),
-      ExampleRich(
-        Source.annotate(
-          /*>*/ <.div(
-            Style.flexbox.flex.flexbox.itemsCenter, /*<*/
-            IconAcl(name = IconAcl.NameOffice)() /*>*/,
-            <.span(Style.margin.left8, "Office")
-          ) /*<*/
-        )
-      )(),
-      Markdown("""
-          |# Names
-          |
-          |""".stripMargin)(),
-      renderIcons(),
-      Markdown(s"""
-          |# Usage notes
-          |
-          |### Icon is always a block element
-          |
-          |Out of the box, `inline` element is aligned in the same row with its surrounding siblings. However, this alignment is usually not suitable for us, as we want absolute centering.
-          |
-          |Meanwhile, the `block` display prevents the default alignment, and placed the icon on its own row. This enforces the engineers to properly align the icon.
-          |
-          |- [This Codepen](https://codepen.io/dvkndn/pen/wmQmbm) explains in detail why we prefer `block` over `inline` icons.
-          |- For alignment, we suggest to see the [Flexbox guide](${ctl.urlFor(Main.Flexbox()).value}).
-          |
-          |### Icon's shape is designed to touch the bound
-          |
-          |In other words, there is no inner space (padding) in an icon. Therefore, the engineers usually need to wrap the icon inside a `div` or `span`, then provide necessary spacing in that wrapper:
-          |""".stripMargin)(),
-      ExampleRich(
-        Source.annotate(
-          /*>*/ <.div(
-            Style.padding.all8, {
-              val icon = <.span( /*<*/
-                                Style.margin.right8, /*>*/
-                                IconAcl(name = IconAcl.NameUpload)()) /*<*/
-              val styles = Style.flexbox.flex.flexbox.itemsCenter /*>*/
-              <.div(styles, icon, "Upload")
-            }
-          ) /*<*/
-        )
-      )(),
-      Markdown(
-        """
-          |### Icon has one color, and it is inherited
-          |
-          |To be more specific, the `fill` color of an icon is the same with its parent's (text) `color`. Thus, to change color of the icon, you will usually want to do that in its wrapper:
-          |""".stripMargin)(),
-      ExampleRich(
-        Source.annotate(
-          /*>*/ <.div( /*<*/
-                      Style.color.primary4, /*>*/
-                      IconAcl(name = IconAcl.NameLayer)()) /*<*/
-        )
-      )(),
-      Markdown(
-        """
-          |### Icons should follow industry standard metaphors
-          |
-          |Following standard ensures that icons are predictable for end users. Unique objects and actions that have no standard metaphors yet should have explicit label to support the icon.
-          |
-          |"Inscrutable icons litter the face of the devices even though the research community has long demonstrated that people cannot remember the meaning of more than a small number of icons […] – Don Norman"
-          |
-          |Source: [ia.net/topics/on-icons/​](​https://ia.net/topics/on-icons/)
-        """.stripMargin)()
     )
   }
 }

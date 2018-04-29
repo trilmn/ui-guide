@@ -149,9 +149,9 @@ object PageColor {
           |
           |# Usage notes
           |
-          |**"Use color judiciously for communication.** The power of color to call attention to important information is heightened when used sparingly. For example, a red triangle that warns people of a critical problem becomes less effective when red is used elsewhere in an app for noncritical reasons."
-          |
-          |Source: [Color - Visual Design - iOS Human Interface Guidelines (developer.apple.com)](https://developer.apple.com/ios/human-interface-guidelines/visual-design/color/)
+          |>**Use color judiciously for communication.** The power of color to call attention to important information is heightened when used sparingly. For example, a red triangle that warns people of a critical problem becomes less effective when red is used elsewhere in an app for noncritical reasons.
+          |>
+          |>Source: [Color - Visual Design - iOS Human Interface Guidelines (developer.apple.com)](https://developer.apple.com/ios/human-interface-guidelines/visual-design/color/)
           |
           |**Complex color combinations are usually offered by components.** For example, the `Button` component has a `color` prop, which includes changes in `color`, `backgroundColor` and `shadow.border`.
         """.stripMargin)()

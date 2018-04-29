@@ -24,7 +24,10 @@ object Main {
   case class Button(hash: String = "")       extends Page
   case class ButtonGroup(hash: String = "")  extends Page
   case class ButtonVsLink(hash: String = "") extends Page
-  case class WIP(hash: String = "")          extends Page
+  case class Tooltip(hash: String = "")      extends Page
+  case class Portal(hash: String = "")       extends Page
+
+  case class WIP(hash: String = "") extends Page
 
   type Ctl = RouterCtl[Page]
 
@@ -53,6 +56,8 @@ object Main {
       | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> renderR(PageButton.render)
       | dynamicRouteCT("button-group" ~ hash.caseClass[ButtonGroup]) ~> renderR(PageButtonGroup.render)
       | dynamicRouteCT("button-vs-link" ~ hash.caseClass[ButtonVsLink]) ~> renderR(PageButtonVsLink.render)
+      | dynamicRouteCT("portal" ~ hash.caseClass[Portal]) ~> renderR(PagePortal.render)
+      | dynamicRouteCT("tooltip" ~ hash.caseClass[Tooltip]) ~> renderR(PageTooltip.render)
 
       | emptyRule)
       .notFound(redirectToPage(Welcome)(Redirect.Replace))

@@ -4,7 +4,6 @@ import com.karasiq.markedjs.{Marked, MarkedOptions, MarkedRenderer}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.component.util.ComponentUtils
 import anduin.guide.component._
 import anduin.style.Style
 
@@ -20,7 +19,7 @@ object Markdown {
 
   private val rnd = ReactDOMServer.renderToStaticMarkup _
 
-  private final val ComponentName = ComponentUtils.name(this)
+  private val ComponentName = this.getClass.getSimpleName
 
   private val renderHead = (content: String, level: Int) => {
     val styles = Style.padding.bottom12.padding.top32

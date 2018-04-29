@@ -46,7 +46,7 @@ object PageStyle {
             |Output (HTML):    <p class="ml4">text</p>
             |```
             |
-            |>**Avoid using literal classes for styling purpose**.
+            |>::warning::**Avoid using literal classes for styling purpose**.
             |>
             |>Although the result might be the
             |>same at the implement time, it might be broken later since

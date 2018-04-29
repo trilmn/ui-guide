@@ -4,6 +4,7 @@ target
 # Linked JS
 core/src/main/scala/anduin/component
 core/src/main/scala/anduin/style
+core/src/main/scala/anduin/scalajs
 
 # Linked CSS
 core/src/main/resources/stylesheets/tachyons

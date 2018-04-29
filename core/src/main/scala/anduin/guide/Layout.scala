@@ -28,23 +28,44 @@ object Layout {
             ul(
               <.li(
                 link("Layout"),
-                ul(<.li(link("Space", Main.Space())), <.li(link("Flexbox", Main.Flexbox())))
+                ul(
+                  <.li(link("Space", Main.Space())),
+                  <.li(link("Flexbox", Main.Flexbox()))
+                )
               ),
-              <.li(link("Color", Main.Color())),
+              <.li(
+                link("Color", Main.Color())
+              ),
               <.li(
                 link("Typography", Main.Typography()),
-                ul(<.li(link("Why fixed line height", Main.FixedLineHeight())))
+                ul(
+                  <.li(link("Why fixed line height", Main.FixedLineHeight()))
+                )
               )
             )
           ),
           <.li(
-            link("Components", Main.Component()),
+            link("Components", Main.WIP()),
             ul(
               <.li(
                 link("Button", Main.Button()),
-                ul(<.li(link("Button Group", Main.ButtonGroup())), <.li(link("Button vs Link", Main.ButtonVsLink())))
+                ul(
+                  <.li(link("Button Group", Main.WIP())),
+                  <.li(link("Button vs Link", Main.WIP()))
+                )
               ),
-              <.li(link("Icon", Main.Icon()))
+              <.li(
+                link("Icon", Main.Icon())
+              ),
+              <.li(
+                link("Portal", Main.WIP()),
+                ul(
+                  <.li(link("Tooltip", Main.Tooltip())),
+                  <.li(link("Popover", Main.WIP())),
+                  <.li(link("Menu", Main.WIP())),
+                  <.li(link("Modal", Main.WIP()))
+                )
+              )
             )
           )
         )

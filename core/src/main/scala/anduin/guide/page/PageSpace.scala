@@ -68,7 +68,7 @@ object PageSpace {
           |centering it and then optionally offset), or inline the style
           |(such as `^.margin := 56px`).
           |
-          |>**Under consideration: Support for larger than 24 pixels**
+          |>::warning::**Under consideration: Support for larger than 24 pixels**
           |>
           |>The current scale focuses more on small spaces to fine-tune
           |>details, therefore it stops at 32 pixel.

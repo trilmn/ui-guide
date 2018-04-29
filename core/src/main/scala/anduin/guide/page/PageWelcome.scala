@@ -2,7 +2,7 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.component.button.Button
+import anduin.component.portal.Tooltip
 import anduin.guide.Main
 import anduin.style.Style
 
@@ -17,7 +17,11 @@ object PageWelcome {
         |""".stripMargin)(),
       ExampleSimple()(
         <.div(
-          Button()("a")
+          Style.flexbox.flex,
+          Tooltip(
+            renderTarget = () => <.span("Target"),
+            renderContent = () => <.span("Content")
+          )()
         )
       ),
       Markdown(

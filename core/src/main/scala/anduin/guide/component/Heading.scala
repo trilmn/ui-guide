@@ -3,7 +3,6 @@ package anduin.guide.component
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.component.util.ComponentUtils
 import anduin.style.Style
 
 final case class Heading(
@@ -24,7 +23,7 @@ object Heading {
       .replaceAll("[^a-z]+", "-") // symbols like "," "." "("
       .replaceAll("-$", "") // trailing "-" (originally ".")
 
-  private final val ComponentName = ComponentUtils.name(this)
+  private val ComponentName = this.getClass.getSimpleName
 
   private case class Backend(scope: BackendScope[Heading, _]) {
     def render(props: Heading): VdomElement = {

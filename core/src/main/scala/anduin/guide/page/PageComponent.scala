@@ -20,7 +20,7 @@ object PageComponent {
       ),
       Markdown(
         """
-          |>**This guide refers to global components:** those that available platform-wide under `anduin.component` package.
+          |>::warning::**This guide refers to global components:** those that available platform-wide under `anduin.component` package.
           |>
           |>There are also module-level packages, like `anduin.module.entity.EntityLogo`. Although having some common behaviours, we don't cover these packages in this guide.
           |

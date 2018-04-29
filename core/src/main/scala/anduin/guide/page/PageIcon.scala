@@ -39,7 +39,7 @@ object PageIcon {
           |case object SizeLarge extends Size { val value = "32" }
           |```
           |
-          |> Currently the name of this component is `IconAcl` instead of `Icon`. Its name will be changed back to `Icon` after completing migration.
+          |>::warning::Currently the name of this component is `IconAcl` instead of `Icon`. Its name will be changed back to `Icon` after completing migration.
           |
           |Example:
           |""".stripMargin)(),
@@ -62,9 +62,9 @@ object PageIcon {
           |
           |## Alignment
           |
-          |**Icon is always a block element.** This is because out of the box, `inline` element is aligned in the same row with its surrounding siblings. However, this alignment based on "baseline", which usually not suitable for us, as we want absolute centering.
+          |**Icon is always a block element.** This is to prevent the default `inline` alignment, which is based on `baseline`, while we usually want an absolute centering.
           |
-          |Meanwhile, `block` display prevents the default alignment, and placed the icon on its own row. This enforces the engineers to properly align the icon. See example in the [Spacing](#spacing) section below.
+          |`block` display placed the icon on its own row, which enforces the engineers to align the icon later with proper technique. See example in the [Spacing](#spacing) section below.
           |
           |- [This Codepen](https://codepen.io/dvkndn/pen/wmQmbm) explains in detail why we prefer `block` over `inline` icons.
           |- For alignment, we suggest to see the [Flexbox guide](${ctl.urlFor(Main.Flexbox()).value}).
@@ -116,9 +116,9 @@ object PageIcon {
           |
           |**Icons should follow industry standard metaphors** to ensure they are predictable for end users. Unique objects and actions that have no standard metaphors yet should have explicit label to support the icon.
           |
-          |"Inscrutable icons litter the face of the devices even though the research community has long demonstrated that people cannot remember the meaning of more than a small number of icons […] – Don Norman"
-          |
-          |Source: [ia.net/topics/on-icons/​](​https://ia.net/topics/on-icons/)
+          |>Inscrutable icons litter the face of the devices even though the research community has long demonstrated that people cannot remember the meaning of more than a small number of icons […] – Don Norman"
+          |>
+          |>Source: [ia.net/topics/on-icons/​](​https://ia.net/topics/on-icons/)
         """.stripMargin)()
     )
   }

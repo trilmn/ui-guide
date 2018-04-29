@@ -37,7 +37,7 @@ object PageButton {
           |  style: Button.Style = Button.StyleFull,
           |  size: Button.Size = Button.SizeMedium,
           |  isFullWidth: Boolean = false,
-          |  isSelected: Boolean = false /* WIP */
+          |  isSelected: Boolean = false
           |)()
           |```
           |
@@ -227,7 +227,7 @@ object PageButton {
       },
       Markdown(
         """
-          |>`StyleMinimal` should only be used when there is enough context to call out the interaction. If it's not clear, use `StyleFull` to provide visual hint.
+          |>::warning::`StyleMinimal` should only be used when there is enough context to call out the interaction. If it's not clear, use `StyleFull` to provide visual hint.
           |
           |### `StyleLink`
           |
@@ -246,7 +246,7 @@ object PageButton {
         )
       )(),
       Markdown(s"""
-          |>**`StyleLink` should not be used with `TpeLink`.** That case means you want something that works like a link and looks like a link, which is a simple `a` tag. Learn more in [Button vs Link](${ctl
+          |>::warning::**`StyleLink` should not be used with `TpeLink`.** That case means you want something that works like a link and looks like a link, which is a simple `a` tag. Learn more in [Button vs Link](${ctl
                     .urlFor(Main.ButtonVsLink())
                     .value}) page.
           |

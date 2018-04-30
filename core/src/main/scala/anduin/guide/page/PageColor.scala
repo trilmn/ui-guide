@@ -34,6 +34,7 @@ object PageColor {
 
   def render(ctl: Main.Ctl): VdomElement = {
     <.div(
+      Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
         Header(

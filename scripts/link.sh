@@ -5,6 +5,10 @@
 echo "Please enter the absolute path to stargazer on your local:"
 read sgz_src
 
+# === Link Config
+echo "[info] Linking Config: .scalafmt.conf"
+ln -sf ${sgz_src}/.scalafmt.conf ./
+
 # === Link CSS
 
 sgz_css=${sgz_src}/gondor/webResources/src/main/assets/stylesheets
@@ -40,7 +44,6 @@ done
 # Component
 echo "[info] Linking JS: anduin.component ..."
 components=(
-  container/Well.scala
   portal/LegacyPortal.scala
   portal/ModalHeader.scala
   portal/PortalWrapper.scala

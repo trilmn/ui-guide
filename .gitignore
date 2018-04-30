@@ -1,6 +1,9 @@
 # Scala & SBT
 target
 
+# Linked config
+.scalafmt.conf
+
 # Linked JS
 core/src/main/scala/anduin/component
 core/src/main/scala/anduin/style

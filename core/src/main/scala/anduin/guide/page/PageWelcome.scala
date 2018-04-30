@@ -20,7 +20,7 @@ object PageWelcome {
           Style.flexbox.flex,
           Tooltip(
             renderTarget = () => <.span("Target"),
-            renderContent = () => <.span("Content")
+            renderContent = () => "Content"
           )()
         )
       ),

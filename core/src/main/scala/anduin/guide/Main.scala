@@ -26,6 +26,7 @@ object Main {
   case class ButtonVsLink(hash: String = "") extends Page
   case class Tooltip(hash: String = "")      extends Page
   case class Portal(hash: String = "")       extends Page
+  case class Popover(hash: String = "")      extends Page
 
   case class WIP(hash: String = "") extends Page
 
@@ -58,6 +59,7 @@ object Main {
       | dynamicRouteCT("button-vs-link" ~ hash.caseClass[ButtonVsLink]) ~> renderR(PageButtonVsLink.render)
       | dynamicRouteCT("portal" ~ hash.caseClass[Portal]) ~> renderR(PagePortal.render)
       | dynamicRouteCT("tooltip" ~ hash.caseClass[Tooltip]) ~> renderR(PageTooltip.render)
+      | dynamicRouteCT("popover" ~ hash.caseClass[Popover]) ~> renderR(PagePopover.render)
 
       | emptyRule)
       .notFound(redirectToPage(Welcome)(Redirect.Replace))

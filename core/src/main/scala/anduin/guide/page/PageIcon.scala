@@ -52,13 +52,8 @@ object PageIcon {
           ) /*<*/
         )
       )(),
-      Markdown("""
-          |# Names
-          |
-          |""".stripMargin)(),
-      renderIcons(),
       Markdown(s"""
-          |# Usage notes
+          |# Usage
           |
           |## Alignment
           |
@@ -119,7 +114,10 @@ object PageIcon {
           |>Inscrutable icons litter the face of the devices even though the research community has long demonstrated that people cannot remember the meaning of more than a small number of icons […] – Don Norman"
           |>
           |>Source: [ia.net/topics/on-icons/​](​https://ia.net/topics/on-icons/)
-        """.stripMargin)()
+          |
+          |# Names
+        """.stripMargin)(),
+      renderIcons()
     )
   }
 

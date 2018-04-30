@@ -3,6 +3,7 @@ package anduin.guide.page
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.Button
+import anduin.component.icon.IconAcl
 import anduin.component.portal._
 import anduin.guide.Main
 import anduin.mcro.Source
@@ -26,7 +27,7 @@ object PageTooltip {
           |```scala
           |Tooltip(
           |  renderTarget: () => VdomNode,
-          |  renderContent: () => VdomNode,
+          |  renderContent: () => String,
           |  isInline: Boolean = false,
           |  isDisabled: Boolean = false,
           |  position: Position = PositionBottom
@@ -46,18 +47,60 @@ object PageTooltip {
           )
         )
       )(),
-      Markdown("""
-          |# `target` & `content`
+      Markdown(s"""
+          |# Usage
           |
+          |## Hint
+          |
+          |Tooltip is quite powerful that it provides information without taking any space. However, because of that, these information are not visible at first sight but requires user's interaction. Worse, out of the box they have no hint at all until user's cursor is on them.
+          |
+          |""".stripMargin)(),
+      ExampleSimple("**Example:** Without hovering, can you tell whether this button has a tooltip or not?")({
+        val target = Button(isDisabled = true)("Archive Transaction")
+        val content = "You don't have permission to archive this transaction"
+        val tooltip = Tooltip(renderTarget = () => target, renderContent = () => content)()
+        <.div(Style.flexbox.flex, tooltip)
+      }),
+      Markdown(
+        """
+          |Therefore, it's usually good to have an explicit hint that we have an explanation here:
+          |
+          |""".stripMargin)(),
+      ExampleSimple()({
+        val button = <.div(Style.margin.right8, Button(isDisabled = true)("Archive Transaction"))
+        val target = <.div(Style.cursor.pointer, IconAcl(name = IconAcl.NameInfoCircle)())
+        val content = "You don't have permission to archive this transaction"
+        val tooltip = Tooltip(renderTarget = () => target, renderContent = () => content)()
+        <.div(Style.flexbox.flex.flexbox.itemsCenter, button, tooltip)
+      }),
+      Markdown(
+        """
+          |Or even better, exp
+          |
+          |# Interface
+          |
+          |## `target` & `content`
+          |
+          |Like other consumers of [Portal][1], the Tooltip component has:
+          |- [`renderTarget`][2] to render the target element – one that should have the tooltip shown when user's pointer is on it.
+          |- [`renderContent`][3] to render the content of that tooltip.
+          |
+          |**Both `render` don't have any parameters,** because showing and hiding are already controlled by the component for you, while `status` is unnecessary since the "tip" already pointed to the source target.
+          |
+          |**`renderContent` must return a `String`,** which will also be wrapped too long. If you need anything more complex than a string, consider using [Popover][4].
+          |
+          |[1]: ${ctl.urlFor(Main.Portal()).value}
+          |[2]: ${ctl.urlFor(Main.Portal("#target")).value}
+          |[3]: ${ctl.urlFor(Main.Portal("#content")).value}
+          |[4]: ${ctl.urlFor(Main.Popover()).value}
           |""".stripMargin)(),
       ExampleRich(
         Source.annotate(
           <.div(
             Tooltip(
               isInline = true,
-              renderTarget = () => "Target",
-              renderContent = () =>
-                """
+              renderTarget = () => "Long content example",
+              renderContent = () => """
                   |Lorem ipsum dolor sit amet, porro errem ullamcorper
                   |has eu, inermis recteque at mea. Quod feugait in vim.
                 """.stripMargin
@@ -65,10 +108,9 @@ object PageTooltip {
           )
         )
       )(),
-      Markdown(
-        """
+      Markdown("""
           |
-          |# `isInline`
+          |## `isInline`
           |
           |""".stripMargin)(),
       ExampleRich(
@@ -90,12 +132,14 @@ object PageTooltip {
           )
         )
       )(),
-      Markdown("""
+      Markdown(
+        """
+          |## `isDisabled`
           |
+          |The tooltip can be disabled dynamically via the `isDisabled` prop. This comes in handy when you want to show the tooltip only under a specific context. For example, when a button is disabled, there will be a tooltip to explain why. This tooltip
           |
-          |# `isDisabled`
-          |
-          |""".stripMargin)(),
+          |""".stripMargin
+      )(),
       ExampleRich(
         Source.annotate({
           val isButtonDisabled = true /*>*/
@@ -126,7 +170,7 @@ object PageTooltip {
       Markdown("""
           |
           |
-          |# `position`
+          |## `position`
           |
           |""".stripMargin)(),
       ExampleSimple()({
@@ -155,8 +199,7 @@ object PageTooltip {
         )
       }),
       Markdown("""
-          |
-          |
+          |# Usage
         """.stripMargin)()
     )
   }

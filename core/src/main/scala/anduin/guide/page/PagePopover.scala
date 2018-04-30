@@ -6,14 +6,14 @@ import anduin.guide.Main
 import anduin.mcro.Source
 import anduin.style.Style
 
-object PagePortal {
+object PagePopover {
   def render(ctl: Main.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
         Header(
-          title = "",
+          title = "Popover",
           description = ""
         )()
       ),
@@ -22,7 +22,7 @@ object PagePortal {
           |# Snippet
           |
           |```scala
-          |Icon(
+          |Popover(
           |)()
           |
           |
@@ -37,9 +37,7 @@ object PagePortal {
       )(),
       Markdown(
         """
-          |# Target
           |
-          |# Content
         """.stripMargin)()
     )
   }

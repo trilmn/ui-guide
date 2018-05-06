@@ -5,10 +5,10 @@
   "author": "Thien Do <dvkndn@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "clean": ". ./scripts/clean.sh",
-    "link": ". ./scripts/link.sh",
-    "dev-watch": ". ./scripts/dev-watch.sh",
+    "clean": "bash ./scripts/clean.sh",
+    "link": "bash ./scripts/link.sh",
+    "dev-watch": "bash ./scripts/dev-watch.sh",
     "dev-serve": "node ./scripts/dev-serve",
-    "build": ". ./scripts/build.sh"
+    "build": "bash ./scripts/build.sh"
   }
 }

@@ -40,7 +40,7 @@ object PageTooltip {
         Source.annotate(
           <.div(
             Tooltip(
-              isInline = true,
+              targetTag = <.span,
               renderTarget = () => "target",
               renderContent = () => "content"
             )()
@@ -98,7 +98,7 @@ object PageTooltip {
         Source.annotate(
           <.div(
             Tooltip(
-              isInline = true,
+              targetTag = <.span,
               renderTarget = () => "Long content example",
               renderContent = () => """
                   |Lorem ipsum dolor sit amet, porro errem ullamcorper
@@ -118,13 +118,13 @@ object PageTooltip {
           <.p(
             "This sentence has 2 tooltips: the ",
             Tooltip(
-              isInline = true,
+              targetTag = <.span,
               renderTarget = () => <.a(^.href := "#", "first"),
               renderContent = () => "First tooltip"
             )(),
             " one and the ",
             Tooltip(
-              isInline = true,
+              targetTag = <.span,
               renderTarget = () => <.a(^.href := "#", "second"),
               renderContent = () => "Second tooltip"
             )(),

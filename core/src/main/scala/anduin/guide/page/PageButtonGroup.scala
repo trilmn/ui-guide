@@ -2,7 +2,7 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.component.button.Button
+import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.icon.IconAcl
 import anduin.guide.Main
 import anduin.mcro.Source
@@ -33,10 +33,10 @@ object PageButtonGroup {
             Style.flexbox.flex,
             <.div(
               Style.flexbox.flex.backgroundColor.gray1.shadow.borderGray4s.borderRadius.px2,
-              <.div(<.div(Button(style = Button.StyleMinimal)("Refresh"), negMargin), border),
-              <.div(<.div(Button(style = Button.StyleMinimal)("Edit"), negMargin), border),
+              <.div(<.div(Button(style = ButtonStyle.StyleMinimal)("Refresh"), negMargin), border),
+              <.div(<.div(Button(style = ButtonStyle.StyleMinimal)("Edit"), negMargin), border),
               <.div(
-                <.div(Button(style = Button.StyleMinimal, color = Button.ColorDanger)(
+                <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorDanger)(
                         IconAcl(name = IconAcl.NameTrash)(),
                         <.span(Style.margin.left8, "Remove")
                       ),

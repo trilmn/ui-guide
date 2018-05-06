@@ -22,7 +22,7 @@ object PageButtonVsLink {
             // actual link, looks like a button
 //            Button(tpe = Button.TpeLink, href = "...")("Two"),
             // actual button, looks like a link
-//            Button(style = Button.StyleLink)("Three"),
+//            Button(style = ButtonStyle.StyleLink)("Three"),
             // actual link, looks like a link
 //            <.a(^.href := "#", "Four"),
             <.div(

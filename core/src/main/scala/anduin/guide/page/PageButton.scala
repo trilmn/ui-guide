@@ -3,7 +3,7 @@ package anduin.guide.page
 import japgolly.scalajs.react.{Callback, ReactEventFromInput}
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.component.button.Button
+import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.icon.IconAcl
 import anduin.guide._
 import anduin.mcro.Source
@@ -33,9 +33,9 @@ object PageButton {
           |  href: String = "",
           |  isDisabled: Boolean = false,
           |
-          |  color: Button.Color = Button.ColorWhite,
-          |  style: Button.Style = Button.StyleFull,
-          |  size: Button.Size = Button.SizeMedium,
+          |  color: ButtonStyle.Color = ButtonStyle.ColorWhite,
+          |  style: ButtonStyle.Style = ButtonStyle.StyleFull,
+          |  size: ButtonStyle.Size = ButtonStyle.SizeMedium,
           |  isFullWidth: Boolean = false,
           |  isSelected: Boolean = false
           |)()
@@ -52,7 +52,7 @@ object PageButton {
             )("Cancel")
           /*>*/val submit =/*<*/
             Button(
-              color = Button.ColorPrimary,
+              color = ButtonStyle.ColorPrimary,
               onClick = Callback.alert("You submitted")
             )("Submit")
           /*>*/<.div(Style.flexbox.flex,
@@ -112,8 +112,8 @@ object PageButton {
           /*>*/<.div(
             Style.flexbox.flex,
             <.div(/*<*/Button(isDisabled = true)("Default")/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(isDisabled = true, color = Button.ColorPrimary)("Primary")/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(isDisabled = true, style = Button.StyleMinimal)("Minimal")()/*>*/)
+            <.div(/*<*/Button(isDisabled = true, color = ButtonStyle.ColorPrimary)("Primary")/*>*/, Style.margin.right16),
+            <.div(/*<*/Button(isDisabled = true, style = ButtonStyle.StyleMinimal)("Minimal")()/*>*/)
           )/*<*/
         )
         // format: on
@@ -190,9 +190,9 @@ object PageButton {
         Source.annotate(
           /*>*/<.div(
             Style.flexbox.flex.flexbox.itemsCenter,
-            <.div(/*<*/Button(style = Button.StyleFull)("Full Style")/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(style = Button.StyleMinimal)("Minimal Style")/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(style = Button.StyleLink, href = "#")("Link Style")/*>*/, Style.margin.right16)
+            <.div(/*<*/Button(style = ButtonStyle.StyleFull)("Full Style")/*>*/, Style.margin.right16),
+            <.div(/*<*/Button(style = ButtonStyle.StyleMinimal)("Minimal Style")/*>*/, Style.margin.right16),
+            <.div(/*<*/Button(style = ButtonStyle.StyleLink, href = "#")("Link Style")/*>*/, Style.margin.right16)
           )/*<*/
         )
         // format: on
@@ -204,7 +204,7 @@ object PageButton {
           |
           |`StyleMinimal` is a subtle, text-only alternative that comes in handy when the button is repetitive (like action in each table row) or you have several buttons in a row (like in a toolbar):
           |""".stripMargin)(), {
-        val button = Button(size = Button.SizeIcon, style = Button.StyleMinimal)
+        val button = Button(size = ButtonStyle.SizeIcon, style = ButtonStyle.StyleMinimal)
         val sep    = <.div(Style.margin.left8.padding.left8.border.left.borderWidth.px2.borderColor.gray4)
         ExampleSimple()(
           <.div(
@@ -240,7 +240,7 @@ object PageButton {
             " ",
             Button(
               onClick = Callback.alert("Reminded"),
-              style = Button.StyleLink
+              style = ButtonStyle.StyleLink
             )("Remind him.")
           )
         )
@@ -260,10 +260,10 @@ object PageButton {
           /*>*/<.div(
             Style.flexbox.flex,
             <.div(/*<*/Button()("Default")/*>*/),
-            <.div(/*<*/Button(color = Button.ColorPrimary)("Primary")/*>*/, Style.margin.left16),
-            <.div(/*<*/Button(color = Button.ColorSuccess)("Success")/*>*/, Style.margin.left16),
-            <.div(/*<*/Button(color = Button.ColorWarning)("Warning")/*>*/, Style.margin.left16),
-            <.div(/*<*/Button(color = Button.ColorDanger)("Danger")/*>*/, Style.margin.left16)
+            <.div(/*<*/Button(color = ButtonStyle.ColorPrimary)("Primary")/*>*/, Style.margin.left16),
+            <.div(/*<*/Button(color = ButtonStyle.ColorSuccess)("Success")/*>*/, Style.margin.left16),
+            <.div(/*<*/Button(color = ButtonStyle.ColorWarning)("Warning")/*>*/, Style.margin.left16),
+            <.div(/*<*/Button(color = ButtonStyle.ColorDanger)("Danger")/*>*/, Style.margin.left16)
           )/*<*/
         )
         // format: on
@@ -285,14 +285,14 @@ object PageButton {
           |""".stripMargin)(),
       ExampleSimple("**GOOD:** Users know which is the primary action that should be taken")(
         <.div(Style.flexbox.flex,
-              <.div(Button(color = Button.ColorPrimary)("Create Transaction")),
+              <.div(Button(color = ButtonStyle.ColorPrimary)("Create Transaction")),
               <.div(Button()("Create Organization"), Style.margin.left8))
       ),
       ExampleSimple("**NOT GOOD:** Users don't know which is action should be taken")(
         <.div(
           Style.flexbox.flex,
-          <.div(Button(color = Button.ColorPrimary)("Create Transaction")),
-          <.div(Button(color = Button.ColorSuccess)("Create Organization"), Style.margin.left8)
+          <.div(Button(color = ButtonStyle.ColorPrimary)("Create Transaction")),
+          <.div(Button(color = ButtonStyle.ColorSuccess)("Create Organization"), Style.margin.left8)
         )
       ),
       Markdown(
@@ -303,7 +303,7 @@ object PageButton {
         <.div(
           Style.flexbox.flex,
           <.div(Button()("Cancel"), Style.margin.right8),
-          <.div(Button(color = Button.ColorDanger)("Confirm remove"))
+          <.div(Button(color = ButtonStyle.ColorDanger)("Confirm remove"))
         )
       ),
       Markdown("""
@@ -314,30 +314,30 @@ object PageButton {
           Style.flexbox.flex.flexbox.itemsCenter,
           <.p(Style.flexbox.none.width.pc10, "Full"),
           <.div(Button()("Default"), Style.margin.left8),
-          <.div(Button(color = Button.ColorPrimary)("Primary"), Style.margin.left8),
-          <.div(Button(color = Button.ColorSuccess)("Success"), Style.margin.left8),
-          <.div(Button(color = Button.ColorWarning)("Warning"), Style.margin.left8),
-          <.div(Button(color = Button.ColorDanger)("Danger"), Style.margin.left8)
+          <.div(Button(color = ButtonStyle.ColorPrimary)("Primary"), Style.margin.left8),
+          <.div(Button(color = ButtonStyle.ColorSuccess)("Success"), Style.margin.left8),
+          <.div(Button(color = ButtonStyle.ColorWarning)("Warning"), Style.margin.left8),
+          <.div(Button(color = ButtonStyle.ColorDanger)("Danger"), Style.margin.left8)
         ),
         <.div(
           Style.flexbox.flex.flexbox.itemsCenter.margin.top16.padding.top16,
           Style.border.top.borderColor.gray2.borderWidth.px2,
           <.p(Style.flexbox.none.width.pc10, "Minimal"),
-          <.div(Button(style = Button.StyleMinimal)("Default"), Style.margin.left8),
-          <.div(Button(style = Button.StyleMinimal, color = Button.ColorPrimary)("Primary"), Style.margin.left8),
-          <.div(Button(style = Button.StyleMinimal, color = Button.ColorSuccess)("Success"), Style.margin.left8),
-          <.div(Button(style = Button.StyleMinimal, color = Button.ColorWarning)("Warning"), Style.margin.left8),
-          <.div(Button(style = Button.StyleMinimal, color = Button.ColorDanger)("Danger"), Style.margin.left8)
+          <.div(Button(style = ButtonStyle.StyleMinimal)("Default"), Style.margin.left8),
+          <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorPrimary)("Primary"), Style.margin.left8),
+          <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorSuccess)("Success"), Style.margin.left8),
+          <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorWarning)("Warning"), Style.margin.left8),
+          <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorDanger)("Danger"), Style.margin.left8)
         ),
         <.div(
           Style.flexbox.flex.flexbox.itemsCenter.margin.top16.padding.top16,
           Style.border.top.borderColor.gray2.borderWidth.px2,
           <.p(Style.flexbox.none.width.pc10, "Link"),
-          <.div(Button(style = Button.StyleLink)("Default"), Style.margin.left8),
-          <.div(Button(style = Button.StyleLink, color = Button.ColorPrimary)("Primary"), Style.margin.left8),
-          <.div(Button(style = Button.StyleLink, color = Button.ColorSuccess)("Success"), Style.margin.left8),
-          <.div(Button(style = Button.StyleLink, color = Button.ColorWarning)("Warning"), Style.margin.left8),
-          <.div(Button(style = Button.StyleLink, color = Button.ColorDanger)("Danger"), Style.margin.left8)
+          <.div(Button(style = ButtonStyle.StyleLink)("Default"), Style.margin.left8),
+          <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorPrimary)("Primary"), Style.margin.left8),
+          <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorSuccess)("Success"), Style.margin.left8),
+          <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorWarning)("Warning"), Style.margin.left8),
+          <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorDanger)("Danger"), Style.margin.left8)
         )
       ),
       Markdown("""
@@ -352,7 +352,7 @@ object PageButton {
           /*>*/<.div(
             Style.flexbox.flex,
             <.div(/*<*/Button()("Medium"),/*>*/ Style.margin.right16),
-            <.div(/*<*/Button(size = Button.SizeLarge)("Large"))
+            <.div(/*<*/Button(size = ButtonStyle.SizeLarge)("Large"))
           )/*<*/
         )
         // format: on
@@ -374,7 +374,7 @@ object PageButton {
           <.div(
             Style.width.px128,
             Button(
-              color = Button.ColorPrimary,
+              color = ButtonStyle.ColorPrimary,
               isFullWidth = true
             )("Sign In")
           )
@@ -393,10 +393,10 @@ object PageButton {
           <.div(
             Style.flexbox.flex,
             <.div(Button(isSelected = true)("Default")),
-            <.div(Button(isSelected = true, color = Button.ColorPrimary)("Primary"), margin),
-            <.div(Button(isSelected = true, color = Button.ColorSuccess)("Success"), margin),
-            <.div(Button(isSelected = true, color = Button.ColorWarning)("Warning"), margin),
-            <.div(Button(isSelected = true, color = Button.ColorDanger)("Danger"), margin)
+            <.div(Button(isSelected = true, color = ButtonStyle.ColorPrimary)("Primary"), margin),
+            <.div(Button(isSelected = true, color = ButtonStyle.ColorSuccess)("Success"), margin),
+            <.div(Button(isSelected = true, color = ButtonStyle.ColorWarning)("Warning"), margin),
+            <.div(Button(isSelected = true, color = ButtonStyle.ColorDanger)("Danger"), margin)
           )
         })
       )(),
@@ -408,7 +408,7 @@ object PageButton {
           <.div(
             Style.flexbox.flex,
             <.div(Button(isSelected = true)("Default"), Style.margin.right16),
-            <.div(Button(isSelected = true, style = Button.StyleMinimal)("Minimal"))
+            <.div(Button(isSelected = true, style = ButtonStyle.StyleMinimal)("Minimal"))
           )
         )
       )(),
@@ -436,7 +436,7 @@ object PageButton {
         """
           |Button can also be icon-only. In these cases make sure the action can be clearly implied without text. Icon-only are often being used as a row, like in a toolbar, so their meaning can support each other.
           |
-          |By default, button has unequal vertical and horizontal padding, which result in a rectangle for icon-only case. This might not look nice in some cases like toolbar. In such cases, use `size = Button.SizeIcon` to make it square.
+          |By default, button has unequal vertical and horizontal padding, which result in a rectangle for icon-only case. This might not look nice in some cases like toolbar. In such cases, use `size = ButtonStyle.SizeIcon` to make it square.
           |""".stripMargin)(),
       ExampleRich(
         // format: off
@@ -444,7 +444,7 @@ object PageButton {
           /*>*/val icon = IconAcl(name = IconAcl.NameLightBolt)()
           <.div(Style.flexbox.flex,
             <.div(/*<*/Button()(icon)/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(size = Button.SizeIcon)(icon)/*>*/))/*<*/
+            <.div(/*<*/Button(size = ButtonStyle.SizeIcon)(icon)/*>*/))/*<*/
         })
         // format: on
       )()

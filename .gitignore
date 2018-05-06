@@ -1,6 +1,9 @@
 # Scala & SBT
 target
 
+# Local config
+sgz_src.txt
+
 # Linked config
 .scalafmt.conf
 
@@ -15,6 +18,7 @@ core/src/main/resources/stylesheets/_base.scss
 
 # Generated CSS (dev)
 core/src/main/resources/stylesheets/core-fastopt.css
+core/src/main/resources/stylesheets/core-fastopt.css.map
 
 # IDE
 .idea

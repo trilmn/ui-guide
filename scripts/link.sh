@@ -2,8 +2,17 @@
 
 . ./scripts/_prepare.sh
 
-echo "Please enter the absolute path to stargazer on your local:"
-read sgz_src
+# === Find out where is stargazer
+sgz_src_config=sgz_src.txt
+cat ${sgz_src_config}
+if [ ! -f ${sgz_src_config} ]; then
+  echo "Please enter the absolute path to stargazer on your local:"
+  read sgz_src
+  echo ${sgz_src} > ${sgz_src_config}
+else
+  read -r sgz_src < ${sgz_src_config}
+  echo "Found stargazer at ${sgz_src}."
+fi
 
 # === Link Config
 echo "[info] Linking Config: .scalafmt.conf"
@@ -57,6 +66,8 @@ components=(
   portal/Portal.scala
   portal/Tooltip.scala
   button/Button.scala
+  button/ButtonStyle.scala
+  input/FileInputButton.scala
   icon/IconAcl.scala
   util/EventUtils.scala
 )

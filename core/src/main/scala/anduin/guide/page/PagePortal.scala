@@ -24,7 +24,7 @@ object PagePortal {
           |```scala
           |Icon(
           |)()
-          |
+          |https://reactjs.org/docs/render-props.html
           |
           |```
           |

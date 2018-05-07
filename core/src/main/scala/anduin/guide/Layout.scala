@@ -23,6 +23,7 @@ object Layout {
         ^.padding := "64px 32px",
         Style.lineHeight.px40,
         ul(
+          <.li(link("Welcome", Main.Welcome)),
           <.li(
             link("Style", Main.Style()),
             ul(

@@ -12,21 +12,21 @@ object Main {
   sealed trait Page {}
   case object Welcome extends Page
 
-  case class Style(hash: String = "")           extends Page
-  case class Space(hash: String = "")           extends Page
-  case class Flexbox(hash: String = "")         extends Page
-  case class Color(hash: String = "")           extends Page
-  case class Typography(hash: String = "")      extends Page
+  case class Style(hash: String = "") extends Page
+  case class Space(hash: String = "") extends Page
+  case class Flexbox(hash: String = "") extends Page
+  case class Color(hash: String = "") extends Page
+  case class Typography(hash: String = "") extends Page
   case class FixedLineHeight(hash: String = "") extends Page
 
-  case class Component(hash: String = "")    extends Page
-  case class Icon(hash: String = "")         extends Page
-  case class Button(hash: String = "")       extends Page
-  case class ButtonGroup(hash: String = "")  extends Page
+  case class Component(hash: String = "") extends Page
+  case class Icon(hash: String = "") extends Page
+  case class Button(hash: String = "") extends Page
+  case class ButtonGroup(hash: String = "") extends Page
   case class ButtonVsLink(hash: String = "") extends Page
-  case class Tooltip(hash: String = "")      extends Page
-  case class Portal(hash: String = "")       extends Page
-  case class Popover(hash: String = "")      extends Page
+  case class Tooltip(hash: String = "") extends Page
+  case class Portal(hash: String = "") extends Page
+  case class Popover(hash: String = "") extends Page
 
   case class WIP(hash: String = "") extends Page
 
@@ -67,13 +67,13 @@ object Main {
       .onPostRender(postRenderFn)
   }
 
-  private val isLocal     = dom.window.location.hostname == "localhost"
+  private val isLocal = dom.window.location.hostname == "localhost"
   private val baseUrlPath = if (isLocal) "" else "ui-guide/"
-  private val baseUrl     = BaseUrl.fromWindowOrigin / baseUrlPath
+  private val baseUrl = BaseUrl.fromWindowOrigin / baseUrlPath
 
   def main(args: Array[String]): Unit = {
     val container = dom.document.getElementById("root")
-    val router    = Router(baseUrl, routerConfig)
+    val router = Router(baseUrl, routerConfig)
     router().renderIntoDOM(container)
   }
 }

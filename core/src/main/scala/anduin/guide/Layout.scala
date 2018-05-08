@@ -66,6 +66,12 @@ object Layout {
                   <.li(link("Menu", Main.WIP())),
                   <.li(link("Modal", Main.WIP()))
                 )
+              ),
+              <.li(
+                link("Container", Main.WIP()),
+                ul(
+                  <.li(link("Table", Main.Table()))
+                )
               )
             )
           )

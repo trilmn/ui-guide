@@ -7,7 +7,7 @@ import anduin.style.Style
 
 final case class Header(
   title: String,
-  description: String
+  description: String = ""
 ) {
   def apply(): VdomElement = {
     Header.component(this)
@@ -23,7 +23,7 @@ object Header {
       <.div(
         Style.border.bottom.borderWidth.px2.borderColor.gray2,
         <.h1(Style.margin.bottom32, props.title),
-        <.p(Style.margin.bottom32, props.description)
+        TagMod.when(props.description.nonEmpty) { <.p(Style.margin.bottom32, props.description) }
       )
     }
   }

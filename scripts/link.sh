@@ -53,6 +53,7 @@ done
 # Component
 echo "[info] Linking JS: anduin.component ..."
 components=(
+  container/Table.scala
   portal/LegacyPortal.scala
   portal/ModalHeader.scala
   portal/PortalWrapper.scala

@@ -1,87 +1,54 @@
 # Anduin UI Guide
+Following is local development guide for engineers. For a user-friendly Welcome, please see at home page: [Anduin UI Guide](https://anduintransaction.github.io/ui-guide/).
 
-How User Interface should be built at Anduin.
+## 1. Install dependencies
+These are necessary packages for local development. You only need to install them once.
 
-## Getting Started
+### 1.1. Yarn
+Although this is a Scala project, we still use [Yarn](https://yarnpkg.com/en/) for local development stuffs, such as running local web server or executing bash scripts. Please follow [Yarn's installation guide](https://yarnpkg.com/en/docs/install).
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+### 1.2 Express JS
+We use Node.js’s [Express](https://expressjs.com) for a simple local web server. It is recommended to install Express locally by running `yarn install` inside `scripts/dev-serve` folder:
 
 ```
-Give the example
+➜  ui-guide: cd scripts/dev-serve
+➜  dev-serve: yarn install
+yarn install v1.6.0
+[1/4] 🔍  Resolving packages…
+[2/4] 🚚  Fetching packages…
+[3/4] 🔗  Linking dependencies…
+[4/4] 📃  Building fresh packages…
+✨  Done in 0.65s.
 ```
 
-And repeat
+### 1.3. Sass
+Like `stargazer`, we use [Sass](https://sass-lang.com) to process our stylesheets. Please follow [Sass’s installation guide](https://sass-lang.com/install).
 
+## 2. Link with `stargazer`
+This repo only contains the source of documentation. It uses `anduin.component`, `anduin.style` and some other stuffs by [symlink](https://en.wikipedia.org/wiki/Symbolic_link) them from your local copy of  `stargazer` repo.
+
+So first, please ensure you have forked [anduintransaction/stargazer](https://github.com/anduintransaction/stargazer/) to your Github’s account and cloned it to your local:
 ```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+➜  anduin: git clone https://github.com/<your-account>/stargazer
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
+Then run `yarn run link` to link necessary stuffs from `stargazer`. In first run, it will ask for the path of your local `stargazer`, so it’s good to copy that path beforehand:
 ```
-Give an example
+➜  ui-guide: yarn run link
+yarn run v1.6.0
+Please enter the absolute path to stargazer on your local:
+/Users/thien/Code/anduin/stargazer
+[info] Linking Config: .scalafmt.conf
+[info] Linking CSS: Tachyons ...
+...
+[success] Successfully linked
 ```
 
-## Deployment
+### When to link
+Thank to symlink, changes on linked files in `stargazer` folder will be reflected in `ui-guide` folder so you won’t need to re-link them when there are changes, including manual authoring or pulling latest `master`. You still need to re-compile though.
 
-Add additional notes about how to deploy this on a live system
+However, our current approach is to not link the whole package but only a set of revised files only. For example, the `anduin.component` package does not available fully in `ui-guide`, but only some upgraded components like `anduin.component.button` does.
 
-## Built With
+This is done via a [manual list inside `link` script](https://github.com/anduintransaction/ui-guide/blob/master/scripts/link.sh#L55). Therefore, when there is new component added, it is necessary to  `yarn run link` again. In the near future, when most components are revised, we will link the whole packages and you won’t need to re-link anymore.
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+In the far future, when most components are stable, we will put their source and documentation together.

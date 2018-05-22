@@ -32,14 +32,21 @@ So first, please ensure you have forked [anduintransaction/stargazer](https://gi
 ➜  anduin: git clone https://github.com/<your-account>/stargazer
 ```
 
-Then run `yarn run link` to link necessary stuffs from `stargazer`. In first run, it will ask for the path of your local `stargazer`, so it’s good to copy that beforehand:
+Then run `yarn run link` to link necessary stuffs from `stargazer`. In first run, it will ask for the path of your local `stargazer`, so it’s good to copy that path beforehand:
 ```
 ➜  ui-guide: yarn run link
 yarn run v1.6.0
 Please enter the absolute path to stargazer on your local:
 /Users/thien/Code/anduin/stargazer
 [info] Linking Config: .scalafmt.conf
+[info] Linking CSS: Tachyons ...
 ...
 [success] Successfully linked
 ```
 
+### When to link
+Thank to symlink, changes on linked files in `stargazer` folder will be reflected in `ui-guide` folder so you won’t need to re-link them (like when pull latest `master`). You still need to re-compile though.
+
+However, our current approach is to not link the whole package but only a set of revised files only. For example, the `anduin.component` package does not available fully in `ui-guide`, but only some upgraded components like `anduin.component.button` does. This is done via a [manual list inside `link` script](https://github.com/anduintransaction/ui-guide/blob/master/scripts/link.sh#L55). Therefore, when there is new component added, it is necessary to  `yarn run link` again.
+
+In the near future, when most components are revised, we will link the whole packages and you won’t need to re-link anymore. In the far future, when most components are stable, we will put their source and the documentation together.

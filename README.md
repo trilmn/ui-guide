@@ -45,8 +45,10 @@ Please enter the absolute path to stargazer on your local:
 ```
 
 ### When to link
-Thank to symlink, changes on linked files in `stargazer` folder will be reflected in `ui-guide` folder so you won’t need to re-link them (like when pull latest `master`). You still need to re-compile though.
+Thank to symlink, changes on linked files in `stargazer` folder will be reflected in `ui-guide` folder so you won’t need to re-link them when there are changes, including manual authoring or pulling latest `master`. You still need to re-compile though.
 
-However, our current approach is to not link the whole package but only a set of revised files only. For example, the `anduin.component` package does not available fully in `ui-guide`, but only some upgraded components like `anduin.component.button` does. This is done via a [manual list inside `link` script](https://github.com/anduintransaction/ui-guide/blob/master/scripts/link.sh#L55). Therefore, when there is new component added, it is necessary to  `yarn run link` again.
+However, our current approach is to not link the whole package but only a set of revised files only. For example, the `anduin.component` package does not available fully in `ui-guide`, but only some upgraded components like `anduin.component.button` does.
 
-In the near future, when most components are revised, we will link the whole packages and you won’t need to re-link anymore. In the far future, when most components are stable, we will put their source and the documentation together.
+This is done via a [manual list inside `link` script](https://github.com/anduintransaction/ui-guide/blob/master/scripts/link.sh#L55). Therefore, when there is new component added, it is necessary to  `yarn run link` again. In the near future, when most components are revised, we will link the whole packages and you won’t need to re-link anymore.
+
+In the far future, when most components are stable, we will put their source and documentation together.

@@ -4,7 +4,6 @@
 
 # === Find out where is stargazer
 sgz_src_config=sgz_src.txt
-cat ${sgz_src_config}
 if [ ! -f ${sgz_src_config} ]; then
   echo "Please enter the absolute path to stargazer on your local:"
   read sgz_src
@@ -53,23 +52,43 @@ done
 # Component
 echo "[info] Linking JS: anduin.component ..."
 components=(
-  container/Table.scala
-  portal/LegacyPortal.scala
-  portal/ModalHeader.scala
-  portal/PortalWrapper.scala
-  portal/ModalBody.scala
-  portal/Modal.scala
-  portal/Position.scala
-  portal/ModalFooter.scala
-  portal/Popover.scala
-  portal/Status.scala
-  portal/ModalFooterWCancel.scala
-  portal/Portal.scala
-  portal/Tooltip.scala
   button/Button.scala
+  button/ButtonLink.scala
   button/ButtonStyle.scala
-  input/FileInputButton.scala
+
+  container/Table.scala
+  container/Card.scala
+  container/Collapse.scala
+  container/Well.scala
+
   icon/IconAcl.scala
+
+  input/Checkbox.scala
+  input/Dropdown.scala
+  input/FileInputButton.scala
+  input/Radio.scala
+  input/TextInput.scala
+
+  menu/Menu.scala
+  menu/MenuDivider.scala
+  menu/MenuItem.scala
+
+  portal/LegacyPortal.scala
+  portal/PortalWrapper.scala
+  portal/Portal.scala
+  portal/Position.scala
+  portal/Status.scala
+
+  portal/Modal.scala
+  portal/ModalBody.scala
+  portal/ModalFooter.scala
+  portal/ModalFooterWCancel.scala
+  portal/ModalHeader.scala
+  portal/Popover.scala
+  portal/Tooltip.scala
+
+  text/Tag.scala
+
   util/EventUtils.scala
 )
 for name in ${components[*]}

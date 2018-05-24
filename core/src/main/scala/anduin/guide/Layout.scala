@@ -70,7 +70,7 @@ object Layout {
               <.li(
                 link("Container", Main.WIP()),
                 ul(
-                  <.li(link("Table", Main.Table()))
+                  <.li(link("Table", Main.WIP()))
                 )
               )
             )

@@ -3,7 +3,7 @@ name := "ui-guide"
 lazy val commonSettings = Seq(
   organization := "co.anduin",
   version := "0.1",
-  scalaVersion := "2.12.5",
+  scalaVersion := "2.12.6",
   libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.2.0",
   scalacOptions += "-Yrangepos"
 )
@@ -16,6 +16,7 @@ lazy val mcro = (project in file("mcro"))
   )
 
 lazy val core = (project in file("core"))
+  .dependsOn(mcro)
   .enablePlugins(ScalaJSPlugin)
   .settings(
     commonSettings,
@@ -48,6 +49,5 @@ lazy val core = (project in file("core"))
         commonJSName "Marked"
     )
   )
-  .dependsOn(mcro)
 
 lazy val root = (project in file(".")).aggregate(core)

@@ -2,8 +2,7 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.{Callback, ReactEventFromInput}
 import japgolly.scalajs.react.vdom.html_<^._
-
-import anduin.component.button.{Button, ButtonStyle}
+import anduin.component.button.{Button, ButtonLink, ButtonStyle}
 import anduin.component.icon.IconAcl
 import anduin.guide._
 import anduin.mcro.Source
@@ -131,24 +130,20 @@ object PageButton {
         Source.annotate(
           /*>*/<.div(Style.flexbox.flex,
             <.div(/*<*/Button()("Button")/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(tpe = Button.TpeLink, href = "https://google.com")("Link")/*>*/)
+            <.div(/*<*/ButtonLink(href = "https://google.com")("Link")/*>*/)
           )/*<*/
         )
         // format: on
       )(),
       Markdown(s"""
-          |Since this is an actual link, `TpeLink` requires a valid `href`. Moreover, the `onClick` callback can also be used to override page change event. One common example is with `RouterCtl` (of `scalajs-react`):
+          |Since this is an actual link, `TpeLink` requires a valid `href`.
           |""".stripMargin)(),
       ExampleRich(
         Source.annotate({
           val page = Main.ButtonVsLink()
           <.div(
             Style.flexbox.flex,
-            Button(
-              tpe = Button.TpeLink,
-              href = ctl.urlFor(page).value,
-              onClick = ctl.set(page)
-            )("Go to ButtonVsLink")
+            ButtonLink( href = ctl.urlFor(page).value )("Go to ButtonVsLink")
           )
         })
       )(),
@@ -166,7 +161,7 @@ object PageButton {
           |""".stripMargin)(),
       ExampleRich(
         Source.annotate({
-          val button = Button(tpe = Button.TpeLink)("Link")
+          val button = ButtonLink()("Link")
           <.div(
             <.div(Style.margin.bottom8, button),
             <.div(Style.flexbox.flex, button)
@@ -192,7 +187,7 @@ object PageButton {
             Style.flexbox.flex.flexbox.itemsCenter,
             <.div(/*<*/Button(style = ButtonStyle.StyleFull)("Full Style")/*>*/, Style.margin.right16),
             <.div(/*<*/Button(style = ButtonStyle.StyleMinimal)("Minimal Style")/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(style = ButtonStyle.StyleLink, href = "#")("Link Style")/*>*/, Style.margin.right16)
+            <.div(/*<*/Button(style = ButtonStyle.StyleLink)("Link Style")/*>*/, Style.margin.right16)
           )/*<*/
         )
         // format: on

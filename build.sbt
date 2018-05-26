@@ -42,7 +42,8 @@ lazy val core = (project in file("core"))
         minified "umd/react-dom-server.browser.production.min.js"
         dependsOn "umd/react-dom.development.js"
         commonJSName "ReactDOMServer",
-      ProvidedJS / "prism.js",
+      ProvidedJS / "scripts/prism.js",
+      ProvidedJS / "scripts/focus-visible.js",
       "org.webjars.npm" % "marked" % "0.3.19"
         / "lib/marked.js"
         minified "marked.min.js"

@@ -1,28 +1,28 @@
 // Copyright (C) 2014-2018 Anduin Transactions Inc.
 
-package anduin.guide.component
+package anduin.guide
 
 import japgolly.scalajs.react.extra.router.RouterCtl
 
-import anduin.guide.Main
+import anduin.guide.component.NavElements
+import anduin.guide.component.NavElements.{li, link, ul}
 import anduin.style.Style
-import NavElements.{link, li, ul}
 
 // scalastyle:off underscore.import
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-final case class Nav(
+final case class LayoutNav(
   ctl: RouterCtl[Main.Page],
   page: Main.Page
 ) {
-  def apply(): VdomElement = Nav.component(this)
+  def apply(): VdomElement = LayoutNav.component(this)
 }
 
-object Nav {
+object LayoutNav {
 
-  type Props = Nav
+  type Props = LayoutNav
 
   private def render(props: Props) = {
     implicit val implicitProps: NavElements.Props = NavElements.Props(props.ctl, props.page)
@@ -49,13 +49,13 @@ object Nav {
           )
         ),
         li(
-          link("Components", Main.WIP()),
+          link("Component", Main.WIP()),
           ul(
             li(
               link("Button", Main.Button()),
               ul(
-                li(link("Button Group", Main.WIP())),
-                li(link("Button vs Link", Main.WIP()))
+                li(link("ButtonStyle", Main.ButtonStyle())),
+                li(link("ButtonLink", Main.ButtonLink()))
               )
             ),
             li(

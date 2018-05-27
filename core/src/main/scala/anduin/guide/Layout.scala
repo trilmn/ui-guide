@@ -1,9 +1,8 @@
-package anduin.guide.component
+package anduin.guide
 
 import japgolly.scalajs.react.extra.router._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.guide.Main
 import anduin.style.Style
 
 object Layout {
@@ -15,7 +14,7 @@ object Layout {
         ^.width := "288px",
         Style.position.fixed.coordinate.left0.coordinate.top0,
         Style.height.pc100.overflow.auto,
-        Nav(ctl = ctl, page = resolution.page)()
+        LayoutNav(ctl = ctl, page = resolution.page)()
       ),
       <.div(
         ^.width := "768px",

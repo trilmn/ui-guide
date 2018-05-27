@@ -41,12 +41,12 @@ object PageWelcome {
         renderGoal(
           "2. Scaling",
           "generateDoc",
-          "As a platform, one component could easily have hundreds of instances, while a style could have thousands. Scalability is therefore our first priority."
+          "As a platform, one component could easily have hundreds of instances, while a style could have thousands. Scalability is always one of our first priorities."
         ),
         renderGoal(
           "3. Delighting",
           "saveTimeAndMoney",
-          "Using the library should feel like a privilege to the engineers. The library should save engineering time by solving complex UI issues via simple APIs."
+          "Using the library should feel like a privilege, not an effort. The library should save engineering time by solving complex UI issues via simple APIs."
         ),
         renderGoal(
           "4. Empowering",

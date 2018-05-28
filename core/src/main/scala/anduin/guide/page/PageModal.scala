@@ -19,7 +19,7 @@ object PageModal {
       ),
       Markdown(
         """
-          |# Snippet
+          |# Overview
           |
           |```scala
           |Modal(

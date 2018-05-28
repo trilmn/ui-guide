@@ -44,7 +44,7 @@ object PageColor {
         )()
       ),
       Markdown("""
-          |# Snippet
+          |# Overview
           |
           |```text
           |Style.<type>.<color_name>

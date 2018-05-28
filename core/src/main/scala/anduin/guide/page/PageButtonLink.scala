@@ -20,7 +20,7 @@ object PageButtonLink {
       ),
       Markdown(
         """
-          |# Snippet
+          |# Overview
           |
           |```scala
           |ButtonLink(

@@ -21,7 +21,7 @@ object PageFlexbox {
       ),
       Markdown(
         """
-          |# Snippet
+          |# Overview
           |
           |```text
           |Style.flexBox.<display|direction|alignment|children>

@@ -22,7 +22,7 @@ object PageTooltip {
         )()
       ),
       Markdown("""
-          |# Snippet
+          |# Overview
           |
           |```scala
           |Tooltip(

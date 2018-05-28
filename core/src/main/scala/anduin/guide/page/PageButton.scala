@@ -30,7 +30,7 @@ object PageButton {
           |)()
           |```
           |
-          |Beside the above props, `Button` also supports appearance customization via `ButtonStyle` (such as `color`, `size`, `style` props). Learn more at [`ButtonStyle`][1].
+          |Beside the above props, Button also supports **all** appearance customization via ButtonStyle (such as `color`, `size`, `style` props). Learn more at [ButtonStyle][1].
           |
           |[1]: ${ctl.urlFor(Main.ButtonStyle()).value}
           |
@@ -60,7 +60,7 @@ object PageButton {
         s"""
           |# Usage
           |
-          |The `Button` component should be used where we would use the native HTML's [`button`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) tag. That is, for in-page actions such as:
+          |The Button component should be used where we would use the native HTML's [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) tag. That is, for in-page actions such as:
           |- Submit or reset a form
           |- Show a modal, popover, or menu
           |- Add or remove element from a list
@@ -68,15 +68,15 @@ object PageButton {
           |- Doing something with server
           |- etc.
           |
-          |A rule of thumb is that `Button` should be used for actions that does not change the URL (i.e. navigating user to other page).
+          |A rule of thumb is that Button should be used for actions that does not change the URL (i.e. navigating user to other page).
           |
-          |If you want something that should change the URL (and still has the appearance of our `Button`) then use [`ButtonLink`][1].
+          |If you want something that should change the URL (and still has the appearance of our Button) then use [ButtonLink][1].
           |
           |[1]: ${ctl.urlFor(Main.ButtonLink()).value}
           |
           |# Type
           |
-          |Since `Button` component is rendered as `button` tag, the `tpe` prop is used as the `type` attribute. Like in HTML, we have 3 options:
+          |The Button component has a `tpe` prop, which will be used as HTML's `type` attribute in the result `button` tag. Like in HTML, we have 3 options:
           |
           |- `TpeButton` (equivalent to `type=button` in HTML)
           |- `TpeReset` (`type=reset`)
@@ -108,11 +108,11 @@ object PageButton {
       Markdown(s"""
           |# `isDisabled`
           |
-          |Since these are actual buttons, we can prevent users from interacting with them via the `isDisabled` prop.
+          |Since these are actual `button` tags, we can prevent users from interacting with them via the `isDisabled` prop.
           |
-          |**On functional side,** this does nothing but use the native `disabled` attribute of `button`, which done a good job preventing interaction, including those via mouse, keyboard, touch or voice.
+          |**On functional side,** this does nothing but use the native `disabled` attribute of Button, which done a good job preventing interaction, including those via mouse, keyboard, touch or voice.
           |
-          |**On appearance side,** thank to `ButtonStyle`, this observes other props to provides correct styling for different colors and styles. Learn more and see examples at [`ButtonStyle`][1].
+          |**On appearance side,** thank to ButtonStyle, this observes other props to provides correct styling for different colors and styles. Learn more and see examples at [ButtonStyle][1].
           |
           |[1]: ${ctl.urlFor(Main.ButtonStyle("isdisabled")).value}
           """.stripMargin)()

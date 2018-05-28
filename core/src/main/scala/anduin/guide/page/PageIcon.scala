@@ -22,7 +22,7 @@ object PageIcon {
       ),
       Markdown(
         """
-          |# Snippet
+          |# Overview
           |
           |```scala
           |Icon(

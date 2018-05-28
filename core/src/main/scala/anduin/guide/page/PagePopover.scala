@@ -19,7 +19,7 @@ object PagePopover {
       ),
       Markdown(
         """
-          |# Snippet
+          |# Overview
           |
           |```scala
           |Popover(

@@ -19,7 +19,7 @@ object PagePortal {
       ),
       Markdown(
         """
-          |# Snippet
+          |# Overview
           |
           |```scala
           |Icon(

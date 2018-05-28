@@ -24,7 +24,7 @@ object PageSpace {
         )()
       ),
       Markdown("""
-          |# Snippet
+          |# Overview
           |
           |```text
           |Style.<type>.<direction><value>

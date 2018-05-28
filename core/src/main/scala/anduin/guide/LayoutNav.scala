@@ -55,7 +55,7 @@ object LayoutNav {
               link("Button", Main.Button()),
               ul(
                 li(link("ButtonStyle", Main.ButtonStyle())),
-                li(link("ButtonLink", Main.ButtonLink()))
+                li(link("ButtonLink", Main.WIP()))
               )
             ),
             li(

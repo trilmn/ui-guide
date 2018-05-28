@@ -50,8 +50,7 @@ object PageColor {
           |Style.<type>.<color_name>
           |​
           |  type:        color, backgroundColor, borderColor,
-          |               hover, active,
-          |               shadow(.border)
+          |               hover, active
           |
           |  color_name:  see "Names" section
           |```

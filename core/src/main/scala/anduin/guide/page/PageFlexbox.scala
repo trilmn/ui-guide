@@ -26,11 +26,11 @@ object PageFlexbox {
           |```text
           |Style.flexBox.<display|direction|alignment|children>
           |
-          |  display:      flex, inlineFlex,
+          |  display:      flex, inlineFlex
           |
-          |  direction:    row, column, wrap,
+          |  direction:    row, column, wrap
           |
-          |  alignment:    items..., justify...,
+          |  alignment:    items..., justify...
           |
           |  children:     auto, fixed, none,
           |                grow..., shrink..., order...
@@ -113,11 +113,11 @@ object PageFlexbox {
         Source.annotate(
           /*>*/<.div(Style.whiteSpace.noWrap,
             <.div(Style.flexbox.flex,
-              /*<*/<.div(Style.flexbox.fixed, "11111111111111111111111111111111111111"),
-              <.div(Style.flexbox.fixed, "22222222222222222222222222222222222222")/*>*/),
+              /*<*/<.div(Style.flexbox.fixed, "1111111111111111111111111111111111111111111"),
+              <.div(Style.flexbox.fixed, "2222222222222222222222222222222222222222222")/*>*/),
             <.div(Style.flexbox.flex,
-              /*<*/<.div(Style.flexbox.fixed.overflow.hidden, "11111111111111111111111111111111111111"),
-              <.div(Style.flexbox.fixed.overflow.hidden, "22222222222222222222222222222222222222")/*>*/)
+              /*<*/<.div(Style.flexbox.fixed.overflow.hidden, "1111111111111111111111111111111111111111111"),
+              <.div(Style.flexbox.fixed.overflow.hidden, "2222222222222222222222222222222222222222222")/*>*/)
           )/*<*/
         )
         // format: on

@@ -68,7 +68,7 @@ object PageTooltip {
           |""".stripMargin)(),
       ExampleSimple()({
         val button = <.div(Style.margin.right8, Button(isDisabled = true)("Archive Transaction"))
-        val target = <.div(Style.cursor.pointer, IconAcl(name = IconAcl.NameInfoCircle)())
+        val target = <.div(Style.cursor.pointer, IconAcl(name = IconAcl.NameInfo)())
         val content = "You don't have permission to archive this transaction"
         val tooltip = Tooltip(renderTarget = () => target, renderContent = () => content)()
         <.div(Style.flexbox.flex.flexbox.itemsCenter, button, tooltip)

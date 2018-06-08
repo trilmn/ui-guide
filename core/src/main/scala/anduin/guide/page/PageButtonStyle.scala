@@ -111,7 +111,7 @@ object PageButtonStyle {
             sep,
             button(IconAcl(name = IconAcl.NameListBullet)()),
             button(IconAcl(name = IconAcl.NameListNumber)()),
-            button(IconAcl(name = IconAcl.NameTable3)())
+            button(IconAcl(name = IconAcl.NameTable)())
           )
         )
       },

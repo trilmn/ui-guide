@@ -28,3 +28,4 @@ core/src/main/resources/stylesheets/core-fastopt.css.map
 
 # NPM
 scripts/dev-serve/node_modules
+.sass-cache/

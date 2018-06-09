@@ -28,6 +28,8 @@ object Main {
   case class ButtonStyle(hash: String = "") extends Page
   case class ButtonLink(hash: String = "") extends Page
   // container
+  case class Card(hash: String = "") extends Page
+  case class Collapse(hash: String = "") extends Page
   // portal
   case class Portal(hash: String = "") extends Page
   case class Popover(hash: String = "") extends Page
@@ -60,6 +62,8 @@ object Main {
       | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> renderR(PageButton.render)
       | dynamicRouteCT("button-style" ~ hash.caseClass[ButtonStyle]) ~> renderR(PageButtonStyle.render)
       | dynamicRouteCT("button-link" ~ hash.caseClass[ButtonLink]) ~> renderR(PageButtonLink.render)
+      | dynamicRouteCT("card" ~ hash.caseClass[Card]) ~> renderR(PageCard.render)
+      | dynamicRouteCT("collapse" ~ hash.caseClass[Collapse]) ~> renderR(PageCollapse.render)
       | dynamicRouteCT("portal" ~ hash.caseClass[Portal]) ~> renderR(PagePortal.render)
       | dynamicRouteCT("tooltip" ~ hash.caseClass[Tooltip]) ~> renderR(PageTooltip.render)
       | dynamicRouteCT("popover" ~ hash.caseClass[Popover]) ~> renderR(PagePopover.render)

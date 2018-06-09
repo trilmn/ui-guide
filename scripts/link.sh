@@ -56,17 +56,26 @@ components=(
   button/ButtonLink.scala
   button/ButtonStyle.scala
 
-  container/Table.scala
   container/Card.scala
   container/Collapse.scala
+  container/Tab
+  container/TabFull.scala
   container/Well.scala
 
+  container/Table.scala
+  container/TableBody.scala
+  container/TableHead.scala
+  container/TableSticky.scala
+
   icon/IconAcl.scala
+  icon/Illus.scala
 
   input/Checkbox.scala
   input/Dropdown.scala
-  input/FileInputButton.scala
+  input/NativeDropdown.scala
+  input/FileButtonInput.scala
   input/Radio.scala
+  input/RadioBox.scala
   input/TextInput.scala
 
   menu/Menu.scala
@@ -88,6 +97,7 @@ components=(
   portal/Tooltip.scala
 
   text/Tag.scala
+  text/DateTime.scala
 
   util/EventUtils.scala
 )

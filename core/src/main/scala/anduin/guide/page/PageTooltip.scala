@@ -41,7 +41,7 @@ object PageTooltip {
           <.div(
             Tooltip(
               targetTag = <.span,
-              renderTarget = () => "target",
+              renderTarget = "target",
               renderContent = () => "content"
             )()
           )
@@ -58,11 +58,10 @@ object PageTooltip {
       ExampleSimple("**Example:** Without hovering, can you tell whether this button has a tooltip or not?")({
         val target = Button(isDisabled = true)("Archive Transaction")
         val content = "You don't have permission to archive this transaction"
-        val tooltip = Tooltip(renderTarget = () => target, renderContent = () => content)()
+        val tooltip = Tooltip(renderTarget = target, renderContent = () => content)()
         <.div(Style.flexbox.flex, tooltip)
       }),
-      Markdown(
-        """
+      Markdown("""
           |Therefore, it's usually good to have an explicit hint that we have an explanation here:
           |
           |""".stripMargin)(),
@@ -70,7 +69,7 @@ object PageTooltip {
         val button = <.div(Style.margin.right8, Button(isDisabled = true)("Archive Transaction"))
         val target = <.div(Style.cursor.pointer, IconAcl(name = IconAcl.NameInfo)())
         val content = "You don't have permission to archive this transaction"
-        val tooltip = Tooltip(renderTarget = () => target, renderContent = () => content)()
+        val tooltip = Tooltip(renderTarget = target, renderContent = () => content)()
         <.div(Style.flexbox.flex.flexbox.itemsCenter, button, tooltip)
       }),
       Markdown(
@@ -93,13 +92,14 @@ object PageTooltip {
           |[2]: ${ctl.urlFor(Main.Portal("#target")).value}
           |[3]: ${ctl.urlFor(Main.Portal("#content")).value}
           |[4]: ${ctl.urlFor(Main.Popover()).value}
-          |""".stripMargin)(),
+          |""".stripMargin
+      )(),
       ExampleRich(
         Source.annotate(
           <.div(
             Tooltip(
               targetTag = <.span,
-              renderTarget = () => "Long content example",
+              renderTarget = "Long content example",
               renderContent = () => """
                   |Lorem ipsum dolor sit amet, porro errem ullamcorper
                   |has eu, inermis recteque at mea. Quod feugait in vim.
@@ -119,13 +119,13 @@ object PageTooltip {
             "This sentence has 2 tooltips: the ",
             Tooltip(
               targetTag = <.span,
-              renderTarget = () => <.a(^.href := "#", "first"),
+              renderTarget = <.a(^.href := "#", "first"),
               renderContent = () => "First tooltip"
             )(),
             " one and the ",
             Tooltip(
               targetTag = <.span,
-              renderTarget = () => <.a(^.href := "#", "second"),
+              renderTarget = <.a(^.href := "#", "second"),
               renderContent = () => "Second tooltip"
             )(),
             " one."
@@ -146,7 +146,7 @@ object PageTooltip {
           <.div(
             Style.flexbox.flex, /*<*/
             Tooltip(
-              renderTarget = () => Button(isDisabled = isButtonDisabled)("Archive"),
+              renderTarget = Button(isDisabled = isButtonDisabled)("Archive"),
               renderContent = () => "You don't have permission to archive",
               isDisabled = !isButtonDisabled
             )() /*>*/
@@ -178,11 +178,10 @@ object PageTooltip {
           <.div(
             Style.flexbox.fixed.padding.hor8,
             Tooltip(
-              renderTarget = () =>
-                <.div(
-                  Style.width.pc100.height.px64.backgroundColor.gray3.hover.backgroundGray2,
-                  Style.flexbox.flex.flexbox.justifyCenter.flexbox.itemsCenter,
-                  position.getClass.getSimpleName.replace("Position", "")
+              renderTarget = <.div(
+                Style.width.pc100.height.px64.backgroundColor.gray3.hover.backgroundGray2,
+                Style.flexbox.flex.flexbox.justifyCenter.flexbox.itemsCenter,
+                position.getClass.getSimpleName.replace("Position", "")
               ),
               renderContent = () => "This is an example content",
               position = position

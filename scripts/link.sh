@@ -58,7 +58,7 @@ components=(
 
   container/Card.scala
   container/Collapse.scala
-  container/Tab
+  container/Tab.scala
   container/TabFull.scala
   container/Well.scala
 

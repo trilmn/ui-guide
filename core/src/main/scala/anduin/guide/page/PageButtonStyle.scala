@@ -6,7 +6,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.icon.IconAcl
 import anduin.component.icon.IconAcl.NameUpload
-import anduin.component.menu.{Menu, MenuDivider, MenuItem}
+import anduin.component.menu.{Menu, MenuItem}
 import anduin.component.portal._
 import anduin.guide.Main
 import anduin.mcro.Source
@@ -18,10 +18,7 @@ object PageButtonStyle {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(
-          title = "ButtonStyle",
-          description = "Use ButtonStyle to customize the appearance of Button."
-        )()
+        Header(title = "ButtonStyle")()
       ),
       Markdown(
         """
@@ -29,8 +26,7 @@ object PageButtonStyle {
           |
           |ButtonStyle is not a component, so it cannot be used on its own.
           |
-          |Instead, you often use the values inside ButtonStyle (e.g. ColorPrimary) to customize the components that support them (e.g. Button):
-          |
+          |Instead, you often use ButtonStyle's values (e.g. ColorPrimary or StyleMinimal) to customize other components that support them (e.g. Button or ButtonLink):
           |""".stripMargin
       )(),
       ExampleRich(
@@ -95,7 +91,7 @@ object PageButtonStyle {
           Button(size = ButtonStyle.SizeIcon, style = ButtonStyle.StyleMinimal)
         val sep = <.div(Style.margin.left8.padding.left8.border.left.borderWidth.px2.borderColor.gray4)
         ExampleSimple(
-          "Toolbar is a good use case of StyleMinimal: it is clear from the overall context that these icons are actions."
+          "Toolbar is a good use case of StyleMinimal: it is clear from the arrangement that these icons are actions."
         )(
           <.div(
             Style.flexbox.flex,
@@ -141,7 +137,7 @@ object PageButtonStyle {
         """
           |# Color
           |
-          |Use the `color` prop to communicate the intention or result of the action. There are 5 options, with Neutral/ColorWhite is the default one:
+          |Use the `color` prop to communicate the intention or result of the action. There are 5 options, with ColorNeutral/ColorWhite is the default one:
           |""".stripMargin
       )(),
       ExampleRich(
@@ -160,7 +156,7 @@ object PageButtonStyle {
       )(),
       Markdown(
         """
-          |**There should only be one Colored StyleFull in each view.** The combination of StyleFull and colors other than Neutral provides the strongest visual hint to call for action. Multiple of them therefore could lead to confusion.
+          |**There should only be one Colored StyleFull in each view.** Because the combination of StyleFull and a color (other than Neutral) provides the strongest visual hint, so multiple of them could lead to confusion.
           """.stripMargin
       )(),
       ExampleSimple("**GOOD:** Users know which is the primary action that should be taken")(
@@ -170,7 +166,7 @@ object PageButtonStyle {
           <.div(Button()("Create Organization"), Style.margin.left8)
         )
       ),
-      ExampleSimple("**NOT GOOD:** Users don't know which is action should be taken")(
+      ExampleSimple("**NOT GOOD:** Users don't know which action should be taken")(
         <.div(
           Style.flexbox.flex,
           <.div(Button(color = ButtonStyle.ColorPrimary)("Create Transaction")),
@@ -255,6 +251,7 @@ object PageButtonStyle {
         Source.annotate(
           /*>*/<.div(
             Style.flexbox.flex,
+            <.div(/*<*/Button(size = ButtonStyle.SizeSmall)("Small"),/*>*/ Style.margin.right16),
             <.div(/*<*/Button()("Medium"),/*>*/ Style.margin.right16),
             <.div(/*<*/Button(size = ButtonStyle.SizeLarge)("Large"))
           )/*<*/
@@ -268,9 +265,9 @@ object PageButtonStyle {
           |
           |# isFullWidth
           |
-          |Although being a `block` element, the width of a ButtonStyle element depends on its content size by default (i.e. `max-content`).
+          |Although being a `block` element, the width of a ButtonStyle element depends on its content size by default (`max-content` to be exact).
           |
-          |Set `isFullWidth = true` if you want the button's width to be 100% of its parent. This comes in handy in some situation like in a vertical form.
+          |Set `isFullWidth = true` if you want the button's width to be 100% of its parent. This comes in handy in some situations like a vertical form.
           |""".stripMargin
       )(),
       ExampleRich(
@@ -283,7 +280,7 @@ object PageButtonStyle {
         )
       )(),
       Markdown(s"""
-        |Note that the content of a full-width button will be horizontally centered out of the box.
+        |Out of the box, the content of a full-width button will be horizontally centered.
         |
         |# isSelected
         |
@@ -347,7 +344,7 @@ object PageButtonStyle {
       )(),
       Markdown(
         """
-        |Button can also be icon-only. In these cases make sure the action can be clearly implied without text. Icon-only are often being used as a row, like in a toolbar, so their meaning can support each other.
+        |**Button can also be icon-only.** In these cases make sure the action can be clearly implied without text. Icon-only are often being used as a row, like in a toolbar, so their meaning can support each other.
         |
         |By default, button has unequal vertical and horizontal padding, which result in a rectangle for icon-only case. This might not look nice in some cases like toolbar. In such cases, use `size = ButtonStyle.SizeIcon` to make it square.
         |""".stripMargin
@@ -366,7 +363,7 @@ object PageButtonStyle {
         """
         |## With isDisabled
         |
-        |ButtonStyle observes the host component's `disabled` state (usually set via `isDisabled` prop) to provide correct "disabled" styling:
+        |ButtonStyle observes the component's `disabled` state (usually set via `isDisabled` prop) to provide correct "disabled" styling:
         """.stripMargin
       )(),
       ExampleRich(

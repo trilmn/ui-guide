@@ -2,7 +2,7 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.component.button.{Button, ButtonLink}
+import anduin.component.button.{Button, ButtonLink, ButtonStyle}
 import anduin.guide.Main
 import anduin.mcro.Source
 import anduin.style.Style
@@ -13,10 +13,7 @@ object PageButtonLink {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(
-          title = "ButtonLink",
-          description = ""
-        )()
+        Header(title = "ButtonLink")()
       ),
       Markdown(
         """
@@ -24,78 +21,54 @@ object PageButtonLink {
           |
           |```scala
           |ButtonLink(
+          |  href: String,
+          |  target: String
           |)()
-          |
-          |
           |```
           |
+          |ButtonLink is a component that works like a link but has the visual of a Button.
+          |
+          |In technical words: it is rendered as an ["a" tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), but still supports appearance customization via ButtonStyle.
+          |
           |Example:
-        """.stripMargin)(),
-      ExampleRich(
-        Source.annotate(
-          <.div()
-        )
-      )(),
-      Markdown(
-        """
-          |## Link type
-          |
-          |The `tpe` prop also has a special `TpeLink` value to render an actual link (`a` tag). This should be used when you want something that works like a link (i.e: change URL and can be opened in new tab) but looks like a button.
-          |
-          |**Example:** (try hover and right click each)
-          |""".stripMargin
+        """.stripMargin
       )(),
       ExampleRich(
         // format: off
-        Source.annotate(
-          /*>*/<.div(Style.flexbox.flex,
-            <.div(/*<*/Button()("Button")/*>*/, Style.margin.right16),
-            <.div(/*<*/ButtonLink(href = "https://google.com")("Link")/*>*/)
+        Source.annotate({
+          /*>*/<.div(
+            Style.flexbox.flex,
+            <.div(/*<*/
+              ButtonLink(
+                href = ctl.urlFor(Main.Color()).value,
+                color = ButtonStyle.ColorPrimary
+              )("Go to Color guide")/*>*/
+            ),
+            <.div(/*<*/
+              ButtonLink(
+                href = "https://google.com"
+              )("Go to Google"),
+              Style.margin.left8/*>*/
+            )
           )/*<*/
-        )
+        })
         // format: on
       )(),
-      Markdown(s"""
-                  |Since this is an actual link, `TpeLink` requires a valid `href`.
-                  |""".stripMargin)(),
-      ExampleRich(
-        Source.annotate({
-          val page = Main.ButtonStyle()
-          <.div(
-            Style.flexbox.flex,
-            ButtonLink(href = ctl.urlFor(page).value)("Go to ButtonStyle page")
-          )
-        })
-      )(),
       Markdown(
         """
-          |In the example above:
           |
-          |- The `onClick` event is handled by `RouterCtl`, so page change happens immediatelly on click.
-          |- Meanwhile, it still has a valid `href`, so you can right click and open the link in new tab.
+          |# Usage
           |
-          |### Usage Note
+          |**The ButtonLink component should be used like the "a" tag,** that is, a hyperlink to another place. For example: "View Transaction", "Go to Setting", etc. At the moment, ButtonLink supports "href" and "target" props, which work exactly like in an `a` tag.
           |
-          |**`TpeLink` takes 100% width by default,** due to browser's default rendering of `flex` display. However, this behaviour is eliminated if the button is placed inside another `flex`.
+          |**ButtonLink can also be used to link to a file *(Download)*,** if it's a static file that always available at a fixed URL. However, if it's a dynamically generated file then it's better to use Button.
           |
-          |""".stripMargin
-      )(),
-      ExampleRich(
-        Source.annotate({
-          val button = ButtonLink()("Link")
-          <.div(
-            <.div(Style.margin.bottom8, button),
-            <.div(Style.flexbox.flex, button)
-          )
-        })
-      )(),
-      Markdown(
-        """
-          |**`isDisabled` is not available,** since a link should always be accessible. The page at an URL might be 404 or 401, but nothing should prevent users from accessing that URL.
+          |**`StyleLink` is not available,** because the main purpose of ButtonLink is to bring the strong appearance of Button to a link. If you don't need that then just simply use an `a` tag.
+          |
+          |**`isDisabled` is not available,** since a link should always be accessible. The URL might be 404 or 401, but nothing should prevent users from accessing that URL.
           |
           |**`isSelected` is not available,** since a link should not have this state at all.
-          |
-          | """.stripMargin
+          |""".stripMargin
       )()
     )
   }

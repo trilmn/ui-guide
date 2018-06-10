@@ -59,11 +59,9 @@ object PageColor {
           |Example:
         """.stripMargin
       )(),
-      ExampleRich(
-        Source.annotate(
-          <.p(Style.color.success4, "This text should have green color")
-        )
-      )(),
+      ExampleRich(Source.annotate({
+        <.p(Style.color.success4, "This text should have green color")
+      }))(),
       Markdown(
         """
           |# Names

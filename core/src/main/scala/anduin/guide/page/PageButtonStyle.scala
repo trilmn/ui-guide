@@ -22,27 +22,21 @@ object PageButtonStyle {
       ),
       Markdown(
         """
-          |# Overview
-          |
           |ButtonStyle is not a component, so it cannot be used on its own.
           |
           |Instead, you use ButtonStyle's values (e.g. ColorPrimary or StyleMinimal) to customize other components that support them (e.g. Button or ButtonLink):
         """.stripMargin
       )(),
-      ExampleRich(
-        // format: off
-        Source.annotate(
-          /*>*/<.div(
-            Style.width.px256, /*<*/
-            Button(
-              color = ButtonStyle.ColorPrimary,
-              size = ButtonStyle.SizeLarge,
-              isFullWidth = true
-            )("Create Transaction")/*>*/
-          )/*<*/
+      ExampleRich(Source.annotate({
+        <.div(
+          Style.width.px256,
+          Button(
+            color = ButtonStyle.ColorPrimary,
+            size = ButtonStyle.SizeLarge,
+            isFullWidth = true
+          )("Create Transaction")
         )
-        // format: on
-      )(),
+      }))(),
       Markdown(
         """
           |# Style
@@ -50,18 +44,15 @@ object PageButtonStyle {
           |The `style` prop controls a button's overall style. There are 3 options:
         """.stripMargin
       )(),
-      ExampleRich(
-        // format: off
-        Source.annotate(
-          /*>*/<.div(
-            Style.flexbox.flex.flexbox.itemsCenter,
-            <.div(/*<*/Button(style = ButtonStyle.StyleFull)("Full Style")/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(style = ButtonStyle.StyleMinimal)("Minimal Style")/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(style = ButtonStyle.StyleLink)("Link Style")/*>*/, Style.margin.right16)
-          )/*<*/
-        )
-        // format: on
-      )(),
+      ExampleRich(Source.annotate({
+        /*>*/
+        <.div(
+          Style.flexbox.flex.flexbox.itemsCenter,
+          <.div( /*<*/ Button(style = ButtonStyle.StyleFull)("Full Style") /*>*/, Style.margin.right16),
+          <.div( /*<*/ Button(style = ButtonStyle.StyleMinimal)("Minimal Style") /*>*/, Style.margin.right16),
+          <.div( /*<*/ Button(style = ButtonStyle.StyleLink)("Link Style") /*>*/, Style.margin.right16)
+        ) /*<*/
+      }))(),
       Markdown(
         """
           |**StyleFull** is the default value, which has strong visual hint. Use StyleFull to make your button attractive and stand out from other types of elements.
@@ -140,20 +131,18 @@ object PageButtonStyle {
           |Use the `color` prop to communicate the intention or result of the action. There are 5 options, with ColorNeutral/ColorWhite is the default one:
           """.stripMargin
       )(),
-      ExampleRich(
-        // format: off
-        Source.annotate(
-          /*>*/<.div(
-            Style.flexbox.flex,
-            <.div(/*<*/Button()("Neutral")/*>*/),
-            <.div(/*<*/Button(color = ButtonStyle.ColorPrimary)("Primary")/*>*/, Style.margin.left16),
-            <.div(/*<*/Button(color = ButtonStyle.ColorSuccess)("Success")/*>*/, Style.margin.left16),
-            <.div(/*<*/Button(color = ButtonStyle.ColorWarning)("Warning")/*>*/, Style.margin.left16),
-            <.div(/*<*/Button(color = ButtonStyle.ColorDanger)("Danger")/*>*/, Style.margin.left16)
-          )/*<*/
-        )
-        // format: on
-      )(),
+      // format: off
+      ExampleRich(Source.annotate({
+        /*>*/<.div(
+          Style.flexbox.flex,
+          <.div(/*<*/Button()("Neutral")/*>*/),
+          <.div(/*<*/Button(color = ButtonStyle.ColorPrimary)("Primary")/*>*/, Style.margin.left16),
+          <.div(/*<*/Button(color = ButtonStyle.ColorSuccess)("Success")/*>*/, Style.margin.left16),
+          <.div(/*<*/Button(color = ButtonStyle.ColorWarning)("Warning")/*>*/, Style.margin.left16),
+          <.div(/*<*/Button(color = ButtonStyle.ColorDanger)("Danger")/*>*/, Style.margin.left16)
+        )/*<*/
+      }))(),
+      // format: on
       Markdown(
         """
           |**There should only be one Colored StyleFull in each view.** Because the combination of StyleFull and a color (other than Neutral) provides the strongest visual hint, so multiple of them could lead to confusion.

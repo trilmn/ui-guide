@@ -5,6 +5,10 @@
 /* Our own */
 @import "vendors/prism-custom";
 
+body {
+  min-width: auto;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;

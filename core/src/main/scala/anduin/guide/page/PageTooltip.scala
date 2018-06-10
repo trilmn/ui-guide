@@ -21,7 +21,8 @@ object PageTooltip {
           description = "Tooltip helps identify or adds information to an element."
         )()
       ),
-      Markdown("""
+      Markdown(
+        """
           |# Overview
           |
           |```scala
@@ -35,7 +36,8 @@ object PageTooltip {
           |```
           |
           |Example:
-          |""".stripMargin)(),
+          """.stripMargin
+      )(),
       ExampleRich(
         Source.annotate(
           <.div(
@@ -48,23 +50,25 @@ object PageTooltip {
         )
       )(),
       Markdown(s"""
-          |# Usage
-          |
-          |## Hint
-          |
-          |Tooltip is quite powerful that it provides information without taking any space. However, because of that, these information are not visible at first sight but requires user's interaction. Worse, out of the box they have no hint at all until user's cursor is on them.
-          |
-          |""".stripMargin)(),
+                  |# Usage
+                  |
+                  |## Hint
+                  |
+                  |Tooltip is quite powerful that it provides information without taking any space. However, because of that, these information are not visible at first sight but requires user's interaction. Worse, out of the box they have no hint at all until user's cursor is on them.
+                  |
+          """.stripMargin)(),
       ExampleSimple("**Example:** Without hovering, can you tell whether this button has a tooltip or not?")({
         val target = Button(isDisabled = true)("Archive Transaction")
         val content = "You don't have permission to archive this transaction"
         val tooltip = Tooltip(renderTarget = target, renderContent = () => content)()
         <.div(Style.flexbox.flex, tooltip)
       }),
-      Markdown("""
+      Markdown(
+        """
           |Therefore, it's usually good to have an explicit hint that we have an explanation here:
           |
-          |""".stripMargin)(),
+          """.stripMargin
+      )(),
       ExampleSimple()({
         val button = <.div(Style.margin.right8, Button(isDisabled = true)("Archive Transaction"))
         val target = <.div(Style.cursor.pointer, IconAcl(name = IconAcl.NameInfo)())
@@ -92,7 +96,7 @@ object PageTooltip {
           |[2]: ${ctl.urlFor(Main.Portal("#target")).value}
           |[3]: ${ctl.urlFor(Main.Portal("#content")).value}
           |[4]: ${ctl.urlFor(Main.Popover()).value}
-          |""".stripMargin
+          """.stripMargin
       )(),
       ExampleRich(
         Source.annotate(
@@ -101,18 +105,20 @@ object PageTooltip {
               targetTag = <.span,
               renderTarget = "Long content example",
               renderContent = () => """
-                  |Lorem ipsum dolor sit amet, porro errem ullamcorper
-                  |has eu, inermis recteque at mea. Quod feugait in vim.
+                                      |Lorem ipsum dolor sit amet, porro errem ullamcorper
+                                      |has eu, inermis recteque at mea. Quod feugait in vim.
                 """.stripMargin
             )()
           )
         )
       )(),
-      Markdown("""
+      Markdown(
+        """
           |
           |## `isInline`
           |
-          |""".stripMargin)(),
+          """.stripMargin
+      )(),
       ExampleRich(
         Source.annotate(
           <.p(
@@ -138,7 +144,7 @@ object PageTooltip {
           |
           |The tooltip can be disabled dynamically via the `isDisabled` prop. This comes in handy when you want to show the tooltip only under a specific context. For example, when a button is disabled, there will be a tooltip to explain why. This tooltip
           |
-          |""".stripMargin
+          """.stripMargin
       )(),
       ExampleRich(
         Source.annotate({
@@ -153,9 +159,11 @@ object PageTooltip {
           ) /*<*/
         })
       )(),
-      Markdown("""
+      Markdown(
+        """
           |
-          |""".stripMargin)(),
+          """.stripMargin
+      )(),
       ExampleSimple()(
         <.div(
           Style.flexbox.flex.flexbox.itemsCenter,
@@ -167,12 +175,14 @@ object PageTooltip {
           )
         )
       ),
-      Markdown("""
+      Markdown(
+        """
           |
           |
           |## `position`
           |
-          |""".stripMargin)(),
+          """.stripMargin
+      )(),
       ExampleSimple()({
         val renderPos: (Position) => VdomNode = (position: Position) =>
           <.div(
@@ -197,9 +207,11 @@ object PageTooltip {
           ^.marginBottom := "-16px"
         )
       }),
-      Markdown("""
+      Markdown(
+        """
           |# Usage
-        """.stripMargin)()
+        """.stripMargin
+      )()
     )
   }
 }

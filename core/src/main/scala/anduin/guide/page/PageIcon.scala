@@ -42,7 +42,7 @@ object PageIcon {
         |>::warning::Currently the name of this component is `IconAcl` instead of `Icon`. Its name will be changed back to `Icon` after completing migration.
         |
         |Example:
-        |""".stripMargin
+        """.stripMargin
     )(),
     ExampleRich(
       Source.annotate(
@@ -56,11 +56,13 @@ object PageIcon {
   )
 
   private def renderNames: VdomNode = ReactFragment(
-    Markdown("""
-      |# Names
-      |
-      |## Action
-      """.stripMargin)(),
+    Markdown(
+      """
+        |# Names
+        |
+        |## Action
+      """.stripMargin
+    )(),
     renderIcons(
       <.div(cell, IconAcl(name = IconAcl.NameCheck)(), " ", "Check"),
       <.div(cell, IconAcl(name = IconAcl.NameCheckSmall)(), " ", "CheckSmall"),
@@ -344,21 +346,21 @@ object PageIcon {
   private def renderUsage(ctl: Main.Ctl): VdomNode = ReactFragment(
     Markdown(
       s"""
-        |# Usage
-        |
-        |## Alignment
-        |
-        |**Icon is always a block element.** This is to prevent the default `inline` alignment, which is based on `baseline`, while we usually want an absolute centering.
-        |
-        |`block` display placed the icon on its own row, which enforces the engineers to align the icon later with proper technique. See example in the [Spacing](#spacing) section below.
-        |
-        |- [This Codepen](https://codepen.io/dvkndn/pen/wmQmbm) explains in detail why we prefer `block` over `inline` icons.
-        |- For alignment, we suggest to see the [Flexbox guide](${ctl.urlFor(Main.Flexbox()).value}).
-        |
-        |## Spacing
-        |
-        |**Icon's shape is designed to touch the bound.** In other words, there is no inner space (padding) in an icon. Therefore, the engineers usually need to wrap the icon inside a `div` or `span`, then provide necessary spacing in that wrapper:
-        |""".stripMargin
+         |# Usage
+         |
+         |## Alignment
+         |
+         |**Icon is always a block element.** This is to prevent the default `inline` alignment, which is based on `baseline`, while we usually want an absolute centering.
+         |
+         |`block` display placed the icon on its own row, which enforces the engineers to align the icon later with proper technique. See example in the [Spacing](#spacing) section below.
+         |
+         |- [This Codepen](https://codepen.io/dvkndn/pen/wmQmbm) explains in detail why we prefer `block` over `inline` icons.
+         |- For alignment, we suggest to see the [Flexbox guide](${ctl.urlFor(Main.Flexbox()).value}).
+         |
+         |## Spacing
+         |
+         |**Icon's shape is designed to touch the bound.** In other words, there is no inner space (padding) in an icon. Therefore, the engineers usually need to wrap the icon inside a `div` or `span`, then provide necessary spacing in that wrapper:
+        """.stripMargin
     )(),
     ExampleRich(
       Source.annotate(
@@ -370,9 +372,11 @@ object PageIcon {
         ) /*<*/
       )
     )(),
-    Markdown("""
-      |Or you can also wrap the adjacent element of the icon:
-      |""".stripMargin)(),
+    Markdown(
+      """
+        |Or you can also wrap the adjacent element of the icon:
+      """.stripMargin
+    )(),
     ExampleRich(
       Source.annotate(
         // Wrap the adjacent text
@@ -385,10 +389,10 @@ object PageIcon {
     )(),
     Markdown(
       """
-      |## Color
-      |
-      |**Icon has one color, and it is inherited from the parent.** To be more specific, the `fill` color of an icon is the same with its parent's (text) `color`. Thus, to change color of the icon, you will usually want to do that in its wrapper:
-      |""".stripMargin
+        |## Color
+        |
+        |**Icon has one color, and it is inherited from the parent.** To be more specific, the `fill` color of an icon is the same with its parent's (text) `color`. Thus, to change color of the icon, you will usually want to do that in its wrapper:
+      """.stripMargin
     )(),
     ExampleRich(
       Source.annotate(

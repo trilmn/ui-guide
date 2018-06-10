@@ -6,8 +6,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 import anduin.style.Style
 
 final case class CodeBlock(
-    content: String,
-    language: String = "scala",
+  content: String,
+  language: String = "scala",
 ) {
   def apply(): VdomElement = {
     CodeBlock.component(this)

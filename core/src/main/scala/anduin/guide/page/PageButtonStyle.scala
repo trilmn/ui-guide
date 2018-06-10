@@ -26,8 +26,8 @@ object PageButtonStyle {
           |
           |ButtonStyle is not a component, so it cannot be used on its own.
           |
-          |Instead, you often use ButtonStyle's values (e.g. ColorPrimary or StyleMinimal) to customize other components that support them (e.g. Button or ButtonLink):
-          |""".stripMargin
+          |Instead, you use ButtonStyle's values (e.g. ColorPrimary or StyleMinimal) to customize other components that support them (e.g. Button or ButtonLink):
+        """.stripMargin
       )(),
       ExampleRich(
         // format: off
@@ -43,13 +43,13 @@ object PageButtonStyle {
         )
         // format: on
       )(),
-      Markdown("""
-        |At the moment, there are 5 props that you can customize: style, color, size, isFullWidth, isSelected:
-        |
-        |# Style
-        |
-        |The `style` prop controls a button's overall style. There are 3 options:
-        |""".stripMargin)(),
+      Markdown(
+        """
+          |# Style
+          |
+          |The `style` prop controls a button's overall style. There are 3 options:
+        """.stripMargin
+      )(),
       ExampleRich(
         // format: off
         Source.annotate(
@@ -64,7 +64,7 @@ object PageButtonStyle {
       )(),
       Markdown(
         """
-        |**StyleFull** is the default value, which has strong visual hint. Use StyleFull to make your button attractive and stand out from other types of elements.
+          |**StyleFull** is the default value, which has strong visual hint. Use StyleFull to make your button attractive and stand out from other types of elements.
         """.stripMargin
       )(),
       ExampleSimple()(
@@ -85,7 +85,7 @@ object PageButtonStyle {
       Markdown(
         """
           |**StyleMinimal** has little visual hint, so it should only be used when the surrounding context already provided enough hint for interaction.
-          |""".stripMargin
+          """.stripMargin
       )(), {
         val button =
           Button(size = ButtonStyle.SizeIcon, style = ButtonStyle.StyleMinimal)
@@ -114,7 +114,7 @@ object PageButtonStyle {
       Markdown(
         """
           |**StyleLink** makes the button looks exactly like a link. This should be used when your actions are part of a sentence or a paragraph (i.e. inline elements):
-          |""".stripMargin
+          """.stripMargin
       )(),
       ExampleSimple()(
         <.p(
@@ -138,7 +138,7 @@ object PageButtonStyle {
           |# Color
           |
           |Use the `color` prop to communicate the intention or result of the action. There are 5 options, with ColorNeutral/ColorWhite is the default one:
-          |""".stripMargin
+          """.stripMargin
       )(),
       ExampleRich(
         // format: off
@@ -176,7 +176,7 @@ object PageButtonStyle {
       Markdown(
         """
           |**ColorDanger + StyleFull should be saved for confirmation action.** For example, the "Remove" button itself can be Neutral since it is not the final destructive action.
-          |""".stripMargin
+          """.stripMargin
       )(),
       ExampleSimple()(
         <.div(
@@ -201,9 +201,11 @@ object PageButtonStyle {
           )()
         )
       ),
-      Markdown("""
-        |**Color works with all types of Style:**
-        |""".stripMargin)(), {
+      Markdown(
+        """
+          |**Color works with all types of Style:**
+        """.stripMargin
+      )(), {
         val margin = Style.margin.left8
         val sep = <.div(Style.margin.ver16.border.top.borderColor.gray2.borderWidth.px2)
         ExampleSimple()(
@@ -240,11 +242,10 @@ object PageButtonStyle {
       },
       Markdown(
         """
-          |
           |# Size
           |
           |Default size is Medium, which should work most of the time. Use `SizeLarge` to enlarge button in spacious context.
-          |""".stripMargin
+        """.stripMargin
       )(),
       ExampleRich(
         // format: off
@@ -268,7 +269,7 @@ object PageButtonStyle {
           |Although being a `block` element, the width of a ButtonStyle element depends on its content size by default (`max-content` to be exact).
           |
           |Set `isFullWidth = true` if you want the button's width to be 100% of its parent. This comes in handy in some situations like a vertical form.
-          |""".stripMargin
+        """.stripMargin
       )(),
       ExampleRich(
         Source.annotate(
@@ -279,13 +280,15 @@ object PageButtonStyle {
           )
         )
       )(),
-      Markdown(s"""
-        |Out of the box, the content of a full-width button will be horizontally centered.
-        |
-        |# isSelected
-        |
-        |Use the `isSelected` prop to have the `active` style always visible. This is useful when the button is being used to toggle something on and off, like a popover:
-        """.stripMargin)(),
+      Markdown(
+        """
+          |Out of the box, the content of a full-width button will be horizontally centered.
+          |
+          |# isSelected
+          |
+          |Use the `isSelected` prop to have the `active` style always visible. This is useful when the button is being used to toggle something on and off, like a popover:
+        """.stripMargin
+      )(),
       ExampleRich(
         // format: off
         Source.annotate(
@@ -301,9 +304,11 @@ object PageButtonStyle {
         )
         // format: on
       )(),
-      Markdown("""
-        |This works with both StyleFull and StyleMinimal, as well as all values of Color:
-        |""".stripMargin)(),
+      Markdown(
+        """
+          |This works with both StyleFull and StyleMinimal, as well as all values of Color:
+        """.stripMargin
+      )(),
       ExampleSimple()({
         val margin = Style.margin.left16
         <.div(
@@ -322,15 +327,17 @@ object PageButtonStyle {
           )
         )
       }),
-      Markdown(s"""
-        |That being said, isSelected does not work with `StyleLink` as it would not make any sense (a link does not have "disabled" state in the world of web).
-        |
-        |# Content
-        |
-        |## With icon
-        |
-        |It's common to have icon inside a button to add information. In these cases, simply put the icon on left or right side of the text, with proper spacing applied on either text or icon.
-        |""".stripMargin)(),
+      Markdown(
+        """
+          |That being said, isSelected does not work with `StyleLink` as it would not make any sense (a link does not have "disabled" state in the world of web).
+          |
+          |# Content
+          |
+          |## With icon
+          |
+          |It's common to have icon inside a button to add information. In these cases, simply put the icon on left or right side of the text, with proper spacing applied on either text or icon.
+        """.stripMargin
+      )(),
       ExampleRich(
         // format: off
         Source.annotate({
@@ -344,10 +351,10 @@ object PageButtonStyle {
       )(),
       Markdown(
         """
-        |**Button can also be icon-only.** In these cases make sure the action can be clearly implied without text. Icon-only are often being used as a row, like in a toolbar, so their meaning can support each other.
-        |
-        |By default, button has unequal vertical and horizontal padding, which result in a rectangle for icon-only case. This might not look nice in some cases like toolbar. In such cases, use `size = ButtonStyle.SizeIcon` to make it square.
-        |""".stripMargin
+          |**Button can also be icon-only.** In these cases make sure the action can be clearly implied without text. Icon-only are often being used as a row, like in a toolbar, so their meaning can support each other.
+          |
+          |By default, button has unequal vertical and horizontal padding, which result in a rectangle for icon-only case. This might not look nice in some cases like toolbar. In such cases, use `size = ButtonStyle.SizeIcon` to make it square.
+        """.stripMargin
       )(),
       ExampleRich(
         // format: off
@@ -361,9 +368,9 @@ object PageButtonStyle {
       )(),
       Markdown(
         """
-        |## With isDisabled
-        |
-        |ButtonStyle observes the component's `disabled` state (usually set via `isDisabled` prop) to provide correct "disabled" styling:
+          |## With isDisabled
+          |
+          |ButtonStyle observes the component's `disabled` state (usually set via `isDisabled` prop) to provide correct "disabled" styling:
         """.stripMargin
       )(),
       ExampleRich(
@@ -373,7 +380,7 @@ object PageButtonStyle {
       )(),
       Markdown(
         """
-        |ButtonStyle takes other props (e.g. Color, Style) into account when calculating the disabled style. For example, each Style value has a different disabled appearance:
+          |ButtonStyle takes other props (e.g. Color, Style) into account when calculating the disabled style. For example, each Style value has a different disabled appearance:
         """.stripMargin
       )(),
       ExampleSimple()(
@@ -384,9 +391,11 @@ object PageButtonStyle {
           <.div(Button(isDisabled = true, style = ButtonStyle.StyleLink)("Link")())
         )
       ),
-      Markdown("""
-        |That being said, different options of Color intentionally share the same disabled style:
-        |""".stripMargin)(),
+      Markdown(
+        """
+          |That being said, different options of Color intentionally share the same disabled style:
+        """.stripMargin
+      )(),
       ExampleSimple()(
         <.div(
           Style.flexbox.flex,

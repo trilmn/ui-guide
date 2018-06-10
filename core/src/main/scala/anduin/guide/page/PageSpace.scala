@@ -15,15 +15,15 @@ object PageSpace {
         Style.margin.bottom32,
         Header(
           title = "Space",
-          description =
-            """
-              |Space refers to the visual distance between or within objects.
-              |Space reflects elements' relationship and helps building
-              |structure.
+          description = """
+                          |Space refers to the visual distance between or within objects.
+                          |Space reflects elements' relationship and helps building
+                          |structure.
             """.stripMargin
         )()
       ),
-      Markdown("""
+      Markdown(
+        """
           |# Overview
           |
           |```text
@@ -39,7 +39,8 @@ object PageSpace {
           |```
           |
           |Example:
-        """.stripMargin)(),
+        """.stripMargin
+      )(),
       ExampleRich(
         // format: off
         Source.annotate(
@@ -78,7 +79,8 @@ object PageSpace {
           |>at app-level (i.e: margin between areas of main layout). Therefore,
           |>we are considering to add more values after 32: 40 48 56 and 64
           |>pixel (8-pixel scale).
-        """.stripMargin)()
+        """.stripMargin
+      )()
     )
   }
 }

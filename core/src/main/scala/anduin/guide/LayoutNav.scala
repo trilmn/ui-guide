@@ -75,6 +75,7 @@ object LayoutNav {
               ul(
                 li(link("Card", Main.Card())),
                 li(link("Collapse", Main.Collapse())),
+                li(link("Tab", Main.Tab())),
                 li(link("Table", Main.WIP()))
               )
             )

@@ -8,7 +8,7 @@ import anduin.guide.component._
 import anduin.style.Style
 
 final case class Markdown(
-    source: String
+  source: String
 ) {
   def apply(): VdomElement = {
     Markdown.component(this)
@@ -36,8 +36,7 @@ object Markdown {
   }
 
   private val renderCodespan = (content: String) => {
-    val styles = TagMod(Style.fontFamily.mono.backgroundColor.gray2,
-                        ^.padding := "2px 4px")
+    val styles = TagMod(Style.fontFamily.mono.backgroundColor.gray2, ^.padding := "2px 4px")
     val html = ^.dangerouslySetInnerHtml := content
     rnd(<.code(styles, html))
   }

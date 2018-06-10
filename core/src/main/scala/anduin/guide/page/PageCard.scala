@@ -15,11 +15,13 @@ object PageCard {
         Style.margin.bottom32,
         Header(title = "Card")()
       ),
-      Markdown("""
+      Markdown(
+        """
           |Card is a simple component that wraps its content inside a white rectangle with padding, border and is a little rounded. It doesn't have shadow, however.
           |
           |Example:
-        """.stripMargin)(),
+        """.stripMargin
+      )(),
       ExampleRich(
         Source.annotate(
           <.div(
@@ -28,9 +30,11 @@ object PageCard {
           )
         )
       )(),
-      Markdown("""
+      Markdown(
+        """
           |
-        """.stripMargin)()
+        """.stripMargin
+      )()
     )
   }
 }

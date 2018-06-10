@@ -29,7 +29,8 @@ object PagePortal {
           |```
           |
           |Example:
-        """.stripMargin)(),
+        """.stripMargin
+      )(),
       ExampleRich(
         Source.annotate(
           <.div()
@@ -40,7 +41,8 @@ object PagePortal {
           |# Target
           |
           |# Content
-        """.stripMargin)()
+        """.stripMargin
+      )()
     )
   }
 }

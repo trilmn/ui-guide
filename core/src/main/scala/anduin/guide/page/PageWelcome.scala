@@ -30,7 +30,7 @@ object PageWelcome {
           |>— Goals of Anduin Transactions
           |
           |**At Anduin, we are solving huge, complex problems in a segmented industry.** The complete solutions for these problems are unknown. Therefore, our strategy is to follow fast execution cycle to get feedback at the earliest. With that in mind, we build our UI libraries and guides around these principles:
-          |""".stripMargin
+          """.stripMargin
       )(),
       <.div(
         renderGoal(

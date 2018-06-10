@@ -6,7 +6,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 import anduin.style.Style
 
 final case class QuoteBlock(
-    content: String
+  content: String
 ) {
   def apply(): VdomElement = {
     QuoteBlock.component(this)

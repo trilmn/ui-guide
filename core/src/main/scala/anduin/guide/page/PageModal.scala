@@ -29,7 +29,8 @@ object PageModal {
           |```
           |
           |Example:
-        """.stripMargin)(),
+        """.stripMargin
+      )(),
       ExampleRich(
         Source.annotate(
           <.div()
@@ -38,7 +39,8 @@ object PageModal {
       Markdown(
         """
           |
-        """.stripMargin)()
+        """.stripMargin
+      )()
     )
   }
 }

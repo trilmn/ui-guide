@@ -12,10 +12,7 @@ object PagePopover {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(
-          title = "Popover",
-          description = ""
-        )()
+        Header(title = "Popover")()
       ),
       Markdown(
         """
@@ -29,7 +26,8 @@ object PagePopover {
           |```
           |
           |Example:
-        """.stripMargin)(),
+        """.stripMargin
+      )(),
       ExampleRich(
         Source.annotate(
           <.div()
@@ -38,7 +36,8 @@ object PagePopover {
       Markdown(
         """
           |
-        """.stripMargin)()
+        """.stripMargin
+      )()
     )
   }
 }

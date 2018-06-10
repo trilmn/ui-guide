@@ -54,7 +54,8 @@ object PageFixedLineHeight {
           |The result of centering a 16 pixel icon with 48 pixel object is obviously better than with a 51 pixel object, both visually and in code.
           |
           |In other words, fixed line heights give us a major benefit: most elements, by default, would be wrapped in a box with a reasonable and predictable height (like 48 pixels), instead of a random, oddly one (like 51 pixels).
-        """.stripMargin)()
+        """.stripMargin
+      )()
     )
   }
 }

@@ -15,8 +15,7 @@ object PageFlexbox {
         Style.margin.bottom32,
         Header(
           title = "Flexbox",
-          description =
-            "Flexbox helps lay things out, align them, and distribute space in between."
+          description = "Flexbox helps lay things out, align them, and distribute space in between."
         )()
       ),
       Markdown(
@@ -61,7 +60,8 @@ object PageFlexbox {
           |The example below could help understanding the difference between `auto (flex-basis: auto)` and `fixed (flex-basis: 0)`:
           |
           |Example:
-        """.stripMargin)(),
+        """.stripMargin
+      )(),
       ExampleRich(
         // format: off
         Source.annotate(
@@ -107,7 +107,8 @@ object PageFlexbox {
           |This is because by default Flexbox try to not break the unbreakable contents, like long words or text with `noWrap` or another Flexbox nested inside.
           |
           |In these cases, most of the time you will want an `overflow: hidden` on these flex items to let them free to shrink.
-          |""".stripMargin)(),
+          """.stripMargin
+      )(),
       ExampleRich(
         // format: off
         Source.annotate(
@@ -132,7 +133,8 @@ object PageFlexbox {
           |
           |- If the children are all text and/or can form a sentence, try inline first.
           |- If they should be placed vertically (on top of each other), try using block elements first:
-          |""".stripMargin)(),
+          """.stripMargin
+      )(),
       ExampleRich(
         // format: off
         Source.annotate(
@@ -164,7 +166,8 @@ object PageFlexbox {
           |- Flex with only one child
           |
           |Example:
-        """.stripMargin)(),
+        """.stripMargin
+      )(),
       ExampleRich(
         // format: off
         Source.annotate({

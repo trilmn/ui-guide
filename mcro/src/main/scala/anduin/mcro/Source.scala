@@ -14,14 +14,12 @@ object Source {
   //         gh-pages-macros/src/main/scala/ghpages/GhPagesMacros.scala
   @annotation.tailrec
   private def trimLeftAll(listStr: Array[String]): Array[String] =
-    if (listStr.nonEmpty && listStr.forall(
-          _.headOption forall Character.isWhitespace))
+    if (listStr.nonEmpty && listStr.forall(_.headOption forall Character.isWhitespace))
       trimLeftAll(listStr.map(str => if (str.isEmpty) str else str.tail))
     else
       listStr
 
-  def antImpl(c: blackbox.Context)(
-      element: c.Expr[VdomElement]): c.Expr[AntType] = {
+  def antImpl(c: blackbox.Context)(element: c.Expr[VdomElement]): c.Expr[AntType] = {
 
     import c.universe.Quasiquote
 

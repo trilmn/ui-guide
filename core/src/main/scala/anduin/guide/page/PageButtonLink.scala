@@ -68,7 +68,7 @@ object PageButtonLink {
           |**`isDisabled` is not available,** since a link should always be accessible. The URL might be 404 or 401, but nothing should prevent users from accessing that URL.
           |
           |**`isSelected` is not available,** since a link should not have this state at all.
-          |""".stripMargin
+          """.stripMargin
       )()
     )
   }

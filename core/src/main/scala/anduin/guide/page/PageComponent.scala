@@ -14,9 +14,8 @@ object PageComponent {
         Style.margin.bottom32,
         Header(
           title = "Components",
-          description =
-            """
-              |Components are generic, independent pieces of UI that helps you reuse styles and functionality.
+          description = """
+                          |Components are generic, independent pieces of UI that helps you reuse styles and functionality.
             """.stripMargin
         )()
       ),
@@ -85,7 +84,8 @@ object PageComponent {
           |The block display is intentional to
           |
           |The Why block article explains this in detail.
-        """.stripMargin)()
+        """.stripMargin
+      )()
     )
   }
 }

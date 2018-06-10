@@ -6,8 +6,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 import anduin.style.Style
 
 final case class Heading(
-    content: String,
-    level: Int,
+  content: String,
+  level: Int,
 ) {
   def apply(): VdomElement = {
     Heading.component(this)

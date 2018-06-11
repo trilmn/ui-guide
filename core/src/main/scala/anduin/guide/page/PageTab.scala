@@ -89,9 +89,7 @@ object PageTab {
         """
           |## Switch panel dynamically
           |
-          |Tab Panel has a `renderContent_S` prop, which provide a callback (`Int => Callback`) to switch panel.
-          |
-          |This is useful to allow user to go to another panel from the current one.
+          |Tab Panel has a `renderContent_S` prop, which provide a callback (`Int => Callback`) to switch panel right from the content. This is useful to allow user to go to another panel from the current one.
           |
           """.stripMargin
       )(),

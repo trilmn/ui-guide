@@ -23,42 +23,12 @@ object PageIcon {
     )
   }
 
-  private def renderOverview: VdomNode = ReactFragment(
-    Markdown(
-      """
-        |# Overview
-        |
-        |```scala
-        |Icon(
-        |  name: Icon.Name,
-        |  size: Icon.Size = Icon.SizeMedium
-        |)()
-        |
-        |// Size
-        |case object SizeMedium extends Size { val value = "16" }
-        |case object SizeLarge extends Size { val value = "32" }
-        |```
-        |
-        |>::warning::Currently the name of this component is `IconAcl` instead of `Icon`. Its name will be changed back to `Icon` after completing migration.
-        |
-        |Example:
-        """.stripMargin
-    )(),
-    ExampleRich(
-      Source.annotate(
-        /*>*/ <.div(
-          Style.flexbox.flex.flexbox.itemsCenter, /*<*/
-          IconAcl(name = IconAcl.NameOffice)() /*>*/,
-          <.span(Style.margin.left8, "Office")
-        ) /*<*/
-      )
-    )(),
-  )
-
   private def renderNames: VdomNode = ReactFragment(
     Markdown(
       """
         |# Names
+        |
+        |Use the `name` prop to specify which icon to render. The grouping below is for documentation purpose only.
         |
         |## Action
       """.stripMargin
@@ -422,7 +392,15 @@ object PageIcon {
         Style.margin.bottom32,
         Header(title = "Icon")()
       ),
-      renderOverview,
+      // format: off
+      ExampleRich(Source.annotate({
+        /*>*/ <.div(
+          Style.flexbox.flex.flexbox.itemsCenter, /*<*/
+          IconAcl(name = IconAcl.NameOffice)() /*>*/,
+          <.span(Style.margin.left8, "Office")
+        ) /*<*/
+      }))(),
+      // format: on
       renderNames,
       renderUsage(ctl)
     )

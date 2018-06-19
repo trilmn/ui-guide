@@ -21,13 +21,14 @@ object NavElements {
     page: Main.Page
   )
 
-  def link(
-    content: VdomNode,
-    target: Main.Page = Main.WIP()
-  )(implicit props: Props): VdomElement = {
-    if (target == Main.WIP()) <.p(Style.color.gray6, content)
-    else {
-      val color = if (target == props.page) Style.color.primary4 else Style.color.inherit
+  def link(content: VdomNode, target: Main.Page = Main.WIP())(
+    implicit props: Props
+  ): VdomElement = {
+    if (target == Main.WIP()) {
+      <.p(Style.color.gray6, content)
+    } else {
+      val isSelected = target.getClass == props.page.getClass
+      val color = if (isSelected) Style.color.primary4 else Style.color.inherit
       props.ctl.link(target)(color, content)
     }
   }
@@ -55,7 +56,8 @@ object NavElements {
     // this is not good for performance, but to be honest this is a documentation,
     // not an app... we prefer usability and friendliness here
     val pageStr = props.page.getClass.getSimpleName.toLowerCase
-    val hasCurrentPage = isContain(children, pageStr) || isContain(content, pageStr)
+    val hasCurrentPage =
+      isContain(children, pageStr) || isContain(content, pageStr)
 
     Collapse(
       isExpanded = hasCurrentPage,
@@ -63,15 +65,17 @@ object NavElements {
         <.li(
           <.div(
             Style.flexbox.flex.flexbox.itemsCenter,
-            ^.onClick --> toggle,
             if (children == emptyVdomElement) {
               Style.padding.left32
             } else {
               Button(
                 style = ButtonStyle.StyleMinimal,
-                size = ButtonStyle.SizeIcon
+                size = ButtonStyle.SizeIcon,
+                onClick = toggle
               )({
-                val name = if (isExpanded) IconAcl.NameCaretDown else IconAcl.NameCaretRight
+                val name =
+                  if (isExpanded) IconAcl.NameCaretDown
+                  else IconAcl.NameCaretRight
                 IconAcl(name = name)()
               })
             },

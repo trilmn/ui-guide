@@ -6,20 +6,44 @@ import anduin.guide.Main
 import anduin.style.Style
 
 object PageWelcome {
+
+  private def renderGoal(
+    title: String,
+    img: String,
+    description: String
+  ): VdomElement = {
+    <.div(
+      Style.flexbox.flex.padding.ver32,
+      <.img(
+        Style.flexbox.none.margin.right32,
+        ^.src := "https://cdn2.hubspot.net/hubfs/2735615/" +
+          s"Anduin_Transact_April2018/Image/$img.svg",
+        TagMod(^.width := "104px", ^.height := "104px")
+      ),
+      <.div(
+        Style.flexbox.fixed,
+        <.h3(Style.margin.bottom8, title),
+        <.p(description)
+      )
+    )
+  }
+
   def render(ctl: Main.Ctl): VdomElement = {
     <.div(
       <.header(
         Style.margin.bottom32,
         Header(
           title = "Anduin UI Guide",
-          description = "How we think User Interface should be built, at Anduin."
+          description = "How we think User Interface should be built at Anduin."
         )()
       ),
       <.div(
         Style.padding.ver32,
         <.img(
           Style.display.block.margin.horAuto,
-          ^.src := "https://cdn2.hubspot.net/hubfs/2735615/Anduin_Transact_April2018/Image/anduin-deals-illustration.svg?t=1524989666671",
+          ^.src := "https://cdn2.hubspot.net/hubfs/2735615/" +
+            "Anduin_Transact_April2018/Image/" +
+            "anduin-deals-illustration.svg?t=1524989666671",
           TagMod(^.width := "394", ^.height := "130")
         )
       ),
@@ -57,19 +81,4 @@ object PageWelcome {
     )
   }
 
-  private def renderGoal(title: String, img: String, description: String): VdomElement = {
-    <.div(
-      Style.flexbox.flex.padding.ver32,
-      <.img(
-        Style.flexbox.none.margin.right32,
-        ^.src := s"https://cdn2.hubspot.net/hubfs/2735615/Anduin_Transact_April2018/Image/$img.svg",
-        TagMod(^.width := "104px", ^.height := "104px")
-      ),
-      <.div(
-        Style.flexbox.fixed,
-        <.h3(Style.margin.bottom8, title),
-        <.p(description)
-      )
-    )
-  }
 }

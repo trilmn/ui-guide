@@ -23,18 +23,21 @@ object PageCollapse {
         """.stripMargin
       )(),
       ExampleRich(
-        Source.annotate(
-          <.div(
-            Collapse(
-              render = (toggle, isExpanded) => {
-                val buttonText = if (isExpanded) "Hide message" else "Show message"
-                val button = Button(onClick = toggle)(buttonText)
-                val content = TagMod.when(isExpanded) { <.p(Style.margin.left8, "More content here") }
-                <.div(Style.flexbox.flex.flexbox.itemsCenter, button, content)
-              }
-            )()
-          )
-        )
+        Source.annotate({
+          val collapse = Collapse(
+            render = (toggle, isExpanded) => {
+              val button = Button(onClick = toggle)(
+                if (isExpanded) "Hide message" else "Show message"
+              )
+              val content = TagMod.when(isExpanded) {
+                <.p(Style.margin.left8, "More content here")
+              } /*>*/
+              val flex = Style.flexbox.flex.flexbox.itemsCenter
+              <.div(flex, button, content)
+            }
+          )()
+          <.div(collapse) /*<*/
+        })
       )(),
       Markdown(
         """

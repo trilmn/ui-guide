@@ -21,14 +21,14 @@ object PageTab {
         """
           |# Basic
           |
-          |To use Tab, you only need to provide a list of Panel. Each Panel should provide its title and what to render when user choose it:
+          |To use Tab, you only need to provide a list of Tab.Panel. Each Tab.Panel should provide its title and what to render when user choose it:
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
         val panels = List(
           Tab.Panel(title = "First", renderContent = () => "First tab"),
-          Tab.Panel(title = "Second", renderContent = () => "Second tab"),
-          Tab.Panel(title = "Third", renderContent = () => "Third tab")
+          Tab.Panel("Second", () => "Second tab"),
+          Tab.Panel("Third", () => "Third tab")
         )
         Tab(panels = panels)()
       }))(),
@@ -40,11 +40,15 @@ object PageTab {
           """.stripMargin
       )(),
       ExampleRich(Source.annotate({
+        /*>*/
         val panels = List(
-          Tab.Panel(title = "First", renderContent = () => "First tab"),
-          Tab.Panel(title = "Second", renderContent = () => "Second tab")
+          Tab.Panel("First", () => "First tab"),
+          Tab.Panel("Second", () => "Second tab")
         )
-        Tab(panels = panels, defaultPanel = 1)()
+        Tab(
+          panels = panels, /*<*/
+          defaultPanel = 1 /*>*/
+        )() /*<*/
       }))(),
       Markdown(
         """
@@ -52,14 +56,13 @@ object PageTab {
           |
           |## Style
           |
-          |At the moment there is only one StyleFull. More styles (e.g. StyleMinimal) will be added in the future and can be chosen via the `style` prop.
+          |At the moment there is only one option: `StyleFull`. More styles (e.g. StyleMinimal) will be added in the future.
           |
           |# Advanced
           |
           |## Rich title
           |
-          |The `title` prop of each Panel accepts not only String but VdomNode, allow you to have complex rendering. E.g. With additional info and illustration inside:
-          |
+          |The `title` prop of each Panel accepts not only String but VdomNode, allow you to have complex rendering, e.g. With additional info and illustration:
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -87,20 +90,22 @@ object PageTab {
       }))(),
       Markdown(
         """
-          |## Switch panel dynamically
+          |## Switch panel
           |
-          |Tab Panel has a `renderContent_S` prop, which provide a callback (`Int => Callback`) to switch panel right from the content. This is useful to allow user to go to another panel from the current one.
-          |
+          |Tab Panel has a `renderContent_S` prop, which provide a callback (`Int => Callback`) to switch panel. This comes in handy when you want to tell user to go to another panel:
           """.stripMargin
       )(),
       ExampleRich(Source.annotate({
         val panels = List(
-          Tab.Panel(title = "First", renderContent_S = switch => {
-            Button(onClick = switch(1), style = ButtonStyle.StyleLink)("Go to second tab")
-          }),
+          Tab.Panel(title = "First", renderContent_S = { switch =>
+            Button(
+              onClick = switch(1),
+              style = ButtonStyle.StyleLink
+            )("Go to second tab")
+          }), /*>*/
           Tab.Panel(title = "Second", renderContent = () => "Second tab")
         )
-        <.div(Tab(panels = panels)())
+        <.div(Tab(panels = panels)()) /*<*/
       }))(),
       Markdown(
         """

@@ -66,8 +66,10 @@ object Main {
       | dynamicRouteCT("button-link" ~ hash.caseClass[ButtonLink]) ~> renderR(PageButtonLink.render)
       | dynamicRouteCT("card" ~ hash.caseClass[Card]) ~> renderR(PageCard.render)
       | dynamicRouteCT("collapse" ~ hash.caseClass[Collapse]) ~> renderR(PageCollapse.render)
-      | dynamicRouteCT("tab" ~ hash.caseClass[Tab]) ~> renderR(PageTab.render)
-      | dynamicRouteCT("table" ~ hash.caseClass[Table]) ~> renderR(PageTable.render)
+      | dynamicRouteCT("tab" ~ hash.caseClass[Tab]) ~>
+      renderR(PageTab.render)
+      | dynamicRouteCT("table" ~ hash.caseClass[Table])
+      ~> renderR(PageTable.render)
       | dynamicRouteCT("portal" ~ hash.caseClass[Portal]) ~> renderR(PagePortal.render)
       | dynamicRouteCT("tooltip" ~ hash.caseClass[Tooltip]) ~> renderR(PageTooltip.render)
       | dynamicRouteCT("popover" ~ hash.caseClass[Popover]) ~> renderR(PagePopover.render)

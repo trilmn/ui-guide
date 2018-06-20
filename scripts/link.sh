@@ -100,6 +100,7 @@ components=(
   text/DateTime.scala
 
   util/EventUtils.scala
+  util/NodeListSeq.scala
 )
 for name in ${components[*]}
 do

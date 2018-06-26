@@ -171,11 +171,17 @@ object PageTable {
       }))(),
       Markdown(
         """
-          |More options of Table.Column and Table.Cell will be described in this guide later.
+          |More options of Table.Column and Table.Cell will be described further below.
           |
           |# Appearance
           |
           |## Style
+          |
+          |At the moment Table supports 2 styles: `StyleFull` and `StyleMinimal`.
+          |
+          |**`StyleFull` has outer border** and thus should be used when there are other content around the table. This is the default value.
+          |
+          |**`StyleMinimal` does not have outer border,** so it should be used when your table can be separated clearly from nearby content already.
           |
           """.stripMargin
       )(),
@@ -195,12 +201,12 @@ object PageTable {
       }))(),
       Markdown(
         """
-          |
           |## (Vertical) Align
           |
+          |Like in HTML, if the heights of cells in one row are not the same, then the content will be vertically aligned in the middle of the row:
           |""".stripMargin
       )(),
-      ExampleSimple()(
+      ExampleSimple("Default behaviour. Equivalent to `align = AlignMiddle`.")(
         Sample.BaseTable.copy(
           columns = List(
             Table.Column("Name", Sample.renderNameId),
@@ -213,7 +219,9 @@ object PageTable {
       ),
       Markdown(
         """
+          |You can also align them to top or bottom via `align = AlignTop` or `align = AlignBottom`, respectively. This can be set at 2 levels: for the whole Table and for one Cell.
           |
+          |For example, in the below table, the content is aligned to top, with an exception that the level of Harry is aligned to bottom (the red one):
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -243,13 +251,17 @@ object PageTable {
       }))(),
       Markdown(
         """
-          |
           |## Width
+          |
+          |Behind the scene, Table uses the native `table` tag. Therefore, we have the benefit of [`table-layout: auto`](https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout#Syntax) in which the widths of columns are adjusted to fit the content automatically.
+          |
+          |However, you can still manually define the width of any Table.Column via the `width` prop. This is equivalent to the CSS's `width` property, so you can have pixel or percentage here:
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
         /*>*/
         val table = Sample.BaseTable.copy(
+          rows = Sample.BaseTable.rows.take(3),
           columns = List(
             Sample.BaseTable.columns.head, /*<*/
             Table.Column(
@@ -266,8 +278,13 @@ object PageTable {
       }))(),
       Markdown(
         """
+          |It's worth to note that due to the auto layout, setting a `width` does not guarantee that column will get the exact value. The browser only try its best to have that. Detail can be found in [this CSS Tricks's article](https://css-tricks.com/almanac/properties/t/table-layout/).
+          |
+          |Also, the width of a Table is always 100% of its parent.
           |
           |## Sticky Head
+          |
+          |Simply set `headIsSticky = true` and your Table's head will be [sticky positioned](https://developer.mozilla.org/en-US/docs/Web/CSS/position#Sticky_positioning) (i.e. Stick to the top):
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -278,8 +295,9 @@ object PageTable {
       }))(),
       Markdown(
         """
-          |
           |# Sort
+          |
+          |
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -289,11 +307,11 @@ object PageTable {
             Sample.BaseTable.columns.head, /*<*/
             Sample.BaseTable
               .columns(1)
-              .copy(sortByString = Some(_.name)), /*>*/
+              .copy(sortByString = Some(_.name)),
             Sample.BaseTable
               .columns(2)
-              .copy(sortByDouble = Some(_.level.toDouble)), /*<*/
-            Sample.BaseTable.columns(3),
+              .copy(sortByDouble = Some(_.level.toDouble)), /*>*/
+            Sample.BaseTable.columns(3), /*<*/
             Sample.BaseTable
               .columns(4)
               .copy(sortByDouble = Some(m => m.point * m.level)) /*>*/
@@ -344,6 +362,7 @@ object PageTable {
           |
           |## Footer
           |
+          |Table also has a `footer` prop, in which you can put any custom VdomNode:
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -357,12 +376,7 @@ object PageTable {
           ) /*>*/
         )()
         <.div(table) /*<*/
-      }))(),
-      Markdown(
-        """
-          |
-        """.stripMargin
-      )()
+      }))()
     )
   }
 }

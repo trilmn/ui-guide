@@ -17,7 +17,7 @@ object PageCard {
       ),
       Markdown(
         """
-          |Card is a simple component that wraps its content inside a white rectangle with padding, border and is a little rounded. It doesn't have shadow, however.
+          |Card is a simple component that wraps its content inside a white rectangle with padding, shadow and is a little rounded.
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({

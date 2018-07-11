@@ -124,7 +124,8 @@ object PageComponent {
       ExampleRich(Source.annotate({
         /*>*/
         val margin = Style.margin.left8
-        <.div( /*<*/
+        <.div(
+          /*<*/
           Style.flexbox.flex.flexbox.itemsCenter, /*>*/
           <.div(Icon(name = Icon.NameLightBolt)()),
           <.div(Button()("Button"), margin),
@@ -134,10 +135,70 @@ object PageComponent {
       Markdown(
         """
           |
-          |[This Code Pen][2] explains more in detail why we prefer `block`
+          |[This Code Pen][1] explains more in detail why we prefer `block`
           |over `inline` display, with step by step examples.
           |
-          |[2]: https://codepen.io/dvkndn/pen/wmQmbm
+          |[1]: https://codepen.io/dvkndn/pen/wmQmbm
+          |
+          |# Render prop
+          |
+          |From [React's official documentation][2]:
+          |
+          |[2]: https://reactjs.org/docs/render-props.html
+          |
+          |> The term "render prop" refers to a simple technique for sharing
+          |> code between React components using a prop whose value is a
+          |> function.
+          |>
+          |> A component with a render prop takes a function that returns a
+          |> React element and calls it instead of implementing its own render
+          |> logic.
+          |>
+          |> ```plain
+          |> <DataProvider render={data => (
+          |>   <h1>Hello {data.target}</h1>
+          |> )}/>
+          |> ```
+          |
+          |**"Render prop" also let the host component to skip render when
+          |it's not necessary.** For example, in Tab component, although the
+          |render functions of all panels are provided, only the one of
+          |currently visible Panel is executed.
+          |
+          |However, like HOC, be careful when you create function inside your
+          |render method. Such function will be [created new on every
+          |render][3], which *might* affect performance and [potentially lose
+          | the state][4] of it and its children.
+          |
+          |[3]: https://reactjs.org/docs/render-props.html#be-careful-when-using-render-props-with-reactpurecomponent
+          |[4]: https://reactjs.org/docs/higher-order-components.html#dont-use-hocs-inside-the-render-method
+          |
+          |```scala
+          |private def render(...) = {
+          |  ...
+          |  // This will create new function on every render
+          |  Table.Column("Email", member => Table.Cell(member.email))
+          |  ...
+          |}
+          |```
+          |
+          |```scala
+          |// This function is defined once and will be the same for
+          |// every render
+          |private def renderEmail(member: Member) =
+          |  Table.Cell(member.email)
+          |
+          |private def render(...) = {
+          |  ...
+          |  Table.Column("Email", renderEmail)
+          |  ...
+          |}
+          |```
+          |
+          |Through out this guide, we will usually use in-place function (
+          |i.e. defining function inside `render` method) for the sake of
+          |simplicity. However, in practice, it is suggested to define such
+          |function as object's method.
         """.stripMargin
       )()
     )

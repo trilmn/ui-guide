@@ -16,27 +16,28 @@ final case class ExampleSimple(
 
 object ExampleSimple {
 
-  private val ComponentName = this.getClass.getSimpleName
+  private type Props = ExampleSimple
 
-  private case class Backend(scope: BackendScope[ExampleSimple, _]) {
-    def render(props: ExampleSimple, children: PropsChildren): VdomElement = {
-      val styles = Style.backgroundColor.gray1.padding.all4.fontSize.px13
-      val example = <.div(
-        Style.padding.all16,
-        if (props.isBgGray) Style.backgroundColor.gray2
-        else Style.backgroundColor.white,
-        children
-      )
-      val label = TagMod.when(!props.label.isEmpty) {
-        <.figcaption(Style.padding.hor16.padding.top4, Markdown(props.label)())
-      }
-      <.div(Style.padding.ver12, <.figure(styles, example, label))
+  private def render(props: Props, children: PropsChildren): VdomElement = {
+    val styles = TagMod(
+      Style.backgroundColor.gray1.padding.all4,
+      Style.fontSize.px13.lineHeight.px20
+    )
+    val example = <.div(
+      Style.padding.all16,
+      if (props.isBgGray) Style.backgroundColor.gray2
+      else Style.backgroundColor.white,
+      children
+    )
+    val label = TagMod.when(!props.label.isEmpty) {
+      <.figcaption(Style.padding.hor16.padding.top4, Markdown(props.label)())
     }
+    <.div(Style.padding.ver12, <.figure(styles, example, label))
   }
 
   private val component = ScalaComponent
-    .builder[ExampleSimple](ComponentName)
+    .builder[Props](this.getClass.getSimpleName)
     .stateless
-    .renderBackendWithChildren[Backend]
+    .render_PC(render)
     .build
 }

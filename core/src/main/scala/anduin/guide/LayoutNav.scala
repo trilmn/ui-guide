@@ -78,7 +78,7 @@ object LayoutNav {
             li(
               link("Input", Main.WIP()),
               ul(
-                li(link("Checkbox", Main.WIP())),
+                li(link("Checkbox", Main.Checkbox())),
                 li(
                   link("Dropdown", Main.WIP()),
                   ul(
@@ -94,7 +94,7 @@ object LayoutNav {
             li(
               link("Portal", Main.WIP()),
               ul(
-                li(link("Tooltip", Main.Tooltip())),
+                li(link("Tooltip", Main.WIP())),
                 li(link("Popover", Main.WIP())),
                 li(link("Menu", Main.WIP())),
                 li(link("Modal", Main.WIP()))
@@ -108,6 +108,12 @@ object LayoutNav {
               )
             )
           )
+        ),
+        li(
+          link("Layout", Main.WIP())
+        ),
+        li(
+          link("Copy", Main.WIP())
         )
       )
     )

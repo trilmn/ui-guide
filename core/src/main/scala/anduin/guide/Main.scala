@@ -22,10 +22,6 @@ object Main {
   case class FixedLineHeight(hash: String = "") extends Page
   // component
   case class Component(hash: String = "") extends Page
-  // icon
-  case class Icon(hash: String = "") extends Page
-  case class Illus(hash: String = "") extends Page
-  case class IllusFolder(hash: String = "") extends Page
   // button
   case class Button(hash: String = "") extends Page
   case class ButtonStyle(hash: String = "") extends Page
@@ -36,6 +32,12 @@ object Main {
   case class Tab(hash: String = "") extends Page
   case class Table(hash: String = "") extends Page
   case class Well(hash: String = "") extends Page
+  // icon
+  case class Icon(hash: String = "") extends Page
+  case class Illus(hash: String = "") extends Page
+  case class IllusFolder(hash: String = "") extends Page
+  // input
+  case class Checkbox(hash: String = "") extends Page
   // portal
   case class Portal(hash: String = "") extends Page
   case class Popover(hash: String = "") extends Page
@@ -73,13 +75,6 @@ object Main {
       | dynamicRouteCT("component" ~ hash.caseClass[Component]) ~>
         renderR(PageComponent.render)
 
-      | dynamicRouteCT("icon" ~ hash.caseClass[Icon]) ~>
-        renderR(PageIcon.render)
-      | dynamicRouteCT("illus" ~ hash.caseClass[Illus]) ~>
-        renderR(PageIllus.render)
-      | dynamicRouteCT("illus-folder" ~ hash.caseClass[IllusFolder]) ~>
-        renderR(PageIllusFolder.render)
-
       | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~>
         renderR(PageButton.render)
       | dynamicRouteCT("button-style" ~ hash.caseClass[ButtonStyle]) ~>
@@ -97,6 +92,16 @@ object Main {
         renderR(PageTable.render)
       | dynamicRouteCT("well" ~ hash.caseClass[Well]) ~>
         renderR(PageWell.render)
+
+      | dynamicRouteCT("icon" ~ hash.caseClass[Icon]) ~>
+        renderR(PageIcon.render)
+      | dynamicRouteCT("illus" ~ hash.caseClass[Illus]) ~>
+        renderR(PageIllus.render)
+      | dynamicRouteCT("illus-folder" ~ hash.caseClass[IllusFolder]) ~>
+        renderR(PageIllusFolder.render)
+
+      | dynamicRouteCT("checkbox" ~ hash.caseClass[Checkbox]) ~>
+        renderR(PageCheckbox.render)
 
       | dynamicRouteCT("portal" ~ hash.caseClass[Portal]) ~>
         renderR(PagePortal.render)

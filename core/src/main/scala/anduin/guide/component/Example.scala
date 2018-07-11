@@ -6,7 +6,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 import anduin.style.Style
 
 final case class Example(
-  content: (String, VdomElement)
+  content: (String, VdomElement),
+  isBgGray: Boolean = false
 ) {
   def apply(): VdomElement = {
     Example.component(this)
@@ -23,11 +24,14 @@ object Example {
       <.div(
         Style.backgroundColor.gray1.padding.all4,
         <.div(
-          Style.backgroundColor.white.padding.all16,
+          Style.padding.all16,
+          // Sometimes we need a gray background
+          if (props.isBgGray) Style.backgroundColor.gray2
+          else Style.backgroundColor.white,
           // Ensure the example is shown in correct font size
           // and line height (since these values in Guide is
           // bigger than in the actual app
-          Style.fontSize.px14,
+          Style.fontSize.px13,
           // @TODO: Make this a valid Style.lineHeight
           ^.lineHeight := "20px",
           element

@@ -2,7 +2,7 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.component.icon.IconAcl
+import anduin.component.icon.Icon
 import anduin.guide.Main
 import anduin.mcro.Source
 import anduin.style.Style
@@ -26,82 +26,82 @@ object PageIcon {
   private def renderNames: VdomNode = ReactFragment(
     Markdown(
       """
-        |# Names
+        |# Name
         |
-        |Use the `name` prop to specify which icon to render. The grouping below is for documentation purpose only.
+        |Use the `name` prop to specify which icon to be rendered:
         |
         |## Action
       """.stripMargin
     )(),
     renderIcons(
-      <.div(cell, IconAcl(name = IconAcl.NameCheck)(), " ", "Check"),
-      <.div(cell, IconAcl(name = IconAcl.NameCheckSmall)(), " ", "CheckSmall"),
-      <.div(cell, IconAcl(name = IconAcl.NameCheckCircle)(), " ", "CheckCircle"),
-      <.div(cell, IconAcl(name = IconAcl.NameCross)(), " ", "Cross"),
-      <.div(cell, IconAcl(name = IconAcl.NameCrossSmall)(), " ", "CrossSmall"),
-      <.div(cell, IconAcl(name = IconAcl.NameCrossCircle)(), " ", "CrossCircle"),
-      <.div(cell, IconAcl(name = IconAcl.NamePlus)(), " ", "Plus"),
-      <.div(cell, IconAcl(name = IconAcl.NamePlusSmall)(), " ", "PlusSmall"),
-      <.div(cell, IconAcl(name = IconAcl.NamePlusCircle)(), " ", "PlusCircle"),
-      <.div(cell, IconAcl(name = IconAcl.NameMinus)(), " ", "Minus"),
-      <.div(cell, IconAcl(name = IconAcl.NameMinusSmall)(), " ", "MinusSmall"),
-      <.div(cell, IconAcl(name = IconAcl.NameMinusCircle)(), " ", "MinusCircle"),
-      <.div(cell, IconAcl(name = IconAcl.NameArchive)(), " ", "Archive"),
-      <.div(cell, IconAcl(name = IconAcl.NameTrash)(), " ", "Trash"),
-      <.div(cell, IconAcl(name = IconAcl.NameAutoTrack)(), " ", "AutoTrack"),
-      <.div(cell, IconAcl(name = IconAcl.NameBookmark)(), " ", "Bookmark"),
-      <.div(cell, IconAcl(name = IconAcl.NameTag)(), " ", "Tag"),
-      <.div(cell, IconAcl(name = IconAcl.NameFilter)(), " ", "Filter"),
-      <.div(cell, IconAcl(name = IconAcl.NameShare)(), " ", "Share"),
-      <.div(cell, IconAcl(name = IconAcl.NameComment)(), " ", "Comment"),
-      <.div(cell, IconAcl(name = IconAcl.NameFlag)(), " ", "Flag"),
-      <.div(cell, IconAcl(name = IconAcl.NameFlagLine)(), " ", "FlagLine"),
-      <.div(cell, IconAcl(name = IconAcl.NameDuplicate)(), " ", "Duplicate"),
-      <.div(cell, IconAcl(name = IconAcl.NameMultiSelect)(), " ", "MultiSelect"),
-      <.div(cell, IconAcl(name = IconAcl.NameLock)(), " ", "Lock"),
-      <.div(cell, IconAcl(name = IconAcl.NameUnlock)(), " ", "Unlock"),
-      <.div(cell, IconAcl(name = IconAcl.NameSign)(), " ", "Sign"),
-      <.div(cell, IconAcl(name = IconAcl.NameSignatureRequest)(), " ", "SignatureRequest"),
-      <.div(cell, IconAcl(name = IconAcl.NameSignatureEdit)(), " ", "SignatureEdit"),
-      <.div(cell, IconAcl(name = IconAcl.NameClipboard)(), " ", "Clipboard"),
-      <.div(cell, IconAcl(name = IconAcl.NameClipboardCopied)(), " ", "ClipboardCopied"),
-      <.div(cell, IconAcl(name = IconAcl.NameExpand)(), " ", "Expand"),
-      <.div(cell, IconAcl(name = IconAcl.NameCollapse)(), " ", "Collapse"),
-      <.div(cell, IconAcl(name = IconAcl.NameUpload)(), " ", "Upload"),
-      <.div(cell, IconAcl(name = IconAcl.NameDownload)(), " ", "Download"),
-      <.div(cell, IconAcl(name = IconAcl.NameCloudDownload)(), " ", "CloudDownload"),
-      <.div(cell, IconAcl(name = IconAcl.NameCloudUpload)(), " ", "CloudUpload"),
-      <.div(cell, IconAcl(name = IconAcl.NameCloudDownloadLine)(), " ", "CloudDownloadLine"),
-      <.div(cell, IconAcl(name = IconAcl.NameCloudUploadLine)(), " ", "CloudUploadLine"),
-      <.div(cell, IconAcl(name = IconAcl.NameEdit)(), " ", "Edit"),
-      <.div(cell, IconAcl(name = IconAcl.NameEditInline)(), " ", "EditInline"),
-      <.div(cell, IconAcl(name = IconAcl.NameEditField)(), " ", "EditField"),
-      <.div(cell, IconAcl(name = IconAcl.NameLink)(), " ", "Link"),
-      <.div(cell, IconAcl(name = IconAcl.NameUnlink)(), " ", "Unlink"),
-      <.div(cell, IconAcl(name = IconAcl.NameSearch)(), " ", "Search"),
-      <.div(cell, IconAcl(name = IconAcl.NameZoomIn)(), " ", "ZoomIn"),
-      <.div(cell, IconAcl(name = IconAcl.NameZoomOut)(), " ", "ZoomOut"),
-      <.div(cell, IconAcl(name = IconAcl.NameSearchInline)(), " ", "SearchInline"),
-      <.div(cell, IconAcl(name = IconAcl.NameCompare)(), " ", "Compare"),
-      <.div(cell, IconAcl(name = IconAcl.NameMove)(), " ", "Move"),
-      <.div(cell, IconAcl(name = IconAcl.NameEnter)(), " ", "Enter"),
-      <.div(cell, IconAcl(name = IconAcl.NameRollBack)(), " ", "RollBack"),
-      <.div(cell, IconAcl(name = IconAcl.NameSwap)(), " ", "Swap"),
-      <.div(cell, IconAcl(name = IconAcl.NameSwapLeft)(), " ", "SwapLeft"),
-      <.div(cell, IconAcl(name = IconAcl.NameSwapRight)(), " ", "SwapRight"),
-      <.div(cell, IconAcl(name = IconAcl.NameRedo)(), " ", "Redo"),
-      <.div(cell, IconAcl(name = IconAcl.NameUndo)(), " ", "Undo"),
-      <.div(cell, IconAcl(name = IconAcl.NameRefresh)(), " ", "Refresh"),
-      <.div(cell, IconAcl(name = IconAcl.NameRepeat)(), " ", "Repeat"),
-      <.div(cell, IconAcl(name = IconAcl.NameReTweet)(), " ", "ReTweet"),
-      <.div(cell, IconAcl(name = IconAcl.NameReply)(), " ", "Reply"),
-      <.div(cell, IconAcl(name = IconAcl.NameReplyAll)(), " ", "ReplyAll"),
-      <.div(cell, IconAcl(name = IconAcl.NameLogin)(), " ", "Login"),
-      <.div(cell, IconAcl(name = IconAcl.NameLogout)(), " ", "Logout"),
-      <.div(cell, IconAcl(name = IconAcl.NameStepBackward)(), " ", "StepBackward"),
-      <.div(cell, IconAcl(name = IconAcl.NameStepForward)(), " ", "StepForward"),
-      <.div(cell, IconAcl(name = IconAcl.NameFastBackward)(), " ", "FastBackward"),
-      <.div(cell, IconAcl(name = IconAcl.NameFastForward)(), " ", "FastForward")
+      <.div(cell, Icon(name = Icon.NameCheck)(), " ", "Check"),
+      <.div(cell, Icon(name = Icon.NameCheckSmall)(), " ", "CheckSmall"),
+      <.div(cell, Icon(name = Icon.NameCheckCircle)(), " ", "CheckCircle"),
+      <.div(cell, Icon(name = Icon.NameCross)(), " ", "Cross"),
+      <.div(cell, Icon(name = Icon.NameCrossSmall)(), " ", "CrossSmall"),
+      <.div(cell, Icon(name = Icon.NameCrossCircle)(), " ", "CrossCircle"),
+      <.div(cell, Icon(name = Icon.NamePlus)(), " ", "Plus"),
+      <.div(cell, Icon(name = Icon.NamePlusSmall)(), " ", "PlusSmall"),
+      <.div(cell, Icon(name = Icon.NamePlusCircle)(), " ", "PlusCircle"),
+      <.div(cell, Icon(name = Icon.NameMinus)(), " ", "Minus"),
+      <.div(cell, Icon(name = Icon.NameMinusSmall)(), " ", "MinusSmall"),
+      <.div(cell, Icon(name = Icon.NameMinusCircle)(), " ", "MinusCircle"),
+      <.div(cell, Icon(name = Icon.NameArchive)(), " ", "Archive"),
+      <.div(cell, Icon(name = Icon.NameTrash)(), " ", "Trash"),
+      <.div(cell, Icon(name = Icon.NameAutoTrack)(), " ", "AutoTrack"),
+      <.div(cell, Icon(name = Icon.NameBookmark)(), " ", "Bookmark"),
+      <.div(cell, Icon(name = Icon.NameTag)(), " ", "Tag"),
+      <.div(cell, Icon(name = Icon.NameFilter)(), " ", "Filter"),
+      <.div(cell, Icon(name = Icon.NameShare)(), " ", "Share"),
+      <.div(cell, Icon(name = Icon.NameComment)(), " ", "Comment"),
+      <.div(cell, Icon(name = Icon.NameFlag)(), " ", "Flag"),
+      <.div(cell, Icon(name = Icon.NameFlagLine)(), " ", "FlagLine"),
+      <.div(cell, Icon(name = Icon.NameDuplicate)(), " ", "Duplicate"),
+      <.div(cell, Icon(name = Icon.NameMultiSelect)(), " ", "MultiSelect"),
+      <.div(cell, Icon(name = Icon.NameLock)(), " ", "Lock"),
+      <.div(cell, Icon(name = Icon.NameUnlock)(), " ", "Unlock"),
+      <.div(cell, Icon(name = Icon.NameSign)(), " ", "Sign"),
+      <.div(cell, Icon(name = Icon.NameSignatureRequest)(), " ", "SignatureRequest"),
+      <.div(cell, Icon(name = Icon.NameSignatureEdit)(), " ", "SignatureEdit"),
+      <.div(cell, Icon(name = Icon.NameClipboard)(), " ", "Clipboard"),
+      <.div(cell, Icon(name = Icon.NameClipboardCopied)(), " ", "ClipboardCopied"),
+      <.div(cell, Icon(name = Icon.NameExpand)(), " ", "Expand"),
+      <.div(cell, Icon(name = Icon.NameCollapse)(), " ", "Collapse"),
+      <.div(cell, Icon(name = Icon.NameUpload)(), " ", "Upload"),
+      <.div(cell, Icon(name = Icon.NameDownload)(), " ", "Download"),
+      <.div(cell, Icon(name = Icon.NameCloudDownload)(), " ", "CloudDownload"),
+      <.div(cell, Icon(name = Icon.NameCloudUpload)(), " ", "CloudUpload"),
+      <.div(cell, Icon(name = Icon.NameCloudDownloadLine)(), " ", "CloudDownloadLine"),
+      <.div(cell, Icon(name = Icon.NameCloudUploadLine)(), " ", "CloudUploadLine"),
+      <.div(cell, Icon(name = Icon.NameEdit)(), " ", "Edit"),
+      <.div(cell, Icon(name = Icon.NameEditInline)(), " ", "EditInline"),
+      <.div(cell, Icon(name = Icon.NameEditField)(), " ", "EditField"),
+      <.div(cell, Icon(name = Icon.NameLink)(), " ", "Link"),
+      <.div(cell, Icon(name = Icon.NameUnlink)(), " ", "Unlink"),
+      <.div(cell, Icon(name = Icon.NameSearch)(), " ", "Search"),
+      <.div(cell, Icon(name = Icon.NameZoomIn)(), " ", "ZoomIn"),
+      <.div(cell, Icon(name = Icon.NameZoomOut)(), " ", "ZoomOut"),
+      <.div(cell, Icon(name = Icon.NameSearchInline)(), " ", "SearchInline"),
+      <.div(cell, Icon(name = Icon.NameCompare)(), " ", "Compare"),
+      <.div(cell, Icon(name = Icon.NameMove)(), " ", "Move"),
+      <.div(cell, Icon(name = Icon.NameEnter)(), " ", "Enter"),
+      <.div(cell, Icon(name = Icon.NameRollBack)(), " ", "RollBack"),
+      <.div(cell, Icon(name = Icon.NameSwap)(), " ", "Swap"),
+      <.div(cell, Icon(name = Icon.NameSwapLeft)(), " ", "SwapLeft"),
+      <.div(cell, Icon(name = Icon.NameSwapRight)(), " ", "SwapRight"),
+      <.div(cell, Icon(name = Icon.NameRedo)(), " ", "Redo"),
+      <.div(cell, Icon(name = Icon.NameUndo)(), " ", "Undo"),
+      <.div(cell, Icon(name = Icon.NameRefresh)(), " ", "Refresh"),
+      <.div(cell, Icon(name = Icon.NameRepeat)(), " ", "Repeat"),
+      <.div(cell, Icon(name = Icon.NameReTweet)(), " ", "ReTweet"),
+      <.div(cell, Icon(name = Icon.NameReply)(), " ", "Reply"),
+      <.div(cell, Icon(name = Icon.NameReplyAll)(), " ", "ReplyAll"),
+      <.div(cell, Icon(name = Icon.NameLogin)(), " ", "Login"),
+      <.div(cell, Icon(name = Icon.NameLogout)(), " ", "Logout"),
+      <.div(cell, Icon(name = Icon.NameStepBackward)(), " ", "StepBackward"),
+      <.div(cell, Icon(name = Icon.NameStepForward)(), " ", "StepForward"),
+      <.div(cell, Icon(name = Icon.NameFastBackward)(), " ", "FastBackward"),
+      <.div(cell, Icon(name = Icon.NameFastForward)(), " ", "FastForward")
     ),
     Markdown(
       """
@@ -109,9 +109,9 @@ object PageIcon {
       """.stripMargin
     )(),
     renderIcons(
-      <.div(cell, IconAcl(name = IconAcl.NameBrandAnduin)(), " ", "BrandAnduin"),
-      <.div(cell, IconAcl(name = IconAcl.NameBrandMicrosoft)(), " ", "BrandMicrosoft"),
-      <.div(cell, IconAcl(name = IconAcl.NameBrandGoogle)(), " ", "BrandGoogle")
+      <.div(cell, Icon(name = Icon.NameBrandAnduin)(), " ", "BrandAnduin"),
+      <.div(cell, Icon(name = Icon.NameBrandMicrosoft)(), " ", "BrandMicrosoft"),
+      <.div(cell, Icon(name = Icon.NameBrandGoogle)(), " ", "BrandGoogle")
     ),
     Markdown(
       """
@@ -120,51 +120,51 @@ object PageIcon {
     )(),
     renderIcons(
       //Arrows
-      <.div(cell, IconAcl(name = IconAcl.NameArrowTopLeft)(), " ", "ArrowTopLeft"),
-      <.div(cell, IconAcl(name = IconAcl.NameArrowUp)(), " ", "ArrowUp"),
-      <.div(cell, IconAcl(name = IconAcl.NameArrowTopRight)(), " ", "ArrowTopRight"),
-      <.div(cell, IconAcl(name = IconAcl.NameArrowLeft)(), " ", "ArrowLeft"),
+      <.div(cell, Icon(name = Icon.NameArrowTopLeft)(), " ", "ArrowTopLeft"),
+      <.div(cell, Icon(name = Icon.NameArrowUp)(), " ", "ArrowUp"),
+      <.div(cell, Icon(name = Icon.NameArrowTopRight)(), " ", "ArrowTopRight"),
+      <.div(cell, Icon(name = Icon.NameArrowLeft)(), " ", "ArrowLeft"),
       <.div(cell),
-      <.div(cell, IconAcl(name = IconAcl.NameArrowRight)(), " ", "ArrowRight"),
-      <.div(cell, IconAcl(name = IconAcl.NameArrowDownLeft)(), " ", "ArrowDownLeft"),
-      <.div(cell, IconAcl(name = IconAcl.NameArrowDown)(), " ", "ArrowDown"),
-      <.div(cell, IconAcl(name = IconAcl.NameArrowDownRight)(), " ", "ArrowDownRight"),
-      <.div(cell, IconAcl(name = IconAcl.NameArrowHorizontal)(), " ", "ArrowHorizontal"),
-      <.div(cell, IconAcl(name = IconAcl.NameArrowVertical)(), " ", "ArrowVertical"),
+      <.div(cell, Icon(name = Icon.NameArrowRight)(), " ", "ArrowRight"),
+      <.div(cell, Icon(name = Icon.NameArrowDownLeft)(), " ", "ArrowDownLeft"),
+      <.div(cell, Icon(name = Icon.NameArrowDown)(), " ", "ArrowDown"),
+      <.div(cell, Icon(name = Icon.NameArrowDownRight)(), " ", "ArrowDownRight"),
+      <.div(cell, Icon(name = Icon.NameArrowHorizontal)(), " ", "ArrowHorizontal"),
+      <.div(cell, Icon(name = Icon.NameArrowVertical)(), " ", "ArrowVertical"),
       break,
       //Carets
-      <.div(cell, IconAcl(name = IconAcl.NameCaretUp)(), " ", "CaretUp"),
-      <.div(cell, IconAcl(name = IconAcl.NameCaretLeft)(), " ", "CaretLeft"),
-      <.div(cell, IconAcl(name = IconAcl.NameCaretRight)(), " ", "CaretRight"),
-      <.div(cell, IconAcl(name = IconAcl.NameCaretDown)(), " ", "CaretDown"),
-      <.div(cell, IconAcl(name = IconAcl.NameCaretHorizontal)(), " ", "CaretHorizontal"),
-      <.div(cell, IconAcl(name = IconAcl.NameCaretVertical)(), " ", "CaretVertical"),
+      <.div(cell, Icon(name = Icon.NameCaretUp)(), " ", "CaretUp"),
+      <.div(cell, Icon(name = Icon.NameCaretLeft)(), " ", "CaretLeft"),
+      <.div(cell, Icon(name = Icon.NameCaretRight)(), " ", "CaretRight"),
+      <.div(cell, Icon(name = Icon.NameCaretDown)(), " ", "CaretDown"),
+      <.div(cell, Icon(name = Icon.NameCaretHorizontal)(), " ", "CaretHorizontal"),
+      <.div(cell, Icon(name = Icon.NameCaretVertical)(), " ", "CaretVertical"),
       break,
       //Chevrons
-      <.div(cell, IconAcl(name = IconAcl.NameChevronUp)(), " ", "ChevronUp"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronCircleUp)(), " ", "ChevronCircleUp"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronCircleLineUp)(), " ", "ChevronCircleLineUp"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronDown)(), " ", "ChevronDown"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronCircleDown)(), " ", "ChevronCircleDown"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronCircleLineDown)(), " ", "ChevronCircleLineDown"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronLeft)(), " ", "ChevronLeft"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronCircleLeft)(), " ", "ChevronCircleLeft"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronCircleLineLeft)(), " ", "ChevronCircleLineLeft"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronRight)(), " ", "ChevronRight"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronCircleRight)(), " ", "ChevronCircleRight"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronCircleLineRight)(), " ", "ChevronCircleLineRight"),
+      <.div(cell, Icon(name = Icon.NameChevronUp)(), " ", "ChevronUp"),
+      <.div(cell, Icon(name = Icon.NameChevronCircleUp)(), " ", "ChevronCircleUp"),
+      <.div(cell, Icon(name = Icon.NameChevronCircleLineUp)(), " ", "ChevronCircleLineUp"),
+      <.div(cell, Icon(name = Icon.NameChevronDown)(), " ", "ChevronDown"),
+      <.div(cell, Icon(name = Icon.NameChevronCircleDown)(), " ", "ChevronCircleDown"),
+      <.div(cell, Icon(name = Icon.NameChevronCircleLineDown)(), " ", "ChevronCircleLineDown"),
+      <.div(cell, Icon(name = Icon.NameChevronLeft)(), " ", "ChevronLeft"),
+      <.div(cell, Icon(name = Icon.NameChevronCircleLeft)(), " ", "ChevronCircleLeft"),
+      <.div(cell, Icon(name = Icon.NameChevronCircleLineLeft)(), " ", "ChevronCircleLineLeft"),
+      <.div(cell, Icon(name = Icon.NameChevronRight)(), " ", "ChevronRight"),
+      <.div(cell, Icon(name = Icon.NameChevronCircleRight)(), " ", "ChevronCircleRight"),
+      <.div(cell, Icon(name = Icon.NameChevronCircleLineRight)(), " ", "ChevronCircleLineRight"),
       break,
-      <.div(cell, IconAcl(name = IconAcl.NameChevronDoubleUp)(), " ", "ChevronDoubleUp"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronHorizontalUp)(), " ", "ChevronHorizontalUp"),
+      <.div(cell, Icon(name = Icon.NameChevronDoubleUp)(), " ", "ChevronDoubleUp"),
+      <.div(cell, Icon(name = Icon.NameChevronHorizontalUp)(), " ", "ChevronHorizontalUp"),
       <.div(cell),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronDoubleDown)(), " ", "ChevronDoubleDown"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronHorizontalDown)(), " ", "ChevronHorizontalDown"),
+      <.div(cell, Icon(name = Icon.NameChevronDoubleDown)(), " ", "ChevronDoubleDown"),
+      <.div(cell, Icon(name = Icon.NameChevronHorizontalDown)(), " ", "ChevronHorizontalDown"),
       <.div(cell),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronDoubleLeft)(), " ", "ChevronDoubleLeft"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronVerticalLeft)(), " ", "ChevronVerticalLeft"),
+      <.div(cell, Icon(name = Icon.NameChevronDoubleLeft)(), " ", "ChevronDoubleLeft"),
+      <.div(cell, Icon(name = Icon.NameChevronVerticalLeft)(), " ", "ChevronVerticalLeft"),
       <.div(cell),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronDoubleRight)(), " ", "ChevronDoubleRight"),
-      <.div(cell, IconAcl(name = IconAcl.NameChevronVerticalRight)(), " ", "ChevronVerticalRight"),
+      <.div(cell, Icon(name = Icon.NameChevronDoubleRight)(), " ", "ChevronDoubleRight"),
+      <.div(cell, Icon(name = Icon.NameChevronVerticalRight)(), " ", "ChevronVerticalRight"),
       <.div(cell)
     ),
     Markdown(
@@ -173,29 +173,29 @@ object PageIcon {
       """.stripMargin
     )(),
     renderIcons(
-      <.div(cell, IconAcl(name = IconAcl.NameInbox)(), " ", "Inbox"),
-      <.div(cell, IconAcl(name = IconAcl.NameInboxReceive)(), " ", "InboxReceive"),
-      <.div(cell, IconAcl(name = IconAcl.NameInboxSend)(), " ", "InboxSend"),
-      <.div(cell, IconAcl(name = IconAcl.NameEnvelope)(), " ", "Envelope"),
-      <.div(cell, IconAcl(name = IconAcl.NameEnvelopeSend)(), " ", "EnvelopeSend"),
-      <.div(cell, IconAcl(name = IconAcl.NameAttachment)(), " ", "Attachment"),
-      <.div(cell, IconAcl(name = IconAcl.NameAlignCenter)(), " ", "AlignCenter"),
-      <.div(cell, IconAcl(name = IconAcl.NameAlignJustify)(), " ", "AlignJustify"),
-      <.div(cell, IconAcl(name = IconAcl.NameAlignLeft)(), " ", "AlignLeft"),
-      <.div(cell, IconAcl(name = IconAcl.NameAlignRight)(), " ", "AlignRight"),
-      <.div(cell, IconAcl(name = IconAcl.NameTextStyle)(), " ", "TextStyle"),
-      <.div(cell, IconAcl(name = IconAcl.NameBold)(), " ", "Bold"),
-      <.div(cell, IconAcl(name = IconAcl.NameItalic)(), " ", "Italic"),
-      <.div(cell, IconAcl(name = IconAcl.NameUnderline)(), " ", "Underline"),
-      <.div(cell, IconAcl(name = IconAcl.NameStrikeThrough)(), " ", "StrikeThrough"),
-      <.div(cell, IconAcl(name = IconAcl.NameHeader)(), " ", "Header"),
-      <.div(cell, IconAcl(name = IconAcl.NameHeader1)(), " ", "Header1"),
-      <.div(cell, IconAcl(name = IconAcl.NameHeader2)(), " ", "Header2"),
-      <.div(cell, IconAcl(name = IconAcl.NameInput)(), " ", "Input"),
-      <.div(cell, IconAcl(name = IconAcl.NameCitation)(), " ", "Citation"),
-      <.div(cell, IconAcl(name = IconAcl.NameParagraph)(), " ", "Paragraph"),
-      <.div(cell, IconAcl(name = IconAcl.NameListBullet)(), " ", "ListBullet"),
-      <.div(cell, IconAcl(name = IconAcl.NameListNumber)(), " ", "ListNumber")
+      <.div(cell, Icon(name = Icon.NameInbox)(), " ", "Inbox"),
+      <.div(cell, Icon(name = Icon.NameInboxReceive)(), " ", "InboxReceive"),
+      <.div(cell, Icon(name = Icon.NameInboxSend)(), " ", "InboxSend"),
+      <.div(cell, Icon(name = Icon.NameEnvelope)(), " ", "Envelope"),
+      <.div(cell, Icon(name = Icon.NameEnvelopeSend)(), " ", "EnvelopeSend"),
+      <.div(cell, Icon(name = Icon.NameAttachment)(), " ", "Attachment"),
+      <.div(cell, Icon(name = Icon.NameAlignCenter)(), " ", "AlignCenter"),
+      <.div(cell, Icon(name = Icon.NameAlignJustify)(), " ", "AlignJustify"),
+      <.div(cell, Icon(name = Icon.NameAlignLeft)(), " ", "AlignLeft"),
+      <.div(cell, Icon(name = Icon.NameAlignRight)(), " ", "AlignRight"),
+      <.div(cell, Icon(name = Icon.NameTextStyle)(), " ", "TextStyle"),
+      <.div(cell, Icon(name = Icon.NameBold)(), " ", "Bold"),
+      <.div(cell, Icon(name = Icon.NameItalic)(), " ", "Italic"),
+      <.div(cell, Icon(name = Icon.NameUnderline)(), " ", "Underline"),
+      <.div(cell, Icon(name = Icon.NameStrikeThrough)(), " ", "StrikeThrough"),
+      <.div(cell, Icon(name = Icon.NameHeader)(), " ", "Header"),
+      <.div(cell, Icon(name = Icon.NameHeader1)(), " ", "Header1"),
+      <.div(cell, Icon(name = Icon.NameHeader2)(), " ", "Header2"),
+      <.div(cell, Icon(name = Icon.NameInput)(), " ", "Input"),
+      <.div(cell, Icon(name = Icon.NameCitation)(), " ", "Citation"),
+      <.div(cell, Icon(name = Icon.NameParagraph)(), " ", "Paragraph"),
+      <.div(cell, Icon(name = Icon.NameListBullet)(), " ", "ListBullet"),
+      <.div(cell, Icon(name = Icon.NameListNumber)(), " ", "ListNumber")
     ),
     Markdown(
       """
@@ -203,26 +203,26 @@ object PageIcon {
       """.stripMargin
     )(),
     renderIcons(
-      <.div(cell, IconAcl(name = IconAcl.NameFile)(), " ", "File"),
-      <.div(cell, IconAcl(name = IconAcl.NameFileAdd)(), " ", "FileAdd"),
-      <.div(cell, IconAcl(name = IconAcl.NameFileGenerate)(), " ", "FileGenerate"),
-      <.div(cell, IconAcl(name = IconAcl.NameFileDownload)(), " ", "FileDownload"),
-      <.div(cell, IconAcl(name = IconAcl.NameFileExport)(), " ", "FileExport"),
-      <.div(cell, IconAcl(name = IconAcl.NameFileSend)(), " ", "FileSend"),
-      <.div(cell, IconAcl(name = IconAcl.NameFilePreview)(), " ", "FilePreview"),
-      <.div(cell, IconAcl(name = IconAcl.NameFileText)(), " ", "FileText"),
-      <.div(cell, IconAcl(name = IconAcl.NameFileUnknown)(), " ", "FileUnknown"),
-      <.div(cell, IconAcl(name = IconAcl.NameFilePdf)(), " ", "FilePdf"),
-      <.div(cell, IconAcl(name = IconAcl.NameFileDoc)(), " ", "FileDoc"),
-      <.div(cell, IconAcl(name = IconAcl.NameFileXls)(), " ", "FileXls"),
-      <.div(cell, IconAcl(name = IconAcl.NameFolder)(), " ", "Folder"),
-      <.div(cell, IconAcl(name = IconAcl.NameFolderOpen)(), " ", "FolderOpen"),
-      <.div(cell, IconAcl(name = IconAcl.NameFolderAdd)(), " ", "FolderAdd"),
-      <.div(cell, IconAcl(name = IconAcl.NameFolderSend)(), " ", "FolderSend"),
-      <.div(cell, IconAcl(name = IconAcl.NameFolderLine)(), " ", "FolderLine"),
-      <.div(cell, IconAcl(name = IconAcl.NameFolderOpenLine)(), " ", "FolderOpenLine"),
-      <.div(cell, IconAcl(name = IconAcl.NameFolderAddLine)(), " ", "FolderAddLine"),
-      <.div(cell, IconAcl(name = IconAcl.NameFolderSendLine)(), " ", "FolderSendLine")
+      <.div(cell, Icon(name = Icon.NameFile)(), " ", "File"),
+      <.div(cell, Icon(name = Icon.NameFileAdd)(), " ", "FileAdd"),
+      <.div(cell, Icon(name = Icon.NameFileGenerate)(), " ", "FileGenerate"),
+      <.div(cell, Icon(name = Icon.NameFileDownload)(), " ", "FileDownload"),
+      <.div(cell, Icon(name = Icon.NameFileExport)(), " ", "FileExport"),
+      <.div(cell, Icon(name = Icon.NameFileSend)(), " ", "FileSend"),
+      <.div(cell, Icon(name = Icon.NameFilePreview)(), " ", "FilePreview"),
+      <.div(cell, Icon(name = Icon.NameFileText)(), " ", "FileText"),
+      <.div(cell, Icon(name = Icon.NameFileUnknown)(), " ", "FileUnknown"),
+      <.div(cell, Icon(name = Icon.NameFilePdf)(), " ", "FilePdf"),
+      <.div(cell, Icon(name = Icon.NameFileDoc)(), " ", "FileDoc"),
+      <.div(cell, Icon(name = Icon.NameFileXls)(), " ", "FileXls"),
+      <.div(cell, Icon(name = Icon.NameFolder)(), " ", "Folder"),
+      <.div(cell, Icon(name = Icon.NameFolderOpen)(), " ", "FolderOpen"),
+      <.div(cell, Icon(name = Icon.NameFolderAdd)(), " ", "FolderAdd"),
+      <.div(cell, Icon(name = Icon.NameFolderSend)(), " ", "FolderSend"),
+      <.div(cell, Icon(name = Icon.NameFolderLine)(), " ", "FolderLine"),
+      <.div(cell, Icon(name = Icon.NameFolderOpenLine)(), " ", "FolderOpenLine"),
+      <.div(cell, Icon(name = Icon.NameFolderAddLine)(), " ", "FolderAddLine"),
+      <.div(cell, Icon(name = Icon.NameFolderSendLine)(), " ", "FolderSendLine")
     ),
     Markdown(
       """
@@ -230,49 +230,51 @@ object PageIcon {
       """.stripMargin
     )(),
     renderIcons(
-      <.div(cell, IconAcl(name = IconAcl.NameHome)(), " ", "Home"),
-      <.div(cell, IconAcl(name = IconAcl.NameOffice)(), " ", "Office"),
-      <.div(cell, IconAcl(name = IconAcl.NameSnapshot)(), " ", "Snapshot"),
-      <.div(cell, IconAcl(name = IconAcl.NameDashboard)(), " ", "Dashboard"),
-      <.div(cell, IconAcl(name = IconAcl.NameViewGrid)(), " ", "ViewGrid"),
-      <.div(cell, IconAcl(name = IconAcl.NameViewList)(), " ", "ViewList"),
-      <.div(cell, IconAcl(name = IconAcl.NameCheckList)(), " ", "CheckList"),
-      <.div(cell, IconAcl(name = IconAcl.NameToolbox)(), " ", "Toolbox"),
-      <.div(cell, IconAcl(name = IconAcl.NameCog)(), " ", "Cog"),
-      <.div(cell, IconAcl(name = IconAcl.NameWrench)(), " ", "Wrench"),
-      <.div(cell, IconAcl(name = IconAcl.NameKey)(), " ", "Key"),
-      <.div(cell, IconAcl(name = IconAcl.NameLayer)(), " ", "Layer"),
-      <.div(cell, IconAcl(name = IconAcl.NameCalendar)(), " ", "Calendar"),
-      <.div(cell, IconAcl(name = IconAcl.NameClock)(), " ", "Clock"),
-      <.div(cell, IconAcl(name = IconAcl.NameSandClock)(), " ", "SandClock"),
-      <.div(cell, IconAcl(name = IconAcl.NameBell)(), " ", "Bell"),
-      <.div(cell, IconAcl(name = IconAcl.NameChannel)(), " ", "Channel"),
-      <.div(cell, IconAcl(name = IconAcl.NameData)(), " ", "Data"),
-      <.div(cell, IconAcl(name = IconAcl.NameDataRoom)(), " ", "DataRoom"),
-      <.div(cell, IconAcl(name = IconAcl.NameKnowledge)(), " ", "Knowledge"),
-      <.div(cell, IconAcl(name = IconAcl.NameInfo)(), " ", "Info"),
-      <.div(cell, IconAcl(name = IconAcl.NameInfoCircleLine)(), " ", "InfoCircleLine"),
-      <.div(cell, IconAcl(name = IconAcl.NameWarning)(), " ", "Warning"),
-      <.div(cell, IconAcl(name = IconAcl.NameError)(), " ", "Error"),
-      <.div(cell, IconAcl(name = IconAcl.NameComputer)(), " ", "Computer"),
-      <.div(cell, IconAcl(name = IconAcl.NameMobile)(), " ", "Mobile"),
-      <.div(cell, IconAcl(name = IconAcl.NameMobileAuthenticate)(), " ", "MobileAuthenticate"),
-      <.div(cell, IconAcl(name = IconAcl.NameCloud)(), " ", "Cloud"),
-      <.div(cell, IconAcl(name = IconAcl.NameCloudLine)(), " ", "CloudLine"),
-      <.div(cell, IconAcl(name = IconAcl.NameCode)(), " ", "Code"),
-      <.div(cell, IconAcl(name = IconAcl.NameCodeLine)(), " ", "CodeLine"),
-      <.div(cell, IconAcl(name = IconAcl.NameCircle)(), " ", "Circle"),
-      <.div(cell, IconAcl(name = IconAcl.NameCircleLine)(), " ", "CircleLine"),
-      <.div(cell, IconAcl(name = IconAcl.NameEllipsisHorizontal)(), " ", "EllipsisHorizontal"),
-      <.div(cell, IconAcl(name = IconAcl.NameEllipsisVertical)(), " ", "EllipsisVertical"),
-      <.div(cell, IconAcl(name = IconAcl.NameEye)(), " ", "Eye"),
-      <.div(cell, IconAcl(name = IconAcl.NameEyeOff)(), " ", "EyeOff"),
-      <.div(cell, IconAcl(name = IconAcl.NameStar)(), " ", "Star"),
-      <.div(cell, IconAcl(name = IconAcl.NameStarLine)(), " ", "StarLine"),
-      <.div(cell, IconAcl(name = IconAcl.NamePulse)(), " ", "Pulse"),
-      <.div(cell, IconAcl(name = IconAcl.NamePulseCircle)(), " ", "PulseCircle"),
-      <.div(cell, IconAcl(name = IconAcl.NameLightBolt)(), " ", "LightBolt"),
-      <.div(cell, IconAcl(name = IconAcl.NameLightBoltCircle)(), " ", "LightBoltCircle")
+      <.div(cell, Icon(name = Icon.NameHome)(), " ", "Home"),
+      <.div(cell, Icon(name = Icon.NameOffice)(), " ", "Office"),
+      <.div(cell, Icon(name = Icon.NameSnapshot)(), " ", "Snapshot"),
+      <.div(cell, Icon(name = Icon.NameDashboard)(), " ", "Dashboard"),
+      <.div(cell, Icon(name = Icon.NameViewGrid)(), " ", "ViewGrid"),
+      <.div(cell, Icon(name = Icon.NameViewList)(), " ", "ViewList"),
+      <.div(cell, Icon(name = Icon.NameCheckList)(), " ", "CheckList"),
+      <.div(cell, Icon(name = Icon.NameToolbox)(), " ", "Toolbox"),
+      <.div(cell, Icon(name = Icon.NameCog)(), " ", "Cog"),
+      <.div(cell, Icon(name = Icon.NameWrench)(), " ", "Wrench"),
+      <.div(cell, Icon(name = Icon.NameKey)(), " ", "Key"),
+      <.div(cell, Icon(name = Icon.NameLayer)(), " ", "Layer"),
+      <.div(cell, Icon(name = Icon.NameCalendar)(), " ", "Calendar"),
+      <.div(cell, Icon(name = Icon.NameClock)(), " ", "Clock"),
+      <.div(cell, Icon(name = Icon.NameSandClock)(), " ", "SandClock"),
+      <.div(cell, Icon(name = Icon.NameBell)(), " ", "Bell"),
+      <.div(cell, Icon(name = Icon.NameChannel)(), " ", "Channel"),
+      <.div(cell, Icon(name = Icon.NameData)(), " ", "Data"),
+      <.div(cell, Icon(name = Icon.NameDataRoom)(), " ", "DataRoom"),
+      <.div(cell, Icon(name = Icon.NameKnowledge)(), " ", "Knowledge"),
+      <.div(cell, Icon(name = Icon.NameInfo)(), " ", "Info"),
+      <.div(cell, Icon(name = Icon.NameInfoCircleLine)(), " ", "InfoCircleLine"),
+      <.div(cell, Icon(name = Icon.NameWarning)(), " ", "Warning"),
+      <.div(cell, Icon(name = Icon.NameError)(), " ", "Error"),
+      <.div(cell, Icon(name = Icon.NameComputer)(), " ", "Computer"),
+      <.div(cell, Icon(name = Icon.NameMobile)(), " ", "Mobile"),
+      <.div(cell, Icon(name = Icon.NameMobileAuthenticate)(), " ", "MobileAuthenticate"),
+      <.div(cell, Icon(name = Icon.NameCloud)(), " ", "Cloud"),
+      <.div(cell, Icon(name = Icon.NameCloudLine)(), " ", "CloudLine"),
+      <.div(cell, Icon(name = Icon.NameCode)(), " ", "Code"),
+      <.div(cell, Icon(name = Icon.NameCodeLine)(), " ", "CodeLine"),
+      <.div(cell, Icon(name = Icon.NameCircle)(), " ", "Circle"),
+      <.div(cell, Icon(name = Icon.NameCircleLine)(), " ", "CircleLine"),
+      <.div(cell, Icon(name = Icon.NameCircleLargeLine)(), " ", "CircleLargeLine"),
+      <.div(cell, Icon(name = Icon.NameEllipsisHorizontal)(), " ", "EllipsisHorizontal"),
+      <.div(cell, Icon(name = Icon.NameEllipsisVertical)(), " ", "EllipsisVertical"),
+      <.div(cell, Icon(name = Icon.NameEye)(), " ", "Eye"),
+      <.div(cell, Icon(name = Icon.NameEyeOff)(), " ", "EyeOff"),
+      <.div(cell, Icon(name = Icon.NameStar)(), " ", "Star"),
+      <.div(cell, Icon(name = Icon.NameStarLine)(), " ", "StarLine"),
+      <.div(cell, Icon(name = Icon.NamePulse)(), " ", "Pulse"),
+      <.div(cell, Icon(name = Icon.NamePulseCircle)(), " ", "PulseCircle"),
+      <.div(cell, Icon(name = Icon.NameLightBolt)(), " ", "LightBolt"),
+      <.div(cell, Icon(name = Icon.NameLightBoltCircle)(), " ", "LightBoltCircle"),
+      <.div(cell, Icon(name = Icon.NameBlank)(), " ", "Blank")
     ),
     Markdown(
       """
@@ -280,18 +282,18 @@ object PageIcon {
       """.stripMargin
     )(),
     renderIcons(
-      <.div(cell, IconAcl(name = IconAcl.NameTable)(), " ", "Table"),
-      <.div(cell, IconAcl(name = IconAcl.NameSort)(), " ", "Sort"),
-      <.div(cell, IconAcl(name = IconAcl.NameSortAsc)(), " ", "SortAsc"),
-      <.div(cell, IconAcl(name = IconAcl.NameSortDes)(), " ", "SortDes"),
-      <.div(cell, IconAcl(name = IconAcl.NameSortAlphaAsc)(), " ", "SortAlphaAsc"),
-      <.div(cell, IconAcl(name = IconAcl.NameSortAlphaDes)(), " ", "SortAlphaDes"),
-      <.div(cell, IconAcl(name = IconAcl.NameSortNumberAsc)(), " ", "SortNumberAsc"),
-      <.div(cell, IconAcl(name = IconAcl.NameSortNumberDes)(), " ", "SortNumberDes"),
-      <.div(cell, IconAcl(name = IconAcl.NameChartProgress)(), " ", "ChartProgress"),
-      <.div(cell, IconAcl(name = IconAcl.NameChartBarHorizontal)(), " ", "ChartBarHorizontal"),
-      <.div(cell, IconAcl(name = IconAcl.NameChartBarVertical)(), " ", "ChartBarVertical"),
-      <.div(cell, IconAcl(name = IconAcl.NameChartPie)(), " ", "ChartPie")
+      <.div(cell, Icon(name = Icon.NameTable)(), " ", "Table"),
+      <.div(cell, Icon(name = Icon.NameSort)(), " ", "Sort"),
+      <.div(cell, Icon(name = Icon.NameSortAsc)(), " ", "SortAsc"),
+      <.div(cell, Icon(name = Icon.NameSortDes)(), " ", "SortDes"),
+      <.div(cell, Icon(name = Icon.NameSortAlphaAsc)(), " ", "SortAlphaAsc"),
+      <.div(cell, Icon(name = Icon.NameSortAlphaDes)(), " ", "SortAlphaDes"),
+      <.div(cell, Icon(name = Icon.NameSortNumberAsc)(), " ", "SortNumberAsc"),
+      <.div(cell, Icon(name = Icon.NameSortNumberDes)(), " ", "SortNumberDes"),
+      <.div(cell, Icon(name = Icon.NameChartProgress)(), " ", "ChartProgress"),
+      <.div(cell, Icon(name = Icon.NameChartBarHorizontal)(), " ", "ChartBarHorizontal"),
+      <.div(cell, Icon(name = Icon.NameChartBarVertical)(), " ", "ChartBarVertical"),
+      <.div(cell, Icon(name = Icon.NameChartPie)(), " ", "ChartPie")
     ),
     Markdown(
       """
@@ -299,90 +301,71 @@ object PageIcon {
       """.stripMargin
     )(),
     renderIcons(
-      <.div(cell, IconAcl(name = IconAcl.NameUser)(), " ", "User"),
-      <.div(cell, IconAcl(name = IconAcl.NameUserGroup)(), " ", "UserGroup"),
-      <.div(cell, IconAcl(name = IconAcl.NameUserInvestor)(), " ", "UserInvestor"),
-      <.div(cell, IconAcl(name = IconAcl.NameUserCompany)(), " ", "UserCompany"),
-      <.div(cell, IconAcl(name = IconAcl.NameUserAdd)(), " ", "UserAdd"),
-      <.div(cell, IconAcl(name = IconAcl.NameUserAccept)(), " ", "UserAccept"),
-      <.div(cell, IconAcl(name = IconAcl.NameUserBlock)(), " ", "UserBlock"),
-      <.div(cell, IconAcl(name = IconAcl.NameUserRemove)(), " ", "UserRemove"),
-      <.div(cell, IconAcl(name = IconAcl.NameUserEdit)(), " ", "UserEdit"),
-      <.div(cell, IconAcl(name = IconAcl.NameUserLink)(), " ", "UserLink"),
-      <.div(cell, IconAcl(name = IconAcl.NameUserInfo)(), " ", "UserInfo")
+      <.div(cell, Icon(name = Icon.NameUser)(), " ", "User"),
+      <.div(cell, Icon(name = Icon.NameUserGroup)(), " ", "UserGroup"),
+      <.div(cell, Icon(name = Icon.NameUserInvestor)(), " ", "UserInvestor"),
+      <.div(cell, Icon(name = Icon.NameUserCompany)(), " ", "UserCompany"),
+      <.div(cell, Icon(name = Icon.NameUserAdd)(), " ", "UserAdd"),
+      <.div(cell, Icon(name = Icon.NameUserAccept)(), " ", "UserAccept"),
+      <.div(cell, Icon(name = Icon.NameUserBlock)(), " ", "UserBlock"),
+      <.div(cell, Icon(name = Icon.NameUserRemove)(), " ", "UserRemove"),
+      <.div(cell, Icon(name = Icon.NameUserEdit)(), " ", "UserEdit"),
+      <.div(cell, Icon(name = Icon.NameUserLink)(), " ", "UserLink"),
+      <.div(cell, Icon(name = Icon.NameUserInfo)(), " ", "UserInfo")
     )
   )
 
   private def renderUsage(ctl: Main.Ctl): VdomNode = ReactFragment(
     Markdown(
-      s"""
-         |# Usage
-         |
-         |## Alignment
-         |
-         |**Icon is always a block element.** This is to prevent the default `inline` alignment, which is based on `baseline`, while we usually want an absolute centering.
-         |
-         |`block` display placed the icon on its own row, which enforces the engineers to align the icon later with proper technique. See example in the [Spacing](#spacing) section below.
-         |
-         |- [This Codepen](https://codepen.io/dvkndn/pen/wmQmbm) explains in detail why we prefer `block` over `inline` icons.
-         |- For alignment, we suggest to see the [Flexbox guide](${ctl.urlFor(Main.Flexbox()).value}).
-         |
-         |## Spacing
-         |
-         |**Icon's shape is designed to touch the bound.** In other words, there is no inner space (padding) in an icon. Therefore, the engineers usually need to wrap the icon inside a `div` or `span`, then provide necessary spacing in that wrapper:
-        """.stripMargin
-    )(),
-    ExampleRich(
-      Source.annotate(
-        // Wrap the icon
-        /*>*/ <.div(
-          Style.flexbox.flex.flexbox.itemsCenter, /*<*/
-          <.span(Style.margin.right8, IconAcl(name = IconAcl.NameDownload)()),
-          "Download" /*>*/
-        ) /*<*/
-      )
-    )(),
-    Markdown(
       """
-        |Or you can also wrap the adjacent element of the icon:
+        |# Color
+        |
+        |**Icon has one color.** Icon's color is inherited from its parent's
+        |color. Therefore, to set the color of an icon you should set it at
+        |that icon's wrapper:
       """.stripMargin
     )(),
-    ExampleRich(
-      Source.annotate(
-        // Wrap the adjacent text
-        /*>*/ <.div(
-          Style.flexbox.flex.flexbox.itemsCenter, /*<*/
-          IconAcl(name = IconAcl.NameUpload)(),
-          <.span(Style.margin.left8, "Upload") /*>*/
-        ) /*<*/
+    ExampleRich(Source.annotate({
+      <.div(
+        Style.color.primary4,
+        Icon(name = Icon.NameLayer)()
       )
-    )(),
+    }))(),
     Markdown(
       """
-        |## Color
+        |# Size
         |
-        |**Icon has one color, and it is inherited from the parent.** To be more specific, the `fill` color of an icon is the same with its parent's (text) `color`. Thus, to change color of the icon, you will usually want to do that in its wrapper:
+        |**The default size of an icon is 16 x 16 pixels.** This can be 
+        |customized via the `size` prop:
       """.stripMargin
     )(),
-    ExampleRich(
-      Source.annotate(
-        <.div(
-          Style.color.primary4,
-          IconAcl(name = IconAcl.NameLayer)()
-        )
+    ExampleRich(Source.annotate({
+      val margin = Style.margin.right8
+      <.div(
+        Style.flexbox.flex,
+        <.div(Icon(name = Icon.NameLayer, size = Icon.Size16)(), margin),
+        <.div(Icon(name = Icon.NameLayer, size = Icon.Size32)(), margin),
+        <.div(Icon(name = Icon.NameLayer, size = Icon.SizeDynamic("48"))())
       )
-    )(),
+    }))(),
     Markdown(
       """
-        |## Meaning
+        |It is intentional that `SizeDynamic` accepts a string value as it
+        |will be passed directly to the `svg` tag of the icon:
         |
-        |**Icons should follow industry standard metaphors** to ensure they are predictable for end users. Unique objects and actions that have no standard metaphors yet should have explicit label to support the icon.
-        |
-        |>Inscrutable icons litter the face of the devices even though the research community has long demonstrated that people cannot remember the meaning of more than a small number of icons […] – Don Norman"
-        |>
-        |>Source: [ia.net/topics/on-icons/​](​https://ia.net/topics/on-icons/)
+        |```scala
+        |// Snippet from Icon's source code
+        |private def render(props: Props): VdomElement = {
+        |  <.svg(
+        |    ^.viewBox := "0 0 16 16",
+        |    ^.width := props.size.value,
+        |    ^.height := props.size.value,
+        |    /* ... */
+        |  )
+        |}
+        |```
       """.stripMargin
-    )(),
+    )()
   )
 
   def render(ctl: Main.Ctl): VdomElement = {
@@ -396,7 +379,7 @@ object PageIcon {
       ExampleRich(Source.annotate({
         /*>*/ <.div(
           Style.flexbox.flex.flexbox.itemsCenter, /*<*/
-          IconAcl(name = IconAcl.NameOffice)() /*>*/,
+          Icon(name = Icon.NameOffice)() /*>*/,
           <.span(Style.margin.left8, "Office")
         ) /*<*/
       }))(),

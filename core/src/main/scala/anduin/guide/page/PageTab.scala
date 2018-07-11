@@ -4,7 +4,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.container.Tab
-import anduin.component.icon.Illus
+import anduin.component.icon.{Icon, IllusFolder}
 import anduin.guide.Main
 import anduin.mcro.Source
 import anduin.style.Style
@@ -21,7 +21,9 @@ object PageTab {
         """
           |# Basic
           |
-          |To use Tab, you only need to provide a list of Tab.Panel. Each Tab.Panel should provide its title and what to render when user choose it:
+          |To use Tab, you only need to provide a list of `Tab.Panel`. Each
+          |`Tab.Panel` should provide its title and what to render when user
+          |choose it:
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -36,7 +38,9 @@ object PageTab {
         """
           |## Default Panel
           |
-          |By default, the first panel is chosen in the initial render. You can select another one by passing its index to the `defaultPanel` prop.
+          |By default, the first panel is chosen in the initial render. You
+          |can select another one by passing its index to the `defaultPanel`
+          |prop.
           """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -52,24 +56,29 @@ object PageTab {
       }))(),
       Markdown(
         """
-          |Be careful that the compiler cannot catch if you choose an invalid `defaultPanel` value (e.g. a negative number). It will result in a run-time error.
+          |Be careful that the compiler cannot catch if you choose an invalid
+          |`defaultPanel` value (e.g. a negative number). It will result in
+          |a run-time error.
           |
           |## Style
           |
-          |At the moment there is only one option: `StyleFull`. More styles (e.g. StyleMinimal) will be added in the future.
+          |At the moment there is only one option: `StyleFull`. More styles
+          |(e.g. StyleMinimal) will be added in the future.
           |
           |# Advanced
           |
           |## Rich title
           |
-          |The `title` prop of each Panel accepts not only String but VdomNode, allow you to have complex rendering, e.g. With additional info and illustration:
+          |The `title` prop of each Panel accepts not only String but
+          |VdomNode, allow you to have complex rendering, e.g. With
+          |additional info and illustration:
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
-        val renderTitle = (heading: String, desc: String, illus: Illus.Name) =>
+        val renderTitle = (heading: String, desc: String, illus: VdomNode) =>
           <.div(
             Style.flexbox.flex.flexbox.itemsCenter,
-            Illus(name = illus)(),
+            illus,
             <.div(
               Style.margin.left12.textAlign.left,
               <.p(Style.fontWeight.medium, heading),
@@ -78,11 +87,19 @@ object PageTab {
         )
         val panels = List(
           Tab.Panel(
-            title = renderTitle("Internal Folder", "23 files", Illus.NameFolder),
+            title = renderTitle(
+              "Internal Folder",
+              "23 files",
+              IllusFolder()()
+            ),
             renderContent = () => "First tab"
           ),
           Tab.Panel(
-            title = renderTitle("Shared Folder", "12 files", Illus.NameFolderShared),
+            title = renderTitle(
+              "Shared Folder",
+              "12 files",
+              IllusFolder(icon = Icon.NameUserGroup)()
+            ),
             renderContent = () => "Second tab"
           )
         )
@@ -92,7 +109,9 @@ object PageTab {
         """
           |## Switch panel
           |
-          |Tab Panel has a `renderContent_S` prop, which provide a callback (`Int => Callback`) to switch panel. This comes in handy when you want to tell user to go to another panel:
+          |Tab Panel has a `renderContent_S` prop, which provide a callback
+          |(`Int => Callback`) to switch panel. This comes in handy when you
+          |want to tell user to go to another panel:
           """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -111,16 +130,25 @@ object PageTab {
         """
           |## Stateless Tab
           |
-          |**Tab is a stateful component by default.** It has its own state to store the index of the active panel. It updates that state when user clicks on a panel's title. This makes using Tab simple as you don't need to setup a new state.
+          |**Tab is a stateful component by default.** It has its own state
+          |to store the index of the active panel. It updates that state when
+          | user clicks on a panel's title. This makes using Tab simple as
+          | you don't need to setup a new state.
           |
-          |However, there are cases where the consumer should have total control over which panel to show. For example, when the active panel should based on the current URL, and thus, switching panel should update the URL.
+          |However, there are cases where the consumer should have total
+          |control over which panel to show. For example, when the active
+          |panel should based on the current URL, and thus, switching panel
+          |should update the URL.
           |
           |**In these cases, the consumer should provide:**
           |
-          |- The `active` prop, which is the index of the panel that should be shown.
-          |- The `setActive` prop, which is what should happen when user click on a panel's title.
+          |- The `active` prop, which is the index of the panel that should
+          |be shown.
+          |- The `setActive` prop, which is what should happen when user
+          |click on a panel's title.
           |
-          |Then Tab will become a stateless component, only provides the appearance.
+          |Then Tab will become a stateless component, only provides the
+          |appearance.
           |
           |```scala
           |/*>*/object MyComponent {/*<*/

@@ -3,7 +3,7 @@ package anduin.guide.page
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.Button
-import anduin.component.icon.IconAcl
+import anduin.component.icon.Icon
 import anduin.component.portal._
 import anduin.guide.Main
 import anduin.mcro.Source
@@ -71,7 +71,7 @@ object PageTooltip {
       )(),
       ExampleSimple()({
         val button = <.div(Style.margin.right8, Button(isDisabled = true)("Archive Transaction"))
-        val target = <.div(Style.cursor.pointer, IconAcl(name = IconAcl.NameInfo)())
+        val target = <.div(Style.cursor.pointer, Icon(name = Icon.NameInfo)())
         val content = "You don't have permission to archive this transaction"
         val tooltip = Tooltip(renderTarget = target, renderContent = () => content)()
         <.div(Style.flexbox.flex.flexbox.itemsCenter, button, tooltip)

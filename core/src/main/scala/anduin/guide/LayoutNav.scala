@@ -49,7 +49,7 @@ object LayoutNav {
           )
         ),
         li(
-          link("Component", Main.WIP()),
+          link("Component", Main.Component()),
           ul(
             li(
               link("Button", Main.Button()),
@@ -59,7 +59,37 @@ object LayoutNav {
               )
             ),
             li(
-              link("Icon", Main.Icon())
+              link("Container", Main.WIP()),
+              ul(
+                li(link("Card", Main.Card())),
+                li(link("Collapse", Main.Collapse())),
+                li(link("Tab", Main.Tab())),
+                li(link("Table", Main.Table())),
+                li(link("Well", Main.Well()))
+              )
+            ),
+            li(
+              link("Icon", Main.Icon()),
+              ul(
+                li(link("Illus", Main.Illus())),
+                li(link("Illus Folder", Main.IllusFolder()))
+              )
+            ),
+            li(
+              link("Input", Main.WIP()),
+              ul(
+                li(link("Checkbox", Main.WIP())),
+                li(
+                  link("Dropdown", Main.WIP()),
+                  ul(
+                    li(link("Custom", Main.WIP())),
+                    li(link("Native", Main.WIP()))
+                  )
+                ),
+                li(link("Radio", Main.WIP())),
+                li(link("RadioBox", Main.WIP())),
+                li(link("Text", Main.WIP()))
+              )
             ),
             li(
               link("Portal", Main.WIP()),
@@ -71,12 +101,10 @@ object LayoutNav {
               )
             ),
             li(
-              link("Container", Main.WIP()),
+              link("Text", Main.WIP()),
               ul(
-                li(link("Card", Main.Card())),
-                li(link("Collapse", Main.Collapse())),
-                li(link("Tab", Main.Tab())),
-                li(link("Table", Main.Table()))
+                li(link("Tag", Main.WIP())),
+                li(link("DateTime", Main.WIP()))
               )
             )
           )

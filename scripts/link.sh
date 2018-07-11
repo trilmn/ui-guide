@@ -67,11 +67,12 @@ components=(
   container/TableHead.scala
   container/TableSticky.scala
 
-  icon/IconAcl.scala
+  icon/Icon.scala
   icon/Illus.scala
+  icon/IllusFolder.scala
 
   input/Checkbox.scala
-  input/Dropdown.scala
+  input/CustomDropdown.scala
   input/NativeDropdown.scala
   input/FileButtonInput.scala
   input/Radio.scala
@@ -87,7 +88,6 @@ components=(
   portal/Portal.scala
   portal/Position.scala
   portal/Status.scala
-
   portal/Modal.scala
   portal/ModalBody.scala
   portal/ModalFooter.scala

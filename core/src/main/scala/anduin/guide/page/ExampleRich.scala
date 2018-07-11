@@ -7,7 +7,8 @@ import anduin.style.Style
 import anduin.guide.component.{Example => OrgExample}
 
 final case class ExampleRich(
-  content: (String, VdomElement)
+  content: (String, VdomElement),
+  isBgGray: Boolean = false
 ) {
   def apply(): VdomElement = {
     ExampleRich.component(this)
@@ -23,7 +24,7 @@ object ExampleRich {
       <.figure(
         Style.padding.ver12,
         // original one
-        OrgExample(props.content)()
+        OrgExample(props.content, props.isBgGray)()
       )
     }
   }

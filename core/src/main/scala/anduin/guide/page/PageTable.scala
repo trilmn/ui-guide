@@ -78,7 +78,9 @@ object PageTable {
         """
           |# Basic
           |
-          |Table is a high level component, so you don't need to explicitly render each Row or Cell. Instead, you provide the data and Table will take care of the rendering for you.
+          |Table is a high level component, so you don't need to explicitly
+          |render each Row or Cell. Instead, you provide the data and Table
+          |will take care of the rendering for you.
           |
           |More specific, to have the simplest Table, you need to:
           |1. [Init](#init) Table with the type of your data
@@ -88,7 +90,10 @@ object PageTable {
           |
           |## Init
           |
-          |Table is a [Generic Component](https://docs.scala-lang.org/tour/generic-classen.html), therefore you must first init it with the type of your data (rows):
+          |Table is a [Generic Component][1], therefore you must first init it
+          |with the type of your data (rows):
+          |
+          |[1]: https://docs.scala-lang.org/tour/generic-classen.html
           |
           |```scala
           |// In practice, this type/model is often defined already and
@@ -101,13 +106,22 @@ object PageTable {
           |private val MemberTable = (new Table[Member])()
           |```
           |
-          |**Note that this initialization should happen only once for each type.** We suggest to define it as a `val` inside an `object`. Defining in a `def` (like your `render` method) should be avoided.
+          |If you are not sure what is the type of your Table, just think
+          |what is the list of thing that you want to render. In this case,
+          |that is a list of "Member".
           |
-          |If you are not sure what is the type of your Table, just think what is the list of thing that you want to render. In this case, that is a list of "Member".
+          |**Note that this initialization should happen only once for each
+          |type.** Therefore it is recommended to define your Table type as a
+          |`private val` in your `object`.
+          |
+          |Defining it in a `def` (like your `render` method) should be
+          |avoided as it will create a new component each time, thus React
+          |will unmount the previous instance and lose all of your state.
           |
           |## Rows
           |
-          |Next, provide your data via the `rows` prop. Your data should be a List of your initialized type in the above step (e.g. `Member`).
+          |Next, provide your data via the `rows` prop. Your data should be a
+          | List of your initialized type in the above step (e.g. `Member`).
           |
           |```scala
           |MemberTable(
@@ -125,9 +139,12 @@ object PageTable {
           |
           |## getKey
           |
-          |Since these rows will be rendered dynamically, they need to have keys in order for [React's reconciliation](https://reactjs.org/docs/reconciliation.html#keys) to work properly.
+          |Since these rows will be rendered dynamically, they need to have
+          |keys in order for [React's reconciliation](https://reactjs
+          |.org/docs/reconciliation.html#keys) to work properly.
           |
-          |Therefore, you need to provide a `getKey` function that receives a row data and returns a String to be used as key for that row:
+          |Therefore, you need to provide a `getKey` function that receives a
+          | row data and returns a String to be used as key for that row:
           |
           |```scala
           |MemberTable(
@@ -140,11 +157,16 @@ object PageTable {
           |
           |## Columns
           |
-          |Finally, you describe how should your data be rendered via the `columns` prop, which should be a list of `Table.Column`.
+          |Finally, you describe how should your data be rendered via the
+          |`columns` prop, which should be a list of `Table.Column`.
           |
-          |Each Table.Column represents a column in your table and requires at least 2 attributes:
-          |1. `head`: a VdomNode that will be used as column's head (`thead`, to be exact).
-          |2. `render`: a function that receives a row and return the rendered content of that row for this column (`td`, technically). This content must be wrapped inside `Table.Cell`.
+          |Each Table.Column represents a column in your table and requires
+          |at least 2 attributes:
+          |1. `head`: a VdomNode that will be used as column's head (`thead`,
+          |to be exact).
+          |2. `render`: a function that receives a row and return the
+          |rendered content of that row for this column (`td`, technically).
+          |This content must be wrapped inside `Table.Cell`.
           |
           |For example:
         """.stripMargin
@@ -171,17 +193,22 @@ object PageTable {
       }))(),
       Markdown(
         """
-          |More options of Table.Column and Table.Cell will be described further below.
+          |More options of Table.Column and Table.Cell will be described
+          |further below.
           |
           |# Appearance
           |
           |## Style
           |
-          |At the moment Table supports 2 styles: `StyleFull` and `StyleMinimal`.
+          |At the moment Table supports 2 styles: `StyleFull` and
+          |`StyleMinimal`.
           |
-          |**`StyleFull` has outer border** and thus should be used when there are other content around the table. This is the default value.
+          |**`StyleFull` has outer border** and thus should be used when
+          |there are other content around the table. This is the default value.
           |
-          |**`StyleMinimal` does not have outer border,** so it should be used when your table can be separated clearly from nearby content already.
+          |**`StyleMinimal` does not have outer border,** so it should be
+          |used when your table can be separated clearly from nearby content
+          |already.
           |
           """.stripMargin
       )(),
@@ -203,7 +230,9 @@ object PageTable {
         """
           |## (Vertical) Align
           |
-          |Like in HTML, if the heights of cells in one row are not the same, then the content will be vertically aligned in the middle of the row:
+          |Like in HTML, if the heights of cells in one row are not the same,
+          |then the content will be vertically aligned in the middle of the
+          |row:
           |""".stripMargin
       )(),
       ExampleSimple("Default behaviour. Equivalent to `align = AlignMiddle`.")(
@@ -219,9 +248,13 @@ object PageTable {
       ),
       Markdown(
         """
-          |You can also align them to top or bottom via `align = AlignTop` or `align = AlignBottom`, respectively. This can be set at 2 levels: for the whole Table and for one Cell.
+          |You can also align them to top or bottom via `align = AlignTop` or
+          |`align = AlignBottom`, respectively. This can be set at 2
+          |levels: for the whole Table and for one Cell.
           |
-          |For example, in the below table, the content is aligned to top, with an exception that the level of Harry is aligned to bottom (the red one):
+          |For example, in the below table, the content is aligned to top,
+          |with an exception that the level of Harry is aligned to bottom
+          |(the red one):
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -253,9 +286,15 @@ object PageTable {
         """
           |## Width
           |
-          |Behind the scene, Table uses the native `table` tag. Therefore, we have the benefit of [`table-layout: auto`](https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout#Syntax) in which the widths of columns are adjusted to fit the content automatically.
+          |Behind the scene, Table uses the native `table` tag. Therefore, we
+          |have the benefit of [`table-layout: auto`][1] in which the widths
+          |of columns are adjusted to fit the content automatically.
           |
-          |However, you can still manually define the width of any Table.Column via the `width` prop. This is equivalent to the CSS's `width` property, so you can have pixel or percentage here:
+          |[1]: https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout#Syntax
+          |
+          |However, you can still manually define the width of any Table
+          |.Column via the `width` prop. This is equivalent to the CSS's
+          |`width` property, so you can have pixel or percentage here:
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -278,13 +317,52 @@ object PageTable {
       }))(),
       Markdown(
         """
-          |It's worth to note that due to the auto layout, setting a `width` does not guarantee that column will get the exact value. The browser only try its best to have that. Detail can be found in [this CSS Tricks's article](https://css-tricks.com/almanac/properties/t/table-layout/).
+          |It's worth to note that due to the auto layout, setting a `width`
+          |does not guarantee that column will get the exact value. The
+          |browser only try its best to have that. Detail can be found in
+          |[this CSS Tricks's article][1].
+          |
+          |[1]: https://css-tricks.com/almanac/properties/t/table-layout/
           |
           |Also, the width of a Table is always 100% of its parent.
           |
+          |### Text wrapping in Head
+          |
+          |In order for [Sticky Head](#sticky-head) to work, the title of
+          |Table's column is not wrapped, even if there is not enough space.
+          |This could result in a table that has width larger than its parent:
+          |
+          |""".stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        /*>*/
+        val table = Sample.BaseTable.copy(
+          rows = Sample.BaseTable.rows.take(3),
+          columns = List(
+            Sample.BaseTable.columns.head, /*<*/
+            Table.Column(
+              head = "Long long long long long long long long long long name",
+              render = member => Table.Cell(member.name)
+            ), /*>*/
+            Sample.BaseTable.columns(2),
+            Sample.BaseTable.columns(3),
+            Sample.BaseTable.columns(4)
+          )
+        )()
+        <.div(table) /*<*/
+      }))(),
+      Markdown(
+        """
+          |Therefore, it's best to keep your titles short and provide
+          |sufficient `width` for the column if necessary.
+          |
           |## Sticky Head
           |
-          |Simply set `headIsSticky = true` and your Table's head will be [sticky positioned](https://developer.mozilla.org/en-US/docs/Web/CSS/position#Sticky_positioning) (i.e. Stick to the top):
+          |Simply set `headIsSticky = true` and your Table's head will be
+          |[sticky positioned][2] (i.e. Stick to the top):
+          |
+          |[2]: https://developer.mozilla.org/en-US/docs/Web/CSS/position#Sticky_positioning
+          |
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -294,10 +372,30 @@ object PageTable {
         <.div(table)
       }))(),
       Markdown(
-        """
+        s"""
           |# Sort
           |
+          |Table supports sorting, but you need to tell it how to sort each
+          |column via the `sortByString` or `sortByDouble` prop. They are
+          |similar to [Scala's `sortBy`][1] or [Lodash's `sortBy`][2]:
           |
+          |[1]: https://alvinalexander.com/scala/how-to-sort-map-in-scala-key-value-sortby-sortwith
+          |[2]: https://lodash.com/docs/#sortBy
+          |
+          |```scala
+          |Table.Column(
+          |  head = "Email",
+          |  render = _.email,
+          |  sortByString = Option(_.email)
+          |)
+          |```
+          |
+          |These props expect a function that return a value from a row/item.
+          |Table will use this value to sort its rows.
+          |
+          |**It's an implementation fault that we cannot support a simple
+          |`sortBy` at the moment.** You must explicitly use `sortByString`
+          |or `sortByDouble` depend on the type of returned values:
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -315,17 +413,39 @@ object PageTable {
             Sample.BaseTable
               .columns(4)
               .copy(sortByDouble = Some(m => m.point * m.level)) /*>*/
-          ),
-          sortColumn = Some(1)
+          ), /*<*/
+          sortColumn = Some(1) /*>*/
         )()
         <.div(table) /*<*/
       }))(),
       Markdown(
         """
+          |Even if you have defined `sortBy` for your columns, your Table will
+          |not be sorted until user clicks on a header to sort. To have
+          |Table sorted by a column by default, pass that column's index to
+          |the `sortColumn` prop of the Table.
+          |
           |# Content
           |
           |## Span
           |
+          |Table supports [`colspan`][1] via the `colSpan` prop of
+          |`Table.Cell`. This should receive the number of column your cell
+          |should extend.
+          |
+          |[1]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td#attr-colspan
+          |
+          |Like in HTML, beside setting `colSpan`, you also need to remove
+          |the adjacent cell(s). In Table component this is done via setting
+          |`isNone = true` in adjacent `Table.Cell`(s):
+          |
+          |```scala
+          |Table.Column("First", _ => Table.Cell("Extended", colSpan = 3)),
+          |Table.Column("Second", _ => Table.Cell(isNone = true))
+          |Table.Column("Third", _ => Table.Cell(isNone = true))
+          |```
+          |
+          |Full example:
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -359,7 +479,6 @@ object PageTable {
       }))(),
       Markdown(
         """
-          |
           |## Footer
           |
           |Table also has a `footer` prop, in which you can put any custom VdomNode:

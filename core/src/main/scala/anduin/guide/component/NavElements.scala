@@ -5,7 +5,7 @@ import org.scalajs.dom.raw.DOMParser
 
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.container.Collapse
-import anduin.component.icon.IconAcl
+import anduin.component.icon.Icon
 import anduin.guide.Main
 import anduin.style.Style
 
@@ -74,9 +74,9 @@ object NavElements {
                 onClick = toggle
               )({
                 val name =
-                  if (isExpanded) IconAcl.NameCaretDown
-                  else IconAcl.NameCaretRight
-                IconAcl(name = name)()
+                  if (isExpanded) Icon.NameCaretDown
+                  else Icon.NameCaretRight
+                Icon(name = name)()
               })
             },
             content

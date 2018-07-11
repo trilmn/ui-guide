@@ -22,7 +22,10 @@ object Main {
   case class FixedLineHeight(hash: String = "") extends Page
   // component
   case class Component(hash: String = "") extends Page
+  // icon
   case class Icon(hash: String = "") extends Page
+  case class Illus(hash: String = "") extends Page
+  case class IllusFolder(hash: String = "") extends Page
   // button
   case class Button(hash: String = "") extends Page
   case class ButtonStyle(hash: String = "") extends Page
@@ -32,6 +35,7 @@ object Main {
   case class Collapse(hash: String = "") extends Page
   case class Tab(hash: String = "") extends Page
   case class Table(hash: String = "") extends Page
+  case class Well(hash: String = "") extends Page
   // portal
   case class Portal(hash: String = "") extends Page
   case class Popover(hash: String = "") extends Page
@@ -50,29 +54,56 @@ object Main {
     val hash = string("(#.*|)$")
 
     (trimSlashes
-      | staticRoute(root, Welcome) ~> renderR(PageWelcome.render)
+      | staticRoute(root, Welcome) ~>
+        renderR(PageWelcome.render)
 
-      | dynamicRouteCT("style" ~ hash.caseClass[Style]) ~> renderR(PageStyle.render)
-      | dynamicRouteCT("color" ~ hash.caseClass[Color]) ~> renderR(PageColor.render)
-      | dynamicRouteCT("space" ~ hash.caseClass[Space]) ~> renderR(PageSpace.render)
-      | dynamicRouteCT("flexbox" ~ hash.caseClass[Flexbox]) ~> renderR(PageFlexbox.render)
-      | dynamicRouteCT("typography" ~ hash.caseClass[Typography]) ~> renderR(PageTypography.render)
-      | dynamicRouteCT("fixed-line-height" ~ hash.caseClass[FixedLineHeight]) ~> renderR(PageFixedLineHeight.render)
+      | dynamicRouteCT("style" ~ hash.caseClass[Style]) ~>
+        renderR(PageStyle.render)
+      | dynamicRouteCT("color" ~ hash.caseClass[Color]) ~>
+        renderR(PageColor.render)
+      | dynamicRouteCT("space" ~ hash.caseClass[Space]) ~>
+        renderR(PageSpace.render)
+      | dynamicRouteCT("flexbox" ~ hash.caseClass[Flexbox]) ~>
+        renderR(PageFlexbox.render)
+      | dynamicRouteCT("typography" ~ hash.caseClass[Typography]) ~>
+        renderR(PageTypography.render)
+      | dynamicRouteCT("typography-fixed" ~ hash.caseClass[FixedLineHeight]) ~>
+        renderR(PageFixedLineHeight.render)
 
-      | dynamicRouteCT("component" ~ hash.caseClass[Component]) ~> renderR(PageComponent.render)
-      | dynamicRouteCT("icon" ~ hash.caseClass[Icon]) ~> renderR(PageIcon.render)
-      | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> renderR(PageButton.render)
-      | dynamicRouteCT("button-style" ~ hash.caseClass[ButtonStyle]) ~> renderR(PageButtonStyle.render)
-      | dynamicRouteCT("button-link" ~ hash.caseClass[ButtonLink]) ~> renderR(PageButtonLink.render)
-      | dynamicRouteCT("card" ~ hash.caseClass[Card]) ~> renderR(PageCard.render)
-      | dynamicRouteCT("collapse" ~ hash.caseClass[Collapse]) ~> renderR(PageCollapse.render)
+      | dynamicRouteCT("component" ~ hash.caseClass[Component]) ~>
+        renderR(PageComponent.render)
+
+      | dynamicRouteCT("icon" ~ hash.caseClass[Icon]) ~>
+        renderR(PageIcon.render)
+      | dynamicRouteCT("illus" ~ hash.caseClass[Illus]) ~>
+        renderR(PageIllus.render)
+      | dynamicRouteCT("illus-folder" ~ hash.caseClass[IllusFolder]) ~>
+        renderR(PageIllusFolder.render)
+
+      | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~>
+        renderR(PageButton.render)
+      | dynamicRouteCT("button-style" ~ hash.caseClass[ButtonStyle]) ~>
+        renderR(PageButtonStyle.render)
+      | dynamicRouteCT("button-link" ~ hash.caseClass[ButtonLink]) ~>
+        renderR(PageButtonLink.render)
+
+      | dynamicRouteCT("card" ~ hash.caseClass[Card]) ~>
+        renderR(PageCard.render)
+      | dynamicRouteCT("collapse" ~ hash.caseClass[Collapse]) ~>
+        renderR(PageCollapse.render)
       | dynamicRouteCT("tab" ~ hash.caseClass[Tab]) ~>
-      renderR(PageTab.render)
-      | dynamicRouteCT("table" ~ hash.caseClass[Table])
-      ~> renderR(PageTable.render)
-      | dynamicRouteCT("portal" ~ hash.caseClass[Portal]) ~> renderR(PagePortal.render)
-      | dynamicRouteCT("tooltip" ~ hash.caseClass[Tooltip]) ~> renderR(PageTooltip.render)
-      | dynamicRouteCT("popover" ~ hash.caseClass[Popover]) ~> renderR(PagePopover.render)
+        renderR(PageTab.render)
+      | dynamicRouteCT("table" ~ hash.caseClass[Table]) ~>
+        renderR(PageTable.render)
+      | dynamicRouteCT("well" ~ hash.caseClass[Well]) ~>
+        renderR(PageWell.render)
+
+      | dynamicRouteCT("portal" ~ hash.caseClass[Portal]) ~>
+        renderR(PagePortal.render)
+      | dynamicRouteCT("tooltip" ~ hash.caseClass[Tooltip]) ~>
+        renderR(PageTooltip.render)
+      | dynamicRouteCT("popover" ~ hash.caseClass[Popover]) ~>
+        renderR(PagePopover.render)
 
       | emptyRule)
       .notFound(redirectToPage(Welcome)(Redirect.Replace))

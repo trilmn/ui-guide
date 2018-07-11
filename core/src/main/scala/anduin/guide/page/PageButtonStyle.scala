@@ -4,8 +4,8 @@ import japgolly.scalajs.react.Callback
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.{Button, ButtonStyle}
-import anduin.component.icon.IconAcl
-import anduin.component.icon.IconAcl.NameUpload
+import anduin.component.icon.Icon
+import anduin.component.icon.Icon.NameUpload
 import anduin.component.menu.{Menu, MenuItem}
 import anduin.component.portal._
 import anduin.guide.Main
@@ -64,7 +64,7 @@ object PageButtonStyle {
           Button(
             color = ButtonStyle.ColorPrimary
           )(
-            IconAcl(name = NameUpload)(),
+            Icon(name = NameUpload)(),
             <.span(Style.margin.left8, "Add Closing Book")
           ),
           <.p(
@@ -86,19 +86,19 @@ object PageButtonStyle {
         )(
           <.div(
             Style.flexbox.flex,
-            button(IconAcl(name = IconAcl.NameAlignLeft)()),
-            button(IconAcl(name = IconAcl.NameAlignCenter)()),
-            button(IconAcl(name = IconAcl.NameAlignRight)()),
-            button(IconAcl(name = IconAcl.NameAlignJustify)()),
+            button(Icon(name = Icon.NameAlignLeft)()),
+            button(Icon(name = Icon.NameAlignCenter)()),
+            button(Icon(name = Icon.NameAlignRight)()),
+            button(Icon(name = Icon.NameAlignJustify)()),
             sep,
-            button(IconAcl(name = IconAcl.NameBold)()),
-            button(IconAcl(name = IconAcl.NameItalic)()),
-            button(IconAcl(name = IconAcl.NameUnderline)()),
-            button(IconAcl(name = IconAcl.NameStrikeThrough)()),
+            button(Icon(name = Icon.NameBold)()),
+            button(Icon(name = Icon.NameItalic)()),
+            button(Icon(name = Icon.NameUnderline)()),
+            button(Icon(name = Icon.NameStrikeThrough)()),
             sep,
-            button(IconAcl(name = IconAcl.NameListBullet)()),
-            button(IconAcl(name = IconAcl.NameListNumber)()),
-            button(IconAcl(name = IconAcl.NameTable)())
+            button(Icon(name = Icon.NameListBullet)()),
+            button(Icon(name = Icon.NameListNumber)()),
+            button(Icon(name = Icon.NameTable)())
           )
         )
       },
@@ -330,7 +330,7 @@ object PageButtonStyle {
       ExampleRich(
         // format: off
         Source.annotate({
-          /*>*/val icon = IconAcl(name = IconAcl.NameLightBolt)()
+          /*>*/val icon = Icon(name = Icon.NameLightBolt)()
           val margin = Style.margin.right8
           <.div(Style.flexbox.flex,
             <.div(/*<*/Button()(<.span(margin, icon), "Text"/*>*/), Style.margin.right16),
@@ -348,7 +348,7 @@ object PageButtonStyle {
       ExampleRich(
         // format: off
         Source.annotate({
-          /*>*/val icon = IconAcl(name = IconAcl.NameLightBolt)()
+          /*>*/val icon = Icon(name = Icon.NameLightBolt)()
           <.div(Style.flexbox.flex,
             <.div(/*<*/Button()(icon)/*>*/, Style.margin.right16),
             <.div(/*<*/Button(size = ButtonStyle.SizeIcon)(icon)/*>*/))/*<*/

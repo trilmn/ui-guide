@@ -2,13 +2,13 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.component.button.{Button, ButtonLink, ButtonStyle}
-import anduin.guide.Main
+import anduin.component.button.{ButtonLink, ButtonStyle}
+import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
 
 object PageButtonLink {
-  def render(ctl: Main.Ctl): VdomElement = {
+  def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
       <.header(
@@ -29,7 +29,7 @@ object PageButtonLink {
             Style.flexbox.flex,
             <.div(/*<*/
               ButtonLink(
-                href = ctl.urlFor(Main.Color()).value,
+                href = ctl.urlFor(Pages.Color()).value,
                 color = ButtonStyle.ColorPrimary
               )("Go to Color guide")/*>*/
             ),
@@ -57,7 +57,7 @@ object PageButtonLink {
            |
            |ButtonLink supports most customization via [ButtonStyle][2], with the following exceptions:
            |
-           |[2]: ${ctl.urlFor(Main.ButtonStyle()).value}
+           |[2]: ${ctl.urlFor(Pages.ButtonStyle()).value}
            |
            |**`StyleLink` is not available,** because the main purpose of ButtonLink is to bring the strong appearance of Button to a link. If you don't need that then just simply use an `a` tag.
            |

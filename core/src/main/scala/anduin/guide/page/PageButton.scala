@@ -8,7 +8,7 @@ import anduin.mcro.Source
 import anduin.style.Style
 
 object PageButton {
-  def render(ctl: Main.Ctl): VdomElement = {
+  def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
       <.header(
@@ -46,13 +46,13 @@ object PageButton {
            |
            |If you want something that should change the URL (and still has the appearance of a Button) then use [ButtonLink][1].
            |
-           |[1]: ${ctl.urlFor(Main.ButtonLink()).value}
+           |[1]: ${ctl.urlFor(Pages.ButtonLink()).value}
            |
            |# Appearance
            |
            |Button supports all customization via ButtonStyle. See the [ButtonStyle guide][2] for detail.
            |
-           |[2]: ${ctl.urlFor(Main.ButtonStyle()).value}
+           |[2]: ${ctl.urlFor(Pages.ButtonStyle()).value}
            |
            |# Type
            |
@@ -96,7 +96,7 @@ object PageButton {
            |
            |**On appearance side,** thank to ButtonStyle, this observes other props to provides correct styling for different colors and styles. Learn more and see examples at [ButtonStyle][1].
            |
-           |[1]: ${ctl.urlFor(Main.ButtonStyle("#with-isdisabled")).value}
+           |[1]: ${ctl.urlFor(Pages.ButtonStyle("#with-isdisabled")).value}
           """.stripMargin
       )()
     )

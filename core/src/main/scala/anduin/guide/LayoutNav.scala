@@ -2,8 +2,6 @@
 
 package anduin.guide
 
-import japgolly.scalajs.react.extra.router.RouterCtl
-
 import anduin.guide.component.NavElements
 import anduin.guide.component.NavElements.{li, link, ul}
 import anduin.style.Style
@@ -11,11 +9,13 @@ import anduin.style.Style
 // scalastyle:off underscore.import
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
+
+import anduin.guide.Pages._
 // scalastyle:on underscore.import
 
 final case class LayoutNav(
-  ctl: RouterCtl[Main.Page],
-  page: Main.Page
+  ctl: Router.Ctl,
+  page: Page
 ) {
   def apply(): VdomElement = LayoutNav.component(this)
 }
@@ -30,90 +30,90 @@ object LayoutNav {
       ^.padding := "64px 0",
       Style.lineHeight.px40,
       ul(
-        li(link("Welcome", Main.Welcome)),
+        li(link("Welcome", Welcome)),
         li(
-          link("Style", Main.Style()),
+          link("Style", Pages.Style()), // Name collision
           ul(
             li(
               link("Layout"),
               ul(
-                li(link("Space", Main.Space())),
-                li(link("Flexbox", Main.Flexbox()))
+                li(link("Space", Space())),
+                li(link("Flexbox", Flexbox()))
               )
             ),
-            li(link("Color", Main.Color())),
+            li(link("Color", Color())),
             li(
-              link("Typography", Main.Typography()),
-              ul(li(link("Fixed line height", Main.FixedLineHeight())))
+              link("Typography", Typography()),
+              ul(li(link("Fixed line height", FixedLineHeight())))
             )
           )
         ),
         li(
-          link("Component", Main.Component()),
+          link("Component", Component()),
           ul(
             li(
-              link("Button", Main.Button()),
+              link("Button", Button()),
               ul(
-                li(link("ButtonStyle", Main.ButtonStyle())),
-                li(link("ButtonLink", Main.ButtonLink()))
+                li(link("ButtonStyle", ButtonStyle())),
+                li(link("ButtonLink", ButtonLink()))
               )
             ),
             li(
-              link("Container", Main.WIP()),
+              link("Container", WIP()),
               ul(
-                li(link("Card", Main.Card())),
-                li(link("Collapse", Main.Collapse())),
-                li(link("Tab", Main.Tab())),
-                li(link("Table", Main.Table())),
-                li(link("Well", Main.Well()))
+                li(link("Card", Card())),
+                li(link("Collapse", Collapse())),
+                li(link("Tab", Tab())),
+                li(link("Table", Table())),
+                li(link("Well", Well()))
               )
             ),
             li(
-              link("Icon", Main.Icon()),
+              link("Icon", Icon()),
               ul(
-                li(link("Illus", Main.Illus())),
-                li(link("Illus Folder", Main.IllusFolder()))
+                li(link("Illus", Illus())),
+                li(link("Illus Folder", IllusFolder()))
               )
             ),
             li(
-              link("Input", Main.WIP()),
+              link("Input", WIP()),
               ul(
-                li(link("Checkbox", Main.Checkbox())),
+                li(link("Checkbox", Checkbox())),
                 li(
-                  link("Dropdown", Main.WIP()),
+                  link("Dropdown", WIP()),
                   ul(
-                    li(link("Custom", Main.WIP())),
-                    li(link("Native", Main.WIP()))
+                    li(link("Custom", WIP())),
+                    li(link("Native", WIP()))
                   )
                 ),
-                li(link("Radio", Main.WIP())),
-                li(link("RadioBox", Main.WIP())),
-                li(link("Text", Main.WIP()))
+                li(link("Radio", WIP())),
+                li(link("RadioBox", WIP())),
+                li(link("Text", WIP()))
               )
             ),
             li(
-              link("Portal", Main.WIP()),
+              link("Portal", WIP()),
               ul(
-                li(link("Tooltip", Main.WIP())),
-                li(link("Popover", Main.WIP())),
-                li(link("Menu", Main.WIP())),
-                li(link("Modal", Main.WIP()))
+                li(link("Tooltip", WIP())),
+                li(link("Popover", WIP())),
+                li(link("Menu", WIP())),
+                li(link("Modal", WIP()))
               )
             ),
             li(
-              link("Text", Main.WIP()),
+              link("Text", WIP()),
               ul(
-                li(link("Tag", Main.WIP())),
-                li(link("DateTime", Main.WIP()))
+                li(link("Tag", WIP())),
+                li(link("DateTime", WIP()))
               )
             )
           )
         ),
         li(
-          link("Layout", Main.WIP())
+          link("Layout", WIP())
         ),
         li(
-          link("Copy", Main.WIP())
+          link("Copy", WIP())
         )
       )
     )

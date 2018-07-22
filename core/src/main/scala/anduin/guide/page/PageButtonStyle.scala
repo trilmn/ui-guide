@@ -6,14 +6,12 @@ import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.icon.Icon
 import anduin.component.icon.Icon.NameUpload
-import anduin.component.menu.{Menu, MenuItem}
-import anduin.component.portal._
-import anduin.guide.Main
+import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
 
 object PageButtonStyle {
-  def render(ctl: Main.Ctl): VdomElement = {
+  def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
       <.header(
@@ -167,29 +165,31 @@ object PageButtonStyle {
           |**ColorDanger + StyleFull should be saved for confirmation action.** For example, the "Remove" button itself can be Neutral since it is not the final destructive action.
           """.stripMargin
       )(),
-      ExampleSimple()(
-        <.div(
-          Style.flexbox.flex.flexbox.justifyBetween.flexbox.itemsCenter,
-          <.p("John (john.doe@yourco.com) was added 2 days ago."),
-          Modal(
-            title = "Confirm Removing",
-            renderTarget = open => Button(onClick = open)("Remove"),
-            renderContent = close =>
-              ReactFragment(
-                ModalBody(
-                  """
-                    |After removed, John can not see any information about this
-                    |transaction, including his past activity.
-                  """.stripMargin
-                ),
-                ModalFooterWCancel(cancel = close) {
-                  val onClick = Callback.log("John was removed") >> close
-                  Button(onClick = onClick, color = ButtonStyle.ColorDanger)("Remove John")
-                }
-            )
-          )()
-        )
-      ),
+      // @TODO: This should be ExampleSimple, but Popover is dying
+      Markdown(
+        """
+          |<.div(
+          |  Style.flexbox.flex.flexbox.justifyBetween.flexbox.itemsCenter,
+          |  <.p("John (john.doe@yourco.com) was added 2 days ago."),
+          |  Modal(
+          |    title = "Confirm Removing",
+          |    renderTarget = open => Button(onClick = open)("Remove"),
+          |    renderContent = close =>
+          |      ReactFragment(
+          |        ModalBody(
+          |          "After removed, John can not see any information about" +
+          |          "this transaction, including his past activity."
+          |        ),
+          |        ModalFooterWCancel(cancel = close) {
+          |          val onClick = Callback.log("John was removed") >> close
+          |          Button(onClick = onClick, color = ButtonStyle
+          |          .ColorDanger)("Remove John")
+          |        }
+          |    )
+          |  )()
+          |)
+        """.stripMargin
+      )(),
       Markdown(
         """
           |**Color works with all types of Style:**
@@ -275,24 +275,26 @@ object PageButtonStyle {
           |
           |# isSelected
           |
-          |Use the `isSelected` prop to have the `active` style always visible. This is useful when the button is being used to toggle something on and off, like a popover:
+          |Use the `isSelected` prop to have the `active` style always
+          |visible. This is useful when the button is being used to toggle
+          |something on and off, like a popover:
         """.stripMargin
       )(),
-      ExampleRich(
-        // format: off
-        Source.annotate(
-          /*>*/<.div(Style.flexbox.flex,
-            Popover(
-              position = PositionBottomLeft,
-              verticalOffset = 4,
-              renderTarget = (open, _, _, status) =>
-                /*<*/Button(onClick = open, isSelected = status == StatusOpen)("More")/*>*/ ,
-              renderContent = (_, _) => Menu()(MenuItem()("Copy"), MenuItem()("Paste"))
-            )()
-          )/*<*/
-        )
-        // format: on
-      )(),
+      // @TODO: This should be ExampleRich, but Popover is dying
+      Markdown(
+        """
+          |```scala
+          |Popover(
+          |  position = PositionBottomLeft,
+          |  verticalOffset = 4,
+          |  renderTarget = (open, _, _, status) =>
+          |    Button(onClick = open, isSelected = status == StatusOpen)
+          |    ("More"),
+          |  renderContent = (_, _) => Menu()(MenuItem()("Copy"), MenuItem()
+          |  ("Paste"))
+          |)()
+          |```
+        """.stripMargin)(),
       Markdown(
         """
           |This works with both StyleFull and StyleMinimal, as well as all values of Color:

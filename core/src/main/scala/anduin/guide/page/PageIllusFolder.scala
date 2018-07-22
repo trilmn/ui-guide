@@ -3,12 +3,12 @@ package anduin.guide.page
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.icon.{Icon, IllusFolder}
-import anduin.guide.Main
+import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
 
 object PageIllusFolder {
-  def render(ctl: Main.Ctl): VdomElement = {
+  def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
       <.header(
@@ -20,7 +20,7 @@ object PageIllusFolder {
           |This is a special [Illus][1] introduced due to the common needs
           |of a customizable Folder symbol:
           |
-          |[1]: ${ctl.urlFor(Main.Illus()).value}
+          |[1]: ${ctl.urlFor(Pages.Illus()).value}
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -36,7 +36,7 @@ object PageIllusFolder {
           |
           |To change the color of the folder, use the `color` prop with one
           |of the predefined values:
-          |[1]: ${ctl.urlFor(Main.Color()).value}
+          |[1]: ${ctl.urlFor(Pages.Color()).value}
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -58,7 +58,7 @@ object PageIllusFolder {
           |To add an icon on the folder, use the `icon` prop with an [Icon's
           |Name][1]:
           |
-          |[1]: ${ctl.urlFor(Main.Icon("#name")).value}
+          |[1]: ${ctl.urlFor(Pages.Icon("#name")).value}
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -84,7 +84,7 @@ object PageIllusFolder {
           |Like Illus, IllusFolder also accepts resizing via a `size` prop.
           |It works exactly like [Illus's Size][1].
           |
-          |[1]: ${ctl.urlFor(Main.Illus("#size")).value}
+          |[1]: ${ctl.urlFor(Pages.Illus("#size")).value}
         """.stripMargin
       )()
     )

@@ -5,7 +5,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.container.Table
 import anduin.component.text.Tag
-import anduin.guide.Main
+import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
 
@@ -67,7 +67,7 @@ object PageTable {
   private case class Member(id: Int, name: String, email: String)
   private val MemberTable = (new Table[Member])()
 
-  def render(ctl: Main.Ctl): VdomElement = {
+  def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
       <.header(
@@ -425,9 +425,7 @@ object PageTable {
           |Table sorted by a column by default, pass that column's index to
           |the `sortColumn` prop of the Table.
           |
-          |# Content
-          |
-          |## Span
+          |# Span
           |
           |Table supports [`colspan`][1] via the `colSpan` prop of
           |`Table.Cell`. This should receive the number of column your cell
@@ -479,6 +477,89 @@ object PageTable {
       }))(),
       Markdown(
         """
+        |# Custom Render
+        |
+        |## Row
+        |
+        |Table rows are separated by border and has background changed on
+        |hover. This appearance, however, can be fully customized via the
+        |`renderRow` prop, which expects a function that receives:
+        |
+        ||Param  |Type       |Description|
+        ||-------|-----------|-----------|
+        ||`style`|TagMod     |The default style of that row, from the [`style`](#style) prop|
+        ||`key`  |String     |The [key][1] of that row, from the [`getKey`](#getkey) prop|
+        ||`cells`|VdomArray  |Array of rendered cells (`td`) of that row|
+        ||`row`  |A          |The data of that row (an item of the [`rows`](#rows) prop)|
+        |
+        |[1]: https://reactjs.org/docs/lists-and-keys.html
+        |
+        |and returns your customized `tr`.
+        |
+        |For example, let say we that we want to render the row of Ada a
+        |little bit more prominent:
+        """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        /*>*/
+        val table = Sample.BaseTable.copy( /*<*/
+          renderRow = (
+            _: TagMod,
+            key: String,
+            cells: VdomArray,
+            member: Sample.Member
+          ) => {
+            <.tr(
+              Style.border.all.borderColor.gray3,
+              TagMod(
+                Style.backgroundColor.gray1,
+                ^.transform := "scale(1.05)",
+                ^.boxShadow := "0 0 0 1px var(--color-gray-4)," +
+                  "0 1px 8px #00000014"
+              ).when(member.name == "Ada"),
+              ^.key := key,
+              cells
+            )
+          } /*>*/
+        )()
+        <.div(table) /*<*/
+      }))(),
+      Markdown(
+        """
+          |With this prop, you can also remove in between border to visually
+          |group adjacent rows, or dim their background (e.g. to gray 1 or 2).
+          |
+          |For reference, below is the implementation of the default
+          |`renderRow`, which could be used as a boilerplate for yours:
+          |
+          |```scala
+          |def defaultRenderRow[A](
+          |  style: TagMod,
+          |  key: String,
+          |  cells: VdomArray,
+          |  row: A
+          |): vdom.TagOf[html.TableRow] = {
+          |  <.tr(
+          |    Style.hover.backgroundGray1, // background changes on hover
+          |    style,        // predefined style from `style` prop
+          |    ^.key := key, // React's key
+          |    cells         // rendered cells (`td`s)
+          |  )
+          |}
+          |```
+          |
+          |>::warning::
+          |>**Warning: Always provide `key`**
+          |>
+          |>Your `<.tr`s will be rendered as a VdomArray, which requires `key`
+          |>to be defined in every `<.tr`. Without a valid key, your `<.tr`
+          |>might be rendered more than enough and its children could lost
+          |>their state or focus.
+          |>
+          |>The value of key is already provided as an argument in your
+          |>`renderRow` function. You can prefix or suffix it, but make sure
+          |>to always apply it to your `<.tr`.
+          |
           |## Footer
           |
           |Table also has a `footer` prop, in which you can put any custom VdomNode:

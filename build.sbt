@@ -27,6 +27,8 @@ lazy val core = (project in file("core"))
       "com.github.japgolly.scalajs-react" %%% "extra" % "1.2.0",
       "com.github.karasiq" %%% "scalajs-marked" % "1.0.2"
     ),
+    // https://github.com/webjars/webjars/issues/1789
+    dependencyOverrides += "org.webjars.npm" % "js-tokens" % "3.0.2",
     jsDependencies ++= Seq(
       "org.webjars.npm" % "react" % "16.3.1"
         / "umd/react.development.js"

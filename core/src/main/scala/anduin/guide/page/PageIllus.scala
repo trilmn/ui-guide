@@ -2,7 +2,7 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.guide.Main
+import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.component.icon.Illus
 import anduin.style.Style
@@ -14,7 +14,7 @@ object PageIllus {
     Style.flexbox.none.width.pcOneRd
   )
 
-  def render(ctl: Main.Ctl): VdomElement = {
+  def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
       <.header(

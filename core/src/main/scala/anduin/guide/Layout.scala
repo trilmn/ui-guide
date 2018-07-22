@@ -6,7 +6,9 @@ import japgolly.scalajs.react.vdom.html_<^._
 import anduin.style.Style
 
 object Layout {
-  def render(ctl: RouterCtl[Main.Page], resolution: Resolution[Main.Page]): VdomElement =
+  private type Res = Resolution[Pages.Page]
+
+  def render(ctl: Router.Ctl, res: Res): VdomElement =
     <.div(
       Style.fontSize.px16.lineHeight.px24,
       ^.paddingLeft := "288px",
@@ -14,13 +16,13 @@ object Layout {
         ^.width := "288px",
         Style.position.fixed.coordinate.left0.coordinate.top0,
         Style.height.pc100.overflow.auto,
-        LayoutNav(ctl = ctl, page = resolution.page)()
+        LayoutNav(ctl = ctl, page = res.page)()
       ),
       <.div(
         ^.width := "768px",
         Style.backgroundColor.white,
         ^.padding := "64px 96px",
-        resolution.render()
+        res.render()
       )
     )
 }

@@ -2,7 +2,7 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.guide.Main
+import anduin.guide.Router
 import anduin.style.Style
 
 object PageWelcome {
@@ -28,7 +28,7 @@ object PageWelcome {
     )
   }
 
-  def render(ctl: Main.Ctl): VdomElement = {
+  def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       <.header(
         Style.margin.bottom32,

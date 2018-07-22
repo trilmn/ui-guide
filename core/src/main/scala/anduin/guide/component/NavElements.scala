@@ -1,12 +1,11 @@
 package anduin.guide.component
 
-import japgolly.scalajs.react.extra.router.RouterCtl
 import org.scalajs.dom.raw.DOMParser
 
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.container.Collapse
 import anduin.component.icon.Icon
-import anduin.guide.Main
+import anduin.guide.{Pages, Router}
 import anduin.style.Style
 
 // scalastyle:off underscore.import
@@ -17,14 +16,14 @@ import japgolly.scalajs.react.vdom.html_<^._
 object NavElements {
 
   case class Props(
-    ctl: RouterCtl[Main.Page],
-    page: Main.Page
+    ctl: Router.Ctl,
+    page: Pages.Page
   )
 
-  def link(content: VdomNode, target: Main.Page = Main.WIP())(
+  def link(content: VdomNode, target: Pages.Page = Pages.WIP())(
     implicit props: Props
   ): VdomElement = {
-    if (target == Main.WIP()) {
+    if (target == Pages.WIP()) {
       <.p(Style.color.gray6, content)
     } else {
       val isSelected = target.getClass == props.page.getClass
@@ -49,6 +48,36 @@ object NavElements {
     getText(content).toLowerCase.replace(" ", "").contains(page)
   }
 
+  private def renderLiContent(
+    content: VdomElement,
+    children: VdomElement
+  )(
+    toggle: Callback,
+    isExpanded: Boolean
+  ): VdomElement = {
+    <.li(
+      <.div(
+        Style.flexbox.flex.flexbox.itemsCenter,
+        if (children == emptyVdomElement) {
+          Style.padding.left32
+        } else {
+          Button(
+            style = ButtonStyle.StyleMinimal,
+            size = ButtonStyle.SizeIcon,
+            onClick = toggle
+          )({
+            val name =
+              if (isExpanded) Icon.NameCaretDown
+              else Icon.NameCaretRight
+            Icon(name = name)()
+          })
+        },
+        content
+      ),
+      TagMod.when(isExpanded) { children }
+    )
+  }
+
   def li(
     content: VdomElement,
     children: VdomElement = emptyVdomElement
@@ -61,29 +90,7 @@ object NavElements {
 
     Collapse(
       isExpanded = hasCurrentPage,
-      render = (toggle, isExpanded) => {
-        <.li(
-          <.div(
-            Style.flexbox.flex.flexbox.itemsCenter,
-            if (children == emptyVdomElement) {
-              Style.padding.left32
-            } else {
-              Button(
-                style = ButtonStyle.StyleMinimal,
-                size = ButtonStyle.SizeIcon,
-                onClick = toggle
-              )({
-                val name =
-                  if (isExpanded) Icon.NameCaretDown
-                  else Icon.NameCaretRight
-                Icon(name = name)()
-              })
-            },
-            content
-          ),
-          TagMod.when(isExpanded) { children }
-        )
-      }
+      render = renderLiContent(content, children)
     )()
   }
 

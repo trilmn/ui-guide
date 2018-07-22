@@ -4,12 +4,12 @@ import japgolly.scalajs.react.Callback
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.container.{Collapse, Well}
-import anduin.guide.Main
+import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
 
 object PageWell {
-  def render(ctl: Main.Ctl): VdomElement = {
+  def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
       <.header(
@@ -21,7 +21,7 @@ object PageWell {
           |Well is a container like [Card][1] but with stronger visual
           |attention:
           |
-          |[1]: ${ctl.urlFor(Main.Card()).value}
+          |[1]: ${ctl.urlFor(Pages.Card()).value}
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -85,7 +85,7 @@ object PageWell {
           |That boolean-toggling logic can be provided by the [Collapse][1]
           |component:
           |
-          |[1]: ${ctl.urlFor(Main.Collapse()).value}
+          |[1]: ${ctl.urlFor(Pages.Collapse()).value}
           |
           |""".stripMargin
       )(),
@@ -102,7 +102,7 @@ object PageWell {
         """
           |# Color
           |
-          |Well supports 5 main colors via the `color` prop. This also change
+          |Well supports 5 main colors via the `color` prop. This also changes
           |the Well's icon to reflect the same meaning with the color:
           |""".stripMargin
       )(),

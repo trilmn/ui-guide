@@ -4,12 +4,12 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.Button
 import anduin.component.icon.Icon
-import anduin.guide.Main
+import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
 
 object PageComponent {
-  def render(ctl: Main.Ctl): VdomElement = {
+  def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
       <.header(
@@ -118,7 +118,7 @@ object PageComponent {
           |technique like [Flexbox][1], which should have better control and
           |yield more stable result.
           |
-          |[1]: ${ctl.urlFor(Main.Flexbox()).value}
+          |[1]: ${ctl.urlFor(Pages.Flexbox()).value}
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({

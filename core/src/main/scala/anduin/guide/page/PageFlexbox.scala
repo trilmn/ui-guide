@@ -3,12 +3,12 @@ package anduin.guide.page
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.Button
-import anduin.guide.Main
+import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
 
 object PageFlexbox {
-  def render(ctl: Main.Ctl): VdomElement = {
+  def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
       <.header(

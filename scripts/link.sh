@@ -72,29 +72,27 @@ components=(
   icon/IllusFolder.scala
 
   input/Checkbox.scala
-  input/CustomDropdown.scala
+#  input/CustomDropdown.scala
   input/NativeDropdown.scala
   input/FileButtonInput.scala
   input/Radio.scala
   input/RadioBox.scala
   input/TextInput.scala
 
-  menu/Menu.scala
-  menu/MenuDivider.scala
-  menu/MenuItem.scala
-
-  portal/LegacyPortal.scala
-  portal/PortalWrapper.scala
-  portal/Portal.scala
-  portal/Position.scala
-  portal/Status.scala
-  portal/Modal.scala
-  portal/ModalBody.scala
-  portal/ModalFooter.scala
-  portal/ModalFooterWCancel.scala
-  portal/ModalHeader.scala
-  portal/Popover.scala
-  portal/Tooltip.scala
+#  menu/Menu.scala
+#  menu/MenuDivider.scala
+#  menu/MenuItem.scala
+#
+#  portal/LegacyPortal.scala
+#  portal/PortalWrapper.scala
+#  portal/Portal.scala
+#  portal/Position.scala
+#  portal/Status.scala
+#  portal/Modal.scala
+#  portal/ModalBody.scala
+#  portal/ModalFooter.scala
+#  portal/ModalFooterWCancel.scala
+#  portal/ModalHeader.scala
 
   text/Tag.scala
   text/DateTime.scala

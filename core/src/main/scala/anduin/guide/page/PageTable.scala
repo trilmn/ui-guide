@@ -180,11 +180,11 @@ object PageTable {
           getKey = _.id.toString,
           columns = List(
             Table.Column(
-              head = "name",
+              head = "Name",
               render = member => Table.Cell(member.name)
             ),
             Table.Column(
-              head = "email",
+              head = "Email",
               render = member => Table.Cell(member.email)
             )
           )
@@ -341,7 +341,8 @@ object PageTable {
           columns = List(
             Sample.BaseTable.columns.head, /*<*/
             Table.Column(
-              head = "Long long long long long long long long long long name",
+              head = "Long long long long long long long long long long long " +
+                "long long name",
               render = member => Table.Cell(member.name)
             ), /*>*/
             Sample.BaseTable.columns(2),

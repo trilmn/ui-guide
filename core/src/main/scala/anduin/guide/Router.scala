@@ -68,6 +68,9 @@ object Router {
       | dynamicRouteCT("checkbox" ~ hash.caseClass[Checkbox]) ~>
         renderR(PageCheckbox.render)
 
+      | dynamicRouteCT("modal" ~ hash.caseClass[Modal]) ~>
+        renderR(PageModal.render)
+
       | emptyRule)
       .notFound(redirectToPage(Welcome)(Redirect.Replace))
       .renderWith(Layout.render)

@@ -97,7 +97,7 @@ object LayoutNav {
                 li(link("Tooltip", WIP())),
                 li(link("Popover", WIP())),
                 li(link("Menu", WIP())),
-                li(link("Modal", WIP()))
+                li(link("Modal", Modal()))
               )
             ),
             li(

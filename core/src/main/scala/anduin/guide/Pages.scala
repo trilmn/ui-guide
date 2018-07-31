@@ -30,4 +30,6 @@ object Pages {
   case class IllusFolder(hash: String = "") extends Page
   // input
   case class Checkbox(hash: String = "") extends Page
+  // portal
+  case class Modal(hash: String = "") extends Page
 }

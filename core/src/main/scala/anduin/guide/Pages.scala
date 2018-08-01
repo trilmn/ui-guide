@@ -32,4 +32,5 @@ object Pages {
   case class Checkbox(hash: String = "") extends Page
   // portal
   case class Modal(hash: String = "") extends Page
+  case class Tooltip(hash: String = "") extends Page
 }

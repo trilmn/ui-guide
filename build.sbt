@@ -29,9 +29,6 @@ lazy val core = (project in file("core"))
     ),
     // https://github.com/webjars/webjars/issues/1789
     dependencyOverrides += "org.webjars.npm" % "js-tokens" % "3.0.2",
-//    dependencyOverrides += "org.webjars.npm" % "loose-envify" % "1.1.0",
-//    dependencyOverrides += "org.webjars.npm" % "object-assign" % "4.1.1",
-//    dependencyOverrides += "org.webjars.npm" % "prop-types" % "15.6.0",
     jsDependencies ++= Seq(
       "org.webjars.npm" % "react" % "16.3.1"
         / "umd/react.development.js"
@@ -47,6 +44,10 @@ lazy val core = (project in file("core"))
         minified "umd/react-dom-server.browser.production.min.js"
         dependsOn "umd/react-dom.development.js"
         commonJSName "ReactDOMServer",
+      "org.webjars.npm" % "popper.js" % "1.14.3"
+        / "dist/umd/popper.js"
+        minified "dist/umd/popper.min.js"
+        commonJSName "Popper",
       ProvidedJS / "scripts/prism.js",
       ProvidedJS / "scripts/focus-visible.js",
       "org.webjars.npm" % "marked" % "0.3.19"

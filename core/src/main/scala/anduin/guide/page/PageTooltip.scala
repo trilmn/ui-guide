@@ -1,6 +1,8 @@
 package anduin.guide.page
 
+import japgolly.scalajs.react.{Callback, Ref}
 import japgolly.scalajs.react.vdom.html_<^._
+import org.scalajs.dom
 
 import anduin.component.portal2.Tooltip
 import anduin.guide.Router
@@ -22,6 +24,24 @@ object PageTooltip {
       )(),
       ExampleRich(Source.annotate({
         val tooltip = Tooltip(target = "target")()
+        <.div(Style.flexbox.flex, tooltip)
+      }))(),
+      Markdown(
+        """
+          |# Snippet
+        """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        val tooltip = Tooltip(
+          target = EmptyVdom,
+          renderTarget = Some((ref: Ref[dom.Element, dom.Element], toggle: Callback) => {
+            <.div.withRef(ref)(
+              ^.onMouseEnter --> toggle,
+              ^.onMouseLeave --> toggle,
+              "Custom Target"
+            )
+          })
+        )()
         <.div(Style.flexbox.flex, tooltip)
       }))(),
       Markdown(

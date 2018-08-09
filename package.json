@@ -10,5 +10,9 @@
     "dev-watch": "bash ./scripts/dev-watch.sh",
     "dev-serve": "node ./scripts/dev-serve",
     "build": "bash ./scripts/build.sh"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.1.0",
+    "postcss-cli": "^6.0.0"
   }
 }

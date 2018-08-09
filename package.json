@@ -11,7 +11,7 @@
     "dev-serve": "node ./scripts/dev-serve",
     "build": "bash ./scripts/build.sh"
   },
-  "dependencies": {
+  "devDependencies": {
     "autoprefixer": "^9.1.0",
     "postcss-cli": "^6.0.0"
   }

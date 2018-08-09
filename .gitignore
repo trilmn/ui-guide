@@ -27,5 +27,6 @@ core/src/main/resources/stylesheets/core-fastopt.css.map
 # ghpages publishing
 
 # NPM
+node_modules
 scripts/dev-serve/node_modules
 .sass-cache/

@@ -27,7 +27,7 @@ object PageTooltip {
       }))(),
       Markdown(
         """
-          |# Snippet
+          |# Snippet a
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({

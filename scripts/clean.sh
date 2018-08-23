@@ -9,8 +9,8 @@ echo "[info] Clearing linked JS: anduin.component ..."
 rm -rf ${core_js_component}
 
 echo "[info] Clearing linked CSS ..."
-rm -rf ${core_css_tachyons}
-rm -f ${core_css_base}
+rm -rf ${core_css}/tachyons
+rm -f ${core_css}/_base.scss
 
 echo "[info] Clearing generated: development ..."
 rm -f ${core_css_fastopt}

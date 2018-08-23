@@ -2,6 +2,10 @@
 
 . ./scripts/_prepare.sh
 
+# Clean
+echo "[info] Clearing previous generation ..."
+rm -rf ${docs}
+mkdir ${docs}
 
 # Resources
 echo "[info] Copying resources ..."

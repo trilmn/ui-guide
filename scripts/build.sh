@@ -8,11 +8,8 @@ rm -rf ${docs}
 mkdir ${docs}
 
 # Resources
-echo "[info] Copying resources ..."
-cp ${core_res}/404.html ${docs}/
-cp ${core_res}/index-opt.html ${docs}/index.html
-cp ${core_res}/icon.png ${docs}/
-cp ${core_res}/CNAME ${docs}/
+echo "[info] Copying resources (public folder content) ..."
+cp -R ${core_res}/public/. ${docs}/
 
 # CSS
 echo "[info] Compiling CSS ..."

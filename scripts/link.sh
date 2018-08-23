@@ -39,8 +39,10 @@ ln -sf ${sgz_js}/style ${core_js}/
 echo "[info] Linking JS: dependencies for anduin.component ..."
 sgz_js_dep=${sgz_src}/platform/stargazerJSDependency/src/main/scala/anduin/scalajs
 deps=(
-  react/ReactDom.scala
+  popper/Popper.scala
+  popper/PopperOptions.scala
 )
+# @TODO: Ask Keimoon or Tue how to reuse the below func
 for name in ${deps[*]}
 do
     echo "[info] - ${name} ..."
@@ -82,17 +84,18 @@ components=(
 #  menu/Menu.scala
 #  menu/MenuDivider.scala
 #  menu/MenuItem.scala
-#
-#  portal/LegacyPortal.scala
-#  portal/PortalWrapper.scala
-#  portal/Portal.scala
-#  portal/Position.scala
-#  portal/Status.scala
-#  portal/Modal.scala
-#  portal/ModalBody.scala
-#  portal/ModalFooter.scala
-#  portal/ModalFooterWCancel.scala
-#  portal/ModalHeader.scala
+
+  portal/Modal.scala
+  portal/ModalBody.scala
+  portal/ModalFooter.scala
+  portal/ModalFooterWCancel.scala
+  portal/ModalHeader.scala
+  portal/Popover.scala
+  portal/Portal.scala
+  portal/PortalPopper.scala
+  portal/PortalUtils.scala
+  portal/Position.scala
+  portal/Tooltip.scala
 
   text/Tag.scala
   text/DateTime.scala

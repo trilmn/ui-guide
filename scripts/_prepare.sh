@@ -16,3 +16,5 @@ core_js_component=${core_js}/component
 core_target=./core/target/scala-2.12
 
 docs=./docs
+
+postcss_config=./scripts/postcss.config.js

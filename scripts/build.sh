@@ -7,7 +7,7 @@ echo "[info] Copying resources ..."
 cp ${core_res}/404.html ${docs}/
 cp ${core_res}/index-opt.html ${docs}/index.html
 cp ${core_res}/icon.png ${docs}/
-sass ${core_css_main} ${docs}/app.css --style=compressed
+postcss ${core_css_main} --config ${postcss_config} --output ${docs}/app.css
 
 # JS
 echo "[info] Compiling JS (fullOpt) ..."

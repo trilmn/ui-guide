@@ -4,7 +4,7 @@ lazy val commonSettings = Seq(
   organization := "co.anduin",
   version := "0.1",
   scalaVersion := "2.12.6",
-  libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.2.0",
+  libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.2.3",
   scalacOptions += "-Yrangepos"
 )
 
@@ -24,7 +24,7 @@ lazy val core = (project in file("core"))
     libraryDependencies ++= Seq(
       "org.scalatest" %% "scalatest" % "3.0.5" % Test,
       "org.scala-js" %%% "scalajs-dom" % "0.9.5",
-      "com.github.japgolly.scalajs-react" %%% "extra" % "1.2.0",
+      "com.github.japgolly.scalajs-react" %%% "extra" % "1.2.3",
       "com.github.karasiq" %%% "scalajs-marked" % "1.0.2"
     ),
     // https://github.com/webjars/webjars/issues/1789

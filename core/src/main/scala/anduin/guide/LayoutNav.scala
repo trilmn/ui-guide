@@ -32,6 +32,12 @@ object LayoutNav {
       ul(
         li(link("Welcome", Welcome)),
         li(
+          link("Brand", WIP()),
+          ul(
+            li(link("Logo", Logo()))
+          )
+        ),
+        li(
           link("Style", Pages.Style()), // Name collision
           ul(
             li(
@@ -42,7 +48,6 @@ object LayoutNav {
               )
             ),
             li(link("Color", Color())),
-            li(link("Logo", Logo())),
             li(
               link("Typography", Typography()),
               ul(li(link("Fixed line height", FixedLineHeight())))

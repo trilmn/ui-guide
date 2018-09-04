@@ -20,6 +20,7 @@ lazy val core = (project in file("core"))
   .enablePlugins(ScalaJSPlugin)
   .settings(
     commonSettings,
+    scalacOptions += "-P:scalajs:sjsDefinedByDefault",
     scalaJSUseMainModuleInitializer := true,
     libraryDependencies ++= Seq(
       "org.scalatest" %% "scalatest" % "3.0.5" % Test,

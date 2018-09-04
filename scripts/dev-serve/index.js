@@ -10,7 +10,7 @@ const target = '../../core/target/scala-2.12';
 app.use(express.static(path.join(__dirname, target)));
 
 app.get('/*', function (req, res) {
-   res.sendFile(path.join(__dirname, './index.html'));
- });
+    res.sendFile(path.join(__dirname, './index.html'));
+});
 
 app.listen(3000, () => console.log('Port 3000!'));

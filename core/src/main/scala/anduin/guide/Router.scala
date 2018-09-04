@@ -24,6 +24,9 @@ object Router {
       | staticRoute(root, Welcome) ~>
         renderR(PageWelcome.render)
 
+      | dynamicRouteCT("logo" ~ hash.caseClass[Logo]) ~>
+        renderR(PageLogo.render)
+
       | dynamicRouteCT("style" ~ hash.caseClass[Style]) ~>
         renderR(PageStyle.render)
       | dynamicRouteCT("color" ~ hash.caseClass[Color]) ~>
@@ -32,8 +35,6 @@ object Router {
         renderR(PageSpace.render)
       | dynamicRouteCT("flexbox" ~ hash.caseClass[Flexbox]) ~>
         renderR(PageFlexbox.render)
-      | dynamicRouteCT("logo" ~ hash.caseClass[Logo]) ~>
-        renderR(PageLogo.render)
       | dynamicRouteCT("typography" ~ hash.caseClass[Typography]) ~>
         renderR(PageTypography.render)
       | dynamicRouteCT("typography-fixed" ~ hash.caseClass[FixedLineHeight]) ~>

@@ -32,6 +32,8 @@ object Router {
         renderR(PageSpace.render)
       | dynamicRouteCT("flexbox" ~ hash.caseClass[Flexbox]) ~>
         renderR(PageFlexbox.render)
+      | dynamicRouteCT("logo" ~ hash.caseClass[Logo]) ~>
+        renderR(PageLogo.render)
       | dynamicRouteCT("typography" ~ hash.caseClass[Typography]) ~>
         renderR(PageTypography.render)
       | dynamicRouteCT("typography-fixed" ~ hash.caseClass[FixedLineHeight]) ~>
@@ -70,8 +72,6 @@ object Router {
 
       | dynamicRouteCT("modal" ~ hash.caseClass[Modal]) ~>
         renderR(PageModal.render)
-      | dynamicRouteCT("tooltip" ~ hash.caseClass[Tooltip]) ~>
-      renderR(PageTooltip.render)
 
       | emptyRule)
       .notFound(redirectToPage(Welcome)(Redirect.Replace))

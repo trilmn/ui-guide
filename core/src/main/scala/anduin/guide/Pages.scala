@@ -10,6 +10,7 @@ object Pages {
   case class Space(hash: String = "") extends Page
   case class Flexbox(hash: String = "") extends Page
   case class Color(hash: String = "") extends Page
+  case class Logo(hash: String = "") extends Page
   case class Typography(hash: String = "") extends Page
   case class FixedLineHeight(hash: String = "") extends Page
   // component
@@ -32,5 +33,4 @@ object Pages {
   case class Checkbox(hash: String = "") extends Page
   // portal
   case class Modal(hash: String = "") extends Page
-  case class Tooltip(hash: String = "") extends Page
 }

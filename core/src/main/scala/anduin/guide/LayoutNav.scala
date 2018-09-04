@@ -42,6 +42,7 @@ object LayoutNav {
               )
             ),
             li(link("Color", Color())),
+            li(link("Logo", Logo())),
             li(
               link("Typography", Typography()),
               ul(li(link("Fixed line height", FixedLineHeight())))
@@ -94,7 +95,6 @@ object LayoutNav {
             li(
               link("Portal", WIP()),
               ul(
-                li(link("Tooltip", Tooltip())),
                 li(link("Popover", WIP())),
                 li(link("Menu", WIP())),
                 li(link("Modal", Modal()))

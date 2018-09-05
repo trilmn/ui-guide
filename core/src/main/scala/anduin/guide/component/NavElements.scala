@@ -1,11 +1,9 @@
 package anduin.guide.component
 
-import org.scalajs.dom.raw.DOMParser
-
-import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.container.Collapse
 import anduin.component.icon.Icon
-import anduin.guide.{Pages, Router}
+import anduin.guide.Router
+import anduin.guide.Pages.Page
 import anduin.style.Style
 
 // scalastyle:off underscore.import
@@ -15,82 +13,67 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object NavElements {
 
-  case class Props(
-    ctl: Router.Ctl,
-    page: Pages.Page
-  )
+  case class Props(ctl: Router.Ctl, page: Page)
 
-  def link(content: VdomNode, target: Pages.Page = Pages.WIP())(
-    implicit props: Props
-  ): VdomElement = {
-    if (target == Pages.WIP()) {
-      <.p(Style.color.gray6, content)
-    } else {
-      val isSelected = target.getClass == props.page.getClass
-      val color = if (isSelected) Style.color.primary4 else Style.color.inherit
-      props.ctl.link(target)(color, content)
-    }
-  }
+  case class Title(
+    text: String,
+    page: Option[Page] = None,
+    isExpanded: Option[Page => Boolean] = None
+  )
 
   // ===
 
-  private val parser = new DOMParser()
-
-  private def getText(element: VdomElement) = {
-    val markup = ReactDOMServer.renderToStaticMarkup(element)
-    val document = parser.parseFromString(markup, "text/html")
-    document.documentElement.textContent
+  private def renderLiIcon(children: VdomNode, isExpanded: Boolean): VdomElement = {
+    val name =
+      if (children == EmptyVdom) Icon.NameBlank
+      else if (isExpanded) Icon.NameCaretDown
+      else Icon.NameCaretRight
+    Icon(name = name)()
   }
 
-  private val emptyVdomElement: VdomElement = <.div
-
-  private def isContain(content: VdomElement, page: String): Boolean = {
-    getText(content).toLowerCase.replace(" ", "").contains(page)
+  // This is similar to ScalaJS React's setOnLinkClick but we need it as a
+  // callback for composition purpose
+  private def setPage(page: Page, props: Props, e: ReactMouseEvent): Callback = {
+    CallbackOption.unless(ReactMouseEvent targetsNewTab_? e) >> props.ctl.setEH(page)(e)
   }
 
-  private def renderLiContent(
-    content: VdomElement,
-    children: VdomElement
-  )(
-    toggle: Callback,
-    isExpanded: Boolean
-  ): VdomElement = {
-    <.li(
-      <.div(
-        Style.flexbox.flex.flexbox.itemsCenter,
-        if (children == emptyVdomElement) {
-          Style.padding.left32
-        } else {
-          Button(
-            style = ButtonStyle.StyleMinimal,
-            size = ButtonStyle.SizeIcon,
-            onClick = toggle
-          )({
-            val name =
-              if (isExpanded) Icon.NameCaretDown
-              else Icon.NameCaretRight
-            Icon(name = name)()
-          })
-        },
-        content
-      ),
-      TagMod.when(isExpanded) { children }
+  private def getColor(current: Page, targetOpt: Option[Page]): TagMod = {
+    targetOpt.fold[TagMod](Style.color.inherit) { target =>
+      val cond = target.getClass.getSimpleName == current.getClass.getSimpleName
+      if (cond) Style.color.primary4 else Style.color.inherit
+    }
+  }
+
+  private def renderLi(
+    title: Title,
+    children: VdomNode,
+    props: Props
+  )(toggle: Callback, isExpanded: Boolean): VdomElement = {
+    val titleBody = TagMod(
+      Style.flexbox.flex.flexbox.itemsCenter,
+      getColor(props.page, title.page),
+      renderLiIcon(children, isExpanded),
+      <.span(Style.margin.left8, title.text)
     )
+    val titleNode = title.page.fold[VdomElement] {
+      <.button(
+        ^.onClick --> toggle,
+        titleBody
+      )
+    } { page =>
+      <.a(
+        ^.href := props.ctl.urlFor(page).value,
+        ^.onClick ==> { e => setPage(page, props, e) >> toggle },
+        titleBody
+      )
+    }
+    <.li(titleNode, TagMod.when(isExpanded) { children })
   }
 
-  def li(
-    content: VdomElement,
-    children: VdomElement = emptyVdomElement
-  )(implicit props: Props): VdomElement = {
-    // this is not good for performance, but to be honest this is a documentation,
-    // not an app... we prefer usability and friendliness here
-    val pageStr = props.page.getClass.getSimpleName.toLowerCase
-    val hasCurrentPage =
-      isContain(children, pageStr) || isContain(content, pageStr)
-
+  def li(title: Title, children: VdomNode = EmptyVdom)(implicit props: Props): VdomElement = {
     Collapse(
-      isExpanded = hasCurrentPage,
-      render = renderLiContent(content, children)
+      isExpanded = title.isExpanded.fold(false)(_(props.page)),
+      render = renderLi(title, children, props)
     )()
   }
 

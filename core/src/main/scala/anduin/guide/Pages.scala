@@ -5,33 +5,43 @@ object Pages {
   // entry
   case object Welcome extends Page
   case class WIP(hash: String = "") extends Page
+  // brand
+  sealed trait BrandT extends Page
+  case class Logo(hash: String = "") extends BrandT
   // style
-  case class Style(hash: String = "") extends Page
-  case class Space(hash: String = "") extends Page
-  case class Flexbox(hash: String = "") extends Page
-  case class Color(hash: String = "") extends Page
-  case class Typography(hash: String = "") extends Page
-  case class FixedLineHeight(hash: String = "") extends Page
+  sealed trait StyleT extends Page
+  case class Style(hash: String = "") extends StyleT
+  sealed trait LayoutT extends StyleT
+  case class Space(hash: String = "") extends LayoutT
+  case class Flexbox(hash: String = "") extends LayoutT
+  case class Color(hash: String = "") extends StyleT
+  sealed trait TypographyT extends StyleT
+  case class Typography(hash: String = "") extends TypographyT
+  case class FixedLineHeight(hash: String = "") extends TypographyT
   // component
-  case class Component(hash: String = "") extends Page
+  sealed trait ComponentT extends Page
+  case class Component(hash: String = "") extends ComponentT
   // - button
-  case class Button(hash: String = "") extends Page
-  case class ButtonStyle(hash: String = "") extends Page
-  case class ButtonLink(hash: String = "") extends Page
+  sealed trait ButtonT extends ComponentT
+  case class Button(hash: String = "") extends ButtonT
+  case class ButtonStyle(hash: String = "") extends ButtonT
+  case class ButtonLink(hash: String = "") extends ButtonT
   // - container
-  case class Card(hash: String = "") extends Page
-  case class Collapse(hash: String = "") extends Page
-  case class Tab(hash: String = "") extends Page
-  case class Table(hash: String = "") extends Page
-  case class Well(hash: String = "") extends Page
+  sealed trait ContainerT extends ComponentT
+  case class Card(hash: String = "") extends ContainerT
+  case class Collapse(hash: String = "") extends ContainerT
+  case class Tab(hash: String = "") extends ContainerT
+  case class Table(hash: String = "") extends ContainerT
+  case class Well(hash: String = "") extends ContainerT
   // - icon
-  case class Icon(hash: String = "") extends Page
-  case class Illus(hash: String = "") extends Page
-  case class IllusFolder(hash: String = "") extends Page
+  sealed trait IconT extends ComponentT
+  case class Icon(hash: String = "") extends IconT
+  case class Illus(hash: String = "") extends IconT
+  case class IllusFolder(hash: String = "") extends IconT
   // - input
-  case class Checkbox(hash: String = "") extends Page
+  sealed trait InputT extends ComponentT
+  case class Checkbox(hash: String = "") extends InputT
   // - portal
-  case class Modal(hash: String = "") extends Page
-  // resources
-  case class Logo(hash: String = "") extends Page
+  sealed trait PortalT extends ComponentT
+  case class Modal(hash: String = "") extends PortalT
 }

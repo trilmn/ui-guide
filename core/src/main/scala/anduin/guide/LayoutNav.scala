@@ -3,7 +3,7 @@
 package anduin.guide
 
 import anduin.guide.component.NavElements
-import anduin.guide.component.NavElements.{li, link, ul}
+import anduin.guide.component.NavElements.{li, Title, ul}
 import anduin.style.Style
 
 // scalastyle:off underscore.import
@@ -30,95 +30,78 @@ object LayoutNav {
       ^.padding := "64px 0",
       Style.lineHeight.px40,
       ul(
-        li(link("Welcome", Welcome)),
         li(
-          link("Brand", WIP()),
+          Title("Welcome", Some(Welcome))
+        ),
+        li(
+          Title("Brand", isExpanded = Some(_.isInstanceOf[BrandT])),
           ul(
-            li(link("Logo", Logo()))
+            li(Title("Logo", Some(Logo())))
           )
         ),
         li(
-          link("Style", Pages.Style()), // Name collision
+          Title("Style", Some(Pages.Style()), Some(_.isInstanceOf[StyleT])),
           ul(
             li(
-              link("Layout"),
+              Title("Layout", isExpanded = Some(_.isInstanceOf[LayoutT])),
               ul(
-                li(link("Space", Space())),
-                li(link("Flexbox", Flexbox()))
-              )
-            ),
-            li(link("Color", Color())),
-            li(
-              link("Typography", Typography()),
-              ul(li(link("Fixed line height", FixedLineHeight())))
-            )
-          )
-        ),
-        li(
-          link("Component", Component()),
-          ul(
-            li(
-              link("Button", Button()),
-              ul(
-                li(link("ButtonStyle", ButtonStyle())),
-                li(link("ButtonLink", ButtonLink()))
+                li(Title("Space", Some(Space()))),
+                li(Title("Flexbox", Some(Flexbox())))
               )
             ),
             li(
-              link("Container", WIP()),
-              ul(
-                li(link("Card", Card())),
-                li(link("Collapse", Collapse())),
-                li(link("Tab", Tab())),
-                li(link("Table", Table())),
-                li(link("Well", Well()))
-              )
+              Title("Color", Some(Color()))
             ),
             li(
-              link("Icon", Icon()),
+              Title("Typography", Some(Typography()), Some(_.isInstanceOf[TypographyT])),
               ul(
-                li(link("Illus", Illus())),
-                li(link("Illus Folder", IllusFolder()))
-              )
-            ),
-            li(
-              link("Input", WIP()),
-              ul(
-                li(link("Checkbox", Checkbox())),
-                li(
-                  link("Dropdown", WIP()),
-                  ul(
-                    li(link("Custom", WIP())),
-                    li(link("Native", WIP()))
-                  )
-                ),
-                li(link("Radio", WIP())),
-                li(link("RadioBox", WIP())),
-                li(link("Text", WIP()))
-              )
-            ),
-            li(
-              link("Portal", WIP()),
-              ul(
-                li(link("Popover", WIP())),
-                li(link("Menu", WIP())),
-                li(link("Modal", Modal()))
-              )
-            ),
-            li(
-              link("Text", WIP()),
-              ul(
-                li(link("Tag", WIP())),
-                li(link("DateTime", WIP()))
+                li(Title("Fixed line height", Some(FixedLineHeight())))
               )
             )
           )
         ),
         li(
-          link("Layout", WIP())
-        ),
-        li(
-          link("Copy", WIP())
+          Title("Component", Some(Component()), Some(_.isInstanceOf[ComponentT])),
+          ul(
+            li(
+              Title("Button", Some(Button()), Some(_.isInstanceOf[ButtonT])),
+              ul(
+                li(Title("ButtonStyle", Some(ButtonStyle()))),
+                li(Title("ButtonLink", Some(ButtonLink())))
+              )
+            ),
+            li(
+              Title("Container", isExpanded = Some(_.isInstanceOf[ContainerT])),
+              ul(
+                li(Title("Card", Some(Card()))),
+                li(Title("Collapse", Some(Collapse()))),
+                li(Title("Tab", Some(Tab()))),
+                li(Title("Table", Some(Table()))),
+                li(Title("Well", Some(Well())))
+              )
+            ),
+            li(
+              Title("Icon", Some(Icon()), Some(_.isInstanceOf[IconT])),
+              ul(
+                li(Title("Illus", Some(Illus()))),
+                li(Title("Illus Folder", Some(IllusFolder())))
+              )
+            ),
+            li(
+              Title("Input", isExpanded = Some(_.isInstanceOf[InputT])),
+              ul(
+                li(Title("Checkbox", Some(Checkbox()))),
+              )
+            ),
+            li(
+              Title("Portal", isExpanded = Some(_.isInstanceOf[PortalT])),
+              ul(
+                li(Title("Popover")),
+                li(Title("Menu")),
+                li(Title("Modal", Some(Modal())))
+              )
+            )
+          )
         )
       )
     )

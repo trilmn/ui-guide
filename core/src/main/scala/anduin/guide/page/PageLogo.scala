@@ -37,10 +37,10 @@ object PageLogo {
     <.div(
       logoContainerStyles,
       <.div(
-        Style.padding.ver16,
+        Style.padding.ver12,
+        TagMod.when(logo.isDark) { Style.backgroundColor.primary3 },
         <.img(
           logoImgStyles,
-          TagMod.when(logo.isDark) { Style.backgroundColor.primary3 },
           ^.src := renderLink(s"${logo.svg}.svg")
         )
       ),
@@ -56,7 +56,7 @@ object PageLogo {
     )
   }
 
-  private def renderSection( title: VdomNode, logo: Logo, desc: String ): VdomElement = {
+  private def renderSection(title: VdomNode, logo: Logo, desc: String): VdomElement = {
     val descNode = <.div(Style.flexbox.fixed.margin.left20, desc)
     val logoNode = <.div(Style.flexbox.fixed, renderLogo(logo))
     val body = <.div(Style.flexbox.flex, logoNode, descNode)

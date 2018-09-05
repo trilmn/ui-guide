@@ -22,12 +22,15 @@ final case class LayoutNav(
 
 object LayoutNav {
 
-  type Props = LayoutNav
+  private type Props = LayoutNav
 
   private def render(props: Props) = {
-    implicit val implicitProps: NavElements.Props = NavElements.Props(props.ctl, props.page)
+
+    implicit val implicitProps: NavElements.Props =
+      NavElements.Props(props.ctl, props.page)
+
     <.div(
-      ^.padding := "64px 0",
+      TagMod(^.paddingTop := "64px", ^.paddingBottom := "64px"),
       Style.lineHeight.px40,
       ul(
         li(

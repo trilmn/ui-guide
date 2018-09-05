@@ -50,7 +50,8 @@ object NavElements {
     props: Props
   )(toggle: Callback, isExpanded: Boolean): VdomElement = {
     val titleBody = TagMod(
-      Style.flexbox.flex.flexbox.itemsCenter,
+      Style.flexbox.flex.flexbox.itemsCenter.width.maxContent,
+      Style.focus.outline.transition.allWithOutline.padding.hor8,
       getColor(props.page, title.page),
       renderLiIcon(children, isExpanded),
       <.span(Style.margin.left8, title.text)

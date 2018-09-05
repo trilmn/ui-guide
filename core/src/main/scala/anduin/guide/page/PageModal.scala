@@ -9,6 +9,37 @@ import anduin.style.Style
 import japgolly.scalajs.react.Callback
 
 object PageModal {
+
+  private def sampleArchiveButton(open: Callback) = {
+    Button(onClick = open)("Archive Deal")
+  }
+
+  private def sampleArchiveBody(isBold: Boolean = false): VdomElement = {
+    ModalBody()(
+      <.p(
+        Style.fontWeight.bold,
+        TagMod.when(isBold) { Style.fontSize.px16.margin.bottom12 },
+        "Are you sure want to archive this 8VC deal? "
+      ),
+      <.ul(
+        <.li("Deal can be restored later from \"Trash\" filter."),
+        <.li("All 8V members will be notified")
+      )
+    )
+  }
+
+  private def sampleArchiveContent(isBold: Boolean)(close: Callback) = {
+    ReactFragment(
+      sampleArchiveBody(isBold),
+      ModalFooterWCancel(cancel = close)(
+        Button(
+          color = ButtonStyle.ColorDanger,
+          onClick = Callback.alert("Deal archived") >> close
+        )("Archive Deal")
+      )
+    )
+  }
+
   def render(ctl: Router.Ctl): VdomElement = {
     <.div(
       Toc(content = Source.toc())(),
@@ -77,9 +108,8 @@ object PageModal {
       }))(),
       Markdown(
         """
-          |However, if you do need to render something else manually, it is
-          |suggested to base on the `<.button` tag to have good
-          |accessibility support.
+          |If you do need to render something else manually, it is suggested to
+          |base on the `<.button` tag to have good accessibility support.
           |
           |**Note that Modal does not render any additional wrapper tag.**
           |Modal's content is rendered via [React's Portal][1], and the place
@@ -87,37 +117,122 @@ object PageModal {
           |`renderTarget`. Nothing more or less, and no matter the Modal is
           |opening or not.
           |
+          |```scala
+          |// so this:
+          |val modal = Modal(
+          |  renderTarget = open => <.button(...)
+          |)()
+          |<.p("foo", modal)
+          |
+          |// Become this:
+          |<.p("foo", <.button(...))
+          |```
+          |
           |[1]: https://reactjs.org/docs/portals.html
           |
+          |## Content
+          |
+          |```scala
+          |renderContent: (close: Callback) => VdomNode
+          |```
+          |
+          |Use the `renderContent` prop to render what should be shown in
+          |your Modal. This usually consists of a body and a footer, since
+          |the Modal's header is already defined by default.
+          |
+          |For maximum customization, Modal does not provide any predefined
+          |styles (like padding) for your `renderContent`. Instead, you
+          |should use `ModalBody` and `ModalFooter` to build your Modal's
+          |content with nice, predefined padding:
+          |
+          |""".stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        /*>*/
+        val modal = Modal(
+          title = "Error signing document",
+          renderTarget = open => {
+            Button(onClick = open)("Open Modal")
+          }, /*<*/
+          renderContent = close => {
+            val body = ModalBody()(
+              <.p("There was an unknown error signing your document."),
+              <.p("Please try again or contact us for support.")
+            )
+            val footer = ModalFooter()(
+              <.div(
+                Style.flexbox.flex.flexbox.justifyBetween,
+                Style.flexbox.itemsCenter,
+                <.p(Style.color.gray6, "Error code: 8AS13FHS"),
+                Button(
+                  color = ButtonStyle.ColorPrimary,
+                  onClick = close
+                )("Okay")
+              )
+            )
+            ReactFragment(body, footer)
+          } /*>*/
+        )()
+        <.div(modal) /*<*/
+      }))(),
+      Markdown(
+        """
+          |### ModalFooterWCancel
+          |
+          |In practice, it is very common for a Modal to have a footer with 2
+          |buttons: one to submit/execute an action and the other to close
+          |(cancel/dismiss) the Modal.
+          |
+          |In these cases, use the `ModalFooterWCancel` component which
+          |provide the necessary layout and a "Cancel" button. You only need to
+          |attach the "cancel/close" callback and provide your "submit" button:
+          |
+          |""".stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        /*>*/
+        val modal = Modal(
+          title = "Deal archive confirmation",
+          renderTarget = sampleArchiveButton, /*<*/
+          renderContent = close => {
+            val footer = ModalFooterWCancel(cancel = close)(
+              Button(
+                color = ButtonStyle.ColorDanger,
+                onClick = Callback.alert("Deal archived") >> close
+              )("Archive Deal")
+            ) /*>*/
+            ReactFragment(sampleArchiveBody(), footer)
+          }
+        )()
+        <.div(modal) /*<*/
+      }))(),
+      Markdown(
+        """
           |## Title
           |
-          |Use the `title` prop to define the title in the header of the Modal. 
+          |Modal comes with a default header, which has a title that can be
+          |modified via the `title: String` prop.
           |
+          |**It is required that all Modals have title.** If you omit the
+          |`title` prop, Modal will remove the default header and expect you
+          |to have your own header defined in `renderContent`. This should
+          |rarely happen in practice.
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
         val modal = Modal(
-          renderContent = close =>
-            ReactFragment(
-              ModalBody()(
-                <.p(Style.fontWeight.bold, "This is Modal's content"),
-                <.p("")
-              ),
-              ModalFooterWCancel(cancel = close)(
-                Button(
-                  color = ButtonStyle.ColorDanger,
-                  onClick = Callback.alert("Deal archived") >> close
-                )("Delete")
-              )
-          ),
-          renderTarget = open => {
-            Button(onClick = open)("Archive")
-          }
+          // Skipped title
+          renderContent = sampleArchiveContent(isBold = true),
+          renderTarget = sampleArchiveButton
         )()
         <.div(modal)
       }))(),
       Markdown(
         """
+          |Moreover, having no default header (`title` prop is omitted)
+          |means that there is no "x" button to close on top right.
+          |Therefore, you should also define a clear "cancel/dismiss" in your
+          |`renderContent` in this case.
           |
           |## Size
           |
@@ -130,6 +245,8 @@ object PageModal {
           |## Event hooks
           |
           |## Permanent
+          |
+          |## Closable
           |
           |## Open by default
           |

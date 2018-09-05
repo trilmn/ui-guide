@@ -8,6 +8,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object PageLogo {
 
+  private final case class Logo(svg: String, zip: String, isDark: Boolean = false)
+
   // file should include extension already
   private def renderLink(file: String): String = {
     s"//s3.amazonaws.com/anduin-static-assets/gondor/logos/$file"
@@ -31,16 +33,20 @@ object PageLogo {
     Style.border.top.borderColor.gray3
   )
 
-  private def renderLogo(svg: String, zip: String): VdomElement = {
+  private def renderLogo(logo: Logo): VdomElement = {
     <.div(
       logoContainerStyles,
       <.div(
-        Style.padding.ver8,
-        <.img(logoImgStyles, ^.src := renderLink(s"$svg.svg"))
+        Style.padding.ver16,
+        <.img(
+          logoImgStyles,
+          TagMod.when(logo.isDark) { Style.backgroundColor.primary3 },
+          ^.src := renderLink(s"${logo.svg}.svg")
+        )
       ),
       <.a(
         logoLinkStyles,
-        ^.href := renderLink(s"$zip.zip"),
+        ^.href := renderLink(s"${logo.zip}.zip"),
         <.span(Style.margin.right8, Icon(name = Icon.NameFileDownload)()),
         <.span(
           <.strong(Style.fontWeight.bold, ".zip"),
@@ -50,10 +56,10 @@ object PageLogo {
     )
   }
 
-  private def renderSection(title: VdomNode, svg: String, zip: String, desc: String): VdomElement = {
-    val desc2 = <.div(Style.flexbox.fixed.margin.left20, desc)
-    val logo = <.div(Style.flexbox.fixed, renderLogo(svg, zip))
-    val body = <.div(Style.flexbox.flex, logo, desc2)
+  private def renderSection( title: VdomNode, logo: Logo, desc: String ): VdomElement = {
+    val descNode = <.div(Style.flexbox.fixed.margin.left20, desc)
+    val logoNode = <.div(Style.flexbox.fixed, renderLogo(logo))
+    val body = <.div(Style.flexbox.flex, logoNode, descNode)
     <.div(title, body)
   }
 
@@ -73,8 +79,7 @@ object PageLogo {
       )(), {
         renderSection(
           "",
-          "logo_anduin_rgb",
-          "anduin_logo",
+          Logo("logo_anduin_rgb", "anduin_logo"),
           "Widely used in multiple cases. Most of the time, we will " +
             "use this to display our brand logo."
         )
@@ -83,8 +88,7 @@ object PageLogo {
           Markdown("""
             |### Default on dark background
           """.stripMargin)(),
-          "logo_white_anduin_rgb",
-          "anduin_logo_white",
+          Logo("logo_white_anduin_rgb", "anduin_logo_white", isDark = true),
           "Use when a dark background is required"
         )
       },
@@ -95,20 +99,17 @@ object PageLogo {
       )(), {
         renderSection(
           "",
-          "logo_mark_anduin_rgb",
-          "anduin_logo_mark",
-          "Use this when we want to use logo as an avatar or " +
-            "somewhere that requires a square logo."
+          Logo("logo_mark_anduin_rgb", "anduin_logo_mark"),
+          "Use this when we want to use logo as an avatar or somewhere that" +
+            "requires a square logo."
         )
       }, {
         renderSection(
           Markdown("""
             |### Logo only on dark background
           """.stripMargin)(),
-          "logo_mark_white_anduin_rgb",
-          "anduin_logo_mark_white",
-          "Similar to the case above but with a required dark " +
-            "background"
+          Logo("logo_mark_white_anduin_rgb", "anduin_logo_mark_white", isDark = true),
+          "Similar to the case above but with a required dark background"
         )
       }
     )

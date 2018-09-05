@@ -128,27 +128,32 @@ object PageTab {
       }))(),
       Markdown(
         """
-          |## Stateless Tab
+          |## Controlled Tab
           |
-          |**Tab is a stateful component by default.** It has its own state
-          |to store the index of the active panel. It updates that state when
-          | user clicks on a panel's title. This makes using Tab simple as
-          | you don't need to setup a new state.
+          |**Tab is an [uncontrolled component][1] by default.** It has its own
+          |state to store the index of the active panel. It updates that state
+          |when user clicks on a panel's title. This makes using Tab simple as
+          |you don't need to setup a new state.
+          |
+          |[1]: https://reactjs.org/docs/uncontrolled-components.html
           |
           |However, there are cases where the consumer should have total
           |control over which panel to show. For example, when the active
           |panel should based on the current URL, and thus, switching panel
           |should update the URL.
           |
-          |**In these cases, the consumer should provide:**
+          |**In these cases, the consumer should make Tab a [controlled
+          |component][2] by providing:**
+          |
+          |[2]: https://reactjs.org/docs/forms.html#controlled-components
           |
           |- The `active` prop, which is the index of the panel that should
           |be shown.
           |- The `setActive` prop, which is what should happen when user
           |click on a panel's title.
           |
-          |Then Tab will become a stateless component, only provides the
-          |appearance.
+          |Tab will then become a stateless component, controlled by
+          |consumer's state and only provides the appearance.
           |
           |```scala
           |/*>*/object MyComponent {/*<*/

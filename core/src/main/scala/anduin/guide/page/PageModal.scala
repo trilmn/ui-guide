@@ -240,21 +240,48 @@ object PageModal {
           |
           |## Size
           |
-          |Modal's height depends on your `renderContent`. If the height of
-          |your content is larger than
+          |**Modal's height depends on your `renderContent`.** If the height of
+          |your content is larger than user's screen then there will be a
+          |scrollbar outside of the Modal. However, in general, it's best
+          |to avoid long Modal.
           |
           """.stripMargin
       )(),
       ExampleSimple()(
         Modal(
           title = "Long modal",
-          renderTarget = open => Button(onClick = open)("Open"),
+          renderTarget = open => Button(onClick = open)("Open a long modal"),
           renderContent = _ => {
             val text = Random.alphanumeric.take(100).mkString("\n")
             ModalBody()(<.div(Style.whiteSpace.pre, text))
           }
         )()
       ),
+      Markdown(
+        """
+          |**Modal's width does not depend on your `renderContent`.**
+          |Instead, it should be chosen from a predefined list via the `size`
+          |prop:
+          |
+          || Size | Usage |
+          ||---|---|
+          || `Size480` | For confirmation (short text, 2 clear actions) |
+          || `Size720` | For better action, pick and choose (list of item like contact), short form, Onboarding, etc |
+          || `Size960` | A bit more complicated form with more stuff to handle like our current ComposeModal or Create Signature |
+          || `Size1160` | A bit blurry between this one but ideally it’s about a small-flow (stepper) |
+          || `SizeFull` | A bit blurry between this one but ideally it’s about a small-flow (stepper) |
+          |
+        """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        val modal = Modal(
+          title = "960px Modal",
+          renderTarget = open => Button(onClick = open)("Open 960px Modal"),
+          renderContent = _ => ModalBody()("Hello world"),
+          size = Modal.Size960
+        )()
+        <.div(modal)
+      }))(),
       Markdown(
         """
           |

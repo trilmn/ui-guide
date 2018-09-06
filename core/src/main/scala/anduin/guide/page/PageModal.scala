@@ -1,12 +1,15 @@
 package anduin.guide.page
 
+import scala.util.Random
+
+import japgolly.scalajs.react.Callback
+import japgolly.scalajs.react.vdom.html_<^._
+
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.portal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
-import japgolly.scalajs.react.vdom.html_<^._
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
-import japgolly.scalajs.react.Callback
 
 object PageModal {
 
@@ -217,6 +220,7 @@ object PageModal {
           |`title` prop, Modal will remove the default header and expect you
           |to have your own header defined in `renderContent`. This should
           |rarely happen in practice.
+          |
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -236,7 +240,26 @@ object PageModal {
           |
           |## Size
           |
-          |##
+          |Modal's height depends on your `renderContent`. If the height of
+          |your content is larger than
+          |
+          """.stripMargin
+      )(),
+      ExampleSimple()(
+        Modal(
+          title = "Long modal",
+          renderTarget = open => Button(onClick = open)("Open"),
+          renderContent = _ => {
+            val text = Random.alphanumeric.take(100).mkString("\n")
+            ModalBody()(<.div(Style.whiteSpace.pre, text))
+          }
+        )()
+      ),
+      Markdown(
+        """
+          |
+          |
+          |### Full screen
           |
           |# Advanced
           |

@@ -240,10 +240,10 @@ object PageModal {
           |
           |## Size
           |
-          |**Modal's height depends on your `renderContent`.** If the height of
-          |your content is larger than user's screen then there will be a
-          |scrollbar outside of the Modal. However, in general, it's best
-          |to avoid long Modal.
+          |**Modal's height depends on your `renderContent`.** When it's longer
+          |than user's screen then there will be a vertical scrollbar in Modal's
+          |background (outside of the content box). In general, however, it's
+          |best to avoid long Modal in the first place.
           |
           """.stripMargin
       )(),
@@ -259,44 +259,72 @@ object PageModal {
       ),
       Markdown(
         """
-          |**Modal's width does not depend on your `renderContent`.**
-          |Instead, it should be chosen from a predefined list via the `size`
-          |prop:
+          |**Modal's width does not depend on your `renderContent`.** It is
+          |480 pixels by default, and can be changed via the `size` prop. You
+          |can only choose it from a predefined list:
           |
           || Size | Usage |
-          ||---|---|
-          || `Size480` | For confirmation (short text, 2 clear actions) |
-          || `Size720` | For better action, pick and choose (list of item like contact), short form, Onboarding, etc |
-          || `Size960` | A bit more complicated form with more stuff to handle like our current ComposeModal or Create Signature |
-          || `Size1160` | A bit blurry between this one but ideally it’s about a small-flow (stepper) |
-          || `SizeFull` | A bit blurry between this one but ideally it’s about a small-flow (stepper) |
+          ||------|-------|
+          || `Size480` | **This is the default value**, mostly used for simple actions like confirmation (short text, 2 clear actions). |
+          || `Size720` | Complex actions such as picking an item from a list, simple form, onboarding. |
+          || `Size960` | Complex forms, might have additional elements like Sidebar (Create Signature) or Toolbar (Email Editor). |
+          || `Size1160` | Complex views like multi-step form or document editor. Usually these can also be a page. |
           |
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
+        /*>*/
         val modal = Modal(
           title = "960px Modal",
           renderTarget = open => Button(onClick = open)("Open 960px Modal"),
           renderContent = _ => ModalBody()("Hello world"),
-          size = Modal.Size960
+          /*<*/
+          size = Modal.Size960 /*>*/
         )()
-        <.div(modal)
+        <.div(modal) /*<*/
       }))(),
       Markdown(
         """
           |
+          |Note that there will be no horizontal scrollbar (i.e. it's
+          |`overflowX.hidden`). If your content is wider than the
+          |Modal's width then it will be hidden unless you define your own
+          |scrollbar.
           |
           |### Full screen
           |
+          |The `size` prop also accepts a special `SizeFull` value, in which:
+          |
+          |- There will be no background. Your `renderContent` will take 100%
+          |of user screen's width and height.
+          |- There will be no vertical scrollbar out-of-the-box. If your
+          |content might be longer than user's screen, define a scrollbar (i.e.
+          |set `Style.overflow`) somewhere in your `renderContent`.
+          |
+        """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        /*>*/
+        val modal = Modal(
+          title = "Full-screen Modal",
+          renderTarget = open =>
+            Button(onClick = open)("Open a Full-screen Modal"),
+          renderContent = _ => ModalBody()("Hello world"),
+          /*<*/
+          size = Modal.SizeFull /*>*/
+        )()
+        <.div(modal) /*<*/
+      }))(),
+      Markdown(
+        """
+          |
           |# Advanced
           |
-          |## Custom render
+          |## Closable
           |
           |## Event hooks
           |
           |## Permanent
-          |
-          |## Closable
           |
           |## Open by default
           |

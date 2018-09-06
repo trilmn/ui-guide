@@ -26,7 +26,7 @@ object Toc {
         Style.fontSize.px12.lineHeight.ratio1p5.backgroundColor.white,
         ^.width := "224px",
         ^.padding := "64px 16px 64px 0",
-        ^.left := "1056px",
+        ^.right := "12px", // Avoid right scrollbar
         props.content.toVdomArray {
           case (level, rawText) =>
             val text = rawText.replace("`", "")

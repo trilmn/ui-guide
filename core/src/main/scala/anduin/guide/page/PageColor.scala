@@ -37,11 +37,7 @@ object PageColor {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(
-          title = "Color",
-          description =
-            "Gray colors define the bare bone of the interface, while purposeful ones express meanings or intentions to user."
-        )()
+        Header("Color")()
       ),
       Markdown(
         """
@@ -68,14 +64,17 @@ object PageColor {
           |
           |## Gray set
           |
-          |Gray colors should be used to define the bare bone of the interface, such as containers, headers, sections, boxes, etc. There are 10 of them: a `white` color, followed by 9 shades of gray, named from `gray1` to `gray9`:
+          |Gray colors should be used to define the bare bone of the
+          |interface, such as containers, headers, sections, boxes, etc.
+          |There are 10 of them: a `white` color, followed by 9 shades of
+          |gray, named from `gray1` to `gray9`:
         """.stripMargin
       )(),
       <.dl(
         Style.padding.ver12,
         renderGray(bg.white.color.gray8, "white", "#FFFFFF", "Panel background"),
-        renderGray(bg.gray1.color.gray8, "gray1", "#F5F9FC", "App main background"),
-        renderGray(bg.gray2.color.gray8, "gray2", "#EBF2F7"),
+        renderGray(bg.gray1.color.gray8, "gray1", "#F5F9FC", "White (default) button background"),
+        renderGray(bg.gray2.color.gray8, "gray2", "#EBF2F7", "App main background"),
         renderGray(bg.gray3.color.gray8, "gray3", "#DFE9F0", "Border light"),
         renderGray(bg.gray4.color.gray8, "gray4", "#BACDDB", "Border"),
         renderGray(bg.gray5.color.gray8, "gray5", "#9BB0C2"),
@@ -88,7 +87,10 @@ object PageColor {
         """
           |## Purposeful set
           |
-          |On the other hand, a purposeful color communicates the meaning or intention of an element (like a Button) or an area (like a Well) on the interface. We currently have 4 main colors, with 5 shades of each:
+          |On the other hand, a purposeful color communicates the meaning or
+          |intention of an element (like a Button) or an area (like a Well)
+          |on the interface. We currently have 4 main colors, with 5 shades
+          |of each:
         """.stripMargin
       )(),
       <.div(
@@ -155,15 +157,26 @@ object PageColor {
       ),
       Markdown(
         s"""
-           |**Note that the 4th shade is the main one**, which should be used most of the time.
+           |**Note that the 4th shade is the main one**, which should be used
+           |most of the time.
            |
            |# Usage notes
            |
-           |>**Use color judiciously for communication.** The power of color to call attention to important information is heightened when used sparingly. For example, a red triangle that warns people of a critical problem becomes less effective when red is used elsewhere in an app for noncritical reasons.
+           |>**Use color judiciously for communication.** The power of color
+           |>to call attention to important information is heightened when
+           |>used sparingly. For example, a red triangle that warns people of
+           |>a critical problem becomes less effective when red is used
+           |>elsewhere in an app for noncritical reasons.
            |>
-           |>Source: [Color - Visual Design - iOS Human Interface Guidelines (developer.apple.com)](https://developer.apple.com/ios/human-interface-guidelines/visual-design/color/)
+           |>Source: [Color - Visual Design - iOS Human Interface Guidelines
+           |(developer.apple.com)][1]
            |
-           |**Complex color combinations are usually offered by components.** For example, the `Button` component has a `color` prop, which includes changes in `color`, `backgroundColor` and `shadow.border`.
+           |[1]: https://developer.apple.com/ios/human-interface-guidelines/visual-design/color/
+           |
+           |**Complex color combinations are usually offered by components.**
+           | For example, the `Button` component has a `color` prop, which
+           | includes changes in `color`, `backgroundColor` and `shadow
+           | .border`.
         """.stripMargin
       )()
     )

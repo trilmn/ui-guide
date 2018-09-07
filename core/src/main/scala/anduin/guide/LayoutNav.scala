@@ -91,16 +91,8 @@ object LayoutNav {
               )
             ),
             li(
-              Title("Input", isExpanded = Some(_.isInstanceOf[InputT])),
-              ul(
-                li(Title("Checkbox", Some(Checkbox()))),
-              )
-            ),
-            li(
               Title("Portal", isExpanded = Some(_.isInstanceOf[PortalT])),
               ul(
-                li(Title("Popover")),
-                li(Title("Menu")),
                 li(Title("Modal", Some(Modal())))
               )
             )

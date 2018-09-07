@@ -9,14 +9,6 @@ body {
   min-width: auto;
 }
 
-html, body, #root {
-  height: 100%;
-}
-
-#root {
-  overflow: auto;
-}
-
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;

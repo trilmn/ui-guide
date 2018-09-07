@@ -6,7 +6,11 @@ import japgolly.scalajs.react.Callback
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.{Button, ButtonStyle}
+import anduin.component.input.TextInput
+import anduin.component.portal
+import anduin.component.portal.PortalUtils.IsClosable
 import anduin.component.portal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
+import anduin.guide.component.SimpleState
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
@@ -42,6 +46,8 @@ object PageModal {
       )
     )
   }
+
+  private val SimpleStateString = (new SimpleState[String])()
 
   def render(ctl: Router.Ctl): VdomElement = {
     <.div(
@@ -307,8 +313,7 @@ object PageModal {
         /*>*/
         val modal = Modal(
           title = "Full-screen Modal",
-          renderTarget = open =>
-            Button(onClick = open)("Open a Full-screen Modal"),
+          renderTarget = open => Button(onClick = open)("Open a Full-screen Modal"),
           renderContent = _ => ModalBody()("Hello world"),
           /*<*/
           size = Modal.SizeFull /*>*/
@@ -318,11 +323,143 @@ object PageModal {
       Markdown(
         """
           |
+          |## Focus
+          |
+          |Accessibility-wise, [it's important][1] that user's keyboard focus
+          |is moved to the Modal when it's opened, so user can navigate through
+          |the Modal's content using their keyboard.
+          |
+          |[1]: https://reactjs.org/docs/accessibility.html#focus-control
+          |
+          |**Therefore, by default, Modal focuses on the "close" button.**
+          |Since the "close" button is on top of the Modal (i.e. rendered
+          |first) it's easy for the engineer to focus to another element
+          |inside `renderContent` if needed.
+          |
+          |If the "close" button does not exist (`title` is not set) then
+          |it is required for the engineer to set focus to an element in
+          |`renderContent`, or else keyboard navigation will not available.
+          |
           |# Advanced
           |
           |## Closable
           |
+          |There are actually many ways a Modal can be closed. These ways are
+          |controlled by 3 props:
+          |
+          |### `isClosable`
+          |
+          |This props controls the following ways to close a Modal:
+          |
+          |1. Click on the "close" button on Modal's header
+          |2. Click on Modal's background (the dark area)
+          |3. Press ESC key while Modal [has focused](#focus)
+          |
+          |By default, all 3 ways are enabled. They can be customized by 
+          |passing an `Option[PortalUtils.IsClosable]`:
+          |
+          |```scala
+          |case class IsClosable(
+          |  onEsc: Boolean,
+          |  onOutsideClick: Boolean
+          |)
+          |```
+          |
+          |- If it's `None` then all 3 ways will be disabled. The "close"
+          |button will not be rendered at all.
+          |- If it's `Some` then 1 will be enabled, while 2 and 3 depend on
+          |`onOutsideClick` and `onEsc`, respectively.
+          |- Currently it is not possible to disable 1 while leaving 2 or 3
+          |enabled.
+          |
+          |For example, the below Modal can not be closed via clicking 
+          |outside, but "esc" and "close" button works fine:
+          |
+          """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        /*>*/
+        val modal = Modal(
+          title = "Example Modal",
+          renderTarget = open => {
+            Button(onClick = open)("Open Modal")
+          },
+          renderContent = _ => {
+            ModalBody()("You cannot close this by clicking outside")
+          }, /*<*/
+          isClosable = Some(
+            IsClosable(onEsc = true, onOutsideClick = false)
+          ) /*>*/
+        )()
+        <.div(modal) /*<*/
+      }))(),
+      Markdown(
+        """
+          |
+          |### `renderContent`
+          |
+          |The `renderContent` function is provided with a `close` callback,
+          |allow you to render an element that user can interact with to
+          |close the Modal, like an explicit "cancel" button or to close the
+          |Modal after submission.
+          |
+          |Moreover, this can be used with `isClosable = None` to require user
+          |to do something in order to dismiss the Modal. For example,
+          |the Modal below can only be closed if user submitted some text:
+          |
+          """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        val renderContent = (close: Callback) =>
+          SimpleStateString(
+            initialValue = "",
+            render = (value, onChange) => {
+              val input = TextInput(value = value, onChange = onChange)()
+              val body = ModalBody()(input)
+
+              val onClick = Callback.alert(s"input: $value") >> close
+              val button = Button(isDisabled = value.isEmpty, onClick = onClick)("Submit")
+              val footerStyle = Style.flexbox.flex.flexbox.justifyEnd
+              val footer = ModalFooter()(<.div(footerStyle, button))
+
+              ReactFragment(body, footer)
+            }
+          )()
+        /*>*/
+        val modal = Modal(
+          title = "Example Modal", /*<*/
+          isClosable = None, /*>*/
+          renderTarget = open => Button(onClick = open)("Open Modal"),
+          renderContent = renderContent
+        )()
+        <.div(modal) /*<*/
+      }))(),
+      Markdown(
+        """
+          |
+          |### `isOpen`
+          |
+          |`isOpen` is a special prop that makes Modal a controlled
+          |component, in which the closing can only be controlled from
+          |outside. Learn more about this in the
+          |[Controlled Modal](#controlled-modal) section.
+          |
           |## Event hooks
+          |
+          |Modal provides 2 event hooks: `onOpen` and `onClose`. These
+          |hooks are only called after user's interactions, which means they
+          |will not be called if Modal is closed programmatically or unmounted.
+          |
+          || Event | `onOpen` | `onClose` |
+          ||-------|----------|-----------|
+          || `open` in `renderTarget` | Yes | |
+          || `close` in `renderContent` | | Yes |
+          || click on "close" button | | Yes |
+          || click on outside | | Yes |
+          || press Esc | | Yes |
+          || `defaultIsOpened` | | |
+          || parent is unmounted | | |
+          || `isOpen` is changed | | |
           |
           |## Permanent
           |

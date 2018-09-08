@@ -20,12 +20,12 @@ class SimpleState[V] {
 
   private class Backend(scope: BackendScope[Props, State]) {
 
-    def onChange(value: V): Callback = {
+    def setValue(value: V): Callback = {
       scope.setState(State(value))
     }
 
     def render(props: Props, state: State): VdomNode = {
-      props.render(state.value, onChange)
+      props.render(state.value, setValue)
     }
   }
 
@@ -36,4 +36,9 @@ class SimpleState[V] {
     .build
 
   def apply(): Props.type = Props
+}
+
+object SimpleState {
+  val Str = (new SimpleState[String])()
+  val Bool = (new SimpleState[Boolean])()
 }

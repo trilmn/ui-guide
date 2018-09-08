@@ -7,8 +7,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.input.TextInput
-import anduin.component.portal
-import anduin.component.portal.PortalUtils.IsClosable
+import anduin.component.portal.PortalUtils.isClosable
 import anduin.component.portal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
 import anduin.guide.component.SimpleState
 import anduin.guide.{Pages, Router}
@@ -46,8 +45,6 @@ object PageModal {
       )
     )
   }
-
-  private val SimpleStateString = (new SimpleState[String])()
 
   def render(ctl: Router.Ctl): VdomElement = {
     <.div(
@@ -247,9 +244,9 @@ object PageModal {
           |## Size
           |
           |**Modal's height depends on your `renderContent`.** When it's longer
-          |than user's screen then there will be a vertical scrollbar in Modal's
-          |background (outside of the content box). In general, however, it's
-          |best to avoid long Modal in the first place.
+          |than user's screen then there will be a vertical scrollbar in
+          |Modal's background (outside of the content box). In general,
+          |however, it's best to avoid long Modal in the first place.
           |
           """.stripMargin
       )(),
@@ -313,7 +310,8 @@ object PageModal {
         /*>*/
         val modal = Modal(
           title = "Full-screen Modal",
-          renderTarget = open => Button(onClick = open)("Open a Full-screen Modal"),
+          renderTarget = open =>
+            Button(onClick = open)("Open a Full-screen Modal"),
           renderContent = _ => ModalBody()("Hello world"),
           /*<*/
           size = Modal.SizeFull /*>*/
@@ -342,37 +340,39 @@ object PageModal {
           |
           |# Advanced
           |
+          |>::warning:: **Try not to use any of these advanced features.**
+          |>
+          |>They are built for edge cases, which often needs to sacrifice
+          |>user experience (like `isClosable: None`) or break data flow
+          |>(`isPermanent`).
+          |
           |## Closable
           |
-          |There are actually many ways a Modal can be closed. These ways are
-          |controlled by 3 props:
-          |
-          |### `isClosable`
-          |
-          |This props controls the following ways to close a Modal:
+          |Out-of-the-box, a Modal can be closed via several ways:
           |
           |1. Click on the "close" button on Modal's header
           |2. Click on Modal's background (the dark area)
           |3. Press ESC key while Modal [has focused](#focus)
           |
-          |By default, all 3 ways are enabled. They can be customized by 
-          |passing an `Option[PortalUtils.IsClosable]`:
+          |By default, all 3 are enabled. They can be customized by passing an
+          |`Option[PortalUtils.isClosable]` to the `isClosable` prop:
           |
           |```scala
           |case class IsClosable(
           |  onEsc: Boolean,
           |  onOutsideClick: Boolean
           |)
+          |
+          |isClosable: Option[IsClosable]
           |```
           |
-          |- If it's `None` then all 3 ways will be disabled. The "close"
-          |button will not be rendered at all.
-          |- If it's `Some` then 1 will be enabled, while 2 and 3 depend on
-          |`onOutsideClick` and `onEsc`, respectively.
-          |- Currently it is not possible to disable 1 while leaving 2 or 3
-          |enabled.
+          |### `isClosable: Some`
           |
-          |For example, the below Modal can not be closed via clicking 
+          |If `isClosable` is defined, then 1 will always be enabled, while 2
+          |and 3 depend on the value of `onOutsideClick` and `onEsc`,
+          |respectively.
+          |
+          |For example, the below Modal can not be closed via clicking
           |outside, but "esc" and "close" button works fine:
           |
           """.stripMargin
@@ -388,7 +388,7 @@ object PageModal {
             ModalBody()("You cannot close this by clicking outside")
           }, /*<*/
           isClosable = Some(
-            IsClosable(onEsc = true, onOutsideClick = false)
+            isClosable(onEsc = true, onOutsideClick = false)
           ) /*>*/
         )()
         <.div(modal) /*<*/
@@ -396,22 +396,25 @@ object PageModal {
       Markdown(
         """
           |
-          |### `renderContent`
+          |Currently it is not possible to disable 1 while leaving 2 or 3
+          |enabled.
           |
-          |The `renderContent` function is provided with a `close` callback,
-          |allow you to render an element that user can interact with to
-          |close the Modal, like an explicit "cancel" button or to close the
-          |Modal after submission.
+          |### `isClosable: None`
           |
-          |Moreover, this can be used with `isClosable = None` to require user
-          |to do something in order to dismiss the Modal. For example,
-          |the Modal below can only be closed if user submitted some text:
+          |When `isClosable` is not defined, all 3 ways will be disabled. The
+          |"close" button will not be rendered at all. In other words, there
+          |is no way for user to close the Modal unless defined in your
+          |`renderContent`.
+          |
+          |Because of this, `isClosable: None` often be used to require user to
+          |do something. For example, the Modal below can only be closed if
+          |user submitted some text:
           |
           """.stripMargin
       )(),
       ExampleRich(Source.annotate({
         val renderContent = (close: Callback) =>
-          SimpleStateString(
+          SimpleState.Str(
             initialValue = "",
             render = (value, onChange) => {
               val input = TextInput(value = value, onChange = onChange)()
@@ -437,33 +440,105 @@ object PageModal {
       Markdown(
         """
           |
-          |### `isOpen`
+          |**In general, avoid using `isClosable: None`.** This should only
+          |be used if there is no reasonable going back. Otherwise, always
+          |try to allow user to dismiss a Modal easily.
           |
-          |`isOpen` is a special prop that makes Modal a controlled
-          |component, in which the closing can only be controlled from
-          |outside. Learn more about this in the
-          |[Controlled Modal](#controlled-modal) section.
+          |A good example is to ask user to do something when there is a
+          |critical issue with their account, which should prevent them from
+          |using our app altogether.
+          |
+          |A bad example is to ask user to do something to do something to
+          |access a page or feature. The Modal in this case should still
+          |allow user to dismiss it, which simply take them back to the
+          |previous page or dashboard.
           |
           |## Event hooks
           |
           |Modal provides 2 event hooks: `onOpen` and `onClose`. These
-          |hooks are only called after user's interactions, which means they
-          |will not be called if Modal is closed programmatically or unmounted.
+          |hooks are only called after user's interactions, which is when
+          |Modal is:
           |
-          || Event | `onOpen` | `onClose` |
-          ||-------|----------|-----------|
-          || `open` in `renderTarget` | Yes | |
-          || `close` in `renderContent` | | Yes |
-          || click on "close" button | | Yes |
-          || click on outside | | Yes |
-          || press Esc | | Yes |
-          || `defaultIsOpened` | | |
-          || parent is unmounted | | |
-          || `isOpen` is changed | | |
+          |- Opened via `open` in `renderTarget`
+          |- Closed via `close` in `renderContent`
+          |- Closed via "close" button
+          |- Closed by clicking outside of Modal
+          |- Closed by pressing Esc
+          |
+          |These hooks will not be called when Modal is:
+          |
+          |- Opened in initial render because of `defaultIsOpened`
+          |- Opened or closed via `isOpen` prop
+          |- Unmounted because of its consumer
           |
           |## Permanent
           |
+          |Like other React component, Modal will be unmounted when
+          |
+          |**1\. Its consumer does not render it anymore**
+          |
+          |```scala
+          |// This is bad
+          |TagMod.when(...) { Modal(...)() }
+          |```
+          |
+          |This is an anti-pattern, which usually leads to unstable
+          |behaviour. If you want to programmatically control Modal's
+          |visibility, use a [Controlled Modal](#controlled-modal).
+          |
+          |**2\. Its consumer get unmounted**
+          |
+          |This, however, is an expected use case. Sometimes we need to
+          |show a Modal after its consumer is removed or destroyed. One
+          |example is to send a message after archiving a deal.
+          |
+          |In these cases, set `isPermanent` prop to `true` to keep the
+          |Modal stays after its consumer is unmounted:
+          |
+          """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        /*>*/
+        val renderModal = (setValue: Boolean => Callback) => {
+          Modal(
+            title = "Example Modal", /*<*/
+            isPermanent = true, /*>*/
+            renderTarget = open => Button(onClick = open)("Open Modal"),
+            renderContent = close => {
+              val body = <.div(
+                Style.flexbox.flex,
+                Button(onClick = setValue(false))("Destroy parent"),
+                <.div(Style.width.px16),
+                Button(onClick = close)("Close Modal")
+              )
+              ModalBody()(body)
+            }
+          )()
+        } /*<*/
+        val content = SimpleState.Bool(
+          initialValue = true,
+          render = (value, setValue) => {
+            if (value) {
+              val modal = renderModal(setValue)
+              <.div(modal) // Modal's consumer
+            } else {
+              <.p("Modal's parent is destroyed")
+            }
+          }
+        )() /*>*/
+        <.div(content)
+      }))(),
+      Markdown(
+        """
+          |**Note that Modal cannot continue receive upstream data after its
+          |parent was unmounted.** To be specific, Modal will be re-mounted
+          |(i.e. `ReactDOM.render`) to body, using its last set of props.
+          |This breaks React's normal flow, so your Modal should be simple
+          |and closed soon.
+          |
           |## Open by default
+          |
+          |
           |
           |## Controlled Modal
           |

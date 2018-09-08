@@ -538,6 +538,22 @@ object PageModal {
           |
           |## Open by default
           |
+          |Modal is usually opened after user's interaction, like when
+          |they click on a button, using the `open` callback in `renderTarget`.
+          |However, there are cases when you want it to be shown as soon as
+          |user accessed a page or feature.
+          |
+          |In these cases, set the `defaultIsOpen` prop to `true`, which will
+          |make Modal opened in its initial render. This is useful when you
+          |want to show user some information when they accessed a page,
+          |which they can easily dismiss it.
+          |
+          |```scala
+          |Modal(
+          |  defaultIsOpened = true
+          |)()
+          |```
+          |
           |
           |
           |## Controlled Modal

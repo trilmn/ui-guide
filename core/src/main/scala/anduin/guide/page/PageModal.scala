@@ -1,15 +1,13 @@
 package anduin.guide.page
 
 import scala.util.Random
-
 import japgolly.scalajs.react.Callback
 import japgolly.scalajs.react.vdom.html_<^._
-
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.input.TextInput
 import anduin.component.portal.PortalUtils.isClosable
 import anduin.component.portal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
-import anduin.guide.component.SimpleState
+import anduin.guide.component.{Example, SimpleState}
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
@@ -469,9 +467,9 @@ object PageModal {
           |
           |- Opened in initial render because of `defaultIsOpened`
           |- Opened or closed via `isOpen` prop
-          |- Unmounted because of its consumer
+          |- Unmounted
           |
-          |## Permanent
+          |## Unmount & Permanent
           |
           |Like other React component, Modal will be unmounted when
           |
@@ -533,33 +531,61 @@ object PageModal {
           |**Note that Modal cannot continue receive upstream data after its
           |parent was unmounted.** To be specific, Modal will be re-mounted
           |(i.e. `ReactDOM.render`) to body, using its last set of props.
-          |This breaks React's normal flow, so your Modal should be simple
-          |and closed soon.
+          |This breaks React's normal flow, so to be safe your Modal should be
+          |simple and closed soon.
           |
           |## Open by default
           |
-          |Modal is usually opened after user's interaction, like when
-          |they click on a button, using the `open` callback in `renderTarget`.
-          |However, there are cases when you want it to be shown as soon as
-          |user accessed a page or feature.
+          |Usually Modal is opened after user's interaction, like clicking on
+          |a button. However there are cases when you want to show it as soon
+          |as user accessed a page or a feature, to show some important
+          |information for example.
           |
-          |In these cases, set the `defaultIsOpen` prop to `true`, which will
-          |make Modal opened in its initial render. This is useful when you
-          |want to show user some information when they accessed a page,
-          |which they can easily dismiss it.
+          |In these cases, set the `defaultIsOpen` prop to `true` to make
+          |Modal opened in its initial render. This works in a similar way
+          |with the [`defaultValue` prop][1] in React's uncontrolled form
+          |components.
+          |
+          |[1]: https://reactjs.org/docs/uncontrolled-components.html#default-values
           |
           |```scala
           |Modal(
-          |  defaultIsOpened = true
+          |  defaultIsOpened = true,
+          |  /* ... */
           |)()
           |```
           |
+          |Be careful when there are several `defaultIsOpen=true` Modals in
+          |the same view. Their [stack order][2] will depend on the render
+          |order, so whichever get rendered later will be above.
           |
+          |[2]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/Stacking_without_z-index
           |
           |## Controlled Modal
           |
+          |
+          |
         """.stripMargin
-      )()
+      )(),
+      ExampleRich(Source.annotate({
+        val content = SimpleState.Bool(
+          initialValue = false,
+          render = (isOpened, setIsOpened) => {
+            <.div(
+              Modal(
+                isOpened = Some(isOpened),
+                title = "Example Modal",
+                renderContent = _ => ModalBody()("Content"),
+                onClose = setIsOpened(false)
+              )(),
+              Button(
+                onClick = setIsOpened(true)
+              )("Open Modal")
+            )
+          }
+        )()
+        <.div(content)
+      }))()
     )
   }
 }

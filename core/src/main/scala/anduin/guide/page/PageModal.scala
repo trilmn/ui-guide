@@ -335,9 +335,59 @@ object PageModal {
           |it is required for the engineer to set focus to an element in
           |`renderContent`, or else keyboard navigation will not available.
           |
+          |## URL
+          |
+          |>::warning:: **This feature is not available yet.** It is
+          |currently a proposal and here for early evaluation.
+          |
+          |**Sometimes Modal's content is also be accessible as a standalone
+          |page.** This is common for full-screen or large modals, where you
+          |want to quickly show another page but still keep user's state of
+          |current page.
+          |
+          |For example, a thread page is usually accessed via "Inbox".
+          |However, user might need to see a thread while they're in
+          |another page, like thread for an event in the ledger. In this
+          |case, we use Modal to show the thread so user won't need to leave
+          |the ledger (and thus preserved their on-going work in ledger).
+          |
+          |**In these cases we usually want to update browser's address to
+          |match the new page in the Modal**, instead of leaving it as the
+          |current page. So in our example above, when user bookmarks they
+          |will have the link to the exact thread they are viewing, instead
+          |of the ledger.
+          |
+          |**To have Modal updates browser's url when its content is shown,
+          |provide the page's path via the `url` prop.** This uses browser's
+          |[`pushState`][push-state] API so you can provide relative or
+          |absolute path. However, it's strongly recommended to use
+          |`routerCtl.pathFor` to construct a page's path:
+          |
+          |[push-state]: https://developer.mozilla.org/en-US/docs/Web/API/History_API#The_pushState()_method
+          |
+        """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        /*>*/
+        val modal = Modal(
+          title = "URL Modal",
+          renderTarget = open => Button(onClick = open)("Open Modal"),
+          renderContent = _ => ModalBody()("welcome content"), /*<*/
+          /* url = ctl.pathFor(Pages.Welcome()).value, */ /*>*/
+          size = Modal.Size1160
+        )()
+        <.div(modal) /*<*/
+      }))(),
+      Markdown(
+        """
+          |Modal will also help you to reverse back to previous URL after it
+          |is closed or unmounted. So in our example above, when Modal is
+          |closed, the URL now matches the ledger page again.
+          |
           |# Advanced
           |
-          |>::warning:: **Try not to use any of these advanced features.**
+          |>::warning:: **Heads-up: Try not to use any of these advanced
+          |>features.**
           |>
           |>They are built for edge cases, which often needs to sacrifice
           |>user experience (like `isClosable: None`) or break data flow
@@ -562,13 +612,13 @@ object PageModal {
           |
           |## Controlled Modal
           |
-          |**By default Modal is an [uncontrolled component][2],** in the mean
+          |**By default Modal is an [uncontrolled component][3],** in the mean
           |that it has its own state and only provides you callbacks (e.g.
           |`open` in `renderTarget`) to modify that state to show or hide
           |Modal's content. This would be useful most of the time since you
           |won't have to maintain your own state.
           |
-          |[2]: https://reactjs.org/docs/uncontrolled-components.html
+          |[3]: https://reactjs.org/docs/uncontrolled-components.html
           |
           |However, there are cases when you want total control over Modal's
           |content's visibility. **In these cases, provide a defined value for
@@ -578,7 +628,7 @@ object PageModal {
           |When `isOpen` is defined, `isClosable` only help you to have
           |`onClose` called properly, without actually close the Modal for
           |you. However, you can always update your internal state (or call
-          |API) to close Modal yourself:
+          |API) to close Modal yourself using these [event hooks](#event-hooks):
           |
         """.stripMargin
       )(),

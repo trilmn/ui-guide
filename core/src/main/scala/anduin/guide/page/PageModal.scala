@@ -7,7 +7,7 @@ import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.input.TextInput
 import anduin.component.portal.PortalUtils.isClosable
 import anduin.component.portal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
-import anduin.guide.component.{Example, SimpleState}
+import anduin.guide.component.SimpleState
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
@@ -308,8 +308,7 @@ object PageModal {
         /*>*/
         val modal = Modal(
           title = "Full-screen Modal",
-          renderTarget = open =>
-            Button(onClick = open)("Open a Full-screen Modal"),
+          renderTarget = open => Button(onClick = open)("Open a Full-screen Modal"),
           renderContent = _ => ModalBody()("Hello world"),
           /*<*/
           size = Modal.SizeFull /*>*/
@@ -563,28 +562,52 @@ object PageModal {
           |
           |## Controlled Modal
           |
+          |**By default Modal is an [uncontrolled component][2],** in the mean
+          |that it has its own state and only provides you callbacks (e.g.
+          |`open` in `renderTarget`) to modify that state to show or hide
+          |Modal's content. This would be useful most of the time since you
+          |won't have to maintain your own state.
           |
+          |[2]: https://reactjs.org/docs/uncontrolled-components.html
+          |
+          |However, there are cases when you want total control over Modal's
+          |content's visibility. **In these cases, provide a defined value for
+          |`isOpen`.** This value should come from your own state or an
+          |external source (e.g. data from API).
+          |
+          |When `isOpen` is defined, `isClosable` only help you to have
+          |`onClose` called properly, without actually close the Modal for
+          |you. However, you can always update your internal state (or call
+          |API) to close Modal yourself:
           |
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
+        /*>*/
         val content = SimpleState.Bool(
-          initialValue = false,
+          initialValue = false, /*<*/
           render = (isOpened, setIsOpened) => {
-            <.div(
-              Modal(
-                isOpened = Some(isOpened),
-                title = "Example Modal",
-                renderContent = _ => ModalBody()("Content"),
-                onClose = setIsOpened(false)
-              )(),
-              Button(
-                onClick = setIsOpened(true)
-              )("Open Modal")
-            )
+            val modal = Modal(
+              title = "Example Modal",
+              renderContent = _ => ModalBody()("Content"),
+              isOpened = Some(isOpened),
+              // ===
+              onClose = setIsOpened(false),
+              isClosable = Some(
+                isClosable(
+                  onEsc = true,
+                  onOutsideClick = false
+                )
+              )
+            )()
+            val button = Button(
+              onClick = setIsOpened(true)
+            )("Open Modal")
+            /*>*/
+            <.div(modal, button)
           }
         )()
-        <.div(content)
+        <.div(content) /*<*/
       }))()
     )
   }

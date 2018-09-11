@@ -367,67 +367,35 @@ object PageModal {
           |first) it's easy for the engineer to focus to another element
           |inside `renderContent` if needed.
           |
-          |If the "close" button does not exist (`title` is not set) then
-          |it is required for the engineer to set focus to an element in
-          |`renderContent`, or else keyboard navigation will not available.
-          |
-          |## URL
-          |
-          |>::warning:: **This feature is not available yet.** It is
-          |currently a proposal and here for early evaluation.
-          |
-          |**Sometimes Modal's content is also be accessible as a standalone
-          |page.** This is common for full-screen or large modals, where you
-          |want to quickly show another page but still keep user's state of
-          |current page.
-          |
-          |For example, a thread page is usually accessed via "Inbox".
-          |However, user might need to see a thread while they're in
-          |another page, like thread for an event in the ledger. In this
-          |case, we use Modal to show the thread so user won't need to leave
-          |the ledger (and thus preserved their on-going work in ledger).
-          |
-          |**In these cases we usually want to update browser's address to
-          |match the new page in the Modal**, instead of leaving it as the
-          |current page. So in our example above, when user bookmarks they
-          |will have the link to the exact thread they are viewing, instead
-          |of the ledger.
-          |
-          |**To have Modal updates browser's url when its content is shown,
-          |provide the page's path via the `url` prop.** This uses browser's
-          |[`pushState`][push-state] API so you can provide relative or
-          |absolute path. However, it's strongly recommended to use
-          |`routerCtl.pathFor` to construct a page's path:
-          |
-          |[push-state]: https://developer.mozilla.org/en-US/docs/Web/API/History_API#The_pushState()_method
+          |For example, this Modal has the "Submit" button auto-focused:
           |
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
         /*>*/
         val modal = Modal(
-          title = "URL Modal",
-          renderTarget = open => Button(onClick = open)("Open Modal"),
-          renderContent = _ => ModalBody()("welcome content"), /*<*/
-          /* url = ctl.pathFor(Pages.Welcome()).value, */ /*>*/
-          size = Modal.Size1160
+          title = "Example Modal",
+          renderTarget = open => Button(onClick = open)("Open Modal"), /*<*/
+          renderContent = close => {
+            val body = ModalBody()("Content")
+            val submit = Callback.alert("Submitted") >> close
+            val button = Button(
+              color = ButtonStyle.ColorPrimary,
+              autoFocus = true,
+              onClick = submit
+            )("Submit")
+            val footer = ModalFooterWCancel(close)(button)
+            ReactFragment(body, footer)
+          } /*>*/
         )()
         <.div(modal) /*<*/
       }))(),
       Markdown(
         """
-          |Modal will also help you to reverse back to previous URL after it
-          |is closed or unmounted. So in our example above, when Modal is
-          |closed, the URL now matches the ledger page again.
           |
-          |# Advanced
-          |
-          |>::warning:: **Heads-up: Try not to use any of these advanced
-          |>features.**
-          |>
-          |>They are built for edge cases, which often needs to sacrifice
-          |>user experience (like `isClosable: None`) or break data flow
-          |>(`isPermanent`).
+          |If the "close" button does not exist (`title` is not set) then
+          |it is required for the engineer to set focus to an element in
+          |`renderContent`, or else keyboard navigation will suffer.
           |
           |## Closable
           |
@@ -438,7 +406,7 @@ object PageModal {
           |3. Press ESC key while Modal [has focused](#focus)
           |
           |By default, all 3 are enabled. They can be customized by passing an
-          |`Option[PortalUtils.isClosable]` to the `isClosable` prop:
+          |`Option[PortalUtils.IsClosable]` to the `isClosable` prop:
           |
           |```scala
           |case class IsClosable(
@@ -471,7 +439,7 @@ object PageModal {
             ModalBody()("You cannot close this by clicking outside")
           }, /*<*/
           isClosable = Some(
-            isClosable(onEsc = true, onOutsideClick = false)
+            IsClosable(onEsc = true, onOutsideClick = false)
           ) /*>*/
         )()
         <.div(modal) /*<*/
@@ -535,6 +503,51 @@ object PageModal {
           |access a page or feature. The Modal in this case should still
           |allow user to dismiss it, which simply take them back to the
           |previous page or dashboard.
+          |# Advanced
+          |
+          |>::warning:: **Heads-up: Be super careful when using these advanced
+          |>features.**
+          |>
+          |>They are built for edge cases, which might results in unstable
+          |>behaviour or bad user experience if being used incorrectly.
+          |>Ensure that you read carefully to understand the underlying work
+          |>before using them.
+          |
+          |## URL
+          |
+          |>::warning:: **This feature is not available yet.** It is
+          |currently a proposal and here for early evaluation.
+          |
+          |**Sometimes Modal's content can also be accessible as a standalone
+          |page.** This is especially common for full-screen or large modals.
+          |In these cases we usually want to update browser's address to
+          |match the new page in the Modal, so bookmark or link sharing
+          |will work properly.
+          |
+          |**In these cases, use the `url` prop to ask Modal to update
+          |browser's url** when its content is shown (i.e. opening). Its
+          |value should be the path to the new page, which usually come from
+          |`routerCtl.pathFor`:
+          |
+          |[ps]: https://developer.mozilla.org/en-US/docs/Web/API/History_API#The_pushState()_method
+          |
+        """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        /*>*/
+        val modal = Modal(
+          title = "URL Modal",
+          renderTarget = open => Button(onClick = open)("Open Modal"),
+          renderContent = _ => ModalBody()("welcome content"), /*<*/
+          /* url = ctl.pathFor(Pages.Welcome()).value, */ /*>*/
+          size = Modal.Size1160
+        )()
+        <.div(modal) /*<*/
+      }))(),
+      Markdown(
+        """
+          |Modal will also bring back the previous URL for you after it is
+          |closed or unmounted.
           |
           |## Event hooks
           |
@@ -613,11 +626,20 @@ object PageModal {
       }))(),
       Markdown(
         """
-          |**Note that Modal cannot continue receive upstream data after its
-          |parent was unmounted.** To be specific, Modal will be re-mounted
-          |(i.e. `ReactDOM.render`) to body, using its last set of props.
-          |This breaks React's normal flow, so to be safe your Modal should be
-          |simple and closed soon.
+          |### Break of data flow
+          |
+          |In order to live beyond its parent's lifespan, `isPermanent` Modal
+          |will be re-mounted to `body` via `ReactDOM.render`. This remount
+          |is called on Modal's `willUnmount`, which also trigger a new
+          |`render` with its last set of props.
+          |
+          |After remounted, Modal is now a new, independent React root, and
+          |broken all relationship with its parent (which should already be
+          |destroyed).
+          |
+          |Therefore, avoid giving `isPermanent` Modal any callback that
+          |update its parent's state. Calling these callbacks after unmounted
+          |will result in a React error and having no effect.
           |
           |## Open by default
           |
@@ -680,7 +702,7 @@ object PageModal {
               // ===
               onClose = setIsOpened(false),
               isClosable = Some(
-                isClosable(
+                IsClosable(
                   onEsc = true,
                   onOutsideClick = false
                 )

@@ -5,7 +5,8 @@ import japgolly.scalajs.react.Callback
 import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.input.TextInput
-import anduin.component.portal.PortalUtils.isClosable
+import anduin.component.portal
+import anduin.component.portal.PortalUtils.IsClosable
 import anduin.component.portal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
 import anduin.guide.component.SimpleState
 import anduin.guide.{Pages, Router}
@@ -139,13 +140,18 @@ object PageModal {
       }))(),
       Markdown(
         """
-          |If you do need to render something else manually, it is suggested to
-          |base on the `<.button` tag to have good accessibility support.
+          |If you really need to render something other than Button, it is
+          |suggested to still base on the `<.button` tag to have good
+          |accessibility support.
           |
-          |**Note that Modal does not render any additional wrapper tag.**
+          |### No wrapper
+          |
+          |Modal does not render any additional wrapper tag around the target
+          |element.
+          |
           |Modal's content is rendered via [React's Portal][1], and the place
           |where you use Modal is replaced with only what returned in your
-          |`renderTarget`. Nothing more or less, and no matter the Modal is
+          |`renderTarget`. Nothing more or less, no matter the Modal is
           |opening or not.
           |
           |```scala
@@ -172,9 +178,9 @@ object PageModal {
           |the Modal's header is already defined by default.
           |
           |For maximum customization, Modal does not provide any predefined
-          |styles (like padding) for your `renderContent`. Instead, you
-          |should use `ModalBody` and `ModalFooter` to build your Modal's
-          |content with nice, predefined padding:
+          |styles (like padding) for your `renderContent`. Instead, you will
+          |usually want to use `ModalBody` and `ModalFooter` to build your
+          |Modal's content with nice, consistent padding:
           |
           |""".stripMargin
       )(),
@@ -208,7 +214,7 @@ object PageModal {
       }))(),
       Markdown(
         """
-          |### ModalFooterWCancel
+          |### Footer with Cancel
           |
           |In practice, it is very common for a Modal to have a footer with 2
           |buttons: one to submit/execute an action and the other to close
@@ -216,7 +222,7 @@ object PageModal {
           |
           |In these cases, use the `ModalFooterWCancel` component which
           |provide the necessary layout and a "Cancel" button. You only need to
-          |attach the "cancel/close" callback and provide your "submit" button:
+          |attach the "close" callback and provide your "submit" button:
           |
           |""".stripMargin
       )(),
@@ -229,7 +235,8 @@ object PageModal {
             val footer = ModalFooterWCancel(cancel = close)(
               Button(
                 color = ButtonStyle.ColorDanger,
-                onClick = Callback.alert("Deal archived") >> close
+                onClick =
+                  Callback.alert("Deal archived") >> close
               )("Archive Deal")
             ) /*>*/
             ReactFragment(sampleArchiveBody(), footer)
@@ -317,7 +324,7 @@ object PageModal {
           |Note that there will be no horizontal scrollbar (i.e. it's
           |`overflowX.hidden`). If your content is wider than the
           |Modal's width then it will be hidden unless you define your own
-          |scrollbar.
+          |`overflow` method.
           |
           |### Full screen
           |
@@ -326,8 +333,8 @@ object PageModal {
           |- There will be no background. Your `renderContent` will take 100%
           |of user screen's width and height.
           |- There will be no vertical scrollbar out-of-the-box. If your
-          |content might be longer than user's screen, define a scrollbar (i.e.
-          |set `Style.overflow`) somewhere in your `renderContent`.
+          |content might be longer than user's screen, define an overflow
+          |method somewhere in your `renderContent`.
           |
         """.stripMargin
       )(),
@@ -335,9 +342,11 @@ object PageModal {
         /*>*/
         val modal = Modal(
           title = "Full-screen Modal",
-          renderTarget = open => Button(onClick = open)("Open a Full-screen Modal"),
-          renderContent = _ => ModalBody()("Hello world"),
-          /*<*/
+          renderTarget = open =>
+            Button(onClick = open)(
+              "Open a Full-screen Modal"
+          ),
+          renderContent = _ => ModalBody()("Hello world"), /*<*/
           size = Modal.SizeFull /*>*/
         )()
         <.div(modal) /*<*/

@@ -73,6 +73,8 @@ object Router {
 
       | dynamicRouteCT("modal" ~ hash.caseClass[Modal]) ~>
         renderR(PageModal.render)
+      | dynamicRouteCT("popover" ~ hash.caseClass[Popover]) ~>
+        renderR(PageModal.render)
 
       | emptyRule)
       .notFound(redirectToPage(Welcome)(Redirect.Replace))

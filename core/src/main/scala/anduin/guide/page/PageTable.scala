@@ -83,17 +83,17 @@ object PageTable {
           |will take care of the rendering for you.
           |
           |More specific, to have the simplest Table, you need to:
-          |1. [Init](#init) Table with the type of your data
-          |2. Provide your data via [`rows`](#rows)
-          |3. Describe how they should be identified via [`getKey`](#getkey)
-          |4. Describe how they should be rendered via [`columns`](#columns)
+          |1. [Init Table](#init) with the type of your data
+          |2. [Provide your data](#rows) via `rows` prop
+          |3. [Describe their identity](#getkey) via `getKey` prop
+          |4. [Describe their render](#columns) via `columns` prop
           |
           |## Init
           |
-          |Table is a [Generic Component][1], therefore you must first init it
+          |Table is a [generic component][gc], therefore you must first init it
           |with the type of your data (rows):
           |
-          |[1]: https://docs.scala-lang.org/tour/generic-classen.html
+          |[gc]: https://docs.scala-lang.org/tour/generic-classen.html
           |
           |```scala
           |// In practice, this type/model is often defined already and

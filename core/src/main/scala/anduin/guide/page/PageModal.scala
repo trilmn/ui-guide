@@ -49,8 +49,26 @@ object PageModal {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(title = "Modal")()
+        Header(
+          title = "Modal",
+          """
+            |Modal focuses user on critical information or task. The task might
+            |be as simple as picking contacts, or as complex as signing a
+            |document.
+          """.stripMargin
+        )()
       ),
+      Markdown(
+        """
+          |# Basic usage
+          |
+          |Modal is an [uncontrolled component][uc], which provides you
+          |callback to open and close it via [render props][rp]:
+          |
+          |[uc]: https://reactjs.org/docs/uncontrolled-components.html
+          |[rp]: https://reactjs.org/docs/render-props.html
+        """.stripMargin
+      )(),
       ExampleRich(Source.annotate({
         val modal = Modal(
           title = "Hello World",
@@ -65,10 +83,18 @@ object PageModal {
       }))(),
       Markdown(
         s"""
-          |# Basic
+          |**Modal blocks user's main workflow.** While it is opening, no other
+          |interactions on the main app can be made. Consider using
+          |[Popover][pv] for non-critical information or task that should not
+          |block the main workflow.
           |
-          |Most Modal instances often have `renderTarget`, `renderContent` and
-          |`title` props defined:
+          |[pv]: ${ctl.pathFor(Pages.Popover()).value}
+          |
+          |**Modal kept user's main workflow.** Unlike page navigation,
+          |Modal does not affect the current page at all, leaving user's
+          |current work and data untouched, although not accessible.
+          |
+          |# Details
           |
           |## Target
           |
@@ -76,8 +102,9 @@ object PageModal {
           |renderTarget: (open: Callback) => VdomNode
           |```
           |
-          |`renderTarget` should render an element ("target") that user can
-          |interact with to open the Modal, using the `open: Callback` provided.
+          |`renderTarget` should render an element that user can interact
+          |with to open the Modal (thus the name "target"), using the
+          |`open: Callback` provided.
           |
           |Technically, you can attach `open` to any element. However, it is
           |suggested to use the [`Button`][1] component for best

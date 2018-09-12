@@ -5,7 +5,7 @@ const express = require('express');
 const path = require("path");
 const app = express();
 
-const target = '../../core/target/scala-2.12';
+const target = '../../core/target/scala-2.12/scalajs-bundler/main';
 
 app.use(express.static(path.join(__dirname, target)));
 

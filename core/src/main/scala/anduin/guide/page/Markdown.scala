@@ -1,9 +1,9 @@
 package anduin.guide.page
 
-import com.karasiq.markedjs.{Marked, MarkedOptions, MarkedRenderer}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
+import anduin.scalajs_own.markedjs.{Marked, MarkedOptions, MarkedRenderer}
 import anduin.guide.component._
 import anduin.style.Style
 
@@ -93,8 +93,7 @@ object Markdown {
       table = renderTable,
       tablecell = renderTableCell,
       paragraph = renderParagraph
-    ),
-    smartypants = false
+    )
   )
 
   private case class Backend(scope: BackendScope[Markdown, _]) {

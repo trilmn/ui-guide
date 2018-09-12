@@ -41,6 +41,7 @@ sgz_js_dep=${sgz_src}/platform/stargazerJSDependency/src/main/scala/anduin/scala
 deps=(
   popper/Popper.scala
   popper/PopperOptions.scala
+  focusvisible/FocusVisible.scala
 )
 # @TODO: Ask Keimoon or Tue how to reuse the below func
 for name in ${deps[*]}

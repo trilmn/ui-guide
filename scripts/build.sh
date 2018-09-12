@@ -17,9 +17,8 @@ postcss ${core_css_main} --config ${postcss_config} --output ${docs}/app.css
 
 # JS
 echo "[info] Compiling JS (fullOpt) ..."
-sbt fullOptJS
+sbt fullOptJS::webpack
 echo "[info] Copying JS ..."
-cp ${core_target}/core-opt.js ${docs}/app.js
-cp ${core_target}/core-jsdeps.min.js ${docs}/dep.js
+cp ${core_target}/core-opt-bundle.js ${docs}/app.js
 
 echo "[success] Successfully built"

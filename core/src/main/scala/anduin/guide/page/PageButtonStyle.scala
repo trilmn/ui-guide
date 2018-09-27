@@ -22,7 +22,9 @@ object PageButtonStyle {
         """
           |ButtonStyle is not a component, so it cannot be used on its own.
           |
-          |Instead, you use ButtonStyle's values (e.g. ColorPrimary or StyleMinimal) to customize other components that support them (e.g. Button or ButtonLink):
+          |Instead, you use ButtonStyle's values (e.g. ColorPrimary or
+          |StyleMinimal) to customize other components that support them (e.g.
+          |Button or ButtonLink):
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -39,21 +41,23 @@ object PageButtonStyle {
         """
           |# Style
           |
-          |The `style` prop controls a button's overall style. There are 3 options:
+          |The `style` prop controls a button's overall style. There are 3
+          |options:
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
-        /*>*/
         <.div(
           Style.flexbox.flex.flexbox.itemsCenter,
-          <.div( /*<*/ Button(style = ButtonStyle.StyleFull)("Full Style") /*>*/, Style.margin.right16),
-          <.div( /*<*/ Button(style = ButtonStyle.StyleMinimal)("Minimal Style") /*>*/, Style.margin.right16),
-          <.div( /*<*/ Button(style = ButtonStyle.StyleLink)("Link Style") /*>*/, Style.margin.right16)
-        ) /*<*/
+          <.div(Button(style = ButtonStyle.StyleFull)("Full Style"), Style.margin.right16),
+          <.div(Button(style = ButtonStyle.StyleMinimal)("Minimal Style"), Style.margin.right16),
+          <.div(Button(style = ButtonStyle.StyleLink)("Link Style"), Style.margin.right16)
+        )
       }))(),
       Markdown(
         """
-          |**StyleFull** is the default value, which has strong visual hint. Use StyleFull to make your button attractive and stand out from other types of elements.
+          |**StyleFull** is the default value, which has strong visual hint.
+          |Use StyleFull to make your button attractive and stand out from
+          |other types of elements.
         """.stripMargin
       )(),
       ExampleSimple()(
@@ -73,14 +77,18 @@ object PageButtonStyle {
       ),
       Markdown(
         """
-          |**StyleMinimal** has little visual hint, so it should only be used when the surrounding context already provided enough hint for interaction.
+          |**StyleMinimal** has little visual hint, so it should only be used
+          |when the surrounding context already provided enough hint for
+          |interaction.
           """.stripMargin
       )(), {
-        val button =
-          Button(size = ButtonStyle.SizeIcon, style = ButtonStyle.StyleMinimal)
+        val button = Button(size = ButtonStyle.SizeIcon, style = ButtonStyle.StyleMinimal)
         val sep = <.div(Style.margin.left8.padding.left8.border.left.borderWidth.px2.borderColor.gray4)
         ExampleSimple(
-          "Toolbar is a good use case of StyleMinimal: it is clear from the arrangement that these icons are actions."
+          """
+            |Toolbar is a good use case of StyleMinimal: it is clear from the
+            |arrangement that these icons are actions.
+          """.stripMargin
         )(
           <.div(
             Style.flexbox.flex,
@@ -175,7 +183,7 @@ object PageButtonStyle {
           |    title = "Confirm Removing",
           |    renderTarget = open => Button(onClick = open)("Remove"),
           |    renderContent = close =>
-          |      ReactFragment(
+          |      React.Fragment(
           |        ModalBody(
           |          "After removed, John can not see any information about" +
           |          "this transaction, including his past activity."
@@ -251,13 +259,18 @@ object PageButtonStyle {
       Markdown(
         """
           |
-          |There is also a `SizeIcon` value to make icon-only button looks square, which is covered in [With icon](#with-icon) section below.
+          |There is also a `SizeIcon` value to make icon-only button looks
+          |square, which is covered in [With icon](#with-icon) section below.
           |
           |# isFullWidth
           |
-          |Although being a `block` element, the width of a ButtonStyle element depends on its content size by default (`max-content` to be exact).
+          |Although being a `block` element, the width of a ButtonStyle
+          |element depends on its content size by default (`max-content` to
+          |be exact).
           |
-          |Set `isFullWidth = true` if you want the button's width to be 100% of its parent. This comes in handy in some situations like a vertical form.
+          |Set `isFullWidth = true` if you want the button's width to be 100%
+          |of its parent. This comes in handy in some situations like a
+          |vertical form.
         """.stripMargin
       )(),
       ExampleRich(
@@ -281,8 +294,7 @@ object PageButtonStyle {
         """.stripMargin
       )(),
       // @TODO: This should be ExampleRich, but Popover is dying
-      Markdown(
-        """
+      Markdown("""
           |```scala
           |Popover(
           |  position = PositionBottomLeft,

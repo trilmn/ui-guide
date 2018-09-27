@@ -73,6 +73,7 @@ object LayoutNav {
                 li(Title("ButtonLink", Some(ButtonLink())))
               )
             ),
+            li(Title("Dropdown", Some(Dropdown()))),
             li(
               Title("Container", isExpanded = Some(_.isInstanceOf[ContainerT])),
               ul(

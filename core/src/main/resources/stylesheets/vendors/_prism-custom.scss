@@ -22,7 +22,7 @@
 }
 
 .token.comment, .token.prolog, .token.doctype, .token.cdata {
-	color: slategray;
+	color: var(--color-gray-5);
 }
 
 .namespace {

@@ -15,11 +15,8 @@ final case class CodeBlock(
 object CodeBlock {
 
   private def trimFirstCollapse(content: String): String = {
-    if (content.startsWith("/*>*/\n")) {
-      content.replaceFirst("\n", "")
-    } else {
-      content
-    }
+    val cond = content.startsWith("/*>*/\n")
+    if (cond) content.replaceFirst("\n", "") else content
   }
 
   private case class Backend(scope: BackendScope[CodeBlock, _]) {

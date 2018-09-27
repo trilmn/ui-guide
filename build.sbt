@@ -38,7 +38,9 @@ lazy val core = (project in file("core"))
       "react-dom" -> "16.5.0",
       "popper.js" -> "1.14.3",
       "marked" -> "0.3.19",
-      "focus-visible" -> "4.1.5"
+      "focus-visible" -> "4.1.5",
+      "downshift" -> "2.2.2",
+      "react-truncate-markup" -> "2.0.1"
     )
   )
 

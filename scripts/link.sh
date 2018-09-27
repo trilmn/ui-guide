@@ -42,6 +42,10 @@ deps=(
   popper/Popper.scala
   popper/PopperOptions.scala
   focusvisible/FocusVisible.scala
+  downshift/Downshift.scala
+  downshift/DownshiftRender.scala
+  downshift/DownshiftState.scala
+  reacttruncatemarkup/ReactTruncateMarkup.scala
 )
 # @TODO: Ask Keimoon or Tue how to reuse the below func
 for name in ${deps[*]}
@@ -101,6 +105,7 @@ components=(
   text/Tag.scala
   text/DateTime.scala
 
+  truncate/TruncateMarkup.scala
   util/EventUtils.scala
   util/NodeListSeq.scala
 )

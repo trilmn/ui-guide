@@ -30,19 +30,16 @@ object PageTypography {
         |The only exception being when you want to display code then you
         |should use mono-space fonts, available at `Style.fontFamily.mono`:
         """.stripMargin)(),
-      ExampleRich(
-        Source.annotate(
-          /*>*/
-          <.div(
-            <.span("Your secret code: "),
-            <.code(
-              Style.backgroundColor.gray2.padding.ver4.padding.hor8, /*<*/
-              Style.fontFamily.mono /*>*/,
-              "746123"
-            )
-          ) /*<*/
+      ExampleRich(Source.annotate({
+        <.div(
+          <.span("Your secret code: "),
+          <.code(
+            Style.backgroundColor.gray2.padding.ver4.padding.hor8,
+            Style.fontFamily.mono,
+            "746123"
+          )
         )
-      )(),
+      }))(),
       Markdown(s"""
         |# Font Size
         |

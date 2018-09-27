@@ -377,7 +377,8 @@ object PageIcon {
       ),
       // format: off
       ExampleRich(Source.annotate({
-        /*>*/ <.div(
+        /*>*/
+        <.div(
           Style.flexbox.flex.flexbox.itemsCenter, /*<*/
           Icon(name = Icon.NameOffice)() /*>*/,
           <.span(Style.margin.left8, "Office")

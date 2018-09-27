@@ -93,7 +93,7 @@ object PageTable {
           |Table is a [generic component][gc], therefore you must first init it
           |with the type of your data (rows):
           |
-          |[gc]: https://docs.scala-lang.org/tour/generic-classen.html
+          |[gc]: https://docs.scala-lang.org/tour/generic-classes.html
           |
           |```scala
           |// In practice, this type/model is often defined already and
@@ -367,10 +367,7 @@ object PageTable {
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
-        val table = Sample.BaseTable.copy(
-          headIsSticky = true
-        )()
-        <.div(table)
+        Sample.BaseTable.copy(headIsSticky = true)()
       }))(),
       Markdown(
         s"""
@@ -379,6 +376,7 @@ object PageTable {
           |Table supports sorting, but you need to tell it how to sort each
           |column via the `sortByString` or `sortByDouble` prop. They are
           |similar to [Scala's `sortBy`][1] or [Lodash's `sortBy`][2]:
+          |
           |
           |[1]: https://alvinalexander.com/scala/how-to-sort-map-in-scala-key-value-sortby-sortwith
           |[2]: https://lodash.com/docs/#sortBy

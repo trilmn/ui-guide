@@ -93,6 +93,7 @@ object LayoutNav {
             li(
               Title("Portal", isExpanded = Some(_.isInstanceOf[PortalT])),
               ul(
+                li(Title("Popover", Some(Popover()))),
                 li(Title("Modal", Some(Modal())))
               )
             )

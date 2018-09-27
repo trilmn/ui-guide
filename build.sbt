@@ -4,7 +4,7 @@ lazy val commonSettings = Seq(
   organization := "co.anduin",
   version := "0.1",
   scalaVersion := "2.12.6",
-  libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.2.3",
+  libraryDependencies += "com.github.japgolly.scalajs-react" %%% "core" % "1.3.0",
   scalacOptions += "-Yrangepos"
 )
 
@@ -22,7 +22,6 @@ lazy val core = (project in file("core"))
     commonSettings,
     scalacOptions += "-P:scalajs:sjsDefinedByDefault",
     scalaJSUseMainModuleInitializer := true,
-    scalaJSLinkerConfig ~= { _.withESFeatures(_.withUseECMAScript2015(true)) },
     webpackBundlingMode in fastOptJS := BundlingMode.LibraryOnly(),
     webpackBundlingMode in fullOptJS := BundlingMode.Application,
     version in webpack := "4.18.0",
@@ -30,7 +29,7 @@ lazy val core = (project in file("core"))
     libraryDependencies ++= Seq(
       "org.scalatest" %% "scalatest" % "3.0.5" % Test,
       "org.scala-js" %%% "scalajs-dom" % "0.9.5",
-      "com.github.japgolly.scalajs-react" %%% "extra" % "1.2.3"
+      "com.github.japgolly.scalajs-react" %%% "extra" % "1.3.0"
     ),
     // https://github.com/webjars/webjars/issues/1789
     dependencyOverrides += "org.webjars.npm" % "js-tokens" % "3.0.2",

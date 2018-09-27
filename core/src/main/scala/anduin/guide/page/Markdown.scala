@@ -3,7 +3,7 @@ package anduin.guide.page
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.scalajs_own.markedjs.{Marked, MarkedOptions, MarkedRenderer}
+import anduin.scalajs.markedjs.{Marked, MarkedOptions, MarkedRenderer}
 import anduin.guide.component._
 import anduin.style.Style
 
@@ -19,8 +19,6 @@ object Markdown {
 
   private val rnd = ReactDOMServer.renderToStaticMarkup _
 
-  private val ComponentName = this.getClass.getSimpleName
-
   private val renderHead = (content: String, level: Int) => {
     val styles = Style.padding.bottom12.padding.top32
     val heading = Heading(content = content, level = level)()
@@ -35,10 +33,19 @@ object Markdown {
     rnd(<.p(Style.padding.ver12, ^.dangerouslySetInnerHtml := content))
   }
 
-  private val renderCodespan = (content: String) => {
-    val styles = TagMod(Style.fontFamily.mono.backgroundColor.gray2, ^.padding := "2px 4px")
-    val html = ^.dangerouslySetInnerHtml := content
-    rnd(<.code(styles, html))
+  private val renderCodeSpan = (content: String) => {
+    val parts: List[String] = content.split("::").toList
+    val (lngOpt, newContent) = parts match {
+      case a :: b :: Nil => (Some(a), b)
+      case _             => (None, content)
+    }
+    val codeSpan = <.code(
+      Style.fontFamily.mono.backgroundColor.gray2,
+      lngOpt.whenDefined(lng => ^.cls := s"language-$lng"),
+      ^.padding := "2px 4px",
+      ^.dangerouslySetInnerHtml := newContent
+    )
+    rnd(codeSpan)
   }
 
   private val renderCode = (content: String, language: String) => {
@@ -85,7 +92,7 @@ object Markdown {
   private val options: MarkedOptions = MarkedOptions(
     renderer = MarkedRenderer(
       heading = renderHead,
-      codespan = renderCodespan,
+      codespan = renderCodeSpan,
       code = renderCode,
       hr = renderHr,
       blockquote = renderBlockquote,
@@ -104,7 +111,7 @@ object Markdown {
   }
 
   private val component = ScalaComponent
-    .builder[Markdown](ComponentName)
+    .builder[Markdown](this.getClass.getSimpleName)
     .stateless
     .renderBackend[Backend]
     .build

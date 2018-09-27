@@ -10,7 +10,11 @@ sgz_src.txt
 # Linked JS
 core/src/main/scala/anduin/component
 core/src/main/scala/anduin/style
-core/src/main/scala/anduin/scalajs
+core/src/main/scala/anduin/scalajs/focusvisible
+core/src/main/scala/anduin/scalajs/popper
+core/src/main/scala/anduin/scalajs/downshift
+core/src/main/scala/anduin/scalajs/util
+core/src/main/scala/anduin/scalajs/reacttruncatemarkup
 
 # Linked CSS
 core/src/main/resources/stylesheets/tachyons

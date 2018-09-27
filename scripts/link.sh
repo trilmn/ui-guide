@@ -42,6 +42,7 @@ deps=(
   popper/Popper.scala
   popper/PopperOptions.scala
   focusvisible/FocusVisible.scala
+  util/Util.scala
   downshift/Downshift.scala
   downshift/DownshiftRender.scala
   downshift/DownshiftState.scala
@@ -63,6 +64,10 @@ components=(
   button/ButtonLink.scala
   button/ButtonStyle.scala
 
+  dropdown/Dropdown.scala
+  dropdown/DropdownTarget.scala
+  dropdown/DropdownContent.scala
+
   container/Card.scala
   container/Collapse.scala
   container/Tab.scala
@@ -79,16 +84,17 @@ components=(
   icon/IllusFolder.scala
 
   input/Checkbox.scala
-#  input/CustomDropdown.scala
+  input/CustomDropdown.scala
   input/NativeDropdown.scala
   input/FileButtonInput.scala
   input/Radio.scala
   input/RadioBox.scala
   input/TextInput.scala
 
-#  menu/Menu.scala
-#  menu/MenuDivider.scala
-#  menu/MenuItem.scala
+  menu/Menu.scala
+  menu/MenuDivider.scala
+  menu/MenuItem.scala
+  menu/VerticalDivider.scala
 
   portal/Modal.scala
   portal/ModalBody.scala
@@ -97,6 +103,7 @@ components=(
   portal/ModalHeader.scala
   portal/Popover.scala
   portal/Portal.scala
+  portal/PortalContent.scala
   portal/PortalPopper.scala
   portal/PortalUtils.scala
   portal/Position.scala
@@ -106,8 +113,10 @@ components=(
   text/DateTime.scala
 
   truncate/TruncateMarkup.scala
+
   util/EventUtils.scala
   util/NodeListSeq.scala
+  util/ComponentUtils.scala
 )
 for name in ${components[*]}
 do

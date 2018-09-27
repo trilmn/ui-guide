@@ -4,7 +4,7 @@ object Pages {
   sealed trait Page {}
   // entry
   case object Welcome extends Page
-  case class WIP(hash: String = "") extends Page
+  case object WIP extends Page
   // brand
   sealed trait BrandT extends Page
   case class Logo(hash: String = "") extends BrandT
@@ -40,7 +40,12 @@ object Pages {
   case class IllusFolder(hash: String = "") extends IconT
   // - input
   sealed trait InputT extends ComponentT
+  case class Radio(hash: String = "") extends InputT
   case class Checkbox(hash: String = "") extends InputT
+  case class Dropdown(hash: String = "") extends InputT
+  case class MultiDropdown(hash: String = "") extends InputT
+  case class Suggest(hash: String = "") extends InputT
+  case class MultiSuggest(hash: String = "") extends InputT
   // - portal
   sealed trait PortalT extends ComponentT
   case class Modal(hash: String = "") extends PortalT

@@ -1,4 +1,4 @@
-package anduin.scalajs_own.markedjs
+package anduin.scalajs.markedjs
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.ScalaJSDefined

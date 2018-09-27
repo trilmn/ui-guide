@@ -1,11 +1,10 @@
 package anduin.guide.page
 
 import scala.util.Random
-import japgolly.scalajs.react.Callback
+import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.input.TextInput
-import anduin.component.portal
 import anduin.component.portal.PortalUtils.IsClosable
 import anduin.component.portal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
 import anduin.guide.component.SimpleState
@@ -34,7 +33,7 @@ object PageModal {
   }
 
   private def sampleArchiveContent(isBold: Boolean)(close: Callback) = {
-    ReactFragment(
+    React.Fragment(
       sampleArchiveBody(isBold),
       ModalFooterWCancel(cancel = close)(
         Button(
@@ -61,17 +60,17 @@ object PageModal {
       ),
       Markdown(
         """
-          |# Basic usage
+          |# Basic Usage
           |
-          |Modal is an [uncontrolled component][uc], which provides you
-          |callback to open and close it via [render props][rp]:
+          |Modal is an [uncontrolled component][uc] that provides you
+          |callbacks to open and close it via the [render props][rp]:
           |
           |[uc]: https://reactjs.org/docs/uncontrolled-components.html
           |[rp]: https://reactjs.org/docs/render-props.html
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
-        val modal = Modal(
+        Modal(
           title = "Hello World",
           renderContent = _ => {
             ModalBody()("This is Modal's content")
@@ -80,7 +79,6 @@ object PageModal {
             Button(onClick = open)("Open a Modal")
           }
         )()
-        <.div(modal)
       }))(),
       Markdown(
         s"""
@@ -95,9 +93,7 @@ object PageModal {
           |Modal does not affect the current page at all, leaving user's
           |current work and data untouched, although not accessible.
           |
-          |# Details
-          |
-          |## Target
+          |# Target
           |
           |```scala
           |renderTarget: (open: Callback) => VdomNode
@@ -144,7 +140,7 @@ object PageModal {
           |suggested to still base on the `<.button` tag to have good
           |accessibility support.
           |
-          |### No wrapper
+          |## No wrapper
           |
           |Modal does not render any additional wrapper tag around the target
           |element.
@@ -167,7 +163,7 @@ object PageModal {
           |
           |[1]: https://reactjs.org/docs/portals.html
           |
-          |## Content
+          |# Content
           |
           |```scala
           |renderContent: (close: Callback) => VdomNode
@@ -186,7 +182,7 @@ object PageModal {
       )(),
       ExampleRich(Source.annotate({
         /*>*/
-        val modal = Modal(
+        Modal(
           title = "Error signing document",
           renderTarget = open => {
             Button(onClick = open)("Open Modal")
@@ -207,14 +203,13 @@ object PageModal {
                 )("Okay")
               )
             )
-            ReactFragment(body, footer)
+            React.Fragment(body, footer)
           } /*>*/
-        )()
-        <.div(modal) /*<*/
+        )() /*<*/
       }))(),
       Markdown(
         """
-          |### Footer with Cancel
+          |## Footer with Cancel
           |
           |In practice, it is very common for a Modal to have a footer with 2
           |buttons: one to submit/execute an action and the other to close
@@ -228,7 +223,7 @@ object PageModal {
       )(),
       ExampleRich(Source.annotate({
         /*>*/
-        val modal = Modal(
+        Modal(
           title = "Deal archive confirmation",
           renderTarget = sampleArchiveButton, /*<*/
           renderContent = close => {
@@ -239,14 +234,13 @@ object PageModal {
                   Callback.alert("Deal archived") >> close
               )("Archive Deal")
             ) /*>*/
-            ReactFragment(sampleArchiveBody(), footer)
+            React.Fragment(sampleArchiveBody(), footer)
           }
-        )()
-        <.div(modal) /*<*/
+        )() /*<*/
       }))(),
       Markdown(
         """
-          |## Title
+          |# Title
           |
           |Modal comes with a default header, which has a title that can be
           |modified via the `title: String` prop.
@@ -259,12 +253,11 @@ object PageModal {
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
-        val modal = Modal(
+        Modal(
           // Skipped title
           renderContent = sampleArchiveContent(isBold = true),
           renderTarget = sampleArchiveButton
         )()
-        <.div(modal)
       }))(),
       Markdown(
         """
@@ -273,7 +266,7 @@ object PageModal {
           |Therefore, you should also define a clear "cancel/dismiss" in your
           |`renderContent` in this case.
           |
-          |## Size
+          |# Size
           |
           |**Modal's height depends on your `renderContent`.** When it's longer
           |than user's screen then there will be a vertical scrollbar in
@@ -309,14 +302,13 @@ object PageModal {
       )(),
       ExampleRich(Source.annotate({
         /*>*/
-        val modal = Modal(
+        Modal(
           title = "960px Modal",
           renderTarget = open => Button(onClick = open)("Open 960px Modal"),
           renderContent = _ => ModalBody()("Hello world"),
           /*<*/
           size = Modal.Size960 /*>*/
-        )()
-        <.div(modal) /*<*/
+        )() /*<*/
       }))(),
       Markdown(
         """
@@ -326,7 +318,7 @@ object PageModal {
           |Modal's width then it will be hidden unless you define your own
           |`overflow` method.
           |
-          |### Full screen
+          |## Full screen
           |
           |The `size` prop also accepts a special `SizeFull` value, in which:
           |
@@ -340,7 +332,7 @@ object PageModal {
       )(),
       ExampleRich(Source.annotate({
         /*>*/
-        val modal = Modal(
+        Modal(
           title = "Full-screen Modal",
           renderTarget = open =>
             Button(onClick = open)(
@@ -348,13 +340,12 @@ object PageModal {
           ),
           renderContent = _ => ModalBody()("Hello world"), /*<*/
           size = Modal.SizeFull /*>*/
-        )()
-        <.div(modal) /*<*/
+        )() /*<*/
       }))(),
       Markdown(
         """
           |
-          |## Focus
+          |# Focus
           |
           |Accessibility-wise, [it's important][1] that user's keyboard focus
           |is moved to the Modal when it's opened, so user can navigate through
@@ -373,7 +364,7 @@ object PageModal {
       )(),
       ExampleRich(Source.annotate({
         /*>*/
-        val modal = Modal(
+        Modal(
           title = "Example Modal",
           renderTarget = open => Button(onClick = open)("Open Modal"), /*<*/
           renderContent = close => {
@@ -385,10 +376,9 @@ object PageModal {
               onClick = submit
             )("Submit")
             val footer = ModalFooterWCancel(close)(button)
-            ReactFragment(body, footer)
+            React.Fragment(body, footer)
           } /*>*/
-        )()
-        <.div(modal) /*<*/
+        )() /*<*/
       }))(),
       Markdown(
         """
@@ -397,7 +387,7 @@ object PageModal {
           |it is required for the engineer to set focus to an element in
           |`renderContent`, or else keyboard navigation will suffer.
           |
-          |## Closable
+          |# Closable
           |
           |Out-of-the-box, a Modal can be closed via several ways:
           |
@@ -417,7 +407,7 @@ object PageModal {
           |isClosable: Option[IsClosable]
           |```
           |
-          |### `isClosable: Some`
+          |## `isClosable: Some`
           |
           |If `isClosable` is defined, then 1 will always be enabled, while 2
           |and 3 depend on the value of `onOutsideClick` and `onEsc`,
@@ -430,7 +420,7 @@ object PageModal {
       )(),
       ExampleRich(Source.annotate({
         /*>*/
-        val modal = Modal(
+        Modal(
           title = "Example Modal",
           renderTarget = open => {
             Button(onClick = open)("Open Modal")
@@ -441,8 +431,7 @@ object PageModal {
           isClosable = Some(
             IsClosable(onEsc = true, onOutsideClick = false)
           ) /*>*/
-        )()
-        <.div(modal) /*<*/
+        )() /*<*/
       }))(),
       Markdown(
         """
@@ -450,7 +439,7 @@ object PageModal {
           |Currently it is not possible to disable 1 while leaving 2 or 3
           |enabled.
           |
-          |### `isClosable: None`
+          |## `isClosable: None`
           |
           |When `isClosable` is not defined, all 3 ways will be disabled. The
           |"close" button will not be rendered at all. In other words, there
@@ -476,17 +465,16 @@ object PageModal {
               val footerStyle = Style.flexbox.flex.flexbox.justifyEnd
               val footer = ModalFooter()(<.div(footerStyle, button))
 
-              ReactFragment(body, footer)
+              React.Fragment(body, footer)
             }
           )()
         /*>*/
-        val modal = Modal(
+        Modal(
           title = "Example Modal", /*<*/
           isClosable = None, /*>*/
           renderTarget = open => Button(onClick = open)("Open Modal"),
           renderContent = renderContent
-        )()
-        <.div(modal) /*<*/
+        )() /*<*/
       }))(),
       Markdown(
         """
@@ -503,6 +491,7 @@ object PageModal {
           |access a page or feature. The Modal in this case should still
           |allow user to dismiss it, which simply take them back to the
           |previous page or dashboard.
+          |
           |# Advanced
           |
           |>::warning:: **Heads-up: Be super careful when using these advanced
@@ -535,14 +524,13 @@ object PageModal {
       )(),
       ExampleRich(Source.annotate({
         /*>*/
-        val modal = Modal(
+        Modal(
           title = "URL Modal",
           renderTarget = open => Button(onClick = open)("Open Modal"),
           renderContent = _ => ModalBody()("welcome content"), /*<*/
           /* url = ctl.pathFor(Pages.Welcome()).value, */ /*>*/
           size = Modal.Size1160
-        )()
-        <.div(modal) /*<*/
+        )() /*<*/
       }))(),
       Markdown(
         """
@@ -611,7 +599,7 @@ object PageModal {
             }
           )()
         } /*<*/
-        val content = SimpleState.Bool(
+        SimpleState.Bool(
           initialValue = true,
           render = (value, setValue) => {
             if (value) {
@@ -622,7 +610,6 @@ object PageModal {
             }
           }
         )() /*>*/
-        <.div(content)
       }))(),
       Markdown(
         """
@@ -691,8 +678,7 @@ object PageModal {
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
-        /*>*/
-        val content = SimpleState.Bool(
+        SimpleState.Bool(
           initialValue = false, /*<*/
           render = (isOpened, setIsOpened) => {
             val modal = Modal(
@@ -700,7 +686,7 @@ object PageModal {
               renderContent = _ => ModalBody()("Content"),
               isOpened = Some(isOpened),
               // ===
-              onClose = setIsOpened(false),
+              afterUserClose = setIsOpened(false),
               isClosable = Some(
                 IsClosable(
                   onEsc = true,
@@ -710,12 +696,10 @@ object PageModal {
             )()
             val button = Button(
               onClick = setIsOpened(true)
-            )("Open Modal")
-            /*>*/
+            )("Open Modal") /*>*/
             <.div(modal, button)
           }
-        )()
-        <.div(content) /*<*/
+        )() /*<*/
       }))()
     )
   }

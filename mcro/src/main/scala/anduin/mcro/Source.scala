@@ -2,6 +2,7 @@ package anduin.mcro
 
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
+import scala.util.matching.Regex
 
 import japgolly.scalajs.react.vdom.VdomElement
 
@@ -19,24 +20,31 @@ object Source {
     else
       listStr
 
+  private val antEndRegex: String = " +}"
+
+  // - below is a magic number to get the previous line into account
+  // - the reason it is magical is because the macro result is different
+  //   when the root node needs "{" or not
+  // - also we can't use pos.point or pos.column here because they refer to
+  //   the position of the root computation, not the range we want
+  private val pad = 20
+
   def antImpl(c: blackbox.Context)(element: c.Expr[VdomElement]): c.Expr[AntType] = {
 
     import c.universe.Quasiquote
 
     // get original source
     val pos = element.tree.pos
-    // don't use pos.start here since we want to capture the whole line
-    val start = pos.point - pos.column + 1
-    val raw = String valueOf pos.source.content.slice(start, pos.end)
+    val inputSourceArr = pos.source.content.slice(pos.start - pad, pos.end)
+    val inputSource = String valueOf inputSourceArr
 
     // format the source (trim indentation)
-    var lines = raw.split("\n")
-    if (lines(0).contains("Source.annotate")) {
-      lines = lines.dropRight(1).drop(1)
-    }
-    val source = trimLeftAll(lines).mkString("\n")
+    var lines = inputSource.split("\n")
+    if (lines.head.contains("annotate")) { lines = lines.drop(1) }
+    if (lines.last.matches(antEndRegex)) { lines = lines.dropRight(1) }
+    val outputSource = trimLeftAll(lines).mkString("\n")
 
-    c.Expr[AntType](q"""($source, $element)""")
+    c.Expr[AntType](q"""($outputSource, $element)""")
   }
 
   def annotate(element: VdomElement): AntType = macro antImpl

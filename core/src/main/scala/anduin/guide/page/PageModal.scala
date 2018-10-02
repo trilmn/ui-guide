@@ -4,7 +4,7 @@ import scala.util.Random
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
-import anduin.component.input.TextInput
+import anduin.component.input.TextBox
 import anduin.component.portal.PortalUtils.IsClosable
 import anduin.component.portal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
 import anduin.guide.component.SimpleState
@@ -457,7 +457,7 @@ object PageModal {
           SimpleState.Str(
             initialValue = "",
             render = (value, onChange) => {
-              val input = TextInput(value = value, onChange = onChange)()
+              val input = TextBox(value = value, onChange = onChange)()
               val body = ModalBody()(input)
 
               val onClick = Callback.alert(s"input: $value") >> close

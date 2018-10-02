@@ -32,11 +32,11 @@ ln -sf ${sgz_css}/base/_base.scss ${core_css}/
 sgz_js=${sgz_src}/platform/stargazerJs/src/main/scala/anduin
 
 # Style
-echo "[info] Linking JS: anduin.style ..."
+echo "[info] Linking JS: styles at anduin.style ..."
 ln -sf ${sgz_js}/style ${core_js}/
 
 # JS Dependency (For Component)
-echo "[info] Linking JS: dependencies for anduin.component ..."
+echo "[info] Linking JS: facades at anduin.scalajs ..."
 sgz_js_dep=${sgz_src}/platform/stargazerJSDependency/src/main/scala/anduin/scalajs
 deps=(
   popper/Popper.scala
@@ -51,14 +51,13 @@ deps=(
 # @TODO: Ask Keimoon or Tue how to reuse the below func
 for name in ${deps[*]}
 do
-    echo "[info] - ${name} ..."
     pkg="$(echo ${name} | rev | cut -d"/" -f2- | rev)"
     mkdir -p ${core_js}/scalajs/${pkg}
     ln -sf ${sgz_js_dep}/${name} ${core_js}/scalajs/${name}
 done
 
 # Component
-echo "[info] Linking JS: anduin.component ..."
+echo "[info] Linking JS: components at anduin.component ..."
 components=(
   button/Button.scala
   button/ButtonLink.scala
@@ -89,7 +88,7 @@ components=(
   input/FileButtonInput.scala
   input/Radio.scala
   input/RadioBox.scala
-  input/TextInput.scala
+  input/TextBox.scala
 
   menu/Menu.scala
   menu/MenuDivider.scala
@@ -120,7 +119,6 @@ components=(
 )
 for name in ${components[*]}
 do
-    echo "[info] - ${name} ..."
     pkg="$(echo ${name} | rev | cut -d"/" -f2- | rev)"
     mkdir -p ${core_js}/component/${pkg}
     ln -sf ${sgz_js}/component/${name} ${core_js}/component/${name}

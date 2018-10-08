@@ -40,13 +40,21 @@ echo "[info] Linking JS: facades at anduin.scalajs ..."
 sgz_js_dep=${sgz_src}/platform/stargazerJSDependency/src/main/scala/anduin/scalajs
 deps=(
   popper/Popper.scala
-  popper/PopperOptions.scala
-  focusvisible/FocusVisible.scala
-  util/Util.scala
+  popper/PopperPlacement.scala
+  popper/PopperModifiers.scala
+
   downshift/Downshift.scala
   downshift/DownshiftRender.scala
   downshift/DownshiftState.scala
+
+  textmask/TextMask.scala
+  textmask/TextMaskAddons.scala
+  textmask/ReactTextMask.scala
+
   reacttruncatemarkup/ReactTruncateMarkup.scala
+  focusvisible/FocusVisible.scala
+
+  util/Util.scala
 )
 # @TODO: Ask Keimoon or Tue how to reuse the below func
 for name in ${deps[*]}
@@ -64,8 +72,9 @@ components=(
   button/ButtonStyle.scala
 
   dropdown/Dropdown.scala
-  dropdown/DropdownTarget.scala
   dropdown/DropdownContent.scala
+  dropdown/DropdownOpt.scala
+  dropdown/DropdownTarget.scala
 
   container/Card.scala
   container/Collapse.scala
@@ -88,7 +97,10 @@ components=(
   input/FileButtonInput.scala
   input/Radio.scala
   input/RadioBox.scala
-  input/TextBox.scala
+
+  input/textbox/TextBox.scala
+  input/textbox/TextBoxStyle.scala
+  input/textbox/TextBoxMask.scala
 
   menu/Menu.scala
   menu/MenuDivider.scala

@@ -36,11 +36,14 @@ lazy val core = (project in file("core"))
     npmDependencies in Compile ++= Seq(
       "react" -> "16.5.0",
       "react-dom" -> "16.5.0",
+      "react-truncate-markup" -> "2.0.1",
+      "react-virtualized" -> "9.20.1",
+      "react-text-mask" -> "5.4.3",
+      "text-mask-addons" -> "3.8.0",
       "popper.js" -> "1.14.3",
       "marked" -> "0.3.19",
       "focus-visible" -> "4.1.5",
-      "downshift" -> "2.2.2",
-      "react-truncate-markup" -> "2.0.1"
+      "downshift" -> "2.2.2"
     )
   )
 

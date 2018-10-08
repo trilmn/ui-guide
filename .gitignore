@@ -15,6 +15,8 @@ core/src/main/scala/anduin/scalajs/popper
 core/src/main/scala/anduin/scalajs/downshift
 core/src/main/scala/anduin/scalajs/util
 core/src/main/scala/anduin/scalajs/reacttruncatemarkup
+core/src/main/scala/anduin/scalajs/textmask
+core/src/main/scala/anduin/scalajs/reactvirtualized
 
 # Linked CSS
 core/src/main/resources/stylesheets/tachyons

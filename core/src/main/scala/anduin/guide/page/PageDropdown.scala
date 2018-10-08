@@ -7,7 +7,6 @@ import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.dropdown
 import anduin.component.dropdown.Dropdown
 import anduin.component.icon.Icon
-import anduin.component.text.Tag
 import anduin.component.menu.VerticalDivider
 import anduin.guide.component.SimpleState
 import anduin.guide.{Pages, Router}
@@ -26,8 +25,7 @@ private object Fruit {
     value = Some(options.head.value),
     options = options,
     onChange = _ => Callback.empty,
-    renderValue = _.name,
-    valueToString = _.name
+    renderValue = _.name
   )
 
   val State = (new SimpleState[Fruit])()
@@ -72,7 +70,8 @@ private object Country {
     options = options.take(5),
     onChange = _ => Callback.empty,
     renderValue = _.name,
-    valueToString = c => c.name + c.continent
+    getFilterValue = c => c.name + c.continent,
+    getSizingValue = _.name
   )
 
   val State = (new SimpleState[Country])()
@@ -97,6 +96,20 @@ object PageDropdown {
         Style.margin.bottom32,
         Header("Dropdown", cls = Some(Dropdown.getClass))()
       ),
+//      ExampleSimple()(
+//        // xxxx
+//        SimpleState.Str(
+//          initialValue = "0",
+//          render = (value, onChange) => {
+//            StringDropdown(
+//              value = Some(value),
+//              onChange = onChange,
+//              options = 0.to(1000).map(i => Dropdown.Opt(i.toString)).toList,
+//              renderValue = a => a
+//            )()
+//          }
+//        )()
+//      ),
       Markdown(
         """
           |Dropdown let users select a value from a list of options:
@@ -216,8 +229,7 @@ object PageDropdown {
                 Dropdown.Opt(Fruit("Pearl"))
               ),
               onChange = onChange,
-              renderValue = _.name,
-              valueToString = _.name
+              renderValue = _.name
             )()
           } /*>*/
         )()
@@ -296,9 +308,8 @@ object PageDropdown {
           Country.DropdownSample.copy(
             value = Some(value),
             onChange = onChange, /*<*/
-            // Country.options.length > 10
             options = Country.options,
-            valueToString = c => c.name + c.continent /*>*/
+            getFilterValue = c => c.name + c.continent /*>*/
           )()
         })()
       }))(),
@@ -438,6 +449,7 @@ object PageDropdown {
               value = Some(value),
               onChange = onChange,
               options = List("Arial", "Tahoma", "Verdana").map(v => Dropdown.Opt(v)),
+              renderValue = _.toString,
               style = Dropdown.StyleMinimal,
               isFullWidth = true
             )()
@@ -482,8 +494,7 @@ object PageDropdown {
           )()
         })() /*<*/
       }))(),
-      Markdown(
-        """
+      Markdown("""
           |
           |The menu's header and footer will always be visible at the top and
           |bottom of the menu. If the option list is long and requires
@@ -502,8 +513,7 @@ object PageDropdown {
           )()
         })()
       }),
-      Markdown(
-        """
+      Markdown("""
           |
           |Note that both header and footer don't have any pre-defined styles
           |(like padding or border). Therefore, you are free to define

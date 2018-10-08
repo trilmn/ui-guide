@@ -4,7 +4,7 @@ import scala.util.Random
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
-import anduin.component.input.TextBox
+import anduin.component.input.textbox.TextBox
 import anduin.component.portal.PortalUtils.IsClosable
 import anduin.component.portal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
 import anduin.guide.component.SimpleState

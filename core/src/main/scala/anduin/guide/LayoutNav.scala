@@ -92,6 +92,12 @@ object LayoutNav {
               )
             ),
             li(
+              Title("Input", isExpanded = Some(_.isInstanceOf[InputT])),
+              ul(
+                li(Title("Text Box", Some(TextBox())))
+              )
+            ),
+            li(
               Title("Portal", isExpanded = Some(_.isInstanceOf[PortalT])),
               ul(
                 li(Title("Popover", Some(Popover()))),

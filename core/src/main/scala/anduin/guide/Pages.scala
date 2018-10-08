@@ -42,10 +42,13 @@ object Pages {
   sealed trait InputT extends ComponentT
   case class Radio(hash: String = "") extends InputT
   case class Checkbox(hash: String = "") extends InputT
-  case class Dropdown(hash: String = "") extends InputT
-  case class MultiDropdown(hash: String = "") extends InputT
   case class Suggest(hash: String = "") extends InputT
   case class MultiSuggest(hash: String = "") extends InputT
+  case class TextBox(hash: String = "") extends InputT
+  // - dropdown
+  sealed trait DropdownT extends ComponentT
+  case class Dropdown(hash: String = "") extends DropdownT
+  case class MultiDropdown(hash: String = "") extends DropdownT
   // - portal
   sealed trait PortalT extends ComponentT
   case class Modal(hash: String = "") extends PortalT

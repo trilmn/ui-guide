@@ -72,13 +72,16 @@ object Router {
         renderR(PageCheckbox.render)
       | dynamicRouteCT("radio" ~ hash.caseClass[Radio]) ~>
         renderR(PageWIP.render)
-      | dynamicRouteCT("dropdown" ~ hash.caseClass[Dropdown]) ~>
-        renderR(PageDropdown.render)
-      | dynamicRouteCT("multi-dropdown" ~ hash.caseClass[MultiDropdown]) ~>
-        renderR(PageWIP.render)
+      | dynamicRouteCT("text-box" ~ hash.caseClass[TextBox]) ~>
+        renderR(PageTextBox.render)
       | dynamicRouteCT("suggest" ~ hash.caseClass[Suggest]) ~>
         renderR(PageWIP.render)
       | dynamicRouteCT("multi-suggest" ~ hash.caseClass[MultiSuggest]) ~>
+        renderR(PageWIP.render)
+
+      | dynamicRouteCT("dropdown" ~ hash.caseClass[Dropdown]) ~>
+        renderR(PageDropdown.render)
+      | dynamicRouteCT("multi-dropdown" ~ hash.caseClass[MultiDropdown]) ~>
         renderR(PageWIP.render)
 
       | dynamicRouteCT("modal" ~ hash.caseClass[Modal]) ~>

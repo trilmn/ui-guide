@@ -75,6 +75,8 @@ components=(
   dropdown/DropdownContent.scala
   dropdown/DropdownOpt.scala
   dropdown/DropdownTarget.scala
+  dropdown/DropdownMeasure.scala
+  dropdown/DropdownInnerProps.scala
 
   container/Card.scala
   container/Collapse.scala

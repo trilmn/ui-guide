@@ -70,8 +70,7 @@ private object Country {
     options = options.take(5),
     onChange = _ => Callback.empty,
     renderValue = _.name,
-    getFilterValue = c => c.name + c.continent,
-    getSizingValue = _.name
+    getFilterValue = c => c.name + c.continent
   )
 
   val State = (new SimpleState[Country])()
@@ -97,7 +96,7 @@ object PageDropdown {
         Header("Dropdown", cls = Some(Dropdown.getClass))()
       ),
 //      ExampleSimple()(
-//        // xxxx
+//        // xxxxxxxxxxxxx
 //        SimpleState.Str(
 //          initialValue = "0",
 //          render = (value, onChange) => {
@@ -196,20 +195,13 @@ object PageDropdown {
           |function to be called when user selects a new option. It is called
           |with the value of the new option that was just selected.
           |
-          |Moreover, since Dropdown is a generic component, it requires 2
-          |more props:
+          |Moreover, since Dropdown is a generic component, it requires:
           |
-          |1. **`renderValue:`**`scala::(value: A => VdomNode)`：How your
+          |4. **`renderValue:`**`scala::(value: A => VdomNode)`：How your
           |value should be rendered. Learn more in the
           |[Render value](#render-value) section.
           |
-          |2. **`valueToString:`**`scala::(value: A => String)`：How your
-          |value should be represented as a String. Learn more in the
-          |[Search](#search) section.
-          |
-          |[rk]: https://reactjs.org/docs/lists-and-keys.html
-          |
-          |Putting together, these 5 props let you have a basic instance of
+          |Putting together, these 4 props let you have a basic instance of
           |the Dropdown component. Although simple, it should be enough for
           |most use cases:
           |
@@ -297,9 +289,15 @@ object PageDropdown {
           |automatically focused to help users quickly find their target
           |options.
           |
-          |When search box is available, the `valueToString` prop will be
-          |used to stringify options to compare with user's input. For
-          |example, in the Dropdown below you can search by not only
+          |When search box is available, the `getFilterValue` prop will be
+          |used to stringify options to compare with user's input:
+          |
+          |```scala
+          |// A is type of option.value
+          |getFilterValue: A => String = _.toString
+          |```
+          |
+          |For example, in the Dropdown below you can search by not only
           |countries's name but also their continent (try "Asia"):
           |
         """.stripMargin)(),
@@ -322,11 +320,7 @@ object PageDropdown {
           |Because Dropdown is a generic component, a `renderValue` prop is
           |required to describe how your option's value should be rendered.
           |The render result will be used in both Dropdown's button and the
-          |list of options.
-          |
-          |In most cases, returning a string (usually the same as
-          |`valueToString`) should be enough. However, as the result type
-          |is `VdomNode`, you can return much more:
+          |list of options:
           |
         """.stripMargin)(),
       ExampleRich(Source.annotate({
@@ -355,27 +349,26 @@ object PageDropdown {
           |
           |## Width
           |
-          |The width of Dropdown's button is [intrinsic][in] by default, that
-          |is, it depends on the width of the currently selected option's
-          |value rendered:
-          |
-          |[in]: https://drafts.csswg.org/css-sizing/#intrinsic-sizes
+          |Like native `select`, the width of Dropdown's button is the width
+          |of its longest option by default:
           |
         """.stripMargin)(),
       ExampleRich(Source.annotate({
-        Fruit.StateSample.copy(render = (value, onChange) => {
-          Fruit.DropdownSample.copy(
-            value = Some(value),
-            onChange = onChange
-          )()
-        })()
+        Country.State(
+          initialValue = Country.options(1).value,
+          render = (value, onChange) => {
+            Country.DropdownSample.copy(
+              value = Some(value),
+              onChange = onChange
+            )()
+          }
+        )()
       }))(),
       Markdown(
         """
           |
           |**To control the width of Dropdown's button,** set `isFullWidth =
-          |true`. The width will then be fixed as 100% of its parent width,
-          |no matter which option is currently selected.
+          |true`. The width will then be fixed as 100% of its parent width:
           |
         """.stripMargin
       )(),

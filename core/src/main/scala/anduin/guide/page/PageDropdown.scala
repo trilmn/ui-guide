@@ -96,7 +96,7 @@ object PageDropdown {
         Header("Dropdown", cls = Some(Dropdown.getClass))()
       ),
 //      ExampleSimple()(
-//        // xxxxxxxxxxxxx
+//        // xxxxxxxxxxx
 //        SimpleState.Str(
 //          initialValue = "0",
 //          render = (value, onChange) => {
@@ -581,6 +581,38 @@ object PageDropdown {
           |  <.button(MenuItem.buttonStyles, styles, props.mods)(icon, value, void)
           |}
           |```
+          |
+          |## Performance
+          |
+          |**Under the hood, Dropdown did some expensive calculations in
+          |initial render** to have necessary measurements for [some layout
+          |features](#width). It is carefully optimized so that in most cases
+          |there would be no significant performance penalty. In fact, this
+          |even makes subsequent renders faster.
+          |
+          |However, in rare cases where `renderValue` is complex and/or the
+          |list of options is very long, these calculations could
+          |significantly slow down the initial render. **In these cases, it
+          |is suggested that the engineer should provide these measurements
+          |themselves.**
+          |
+          |These necessary measurements should be provided via the
+          |`staticMeasurement` prop:
+          |
+          |```scala
+          |staticMeasurement: Option[Measurement] = None
+          |
+          |case class Measurement[A](
+          |  // The option that should have the biggest width
+          |  // after render
+          |  biggestWidthOption: Opt[A],
+          |  // The height of each option
+          |  optionHeight: Int
+          |)
+          |```
+          |
+          |Upon provided, the static measurement will be used in all renders
+          |and no calculation will be done at all.
           |
         """.stripMargin)()
     )

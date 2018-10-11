@@ -96,14 +96,14 @@ object PageDropdown {
         Header("Dropdown", cls = Some(Dropdown.getClass))()
       ),
 //      ExampleSimple()(
-//        // xxxxxxxxxxx
+//        // xxxxxxxxxx
 //        SimpleState.Str(
 //          initialValue = "0",
 //          render = (value, onChange) => {
 //            StringDropdown(
 //              value = Some(value),
 //              onChange = onChange,
-//              options = 0.to(1000).map(i => Dropdown.Opt(i.toString)).toList,
+//              options = 0.to(10000).map(i => Dropdown.Opt(i.toString)).toList,
 //              renderValue = a => a
 //            )()
 //          }
@@ -603,11 +603,11 @@ object PageDropdown {
           |staticMeasurement: Option[Measurement] = None
           |
           |case class Measurement[A](
-          |  // The option that should have the biggest width
-          |  // after render
-          |  biggestWidthOption: Opt[A],
+          |  // The dropdown option that should have the
+          |  // biggest width after render
+          |  biggestWidthOption: Option[Dropdown.Opt[A]],
           |  // The height of each option
-          |  optionHeight: Int
+          |  optionHeight: Option[Int]
           |)
           |```
           |

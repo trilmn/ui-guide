@@ -41,4 +41,5 @@ class SimpleState[V] {
 object SimpleState {
   val Str = (new SimpleState[String])()
   val Bool = (new SimpleState[Boolean])()
+  val BoolF = Bool(initialValue = false, render = (_, _) => EmptyVdom)
 }

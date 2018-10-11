@@ -7,6 +7,7 @@ import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.dropdown
 import anduin.component.dropdown.Dropdown
 import anduin.component.icon.Icon
+import anduin.component.input.Checkbox
 import anduin.component.menu.VerticalDivider
 import anduin.guide.component.SimpleState
 import anduin.guide.{Pages, Router}
@@ -95,20 +96,6 @@ object PageDropdown {
         Style.margin.bottom32,
         Header("Dropdown", cls = Some(Dropdown.getClass))()
       ),
-//      ExampleSimple()(
-//        // xxxxxxxxxx
-//        SimpleState.Str(
-//          initialValue = "0",
-//          render = (value, onChange) => {
-//            StringDropdown(
-//              value = Some(value),
-//              onChange = onChange,
-//              options = 0.to(10000).map(i => Dropdown.Opt(i.toString)).toList,
-//              renderValue = a => a
-//            )()
-//          }
-//        )()
-//      ),
       Markdown(
         """
           |Dropdown let users select a value from a list of options:
@@ -612,9 +599,39 @@ object PageDropdown {
           |```
           |
           |Upon provided, the static measurement will be used in all renders
-          |and no calculation will be done at all.
+          |and no expensive calculation will be done at all:
           |
-        """.stripMargin)()
+        """.stripMargin)(),
+      ExampleSimple()({
+        val m = Dropdown.Measurement(
+          biggestWidthOption = Some(Dropdown.Opt("10000")),
+          optionHeight = Some(32)
+        )
+        val dropdown = (isStatic: Boolean) =>
+          SimpleState.Str(
+            initialValue = "0",
+            render = (value, onChange) => {
+              StringDropdown(
+                value = Some(value),
+                onChange = onChange,
+                options = 0.to(10000).map(i => Dropdown.Opt(i.toString)).toList,
+                renderValue = a => a,
+                staticMeasurement = if (isStatic) Some(m) else None
+              )()
+            }
+          )()
+        SimpleState.BoolF.copy(render = (isMounted, setIsMounted) => {
+          SimpleState.BoolF.copy(render = (isStaticMeasurement, setIsStaticMeasurement) => {
+            <.div(
+              Checkbox(isStaticMeasurement, onChange = setIsStaticMeasurement)("Use static measurement"),
+              <.div(Style.height.px8),
+              Button(onClick = setIsMounted(!isMounted))(if (isMounted) "Unmount" else "Mount"),
+              <.div(Style.height.px8),
+              if (isMounted) { dropdown(isStaticMeasurement) } else EmptyVdom
+            )
+          })()
+        })()
+      }),
     )
   }
 }

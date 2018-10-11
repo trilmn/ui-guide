@@ -73,7 +73,8 @@ components=(
 
   dropdown/Dropdown.scala
   dropdown/DropdownContent.scala
-  dropdown/DropdownOpt.scala
+  dropdown/DropdownOption.scala
+  dropdown/DropdownFilter.scala
   dropdown/DropdownTarget.scala
   dropdown/DropdownMeasure.scala
   dropdown/DropdownInnerProps.scala

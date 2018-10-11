@@ -1,11 +1,12 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.Callback
+import japgolly.scalajs.react.{Callback, React}
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.icon.Icon
 import anduin.component.icon.Icon.NameUpload
+import anduin.component.portal.{Modal, ModalBody, ModalFooterWCancel}
 import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
@@ -134,34 +135,43 @@ object PageButtonStyle {
         """
           |# Color
           |
-          |Use the `color` prop to communicate the intention or result of the action. There are 5 options, with ColorNeutral/ColorWhite is the default one:
-          """.stripMargin
+          |Use the `color` prop to communicate the intention or result of the
+          |action. There are 5 options, with ColorNeutral/ColorWhite is the
+          |default one:
+        """.stripMargin
       )(),
-      // format: off
       ExampleRich(Source.annotate({
-        /*>*/<.div(
+        val margin = Style.margin.left16
+        <.div(
           Style.flexbox.flex,
-          <.div(/*<*/Button()("Neutral")/*>*/),
-          <.div(/*<*/Button(color = ButtonStyle.ColorPrimary)("Primary")/*>*/, Style.margin.left16),
-          <.div(/*<*/Button(color = ButtonStyle.ColorSuccess)("Success")/*>*/, Style.margin.left16),
-          <.div(/*<*/Button(color = ButtonStyle.ColorWarning)("Warning")/*>*/, Style.margin.left16),
-          <.div(/*<*/Button(color = ButtonStyle.ColorDanger)("Danger")/*>*/, Style.margin.left16)
-        )/*<*/
+          <.div(Button()("Neutral")),
+          <.div(Button(color = ButtonStyle.ColorPrimary)("Primary"), margin),
+          <.div(Button(color = ButtonStyle.ColorSuccess)("Success"), margin),
+          <.div(Button(color = ButtonStyle.ColorWarning)("Warning"), margin),
+          <.div(Button(color = ButtonStyle.ColorDanger)("Danger"), margin)
+        )
       }))(),
-      // format: on
       Markdown(
         """
-          |**There should only be one Colored StyleFull in each view.** Because the combination of StyleFull and a color (other than Neutral) provides the strongest visual hint, so multiple of them could lead to confusion.
-          """.stripMargin
+          |**There should only be one Colored StyleFull in each view.** 
+          |Because the combination of StyleFull and a color (other than 
+          |Neutral) provides the strongest visual hint, so multiple of them 
+          |could lead to confusion.
+        """.stripMargin
       )(),
-      ExampleSimple("**GOOD:** Users know which is the primary action that should be taken")(
+      ExampleSimple("""
+          |**GOOD:** Users know which is the primary action that should be
+          |taken
+        """.stripMargin)(
         <.div(
           Style.flexbox.flex,
           <.div(Button(color = ButtonStyle.ColorPrimary)("Create Transaction")),
           <.div(Button()("Create Organization"), Style.margin.left8)
         )
       ),
-      ExampleSimple("**NOT GOOD:** Users don't know which action should be taken")(
+      ExampleSimple("""
+          |**NOT GOOD:** Users don't know which action should be taken
+        """.stripMargin)(
         <.div(
           Style.flexbox.flex,
           <.div(Button(color = ButtonStyle.ColorPrimary)("Create Transaction")),
@@ -170,34 +180,32 @@ object PageButtonStyle {
       ),
       Markdown(
         """
-          |**ColorDanger + StyleFull should be saved for confirmation action.** For example, the "Remove" button itself can be Neutral since it is not the final destructive action.
+          |**ColorDanger + StyleFull should be saved for confirmation
+          |action.** For example, the "Remove" button itself can be Neutral
+          |since it is not the final destructive action.
           """.stripMargin
       )(),
-      // @TODO: This should be ExampleSimple, but Popover is dying
-      Markdown(
-        """
-          |<.div(
-          |  Style.flexbox.flex.flexbox.justifyBetween.flexbox.itemsCenter,
-          |  <.p("John (john.doe@yourco.com) was added 2 days ago."),
-          |  Modal(
-          |    title = "Confirm Removing",
-          |    renderTarget = open => Button(onClick = open)("Remove"),
-          |    renderContent = close =>
-          |      React.Fragment(
-          |        ModalBody(
-          |          "After removed, John can not see any information about" +
-          |          "this transaction, including his past activity."
-          |        ),
-          |        ModalFooterWCancel(cancel = close) {
-          |          val onClick = Callback.log("John was removed") >> close
-          |          Button(onClick = onClick, color = ButtonStyle
-          |          .ColorDanger)("Remove John")
-          |        }
-          |    )
-          |  )()
-          |)
-        """.stripMargin
-      )(),
+      ExampleSimple()(
+        <.div(
+          Style.flexbox.flex.flexbox.justifyBetween.flexbox.itemsCenter,
+          <.p("John (john.doe@yourco.com) was added 2 days ago."),
+          Modal(
+            title = "Confirm Removing",
+            renderTarget = open => Button(onClick = open)("Remove"),
+            renderContent = close =>
+              React.Fragment(
+                ModalBody()(
+                  "After removed, John can not see any information about" +
+                    "this transaction, including his past activity."
+                ),
+                ModalFooterWCancel(cancel = close) {
+                  val onClick = Callback.log("John was removed") >> close
+                  Button(onClick = onClick, color = ButtonStyle.ColorDanger)("Remove John")
+                }
+            )
+          )()
+        )
+      ),
       Markdown(
         """
           |**Color works with all types of Style:**

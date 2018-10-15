@@ -464,13 +464,12 @@ object PageDropdown {
         """.stripMargin)(),
       ExampleRich(Source.annotate({
         /*>*/
-        val boxStyles = Style.backgroundColor.gray1.borderColor.gray3.padding.ver8.padding.hor12
         Fruit.StateSample.copy(render = (value, onChange) => {
           Fruit.DropdownSample.copy(
             value = Some(value),
             onChange = onChange, /*<*/
-            header = Some(<.div("Fruit is good", Style.border.bottom, boxStyles)),
-            footer = Some(<.div("Fruit is fun", Style.border.top, boxStyles)) /*>*/
+            header = Some("Fruit is good"),
+            footer = Some("Fruit is fun") /*>*/
           )()
         })() /*<*/
       }))(),
@@ -482,92 +481,64 @@ object PageDropdown {
           |
         """.stripMargin)(),
       ExampleSimple()({
-        val boxStyles = Style.backgroundColor.gray1.borderColor.gray3.padding.ver8.padding.hor12
         Country.StateSample.copy(render = (value, onChange) => {
           Country.DropdownSample.copy(
             value = Some(value),
             onChange = onChange,
             options = Country.options,
-            header = Some(<.div("Sample header", Style.border.bottom, boxStyles)),
-            footer = Some(<.div("Sample footer", Style.border.top, boxStyles)) /*>*/
+            header = Some("Sample header"),
+            footer = Some("Sample footer") /*>*/
           )()
         })()
       }),
       Markdown("""
           |
-          |Note that both header and footer don't have any pre-defined styles
-          |(like padding or border). Therefore, you are free to define
-          |anything to separate them from the option list as you want.
+          |Note that both header and footer come with pre-defined styles
+          |(including padding, background and border). This is not customizable
+          |at the moment.
           |
           |# Advanced
           |
           |## Render option
           |
-          |**Most of the time [`renderValue`](rendervalue) should be enough for
-          |custom rendering, even the complex ones.** `renderOption` should
-          |only be used in the rare cases where you truly need to override
-          |the essential visual elements like background color change on hover
-          |or the checkmark icon for selected item.
-          |
-          |>::warning::These visual elements are essential for user's
-          |understanding of what is happening. Ensure that your replacements
-          |provide as much visual hint as the default ones.
-          |
-          |To override the default render of an option completely, pass a
-          |function to the `renderOption` prop which should return your
-          |desired render:
+          |By default, the result of [`renderValue`](rendervalue) will be used
+          |to render both Dropdown's button (the currently selected option)
+          |and Dropdown's menu (the list of options). Use `renderOption` prop
+          |if you need to render the option in Dropdown's menu differently:
           |
           |```scala
-          |// See the implementation of `defaultRender` below
-          |renderOption: RenderProps[A] => VdomNode = defaultRender[A]
+          |renderOption: Option[A => VdomNode] = None,
           |```
           |
-          |This function will receive an instance of `case class RenderProps`,
-          |which has the following values and methods to help your rendering:
+          |This often be used to provide additional information for each
+          |option without taking extra space:
           |
-          |1. **`option:`**`scala::Dropdown.Opt[A]`：The option to be rendered.
-          |The interface of `Dropdown.Opt` can be found at the
-          |[Props](#props) section.
-          |
-          |2. **`mods:`**`scala::TagMod`：The pre-defined `TagMod` that should
-          |be applied to the target element of your render. This includes the
-          |computed key, interaction (e.g. `onClick`) and accessibility
-          |attributes for the element. This does not cover any appearance
-          |definitions.
-          |
-          |3. **`renderValue:`**`scala::A => VdomNode`：the [same name
-          |prop](#render-value) that was passed to Dropdown. Can be called
-          |with `option.value` to get the string that should represent this
-          |option.
-          |
-          |4. **`isSelected:`**`scala::Boolean`：whether this option is
-          |currently selected.
-          |
-          |5. **`isHighlighted:`**`scala::Boolean`：whether this option is
-          |currently highlighted (e.g. mouse hover or keyboard navigation via
-          |up and down arrow).
-          |
-          |For reference purpose, below is the implementation of the default
-          |option render. You might want to use it as the starting point for
-          |your own render to ensure you won't miss any aspects.
-          |
-          |```scala
-          |private val highlightedStyles = Style.backgroundColor.gray2
-          |private val disabledStyles = Style.color.gray6
-          |private val void = <.span(Style.width.px16) // visual balance
-          |private val iconStyles = TagMod(Style.margin.right8, ^.marginLeft := "-4px")
-          |
-          |def defaultRender[A](props: RenderProps[A]): VdomElement = {
-          |  val value = props.renderValue(props.option.value)
-          |  val styles: TagMod = TagMod(
-          |    TagMod.when(props.option.isDisabled)(disabledStyles),
-          |    TagMod.when(props.isHighlighted)(highlightedStyles)
-          |  )
-          |  val iconName = if (props.isSelected) Icon.NameCheck else Icon.NameBlank
-          |  val icon = <.span(iconStyles, Icon(iconName, Icon.SizeDynamic("12"))())
-          |  <.button(MenuItem.buttonStyles, styles, props.mods)(icon, value, void)
-          |}
-          |```
+          |""".stripMargin)(),
+      ExampleRich(Source.annotate({
+        val renderValue = (country: Country) => {
+          val flag = <.img(
+            Style.margin.right8,
+            ^.src := Country.getFlagSrc(country.code),
+            TagMod(^.width := "16px", ^.height := "16px")
+          )
+          React.Fragment(flag, country.name)
+        }
+        val renderOption: Country => VdomNode = (country: Country) => {
+          <.span(
+            <.span(country.name),
+            <.span(Style.color.gray6, s" - ${country.continent}")
+          )
+        } /*>*/
+        Country.StateSample.copy(render = (value, onChange) => {
+          Country.DropdownSample.copy(
+            value = Some(value),
+            onChange = onChange, /*<*/
+            renderValue = renderValue,
+            renderOption = Some(renderOption) /*>*/
+          )()
+        })() /*<*/
+      }))(),
+      Markdown("""
           |
           |## Performance
           |

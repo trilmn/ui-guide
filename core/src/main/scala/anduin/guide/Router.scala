@@ -89,6 +89,9 @@ object Router {
       | dynamicRouteCT("popover" ~ hash.caseClass[Popover]) ~>
         renderR(PagePopover.render)
 
+      | dynamicRouteCT("stepper" ~ hash.caseClass[Stepper]) ~>
+        renderR(PageStepper.render)
+
       | emptyRule)
       .notFound(redirectToPage(Welcome)(Redirect.Replace))
       .renderWith(Layout.render)

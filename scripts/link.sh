@@ -51,6 +51,9 @@ deps=(
   textmask/TextMaskAddons.scala
   textmask/ReactTextMask.scala
 
+  reactvirtualized/ReactVirtualizedAutoSizer.scala
+  reactvirtualized/ReactVirtualizedList.scala
+
   reacttruncatemarkup/ReactTruncateMarkup.scala
   focusvisible/FocusVisible.scala
 
@@ -77,7 +80,7 @@ components=(
   dropdown/DropdownFilter.scala
   dropdown/DropdownTarget.scala
   dropdown/DropdownMeasure.scala
-  dropdown/DropdownInnerProps.scala
+  dropdown/DropdownStateReducer.scala
 
   container/Card.scala
   container/Collapse.scala
@@ -95,8 +98,6 @@ components=(
   icon/IllusFolder.scala
 
   input/Checkbox.scala
-  input/CustomDropdown.scala
-  input/NativeDropdown.scala
   input/FileButtonInput.scala
   input/Radio.scala
   input/RadioBox.scala
@@ -125,6 +126,8 @@ components=(
 
   text/Tag.scala
   text/DateTime.scala
+
+  stepper/Stepper.scala
 
   truncate/TruncateMarkup.scala
 

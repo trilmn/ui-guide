@@ -53,4 +53,6 @@ object Pages {
   sealed trait PortalT extends ComponentT
   case class Modal(hash: String = "") extends PortalT
   case class Popover(hash: String = "") extends PortalT
+  // - others
+  case class Stepper(hash: String = "") extends ComponentT
 }

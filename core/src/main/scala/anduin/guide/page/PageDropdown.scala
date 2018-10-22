@@ -26,7 +26,7 @@ private object Fruit {
     value = Some(options.head.value),
     options = options,
     onChange = _ => Callback.empty,
-    renderValue = _.name
+    getValueString = _.name
   )
 
   val State = (new SimpleState[Fruit])()
@@ -70,8 +70,8 @@ private object Country {
     value = Some(options.head.value),
     options = options.take(5),
     onChange = _ => Callback.empty,
-    renderValue = _.name,
-    getFilterValue = c => c.name + c.continent
+    getValueString = _.name,
+    getFilterValue = Some(c => c.name + c.continent)
   )
 
   val State = (new SimpleState[Country])()
@@ -136,24 +136,28 @@ object PageDropdown {
           |## Initialize
           |
           |Dropdown is a [generic component][gc], so first you need to
-          |initialize it with the type of your options:
+          |initialize it with the type of your options's value:
           |
           |[gc]: https://docs.scala-lang.org/tour/generic-classes.html
           |
           |```scala
           |object YourComponent {
+          |
           |  case class Fruit(name: String)
           |  val FruitDropdown = (new Dropdown[Fruit])()
           |
           |  def render(props: Props) {
           |    /* use your FruitDropdown here */
           |  }
+          |
           |}
           |```
           |
-          |**In practice, your option's type is usually available already.**
-          |It can be anything that can represent your option, from an id (like
-          |`EntityId`) to a whole model (like `EntityModel`).
+          |**In practice, your option's type is usually available already,
+          |as the id of something,** like `EntityId` or `UserId`. It does not
+          |need to include all information that are necessary to render (like
+          |`EntityModel` or `UserModel`), just enough to differentiate one
+          |option from another.
           |
           |## Props
           |
@@ -182,11 +186,14 @@ object PageDropdown {
           |function to be called when user selects a new option. It is called
           |with the value of the new option that was just selected.
           |
-          |Moreover, since Dropdown is a generic component, it requires:
+          |Moreover, since Dropdown is a generic component, it also requires:
           |
-          |4. **`renderValue:`**`scala::(value: A => VdomNode)`：How your
-          |value should be rendered. Learn more in the
-          |[Render value](#render-value) section.
+          |4. **`getValueString:`**`scala::(value: A => String)`：which should
+          |return a string that represent your option's value. By default this
+          |string will be used to [identify][rk], [render](#render-value) and
+          |[filter](#search) your options.
+          |
+          |[rk]: https://reactjs.org/docs/lists-and-keys.html
           |
           |Putting together, these 4 props let you have a basic instance of
           |the Dropdown component. Although simple, it should be enough for
@@ -208,7 +215,7 @@ object PageDropdown {
                 Dropdown.Opt(Fruit("Pearl"))
               ),
               onChange = onChange,
-              renderValue = _.name
+              getValueString = _.name
             )()
           } /*>*/
         )()
@@ -276,15 +283,17 @@ object PageDropdown {
           |automatically focused to help users quickly find their target
           |options.
           |
-          |When search box is available, the `getFilterValue` prop will be
-          |used to stringify options to compare with user's input:
+          |When search box is available, the result of `getValueString` will
+          |be used to compare options with user's input. This can be overriden
+          |by defining a `getFilterValue`:
           |
           |```scala
           |// A is type of option.value
-          |getFilterValue: A => String = _.toString
+          |getFilterValue: Option[A => String] = None
           |```
           |
-          |For example, in the Dropdown below you can search by not only
+          |…which should return the value to be used for comparing. For
+          |example, in the Dropdown below you can search by not only
           |countries's name but also their continent (try "Asia"):
           |
         """.stripMargin)(),
@@ -292,47 +301,15 @@ object PageDropdown {
         Country.StateSample.copy(render = (value, onChange) => {
           Country.DropdownSample.copy(
             value = Some(value),
-            onChange = onChange, /*<*/
-            options = Country.options,
-            getFilterValue = c => c.name + c.continent /*>*/
+            onChange = onChange,
+            options = Country.options, /*<*/
+            getFilterValue = Some(c => c.name + c.continent) /*>*/
           )()
         })()
       }))(),
       Markdown("""
           |
           |# Appearance
-          |
-          |## Render value
-          |
-          |Because Dropdown is a generic component, a `renderValue` prop is
-          |required to describe how your option's value should be rendered.
-          |The render result will be used in both Dropdown's button and the
-          |list of options:
-          |
-        """.stripMargin)(),
-      ExampleRich(Source.annotate({
-        val renderValue = (country: Country) => {
-          val flag = <.img(
-            Style.margin.right8,
-            ^.src := Country.getFlagSrc(country.code),
-            TagMod(^.width := "16px", ^.height := "16px")
-          )
-          React.Fragment(flag, country.name)
-        } /*>*/
-        Country.StateSample.copy(render = (value, onChange) => {
-          Country.DropdownSample.copy(
-            value = Some(value),
-            onChange = onChange, /*<*/
-            renderValue = renderValue /*>*/
-          )()
-        })() /*<*/
-      }))(),
-      Markdown(s"""
-          |
-          |This, however, does not control the whole render of an option (e.g.
-          |the hover effect and the tick icon). If you need complete
-          |customization, please see the [Render option](#render-option)
-          |section.
           |
           |## Width
           |
@@ -373,7 +350,7 @@ object PageDropdown {
       Markdown("""
           |
           |This is particularly useful in building form layout, where several
-          |fields should share a common width for easy scanning.
+          |fields should share a common width for undistracted scanning.
           |
           |## Style
           |
@@ -429,7 +406,7 @@ object PageDropdown {
               value = Some(value),
               onChange = onChange,
               options = List("Arial", "Tahoma", "Verdana").map(v => Dropdown.Opt(v)),
-              renderValue = _.toString,
+              getValueString = _.toString,
               style = Dropdown.StyleMinimal,
               isFullWidth = true
             )()
@@ -499,21 +476,18 @@ object PageDropdown {
           |
           |# Advanced
           |
-          |## Render option
+          |## Render value
           |
-          |By default, the result of [`renderValue`](rendervalue) will be used
-          |to render both Dropdown's button (the currently selected option)
-          |and Dropdown's menu (the list of options). Use `renderOption` prop
-          |if you need to render the option in Dropdown's menu differently:
+          |By default, Dropdown will use `getValueString` to render the value
+          |of currently selected option in the Dropdown's button. This can be
+          |overridden by the `renderValue` prop:
           |
           |```scala
-          |renderOption: Option[A => VdomNode] = None,
+          |// A is the type of option's value
+          |renderValue: Option[A => VdomNode] = None
           |```
           |
-          |This often be used to provide additional information for each
-          |option without taking extra space:
-          |
-          |""".stripMargin)(),
+        """.stripMargin)(),
       ExampleRich(Source.annotate({
         val renderValue = (country: Country) => {
           val flag = <.img(
@@ -522,7 +496,30 @@ object PageDropdown {
             TagMod(^.width := "16px", ^.height := "16px")
           )
           React.Fragment(flag, country.name)
-        }
+        } /*>*/
+        Country.StateSample.copy(render = (value, onChange) => {
+          Country.DropdownSample.copy(
+            value = Some(value),
+            onChange = onChange, /*<*/
+            renderValue = Some(renderValue) /*>*/
+          )()
+        })() /*<*/
+      }))(),
+      Markdown(s"""
+          |
+          |## Render option
+          |
+          |By default, Dropdown will use `getValueString` to render the values
+          |of available options in the Dropdown's menu. This can be
+          |overridden by the `renderOption` prop:
+          |
+          |```scala
+          |// A is the type of option's value
+          |renderOption: Option[A => VdomNode] = None,
+          |```
+          |
+          |""".stripMargin)(),
+      ExampleRich(Source.annotate({
         val renderOption: Country => VdomNode = (country: Country) => {
           <.span(
             <.span(country.name),
@@ -533,12 +530,16 @@ object PageDropdown {
           Country.DropdownSample.copy(
             value = Some(value),
             onChange = onChange, /*<*/
-            renderValue = renderValue,
             renderOption = Some(renderOption) /*>*/
           )()
         })() /*<*/
       }))(),
-      Markdown("""
+      Markdown(
+        """
+          |
+          |This, however, can not control some UI elements like the hover
+          |effect or the tick icon. These are essential for interaction and
+          |are not customizable at the moment.
           |
           |## Performance
           |
@@ -548,14 +549,16 @@ object PageDropdown {
           |there would be no significant performance penalty. In fact, this
           |even makes subsequent renders faster.
           |
-          |However, in rare cases where `renderValue` is complex and/or the
+          |However, in rare cases where `renderValue` is defined and/or the
           |list of options is very long, these calculations could
           |significantly slow down the initial render. **In these cases, it
           |is suggested that the engineer should provide these measurements
           |themselves.**
           |
           |These necessary measurements should be provided via the
-          |`staticMeasurement` prop:
+          |`staticMeasurement` prop. Upon provided, the static measurement
+          |will be used in all renders and no expensive calculation will be
+          |done at all.
           |
           |```scala
           |staticMeasurement: Option[Measurement] = None
@@ -569,8 +572,8 @@ object PageDropdown {
           |)
           |```
           |
-          |Upon provided, the static measurement will be used in all renders
-          |and no expensive calculation will be done at all:
+          |For example, let's compare the mounting time of the following
+          |dropdown with "Use static measurement" checked and unchecked:
           |
         """.stripMargin)(),
       ExampleSimple()({
@@ -586,7 +589,7 @@ object PageDropdown {
                 value = Some(value),
                 onChange = onChange,
                 options = 0.to(10000).map(i => Dropdown.Opt(i.toString)).toList,
-                renderValue = a => a,
+                getValueString = identity[String],
                 staticMeasurement = if (isStatic) Some(m) else None
               )()
             }

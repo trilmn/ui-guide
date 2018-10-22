@@ -103,7 +103,8 @@ object LayoutNav {
                 li(Title("Popover", Some(Popover()))),
                 li(Title("Modal", Some(Modal())))
               )
-            )
+            ),
+            li(Title("Stepper", Some(Stepper())))
           )
         )
       )

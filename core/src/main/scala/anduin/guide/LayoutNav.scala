@@ -84,6 +84,7 @@ object LayoutNav {
                 li(Title("Well", Some(Well())))
               )
             ),
+            li(Title("Field", Some(Field()))),
             li(
               Title("Icon", Some(Icon()), Some(_.isInstanceOf[IconT])),
               ul(

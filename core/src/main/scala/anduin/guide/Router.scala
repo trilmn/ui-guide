@@ -61,6 +61,9 @@ object Router {
       | dynamicRouteCT("well" ~ hash.caseClass[Well]) ~>
         renderR(PageWell.render)
 
+      | dynamicRouteCT("field" ~ hash.caseClass[Field]) ~>
+        renderR(PageField.render)
+
       | dynamicRouteCT("icon" ~ hash.caseClass[Icon]) ~>
         renderR(PageIcon.render)
       | dynamicRouteCT("illus" ~ hash.caseClass[Illus]) ~>

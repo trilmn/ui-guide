@@ -93,6 +93,8 @@ components=(
   container/TableHead.scala
   container/TableSticky.scala
 
+  field/Field.scala
+
   icon/Icon.scala
   icon/Illus.scala
   icon/IllusFolder.scala

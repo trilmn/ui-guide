@@ -55,4 +55,5 @@ object Pages {
   case class Popover(hash: String = "") extends PortalT
   // - others
   case class Stepper(hash: String = "") extends ComponentT
+  case class Field(hash: String = "") extends ComponentT
 }

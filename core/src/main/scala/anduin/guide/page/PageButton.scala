@@ -13,7 +13,7 @@ object PageButton {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(title = "Button")()
+        Header(title = "Button", obj = Some(Button))()
       ),
       ExampleRich(Source.annotate({
         val cancelBtn = Button(
@@ -21,7 +21,7 @@ object PageButton {
         )("Cancel")
 
         val submitBtn = Button(
-          color = ButtonStyle.ColorPrimary,
+          color = ButtonStyle.ColorBlue,
           onClick = Callback.alert("You submitted")
         )("Submit")
         /*>*/

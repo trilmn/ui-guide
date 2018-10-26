@@ -15,7 +15,7 @@ object PageStepper {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header("Stepper", cls = Some(Stepper.getClass))()
+        Header("Stepper", obj = Some(Stepper))()
       ),
       Markdown(
         """

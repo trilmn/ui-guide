@@ -6,7 +6,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.input.textbox.TextBox
 import anduin.component.portal.PortalUtils.IsClosable
-import anduin.component.portal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
+import anduin.component.portal.modal._
 import anduin.guide.component.SimpleState
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
@@ -37,7 +37,7 @@ object PageModal {
       sampleArchiveBody(isBold),
       ModalFooterWCancel(cancel = close)(
         Button(
-          color = ButtonStyle.ColorDanger,
+          color = ButtonStyle.ColorRed,
           onClick = Callback.alert("Deal archived") >> close
         )("Archive Deal")
       )
@@ -49,17 +49,14 @@ object PageModal {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(
-          title = "Modal",
-          """
-            |Modal focuses user on critical information or task. The task might
-            |be as simple as picking contacts, or as complex as signing a
-            |document.
-          """.stripMargin
-        )()
+        Header(title = "Modal", obj = Some(Modal))()
       ),
       Markdown(
         """
+          |Modal focuses user on critical information or task. The task might
+          |be as simple as picking contacts, or as complex as signing a
+          |document.
+          |
           |# Basic Usage
           |
           |Modal is an [uncontrolled component][uc] that provides you
@@ -67,7 +64,7 @@ object PageModal {
           |
           |[uc]: https://reactjs.org/docs/uncontrolled-components.html
           |[rp]: https://reactjs.org/docs/render-props.html
-        """.stripMargin
+          |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
         Modal(
@@ -82,37 +79,37 @@ object PageModal {
       }))(),
       Markdown(
         s"""
-          |**Modal blocks user's main workflow.** While it is opening, no other
-          |interactions on the main app can be made. Consider using
-          |[Popover][pv] for non-critical information or task that should not
-          |block the main workflow.
-          |
-          |[pv]: ${ctl.pathFor(Pages.Popover()).value}
-          |
-          |**Modal kept user's main workflow.** Unlike page navigation,
-          |Modal does not affect the current page at all, leaving user's
-          |current work and data untouched, although not accessible.
-          |
-          |# Target
-          |
-          |```scala
-          |renderTarget: (open: Callback) => VdomNode
-          |```
-          |
-          |`renderTarget` should render an element that user can interact
-          |with to open the Modal (thus the name "target"), using the
-          |`open: Callback` provided.
-          |
-          |Technically, you can attach `open` to any element. However, it is
-          |suggested to use the [`Button`][1] component for best
-          |accessibility result. `Button` also offers [rich
-          |customization][2] so you are unlikely to hit any appearance
-          |limitation:
-          |
-          |[1]: ${ctl.urlFor(Pages.Button()).value}
-          |[2]: ${ctl.urlFor(Pages.ButtonStyle()).value}
-          |
-          |""".stripMargin
+           |**Modal blocks user's main workflow.** While it is opening, no other
+           |interactions on the main app can be made. Consider using
+           |[Popover][pv] for non-critical information or task that should not
+           |block the main workflow.
+           |
+           |[pv]: ${ctl.pathFor(Pages.Popover()).value}
+           |
+           |**Modal kept user's main workflow.** Unlike page navigation,
+           |Modal does not affect the current page at all, leaving user's
+           |current work and data untouched, although not accessible.
+           |
+           |# Target
+           |
+           |```scala
+           |renderTarget: (open: Callback) => VdomNode
+           |```
+           |
+           |`renderTarget` should render an element that user can interact
+           |with to open the Modal (thus the name "target"), using the
+           |`open: Callback` provided.
+           |
+           |Technically, you can attach `open` to any element. However, it is
+           |suggested to use the [`Button`][1] component for best
+           |accessibility result. `Button` also offers [rich
+           |customization][2] so you are unlikely to hit any appearance
+           |limitation:
+           |
+           |[1]: ${ctl.urlFor(Pages.Button()).value}
+           |[2]: ${ctl.urlFor(Pages.ButtonStyle()).value}
+           |
+           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
         /*>*/
@@ -198,7 +195,7 @@ object PageModal {
                 Style.flexbox.itemsCenter,
                 <.p(Style.color.gray6, "Error code: 8AS13FHS"),
                 Button(
-                  color = ButtonStyle.ColorPrimary,
+                  color = ButtonStyle.ColorBlue,
                   onClick = close
                 )("Okay")
               )
@@ -229,7 +226,7 @@ object PageModal {
           renderContent = close => {
             val footer = ModalFooterWCancel(cancel = close)(
               Button(
-                color = ButtonStyle.ColorDanger,
+                color = ButtonStyle.ColorRed,
                 onClick =
                   Callback.alert("Deal archived") >> close
               )("Archive Deal")
@@ -371,7 +368,7 @@ object PageModal {
             val body = ModalBody()("Content")
             val submit = Callback.alert("Submitted") >> close
             val button = Button(
-              color = ButtonStyle.ColorPrimary,
+              color = ButtonStyle.ColorBlue,
               autoFocus = true,
               onClick = submit
             )("Submit")

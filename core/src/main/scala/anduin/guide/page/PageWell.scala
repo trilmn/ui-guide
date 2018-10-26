@@ -2,8 +2,8 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.Callback
 import japgolly.scalajs.react.vdom.html_<^._
-
-import anduin.component.container.{Collapse, Well}
+import anduin.component.toggle.Toggle
+import anduin.component.well.Well
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
@@ -14,7 +14,7 @@ object PageWell {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(title = "Well")()
+        Header(title = "Well", obj = Some(Well))()
       ),
       Markdown(
         s"""
@@ -25,7 +25,7 @@ object PageWell {
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
-        Well(color = Well.ColorPrimary)("Hello World!")
+        Well(color = Well.ColorBlue)("Hello World!")
       }))(),
       Markdown(
         """
@@ -82,10 +82,10 @@ object PageWell {
           |}
           |```
           |
-          |That boolean-toggling logic can be provided by the [Collapse][1]
+          |That boolean-toggling logic can be provided by the [Toggle][1]
           |component:
           |
-          |[1]: ${ctl.urlFor(Pages.Collapse()).value}
+          |[1]: ${ctl.urlFor(Pages.Toggle()).value}
           |
           |""".stripMargin
       )(),
@@ -95,7 +95,7 @@ object PageWell {
           if (isExpanded) Well(close = toggle)("Hello World")
           else EmptyVdom
         }
-        val collapse = Collapse(render, isExpanded = true)()
+        val collapse = Toggle(render, isExpanded = true)()
         <.div(collapse)
       }))(),
       Markdown(
@@ -109,11 +109,11 @@ object PageWell {
       ExampleRich(Source.annotate({
         val margin = Style.margin.bottom8
         <.div(
-          <.div(Well(color = Well.ColorNeutral)("Neutral"), margin),
-          <.div(Well(color = Well.ColorPrimary)("Primary"), margin),
-          <.div(Well(color = Well.ColorSuccess)("Success"), margin),
-          <.div(Well(color = Well.ColorWarning)("Warning"), margin),
-          <.div(Well(color = Well.ColorDanger)("Danger"))
+          <.div(Well(color = Well.ColorGray)("Gray"), margin),
+          <.div(Well(color = Well.ColorBlue)("Blue"), margin),
+          <.div(Well(color = Well.ColorGreen)("Green"), margin),
+          <.div(Well(color = Well.ColorOrange)("Orange"), margin),
+          <.div(Well(color = Well.ColorRed)("Red"))
         )
       }))()
     )

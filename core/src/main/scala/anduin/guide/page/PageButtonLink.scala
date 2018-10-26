@@ -13,7 +13,7 @@ object PageButtonLink {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(title = "ButtonLink")()
+        Header(title = "ButtonLink", obj = Some(ButtonLink))()
       ),
       Markdown(
         """
@@ -30,7 +30,7 @@ object PageButtonLink {
             <.div(/*<*/
               ButtonLink(
                 href = ctl.urlFor(Pages.Color()).value,
-                color = ButtonStyle.ColorPrimary
+                color = ButtonStyle.ColorBlue
               )("Go to Color guide")/*>*/
             ),
             <.div(/*<*/

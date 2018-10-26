@@ -31,7 +31,7 @@ object PageWIP {
       }))(),
       ExampleRich(Source.annotate({
         Button(
-          color = ButtonStyle.ColorPrimary
+          color = ButtonStyle.ColorBlue
         )("a")
       }))(),
       ExampleRich(Source.annotate({

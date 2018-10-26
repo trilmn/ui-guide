@@ -13,17 +13,13 @@ object PageSpace {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(
-          title = "Space",
-          description = """
-                          |Space refers to the visual distance between or within objects.
-                          |Space reflects elements' relationship and helps building
-                          |structure.
-            """.stripMargin
-        )()
+        Header(title = "Space")()
       ),
       Markdown(
         """
+          |Space refers to the visual distance between or within objects.
+          |Space reflects elements' relationship and helps building structure.
+          |
           |# Overview
           |
           |```text
@@ -47,7 +43,7 @@ object PageSpace {
           /*>*/<.div(Style.backgroundColor.gray2.flexbox.flex.flexbox.itemsCenter,/*<*/
                 Style.padding.all16/*>*/,
                 <.div(/*<*/Style.margin.right8/*>*/, Button()("Cancel")),
-                <.div(Button(color = ButtonStyle.ColorPrimary)("Submit")))/*<*/
+                <.div(Button(color = ButtonStyle.ColorBlue)("Submit")))/*<*/
         )
         // format: on
       )(),

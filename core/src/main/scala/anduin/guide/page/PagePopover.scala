@@ -1,7 +1,7 @@
 package anduin.guide.page
 
 import anduin.component.button.Button
-import anduin.component.portal.Popover
+import anduin.component.portal.popover.Popover
 import anduin.guide.Router
 import anduin.guide.component.SimpleState
 import anduin.mcro.Source
@@ -15,7 +15,7 @@ object PagePopover {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(title = "Popover")()
+        Header(title = "Popover", obj = Some(Popover))()
       ),
       ExampleRich(Source.annotate({
         val p = Popover(

@@ -73,17 +73,8 @@ object LayoutNav {
                 li(Title("ButtonLink", Some(ButtonLink())))
               )
             ),
+            li(Title("Card", Some(Card()))),
             li(Title("Dropdown", Some(Dropdown()))),
-            li(
-              Title("Container", isExpanded = Some(_.isInstanceOf[ContainerT])),
-              ul(
-                li(Title("Card", Some(Card()))),
-                li(Title("Collapse", Some(Collapse()))),
-                li(Title("Tab", Some(Tab()))),
-                li(Title("Table", Some(Table()))),
-                li(Title("Well", Some(Well())))
-              )
-            ),
             li(Title("Field", Some(Field()))),
             li(
               Title("Icon", Some(Icon()), Some(_.isInstanceOf[IconT])),
@@ -105,7 +96,11 @@ object LayoutNav {
                 li(Title("Modal", Some(Modal())))
               )
             ),
-            li(Title("Stepper", Some(Stepper())))
+            li(Title("Stepper", Some(Stepper()))),
+            li(Title("Tab", Some(Tab()))),
+            li(Title("Table", Some(Table()))),
+            li(Title("Toggle", Some(Toggle()))),
+            li(Title("Well", Some(Well())))
           )
         )
       )

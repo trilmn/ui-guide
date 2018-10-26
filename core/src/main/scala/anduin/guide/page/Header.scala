@@ -3,14 +3,13 @@ package anduin.guide.page
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.component.text.Tag
 import anduin.guide.component.CodeBlock
 import anduin.style.Style
 
 final case class Header(
   title: String,
   description: String = "",
-  cls: Option[Class[_]] = None
+  obj: Option[Object] = None
 ) {
   def apply(): VdomElement = Header.component(this)
 }
@@ -23,8 +22,8 @@ object Header {
     <.div(
       Style.border.bottom.borderWidth.px2.borderColor.gray2,
       <.h1(Style.margin.bottom32, props.title),
-      props.cls.whenDefined(cls => {
-        val name = cls.getName.replace("$", "")
+      props.obj.whenDefined(obj => {
+        val name = obj.getClass.getName.replace("$", "")
         <.div(Style.margin.bottom32, CodeBlock(name)())
       }),
       TagMod.when(props.description.nonEmpty) {

@@ -26,13 +26,6 @@ object Pages {
   case class Button(hash: String = "") extends ButtonT
   case class ButtonStyle(hash: String = "") extends ButtonT
   case class ButtonLink(hash: String = "") extends ButtonT
-  // - container
-  sealed trait ContainerT extends ComponentT
-  case class Card(hash: String = "") extends ContainerT
-  case class Collapse(hash: String = "") extends ContainerT
-  case class Tab(hash: String = "") extends ContainerT
-  case class Table(hash: String = "") extends ContainerT
-  case class Well(hash: String = "") extends ContainerT
   // - icon
   sealed trait IconT extends ComponentT
   case class Icon(hash: String = "") extends IconT
@@ -56,4 +49,9 @@ object Pages {
   // - others
   case class Stepper(hash: String = "") extends ComponentT
   case class Field(hash: String = "") extends ComponentT
+  case class Card(hash: String = "") extends ComponentT
+  case class Toggle(hash: String = "") extends ComponentT
+  case class Tab(hash: String = "") extends ComponentT
+  case class Table(hash: String = "") extends ComponentT
+  case class Well(hash: String = "") extends ComponentT
 }

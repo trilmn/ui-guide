@@ -2,8 +2,7 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.vdom.html_<^._
 
-import anduin.component.button.ButtonLink
-import anduin.component.container.Card
+import anduin.component.card.Card
 import anduin.component.icon.Icon
 import anduin.guide.Router
 import anduin.mcro.Source
@@ -15,7 +14,7 @@ object PageCard {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(title = "Card")()
+        Header(title = "Card", obj = Some(Card))()
       ),
       Markdown(
         """

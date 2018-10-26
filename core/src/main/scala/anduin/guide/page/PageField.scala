@@ -15,7 +15,7 @@ object PageField {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header("Field", cls = Some(Field.getClass))()
+        Header("Field", obj = Some(Field))()
       ),
       Markdown(
         """
@@ -30,9 +30,10 @@ object PageField {
             Field(
               layout = Field.LayoutHor,
               id = "foo",
-              input = TextBox(value, onChange, id = Some("foo"))(),
               label = Some("Pre-money valuation")
-            )()
+            )(
+              TextBox(value, onChange, id = Some("foo"))()
+            )
           }
         )()
       }))(),
@@ -43,10 +44,11 @@ object PageField {
             Field(
               layout = Field.LayoutHor,
               id = "foo2",
-              input = TextBox(value, onChange, id = Some("foo2"))(),
               label = Some("Pre-money valuation"),
               desc = Some("10-20% are industry standard")
-            )()
+            )(
+              TextBox(value, onChange, id = Some("foo2"))()
+            )
           }
         )()
       }))(),
@@ -57,7 +59,6 @@ object PageField {
             Field(
               layout = Field.LayoutHor,
               id = "foo2",
-              input = TextBox(value, onChange, id = Some("foo2"))(),
               label = Some("Pre-money valuation"),
               desc = Some("10-20% are industry standard"),
               help = Some(
@@ -72,7 +73,9 @@ object PageField {
                   |investors and the ESOP cannot exceed 100%.
                 """.stripMargin
               )
-            )()
+            )(
+              TextBox(value, onChange, id = Some("foo2"))()
+            )
           }
         )()
       }))()

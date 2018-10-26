@@ -2,11 +2,13 @@ package anduin.guide.page
 
 import japgolly.scalajs.react.{Callback, React}
 import japgolly.scalajs.react.vdom.html_<^._
-
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.icon.Icon
 import anduin.component.icon.Icon.NameUpload
-import anduin.component.portal.{Modal, ModalBody, ModalFooterWCancel}
+import anduin.component.menu.{Menu, MenuItem}
+import anduin.component.portal.PositionBottomLeft
+import anduin.component.portal.modal.{Modal, ModalBody, ModalFooterWCancel}
+import anduin.component.portal.popover.Popover
 import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
@@ -17,13 +19,13 @@ object PageButtonStyle {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(title = "ButtonStyle")()
+        Header(title = "ButtonStyle", obj = Some(ButtonStyle))()
       ),
       Markdown(
         """
           |ButtonStyle is not a component, so it cannot be used on its own.
           |
-          |Instead, you use ButtonStyle's values (e.g. ColorPrimary or
+          |Instead, you use ButtonStyle's values (e.g. ColorBlue or
           |StyleMinimal) to customize other components that support them (e.g.
           |Button or ButtonLink):
         """.stripMargin
@@ -32,8 +34,8 @@ object PageButtonStyle {
         <.div(
           Style.width.px256,
           Button(
-            color = ButtonStyle.ColorPrimary,
-            size = ButtonStyle.SizeLarge,
+            color = ButtonStyle.ColorBlue,
+            size = ButtonStyle.Size40,
             isFullWidth = true
           )("Create Transaction")
         )
@@ -65,7 +67,7 @@ object PageButtonStyle {
         <.div(
           Style.flexbox.flex.flexbox.itemsCenter,
           Button(
-            color = ButtonStyle.ColorPrimary
+            color = ButtonStyle.ColorBlue
           )(
             Icon(name = NameUpload)(),
             <.span(Style.margin.left8, "Add Closing Book")
@@ -119,13 +121,13 @@ object PageButtonStyle {
           "John has not accepted your invitation yet. You can ",
           Button(
             onClick = Callback.alert("Reminded"),
-            color = ButtonStyle.ColorPrimary,
+            color = ButtonStyle.ColorBlue,
             style = ButtonStyle.StyleLink
           )("remind him"),
           " or ",
           Button(
             onClick = Callback.alert("Cancelled"),
-            color = ButtonStyle.ColorDanger,
+            color = ButtonStyle.ColorRed,
             style = ButtonStyle.StyleLink
           )("cancel it"),
           "."
@@ -145,10 +147,10 @@ object PageButtonStyle {
         <.div(
           Style.flexbox.flex,
           <.div(Button()("Neutral")),
-          <.div(Button(color = ButtonStyle.ColorPrimary)("Primary"), margin),
-          <.div(Button(color = ButtonStyle.ColorSuccess)("Success"), margin),
-          <.div(Button(color = ButtonStyle.ColorWarning)("Warning"), margin),
-          <.div(Button(color = ButtonStyle.ColorDanger)("Danger"), margin)
+          <.div(Button(color = ButtonStyle.ColorBlue)("Blue"), margin),
+          <.div(Button(color = ButtonStyle.ColorGreen)("Green"), margin),
+          <.div(Button(color = ButtonStyle.ColorOrange)("Orange"), margin),
+          <.div(Button(color = ButtonStyle.ColorRed)("Red"), margin)
         )
       }))(),
       Markdown(
@@ -160,27 +162,27 @@ object PageButtonStyle {
         """.stripMargin
       )(),
       ExampleSimple("""
-          |**GOOD:** Users know which is the primary action that should be
-          |taken
+                      |**GOOD:** Users know which is the Blue action that should be
+                      |taken
         """.stripMargin)(
         <.div(
           Style.flexbox.flex,
-          <.div(Button(color = ButtonStyle.ColorPrimary)("Create Transaction")),
+          <.div(Button(color = ButtonStyle.ColorBlue)("Create Transaction")),
           <.div(Button()("Create Organization"), Style.margin.left8)
         )
       ),
       ExampleSimple("""
-          |**NOT GOOD:** Users don't know which action should be taken
+                      |**NOT GOOD:** Users don't know which action should be taken
         """.stripMargin)(
         <.div(
           Style.flexbox.flex,
-          <.div(Button(color = ButtonStyle.ColorPrimary)("Create Transaction")),
-          <.div(Button(color = ButtonStyle.ColorSuccess)("Create Organization"), Style.margin.left8)
+          <.div(Button(color = ButtonStyle.ColorBlue)("Create Transaction")),
+          <.div(Button(color = ButtonStyle.ColorGreen)("Create Organization"), Style.margin.left8)
         )
       ),
       Markdown(
         """
-          |**ColorDanger + StyleFull should be saved for confirmation
+          |**ColorRed + StyleFull should be saved for confirmation
           |action.** For example, the "Remove" button itself can be Neutral
           |since it is not the final destructive action.
           """.stripMargin
@@ -200,7 +202,7 @@ object PageButtonStyle {
                 ),
                 ModalFooterWCancel(cancel = close) {
                   val onClick = Callback.log("John was removed") >> close
-                  Button(onClick = onClick, color = ButtonStyle.ColorDanger)("Remove John")
+                  Button(onClick = onClick, color = ButtonStyle.ColorRed)("Remove John")
                 }
             )
           )()
@@ -218,30 +220,30 @@ object PageButtonStyle {
             Style.flexbox.flex.flexbox.itemsCenter,
             <.p(Style.flexbox.none.width.pc10, "Full"),
             <.div(Button()("Default"), margin),
-            <.div(Button(color = ButtonStyle.ColorPrimary)("Primary"), margin),
-            <.div(Button(color = ButtonStyle.ColorSuccess)("Success"), margin),
-            <.div(Button(color = ButtonStyle.ColorWarning)("Warning"), margin),
-            <.div(Button(color = ButtonStyle.ColorDanger)("Danger"), margin)
+            <.div(Button(color = ButtonStyle.ColorBlue)("Blue"), margin),
+            <.div(Button(color = ButtonStyle.ColorGreen)("Green"), margin),
+            <.div(Button(color = ButtonStyle.ColorOrange)("Orange"), margin),
+            <.div(Button(color = ButtonStyle.ColorRed)("Red"), margin)
           ),
           sep,
           <.div(
             Style.flexbox.flex.flexbox.itemsCenter,
             <.p(Style.flexbox.none.width.pc10, "Minimal"),
             <.div(Button(style = ButtonStyle.StyleMinimal)("Default"), margin),
-            <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorPrimary)("Primary"), margin),
-            <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorSuccess)("Success"), margin),
-            <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorWarning)("Warning"), margin),
-            <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorDanger)("Danger"), margin)
+            <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorBlue)("Blue"), margin),
+            <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorGreen)("Green"), margin),
+            <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorOrange)("Orange"), margin),
+            <.div(Button(style = ButtonStyle.StyleMinimal, color = ButtonStyle.ColorRed)("Red"), margin)
           ),
           sep,
           <.div(
             Style.flexbox.flex.flexbox.itemsCenter,
             <.p(Style.flexbox.none.width.pc10, "Link"),
             <.div(Button(style = ButtonStyle.StyleLink)("Default"), margin),
-            <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorPrimary)("Primary"), margin),
-            <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorSuccess)("Success"), margin),
-            <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorWarning)("Warning"), margin),
-            <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorDanger)("Danger"), margin)
+            <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorBlue)("Blue"), margin),
+            <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorGreen)("Green"), margin),
+            <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorOrange)("Orange"), margin),
+            <.div(Button(style = ButtonStyle.StyleLink, color = ButtonStyle.ColorRed)("Red"), margin)
           )
         )
       },
@@ -249,20 +251,19 @@ object PageButtonStyle {
         """
           |# Size
           |
-          |Default size is Medium, which should work most of the time. Use `SizeLarge` to enlarge button in spacious context.
+          |Default size is `Size32`, which should work most of the time. Use 
+          |`Size40` to enlarge button in spacious context.
         """.stripMargin
       )(),
       ExampleRich(
-        // format: off
         Source.annotate(
-          /*>*/<.div(
+          <.div(
             Style.flexbox.flex,
-            <.div(/*<*/Button(size = ButtonStyle.SizeSmall)("Small"),/*>*/ Style.margin.right16),
-            <.div(/*<*/Button()("Medium"),/*>*/ Style.margin.right16),
-            <.div(/*<*/Button(size = ButtonStyle.SizeLarge)("Large"))
-          )/*<*/
+            <.div(Button(size = ButtonStyle.Size24)("24"), Style.margin.right16),
+            <.div(Button()("Medium"), Style.margin.right16),
+            <.div(Button(size = ButtonStyle.Size40)("Large"))
+          )
         )
-        // format: on
       )(),
       Markdown(
         """
@@ -285,7 +286,7 @@ object PageButtonStyle {
         Source.annotate(
           <.div(
             Style.width.px256,
-            <.div(Button(isFullWidth = true, color = ButtonStyle.ColorPrimary)("Submit form")),
+            <.div(Button(isFullWidth = true, color = ButtonStyle.ColorBlue)("Submit form")),
             <.div(Button(isFullWidth = true)("Add more documents"), Style.margin.top8)
           )
         )
@@ -301,23 +302,18 @@ object PageButtonStyle {
           |something on and off, like a popover:
         """.stripMargin
       )(),
-      // @TODO: This should be ExampleRich, but Popover is dying
-      Markdown("""
-          |```scala
-          |Popover(
-          |  position = PositionBottomLeft,
-          |  verticalOffset = 4,
-          |  renderTarget = (open, _, _, status) =>
-          |    Button(onClick = open, isSelected = status == StatusOpen)
-          |    ("More"),
-          |  renderContent = (_, _) => Menu()(MenuItem()("Copy"), MenuItem()
-          |  ("Paste"))
-          |)()
-          |```
-        """.stripMargin)(),
+      ExampleRich(Source.annotate({
+        Popover(
+          position = PositionBottomLeft,
+          verticalOffset = 4,
+          renderTarget = (open, isOpened) => Button(onClick = open, isSelected = isOpened)("More"),
+          renderContent = _ => Menu()(MenuItem()("Copy"), MenuItem()("Paste"))
+        )()
+      }))(),
       Markdown(
         """
-          |This works with both StyleFull and StyleMinimal, as well as all values of Color:
+          |This works with both StyleFull and StyleMinimal, as well as all 
+          |values of Color:
         """.stripMargin
       )(),
       ExampleSimple()({
@@ -331,22 +327,26 @@ object PageButtonStyle {
           <.div(
             Style.flexbox.flex.margin.top16,
             <.div(Button(isSelected = true)("Neutral")),
-            <.div(Button(isSelected = true, color = ButtonStyle.ColorPrimary)("Primary"), margin),
-            <.div(Button(isSelected = true, color = ButtonStyle.ColorSuccess)("Success"), margin),
-            <.div(Button(isSelected = true, color = ButtonStyle.ColorWarning)("Warning"), margin),
-            <.div(Button(isSelected = true, color = ButtonStyle.ColorDanger)("Danger"), margin)
+            <.div(Button(isSelected = true, color = ButtonStyle.ColorBlue)("Blue"), margin),
+            <.div(Button(isSelected = true, color = ButtonStyle.ColorGreen)("Green"), margin),
+            <.div(Button(isSelected = true, color = ButtonStyle.ColorOrange)("Orange"), margin),
+            <.div(Button(isSelected = true, color = ButtonStyle.ColorRed)("Red"), margin)
           )
         )
       }),
       Markdown(
         """
-          |That being said, isSelected does not work with `StyleLink` as it would not make any sense (a link does not have "disabled" state in the world of web).
+          |That being said, isSelected does not work with `StyleLink` as it
+          |would not make any sense (a link does not have "disabled" state in
+          |the world of web).
           |
           |# Content
           |
           |## With icon
           |
-          |It's common to have icon inside a button to add information. In these cases, simply put the icon on left or right side of the text, with proper spacing applied on either text or icon.
+          |It's common to have icon inside a button to add information. In
+          |these cases, simply put the icon on left or right side of the
+          |text, with proper spacing applied on either text or icon.
         """.stripMargin
       )(),
       ExampleRich(
@@ -362,27 +362,34 @@ object PageButtonStyle {
       )(),
       Markdown(
         """
-          |**Button can also be icon-only.** In these cases make sure the action can be clearly implied without text. Icon-only are often being used as a row, like in a toolbar, so their meaning can support each other.
+          |**Button can also be icon-only.** In these cases make sure the 
+          |action can be clearly implied without text. Icon-only are often 
+          |being used as a row, like in a toolbar, so their meaning can 
+          |support each other.
           |
-          |By default, button has unequal vertical and horizontal padding, which result in a rectangle for icon-only case. This might not look nice in some cases like toolbar. In such cases, use `size = ButtonStyle.SizeIcon` to make it square.
+          |By default, button has unequal vertical and horizontal padding, 
+          |which result in a rectangle for icon-only case. This might not 
+          |look nice in some cases like toolbar. In such cases, use `size = 
+          |ButtonStyle.SizeIcon` to make it square.
         """.stripMargin
       )(),
       ExampleRich(
-        // format: off
         Source.annotate({
-          /*>*/val icon = Icon(name = Icon.NameLightBolt)()
-          <.div(Style.flexbox.flex,
-            <.div(/*<*/Button()(icon)/*>*/, Style.margin.right16),
-            <.div(/*<*/Button(size = ButtonStyle.SizeIcon)(icon)/*>*/))/*<*/
+          val icon = Icon(name = Icon.NameLightBolt)()
+          <.div(
+            Style.flexbox.flex,
+            <.div(Button()(icon), Style.margin.right16),
+            <.div(Button(size = ButtonStyle.SizeIcon)(icon))
+          )
         })
-        // format: on
       )(),
       Markdown(
         """
           |## With isDisabled
           |
-          |ButtonStyle observes the component's `disabled` state (usually set via `isDisabled` prop) to provide correct "disabled" styling:
-        """.stripMargin
+          |ButtonStyle observes the component's `disabled` state (usually set
+          |via `isDisabled` prop) to provide correct "disabled" styling:
+          |""".stripMargin
       )(),
       ExampleRich(
         Source.annotate(
@@ -391,8 +398,10 @@ object PageButtonStyle {
       )(),
       Markdown(
         """
-          |ButtonStyle takes other props (e.g. Color, Style) into account when calculating the disabled style. For example, each Style value has a different disabled appearance:
-        """.stripMargin
+          |ButtonStyle takes other props (e.g. Color, Style) into account 
+          |when calculating the disabled style. For example, each Style value
+          |has a different disabled appearance:
+          |""".stripMargin
       )(),
       ExampleSimple()(
         <.div(
@@ -404,15 +413,16 @@ object PageButtonStyle {
       ),
       Markdown(
         """
-          |That being said, different options of Color intentionally share the same disabled style:
-        """.stripMargin
+          |That being said, different options of Color intentionally share
+          |the same disabled style:
+          |""".stripMargin
       )(),
       ExampleSimple()(
         <.div(
           Style.flexbox.flex,
           <.div(Button(isDisabled = true)("Default"), Style.margin.right16),
-          <.div(Button(isDisabled = true, color = ButtonStyle.ColorPrimary)("Primary"), Style.margin.right16),
-          <.div(Button(isDisabled = true, color = ButtonStyle.ColorSuccess)("Success"), Style.margin.right16)
+          <.div(Button(isDisabled = true, color = ButtonStyle.ColorBlue)("Blue"), Style.margin.right16),
+          <.div(Button(isDisabled = true, color = ButtonStyle.ColorGreen)("Green"), Style.margin.right16)
         )
       )
     )

@@ -94,7 +94,7 @@ object PageDropdown {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header("Dropdown", cls = Some(Dropdown.getClass))()
+        Header("Dropdown", obj = Some(Dropdown))()
       ),
       Markdown(
         """

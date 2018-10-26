@@ -52,8 +52,8 @@ object Router {
 
       | dynamicRouteCT("card" ~ hash.caseClass[Card]) ~>
         renderR(PageCard.render)
-      | dynamicRouteCT("collapse" ~ hash.caseClass[Collapse]) ~>
-        renderR(PageCollapse.render)
+      | dynamicRouteCT("collapse" ~ hash.caseClass[Toggle]) ~>
+        renderR(PageToggle.render)
       | dynamicRouteCT("tab" ~ hash.caseClass[Tab]) ~>
         renderR(PageTab.render)
       | dynamicRouteCT("table" ~ hash.caseClass[Table]) ~>

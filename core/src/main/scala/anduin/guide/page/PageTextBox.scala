@@ -17,7 +17,7 @@ object PageTextBox {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header("Text Box", cls = Some(TextBox.getClass))()
+        Header("Text Box", obj = Some(TextBox))()
       ),
       Markdown(
         """

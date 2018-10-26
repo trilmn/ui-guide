@@ -1,6 +1,6 @@
 package anduin.guide.component
 
-import anduin.component.container.Collapse
+import anduin.component.toggle.Toggle
 import anduin.component.icon.Icon
 import anduin.guide.Router
 import anduin.guide.Pages.Page
@@ -72,7 +72,7 @@ object NavElements {
   }
 
   def li(title: Title, children: VdomNode = EmptyVdom)(implicit props: Props): VdomElement = {
-    Collapse(
+    Toggle(
       isExpanded = title.isExpanded.fold(false)(_(props.page)),
       render = renderLi(title, children, props)
     )()

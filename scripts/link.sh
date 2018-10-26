@@ -73,69 +73,56 @@ components=(
   button/Button.scala
   button/ButtonLink.scala
   button/ButtonStyle.scala
-
+  card/Card.scala
+  date/DateTime.scala
   dropdown/Dropdown.scala
   dropdown/DropdownContent.scala
-  dropdown/DropdownOption.scala
   dropdown/DropdownFilter.scala
-  dropdown/DropdownTarget.scala
   dropdown/DropdownMeasure.scala
+  dropdown/DropdownOption.scala
   dropdown/DropdownStateReducer.scala
-
-  container/Card.scala
-  container/Collapse.scala
-  container/Tab.scala
-  container/TabFull.scala
-  container/Well.scala
-
-  container/Table.scala
-  container/TableBody.scala
-  container/TableHead.scala
-  container/TableSticky.scala
-
+  dropdown/DropdownTarget.scala
   field/Field.scala
-
   icon/Icon.scala
   icon/Illus.scala
   icon/IllusFolder.scala
-
   input/Checkbox.scala
   input/FileButtonInput.scala
   input/Radio.scala
   input/RadioBox.scala
-
   input/textbox/TextBox.scala
-  input/textbox/TextBoxStyle.scala
   input/textbox/TextBoxMask.scala
-
+  input/textbox/TextBoxStyle.scala
   menu/Menu.scala
   menu/MenuDivider.scala
   menu/MenuItem.scala
   menu/VerticalDivider.scala
-
-  portal/Modal.scala
-  portal/ModalBody.scala
-  portal/ModalFooter.scala
-  portal/ModalFooterWCancel.scala
-  portal/ModalHeader.scala
-  portal/Popover.scala
+  portal/modal/Modal.scala
+  portal/modal/ModalBody.scala
+  portal/modal/ModalFooter.scala
+  portal/modal/ModalFooterWCancel.scala
+  portal/modal/ModalHeader.scala
+  portal/popover/Popover.scala
   portal/Portal.scala
   portal/PortalContent.scala
   portal/PortalPopper.scala
   portal/PortalUtils.scala
   portal/Position.scala
-  portal/Tooltip.scala
-
-  text/Tag.scala
-  text/DateTime.scala
-
+  portal/tooltip/Tooltip.scala
   stepper/Stepper.scala
-
+  tab/Tab.scala
+  tab/TabFull.scala
+  table/Table.scala
+  table/TableBody.scala
+  table/TableHead.scala
+  table/TableSticky.scala
+  tag/Tag.scala
+  toggle/Toggle.scala
   truncate/TruncateMarkup.scala
-
+  util/ComponentUtils.scala
   util/EventUtils.scala
   util/NodeListSeq.scala
-  util/ComponentUtils.scala
+  well/Well.scala
 )
 for name in ${components[*]}
 do

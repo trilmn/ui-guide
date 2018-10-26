@@ -3,8 +3,8 @@ package anduin.guide.page
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.{Button, ButtonStyle}
-import anduin.component.container.Table
-import anduin.component.text.Tag
+import anduin.component.table.Table
+import anduin.component.tag.Tag
 import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
@@ -32,7 +32,7 @@ object Sample {
     Member(5, "Virginia", rInt, rDb, rBoo, rBoo)
   )
   def renderPoint: Member => Table.Cell = (member: Member) => {
-    val color = if (member.point > 5) Tag.ColorSuccess else Tag.ColorWhite
+    val color = if (member.point > 5) Tag.ColorGreen else Tag.ColorGray
     val content = Tag(color = color)(member.point)
     Table.Cell(content)
   }
@@ -72,7 +72,7 @@ object PageTable {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(title = "Table")()
+        Header(title = "Table", obj = Some(Table))()
       ),
       Markdown(
         """
@@ -263,7 +263,7 @@ object PageTable {
           val content = member.level
           if (member.id == 1) {
             Table.Cell(
-              Tag(color = Tag.ColorDanger, isSolid = true)(content), /*<*/
+              Tag(color = Tag.ColorRed, isSolid = true)(content), /*<*/
               align = Table.AlignBottom /*>*/
             )
           } else {
@@ -371,31 +371,27 @@ object PageTable {
       }))(),
       Markdown(
         s"""
-          |# Sort
-          |
-          |Table supports sorting, but you need to tell it how to sort each
-          |column via the `sortByString` or `sortByDouble` prop. They are
-          |similar to [Scala's `sortBy`][1] or [Lodash's `sortBy`][2]:
-          |
-          |
-          |[1]: https://alvinalexander.com/scala/how-to-sort-map-in-scala-key-value-sortby-sortwith
-          |[2]: https://lodash.com/docs/#sortBy
-          |
-          |```scala
-          |Table.Column(
-          |  head = "Email",
-          |  render = _.email,
-          |  sortByString = Option(_.email)
-          |)
-          |```
-          |
-          |These props expect a function that return a value from a row/item.
-          |Table will use this value to sort its rows.
-          |
-          |**It's an implementation fault that we cannot support a simple
-          |`sortBy` at the moment.** You must explicitly use `sortByString`
-          |or `sortByDouble` depend on the type of returned values:
-          |""".stripMargin
+           |# Sort
+           |
+           |Table supports sorting, but you need to tell it how to sort each
+           |column via the `sortBy` prop. They are similar to [Scala's
+           |`sortBy`][1] or [Lodash's `sortBy`][2]:
+           |
+           |[1]: https://alvinalexander.com/scala/how-to-sort-map-in-scala-key-value-sortby-sortwith
+           |[2]: https://lodash.com/docs/#sortBy
+           |
+           |```scala
+           |Table.Column(
+           |  head = "Email",
+           |  render = _.email,
+           |  sortBy = Table.ColumnOrdering(_.email)
+           |)
+           |```
+           |
+           |These props expect an instance of `Table.ColumnOrdering`, with the
+           |only argument is a function that return a value from a row/item.
+           |Table will use this value to sort its rows:
+           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
         /*>*/
@@ -404,14 +400,14 @@ object PageTable {
             Sample.BaseTable.columns.head, /*<*/
             Sample.BaseTable
               .columns(1)
-              .copy(sortByString = Some(_.name)),
+              .copy(sortBy = Table.ColumnOrdering(_.name)),
             Sample.BaseTable
               .columns(2)
-              .copy(sortByDouble = Some(_.level.toDouble)), /*>*/
+              .copy(sortBy = Table.ColumnOrdering(_.level.toDouble)), /*>*/
             Sample.BaseTable.columns(3), /*<*/
             Sample.BaseTable
               .columns(4)
-              .copy(sortByDouble = Some(m => m.point * m.level)) /*>*/
+              .copy(sortBy = Table.ColumnOrdering(m => m.point * m.level)) /*>*/
           ), /*<*/
           sortColumn = Some(1) /*>*/
         )()
@@ -449,8 +445,8 @@ object PageTable {
         /*>*/
         val render = (b: Boolean) => {
           val (color, text) =
-            if (b) (Tag.ColorSuccess, "Pass")
-            else (Tag.ColorDanger, "Fail")
+            if (b) (Tag.ColorGreen, "Pass")
+            else (Tag.ColorRed, "Fail")
           val tag = Tag(color = color)(text)
           <.div(Style.flexbox.flex.flexbox.justifyCenter, tag)
         } /*<*/
@@ -476,27 +472,27 @@ object PageTable {
       }))(),
       Markdown(
         """
-        |# Custom Render
-        |
-        |## Row
-        |
-        |Table rows are separated by border and has background changed on
-        |hover. This appearance, however, can be fully customized via the
-        |`renderRow` prop, which expects a function that receives:
-        |
-        ||Param  |Type       |Description|
-        ||-------|-----------|-----------|
-        ||`style`|TagMod     |The default style of that row, from the [`style`](#style) prop|
-        ||`key`  |String     |The [key][1] of that row, from the [`getKey`](#getkey) prop|
-        ||`cells`|VdomArray  |Array of rendered cells (`td`) of that row|
-        ||`row`  |A          |The data of that row (an item of the [`rows`](#rows) prop)|
-        |
-        |[1]: https://reactjs.org/docs/lists-and-keys.html
-        |
-        |and returns your customized `tr`.
-        |
-        |For example, let say we that we want to render the row of Ada a
-        |little bit more prominent:
+          |# Custom Render
+          |
+          |## Row
+          |
+          |Table rows are separated by border and has background changed on
+          |hover. This appearance, however, can be fully customized via the
+          |`renderRow` prop, which expects a function that receives:
+          |
+          ||Param  |Type       |Description|
+          ||-------|-----------|-----------|
+          ||`style`|TagMod     |The default style of that row, from the [`style`](#style) prop|
+          ||`key`  |String     |The [key][1] of that row, from the [`getKey`](#getkey) prop|
+          ||`cells`|VdomArray  |Array of rendered cells (`td`) of that row|
+          ||`row`  |A          |The data of that row (an item of the [`rows`](#rows) prop)|
+          |
+          |[1]: https://reactjs.org/docs/lists-and-keys.html
+          |
+          |and returns your customized `tr`.
+          |
+          |For example, let say we that we want to render the row of Ada a
+          |little bit more prominent:
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -570,7 +566,7 @@ object PageTable {
           rows = Sample.BaseTable.rows.take(3), /*<*/
           footer = <.div(
             Style.flexbox.flex.flexbox.itemsCenter,
-            Button(color = ButtonStyle.ColorPrimary)("Invite Member"),
+            Button(color = ButtonStyle.ColorBlue)("Invite Member"),
             <.p(Style.margin.left16, "New member will see all history.")
           ) /*>*/
         )()

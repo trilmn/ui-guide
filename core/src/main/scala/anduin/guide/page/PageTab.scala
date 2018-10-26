@@ -3,7 +3,7 @@ package anduin.guide.page
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.button.{Button, ButtonStyle}
-import anduin.component.container.Tab
+import anduin.component.tab.Tab
 import anduin.component.icon.{Icon, IllusFolder}
 import anduin.guide.Router
 import anduin.mcro.Source
@@ -15,7 +15,7 @@ object PageTab {
       Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
-        Header(title = "Tab")()
+        Header(title = "Tab", obj = Some(Tab))()
       ),
       Markdown(
         """

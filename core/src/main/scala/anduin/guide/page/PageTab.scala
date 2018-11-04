@@ -1,13 +1,12 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.vdom.html_<^._
-
 import anduin.component.button.{Button, ButtonStyle}
-import anduin.component.tab.Tab
 import anduin.component.icon.{Icon, IllusFolder}
+import anduin.component.tab.Tab
 import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.vdom.html_<^._
 
 object PageTab {
   def render(ctl: Router.Ctl): VdomElement = {

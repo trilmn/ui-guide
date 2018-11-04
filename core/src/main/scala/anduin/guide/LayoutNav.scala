@@ -3,14 +3,13 @@
 package anduin.guide
 
 import anduin.guide.component.NavElements
-import anduin.guide.component.NavElements.{li, Title, ul}
+import anduin.guide.component.NavElements.{Title, li, ul}
 import anduin.style.Style
 
 // scalastyle:off underscore.import
+import anduin.guide.Pages._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
-
-import anduin.guide.Pages._
 // scalastyle:on underscore.import
 
 final case class LayoutNav(

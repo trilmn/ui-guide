@@ -1,11 +1,10 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.vdom.html_<^._
-
+import anduin.component.icon.Illus
 import anduin.guide.Router
 import anduin.mcro.Source
-import anduin.component.icon.Illus
 import anduin.style.Style
+import japgolly.scalajs.react.vdom.html_<^._
 
 object PageIllus {
 
@@ -21,11 +20,13 @@ object PageIllus {
         Style.margin.bottom32,
         Header(title = "Illus")()
       ),
-      Markdown("""
+      Markdown(
+        """
           |Illus is the more complex version of Icon. Illus often has more
           |details and colors. Unlike Icon, the color(s) of an Illus is not
           |customizable.
-        """.stripMargin)(),
+        """.stripMargin
+      )(),
       ExampleRich(Source.annotate({
         Illus(name = Illus.NameDoc)()
       }))(),

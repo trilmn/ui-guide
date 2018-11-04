@@ -1,8 +1,5 @@
 package anduin.guide.page
 
-import scala.util.Random
-import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.input.textbox.TextBox
 import anduin.component.portal.PortalUtils.IsClosable
@@ -11,6 +8,10 @@ import anduin.guide.component.SimpleState
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
+
+import scala.util.Random
 
 object PageModal {
 

@@ -1,11 +1,11 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.{Callback, ReactEventFromInput}
-import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.guide._
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.vdom.html_<^._
+import japgolly.scalajs.react.{Callback, ReactEventFromInput}
 
 object PageButton {
   def render(ctl: Router.Ctl): VdomElement = {

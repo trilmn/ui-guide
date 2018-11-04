@@ -19,7 +19,7 @@ object PagePopover {
       ),
       ExampleRich(Source.annotate({
         val p = Popover(
-          renderTarget = (toggle,  _) => {
+          renderTarget = (toggle, _) => {
             Button(onClick = toggle)("show")
           },
           renderContent = _ => {

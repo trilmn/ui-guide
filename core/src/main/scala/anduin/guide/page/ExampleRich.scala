@@ -1,10 +1,9 @@
 package anduin.guide.page
 
+import anduin.guide.component.{Example => OrgExample}
+import anduin.style.Style
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
-
-import anduin.style.Style
-import anduin.guide.component.{Example => OrgExample}
 
 final case class ExampleRich(
   content: (String, VdomElement),

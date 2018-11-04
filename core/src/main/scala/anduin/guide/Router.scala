@@ -1,11 +1,11 @@
 package anduin.guide
 
-import scala.scalajs.js
-
-import japgolly.scalajs.react.Callback
-import japgolly.scalajs.react.extra.router._
 import anduin.guide.Pages._
 import anduin.guide.page._
+import japgolly.scalajs.react.Callback
+import japgolly.scalajs.react.extra.router._
+
+import scala.scalajs.js
 
 object Router {
   type Ctl = RouterCtl[Pages.Page]

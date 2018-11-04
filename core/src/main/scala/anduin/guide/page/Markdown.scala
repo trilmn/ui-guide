@@ -1,11 +1,10 @@
 package anduin.guide.page
 
+import anduin.guide.component._
+import anduin.scalajs.markedjs.{Marked, MarkedOptions, MarkedRenderer}
+import anduin.style.Style
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
-
-import anduin.scalajs.markedjs.{Marked, MarkedOptions, MarkedRenderer}
-import anduin.guide.component._
-import anduin.style.Style
 
 final case class Markdown(
   source: String

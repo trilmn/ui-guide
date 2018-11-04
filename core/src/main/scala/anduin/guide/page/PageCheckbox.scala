@@ -1,12 +1,11 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.Callback
-import japgolly.scalajs.react.vdom.html_<^._
-
 import anduin.component.input.Checkbox
 import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.Callback
+import japgolly.scalajs.react.vdom.html_<^._
 
 object PageCheckbox {
   def render(ctl: Router.Ctl): VdomElement = {
@@ -16,12 +15,14 @@ object PageCheckbox {
         Style.margin.bottom32,
         Header(title = "Checkbox")()
       ),
-      Markdown("""
+      Markdown(
+        """
           |Checkbox follows the native [`<input type="checkbox">`][1] element
           |so make sure you're familar with it first.
           |
           |[1]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
-        """.stripMargin)(),
+        """.stripMargin
+      )(),
       ExampleRich(Source.annotate({
         val checkbox = Checkbox(
           isChecked = true,

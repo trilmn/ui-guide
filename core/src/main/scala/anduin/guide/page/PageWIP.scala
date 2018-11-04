@@ -1,11 +1,10 @@
 package anduin.guide.page
 
+import anduin.component.button.{Button, ButtonStyle}
 import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
 import japgolly.scalajs.react.vdom.html_<^._
-
-import anduin.component.button.{Button, ButtonStyle}
 
 object PageWIP {
   def render(ctl: Router.Ctl): VdomElement = {
@@ -25,9 +24,7 @@ object PageWIP {
         )
       }))(),
       ExampleRich(Source.annotate({
-        <.div(
-          "a",
-          "b")
+        <.div("a", "b")
       }))(),
       ExampleRich(Source.annotate({
         Button(

@@ -1,7 +1,5 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.{Callback, React}
-import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.icon.Icon
 import anduin.component.icon.Icon.NameUpload
@@ -12,6 +10,8 @@ import anduin.component.portal.popover.Popover
 import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.vdom.html_<^._
+import japgolly.scalajs.react.{Callback, React}
 
 object PageButtonStyle {
   def render(ctl: Router.Ctl): VdomElement = {

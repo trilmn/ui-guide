@@ -1,9 +1,8 @@
 package anduin.guide.component
 
+import anduin.style.Style
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
-
-import anduin.style.Style
 
 final case class Example(
   content: (String, VdomElement),

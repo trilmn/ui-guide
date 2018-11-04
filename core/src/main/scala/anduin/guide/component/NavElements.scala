@@ -1,9 +1,9 @@
 package anduin.guide.component
 
-import anduin.component.toggle.Toggle
 import anduin.component.icon.Icon
-import anduin.guide.Router
+import anduin.component.toggle.Toggle
 import anduin.guide.Pages.Page
+import anduin.guide.Router
 import anduin.style.Style
 
 // scalastyle:off underscore.import
@@ -64,7 +64,8 @@ object NavElements {
     } { page =>
       <.a(
         ^.href := props.ctl.urlFor(page).value,
-        ^.onClick ==> { e => setPage(page, props, e) >> toggle },
+        ^.onClick ==> { e => setPage(page, props, e) >> toggle
+        },
         titleBody
       )
     }

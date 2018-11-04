@@ -1,12 +1,11 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.vdom.html_<^._
-
 import anduin.component.button.Button
 import anduin.component.icon.Icon
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.vdom.html_<^._
 
 object PageComponent {
   def render(ctl: Router.Ctl): VdomElement = {
@@ -103,23 +102,23 @@ object PageComponent {
       )(),
       Markdown(
         s"""
-          |# Display & Alignment
-          |
-          |**Components are usually block element,** even those that
-          |originally are inline like Button or Tag. This is intentionally to
-          |enforce proper alignment.
-          |
-          |More specific, `inline` elements are placed horizontally out of
-          |the box. However, they are aligned by `baseline`, which is usually
-          |not good enough for us, as we want absolute centering alignment.
-          |
-          |On the other hand, `block` elements are placed vertically, so if the
-          |engineer want them to be horizontal, they need to use proper
-          |technique like [Flexbox][1], which should have better control and
-          |yield more stable result.
-          |
-          |[1]: ${ctl.urlFor(Pages.Flexbox()).value}
-          |""".stripMargin
+           |# Display & Alignment
+           |
+           |**Components are usually block element,** even those that
+           |originally are inline like Button or Tag. This is intentionally to
+           |enforce proper alignment.
+           |
+           |More specific, `inline` elements are placed horizontally out of
+           |the box. However, they are aligned by `baseline`, which is usually
+           |not good enough for us, as we want absolute centering alignment.
+           |
+           |On the other hand, `block` elements are placed vertically, so if the
+           |engineer want them to be horizontal, they need to use proper
+           |technique like [Flexbox][1], which should have better control and
+           |yield more stable result.
+           |
+           |[1]: ${ctl.urlFor(Pages.Flexbox()).value}
+           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
         /*>*/

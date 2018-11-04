@@ -1,12 +1,11 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.vdom.html_<^._
-
 import anduin.component.card.Card
 import anduin.component.icon.Icon
 import anduin.guide.Router
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.vdom.html_<^._
 
 object PageCard {
   def render(ctl: Router.Ctl): VdomElement = {
@@ -48,16 +47,19 @@ object PageCard {
           |header:
         """.stripMargin
       )(),
-      ExampleRich(Source.annotate({
-        val header = <.div(
-          Style.flexbox.flex.flexbox.itemsCenter,
-          <.div(Icon(name = Icon.NameDashboard)()),
-          <.div("Dashboard", Style.flexbox.fixed.margin.left8),
-          <.div(<.a(^.href := "#", "View Detail"))
-        )
-        val card = Card(header = header)("Content")
-        <.div(card)
-      }), isBgGray = true)()
+      ExampleRich(
+        Source.annotate({
+          val header = <.div(
+            Style.flexbox.flex.flexbox.itemsCenter,
+            <.div(Icon(name = Icon.NameDashboard)()),
+            <.div("Dashboard", Style.flexbox.fixed.margin.left8),
+            <.div(<.a(^.href := "#", "View Detail"))
+          )
+          val card = Card(header = header)("Content")
+          <.div(card)
+        }),
+        isBgGray = true
+      )()
     )
   }
 }

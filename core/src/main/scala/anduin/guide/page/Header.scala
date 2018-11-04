@@ -1,10 +1,9 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.html_<^._
-
 import anduin.guide.component.CodeBlock
 import anduin.style.Style
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
 
 final case class Header(
   title: String,

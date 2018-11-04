@@ -1,8 +1,5 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.vdom.html_<^._
-import japgolly.scalajs.react.{Callback, React}
-
 import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.dropdown
 import anduin.component.dropdown.Dropdown
@@ -13,6 +10,8 @@ import anduin.guide.component.SimpleState
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.vdom.html_<^._
+import japgolly.scalajs.react.{Callback, React}
 
 private case class Fruit(name: String)
 
@@ -220,28 +219,30 @@ object PageDropdown {
           } /*>*/
         )()
       }))(),
-      Markdown("""
-                 |# Behaviour
-                 |
-                 |## Value
-                 |
-                 |**Dropdown is a [controlled component][cc].** The current value
-                 |should be passed by the consumer via the `value` prop. This prop
-                 |accepts an `Option`, with `Some(X)` means that X is selected, and
-                 |`None` means no value is currently selected.
-                 |
-                 |[cc]: https://reactjs.org/docs/forms.html#controlled-components
-                 |
-                 |The `None` value is useful when being used as the initial value for
-                 |Dropdown components that should not have pre-selected option. In
-                 |these cases, the `placeholder` prop will be used to render the
-                 |content of Dropdown's button:
-                 |
-                 |```scala
-                 |placeholder: VdomNode = "Select…"
-                 |```
-                 |
-        """.stripMargin)(),
+      Markdown(
+        """
+          |# Behaviour
+          |
+          |## Value
+          |
+          |**Dropdown is a [controlled component][cc].** The current value
+          |should be passed by the consumer via the `value` prop. This prop
+          |accepts an `Option`, with `Some(X)` means that X is selected, and
+          |`None` means no value is currently selected.
+          |
+          |[cc]: https://reactjs.org/docs/forms.html#controlled-components
+          |
+          |The `None` value is useful when being used as the initial value for
+          |Dropdown components that should not have pre-selected option. In
+          |these cases, the `placeholder` prop will be used to render the
+          |content of Dropdown's button:
+          |
+          |```scala
+          |placeholder: VdomNode = "Select…"
+          |```
+          |
+        """.stripMargin
+      )(),
       ExampleRich(Source.annotate({
         Fruit.OptionState(
           initialValue = None,
@@ -254,16 +255,18 @@ object PageDropdown {
           }
         )()
       }))(),
-      Markdown("""
-                 |
-                 |## Disabled
-                 |
-                 |Like HTML's [`select` element][se], Dropdown also accepts an
-                 |`isDisabled` prop to disable all interaction to the component:
-                 |
-                 |[se]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
-                 |
-        """.stripMargin)(),
+      Markdown(
+        """
+          |
+          |## Disabled
+          |
+          |Like HTML's [`select` element][se], Dropdown also accepts an
+          |`isDisabled` prop to disable all interaction to the component:
+          |
+          |[se]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+          |
+        """.stripMargin
+      )(),
       ExampleRich(Source.annotate({
         /*>*/
         Fruit.StateSample.copy(render = (value, onChange) => {
@@ -274,29 +277,31 @@ object PageDropdown {
           )()
         })() /*<*/
       }))(),
-      Markdown("""
-                 |
-                 |## Search
-                 |
-                 |**A search box will be available when the Dropdown has more than 10
-                 |options.** The search box is placed on top of option list and
-                 |automatically focused to help users quickly find their target
-                 |options.
-                 |
-                 |When search box is available, the result of `getValueString` will
-                 |be used to compare options with user's input. This can be overriden
-                 |by defining a `getFilterValue`:
-                 |
-                 |```scala
-                 |// A is type of option.value
-                 |getFilterValue: Option[A => String] = None
-                 |```
-                 |
-                 |…which should return the value to be used for comparing. For
-                 |example, in the Dropdown below you can search by not only
-                 |countries's name but also their continent (try "Asia"):
-                 |
-        """.stripMargin)(),
+      Markdown(
+        """
+          |
+          |## Search
+          |
+          |**A search box will be available when the Dropdown has more than 10
+          |options.** The search box is placed on top of option list and
+          |automatically focused to help users quickly find their target
+          |options.
+          |
+          |When search box is available, the result of `getValueString` will
+          |be used to compare options with user's input. This can be overriden
+          |by defining a `getFilterValue`:
+          |
+          |```scala
+          |// A is type of option.value
+          |getFilterValue: Option[A => String] = None
+          |```
+          |
+          |…which should return the value to be used for comparing. For
+          |example, in the Dropdown below you can search by not only
+          |countries's name but also their continent (try "Asia"):
+          |
+        """.stripMargin
+      )(),
       ExampleRich(Source.annotate({
         Country.StateSample.copy(render = (value, onChange) => {
           Country.DropdownSample.copy(
@@ -307,16 +312,18 @@ object PageDropdown {
           )()
         })()
       }))(),
-      Markdown("""
-                 |
-                 |# Appearance
-                 |
-                 |## Width
-                 |
-                 |Like native `select`, the width of Dropdown's button is the width
-                 |of its longest option by default:
-                 |
-        """.stripMargin)(),
+      Markdown(
+        """
+          |
+          |# Appearance
+          |
+          |## Width
+          |
+          |Like native `select`, the width of Dropdown's button is the width
+          |of its longest option by default:
+          |
+        """.stripMargin
+      )(),
       ExampleRich(Source.annotate({
         Country.State(
           initialValue = Country.options(1).value,
@@ -347,27 +354,29 @@ object PageDropdown {
         })() /*<*/
         <.div(Style.width.px256, dropdown)
       }))(),
-      Markdown("""
-                 |
-                 |This is particularly useful in building form layout, where several
-                 |fields should share a common width for undistracted scanning.
-                 |
-                 |## Style
-                 |
-                 |Dropdown comes with 2 styles: `StyleFull` and `StyleMinimal`:
-                 |
-                 |```scala
-                 |style: Style = StyleFull
-                 |
-                 |case object StyleFull extends Style
-                 |case object StyleMinimal extends Style
-                 |```
-                 |
-                 |`StyleFull` is the default one with strong visual hint. `StyleFull`
-                 |should be used for most cases to make your Dropdown stand out
-                 |clearly from other content:
-                 |
-        """.stripMargin)(),
+      Markdown(
+        """
+          |
+          |This is particularly useful in building form layout, where several
+          |fields should share a common width for undistracted scanning.
+          |
+          |## Style
+          |
+          |Dropdown comes with 2 styles: `StyleFull` and `StyleMinimal`:
+          |
+          |```scala
+          |style: Style = StyleFull
+          |
+          |case object StyleFull extends Style
+          |case object StyleMinimal extends Style
+          |```
+          |
+          |`StyleFull` is the default one with strong visual hint. `StyleFull`
+          |should be used for most cases to make your Dropdown stand out
+          |clearly from other content:
+          |
+        """.stripMargin
+      )(),
       ExampleSimple()({
         val dropdown = Fruit.StateSample.copy(render = (value, onChange) => {
           Fruit.DropdownSample.copy(
@@ -386,13 +395,15 @@ object PageDropdown {
           )
         )
       }),
-      Markdown("""
-                 |
-                 |`StyleMinimal` has limited visual hint and thus should only be
-                 |used when the surrounding context already provided enough hint for
-                 |interaction:
-                 |
-        """.stripMargin)(),
+      Markdown(
+        """
+          |
+          |`StyleMinimal` has limited visual hint and thus should only be
+          |used when the surrounding context already provided enough hint for
+          |interaction:
+          |
+        """.stripMargin
+      )(),
       ExampleSimple(
         """
           |One common example is the Toolbar. Several control components
@@ -423,22 +434,24 @@ object PageDropdown {
           button(Icon(name = Icon.NameStrikeThrough)()),
         )
       }),
-      Markdown("""
-                 |
-                 |Note that these styles only affect Dropdown's button. At the moment,
-                 |Dropdown's menu is the same for all styles.
-                 |
-                 |## Header and Footer
-                 |
-                 |Dropdown's menu can also have an header and/or footer to provide
-                 |additional information for the option list if necessary:
-                 |
-                 |```scala
-                 |header: Option[VdomNode] = None
-                 |footer: Option[VdomNode] = None
-                 |```
-                 |
-        """.stripMargin)(),
+      Markdown(
+        """
+          |
+          |Note that these styles only affect Dropdown's button. At the moment,
+          |Dropdown's menu is the same for all styles.
+          |
+          |## Header and Footer
+          |
+          |Dropdown's menu can also have an header and/or footer to provide
+          |additional information for the option list if necessary:
+          |
+          |```scala
+          |header: Option[VdomNode] = None
+          |footer: Option[VdomNode] = None
+          |```
+          |
+        """.stripMargin
+      )(),
       ExampleRich(Source.annotate({
         /*>*/
         Fruit.StateSample.copy(render = (value, onChange) => {
@@ -450,13 +463,15 @@ object PageDropdown {
           )()
         })() /*<*/
       }))(),
-      Markdown("""
-                 |
-                 |The menu's header and footer will always be visible at the top and
-                 |bottom of the menu. If the option list is long and requires
-                 |scroll overflow, they will be outside of the scroll area:
-                 |
-        """.stripMargin)(),
+      Markdown(
+        """
+          |
+          |The menu's header and footer will always be visible at the top and
+          |bottom of the menu. If the option list is long and requires
+          |scroll overflow, they will be outside of the scroll area:
+          |
+        """.stripMargin
+      )(),
       ExampleSimple()({
         Country.StateSample.copy(render = (value, onChange) => {
           Country.DropdownSample.copy(
@@ -468,26 +483,28 @@ object PageDropdown {
           )()
         })()
       }),
-      Markdown("""
-                 |
-                 |Note that both header and footer come with pre-defined styles
-                 |(including padding, background and border). This is not customizable
-                 |at the moment.
-                 |
-                 |# Advanced
-                 |
-                 |## Render value
-                 |
-                 |By default, Dropdown will use `getValueString` to render the value
-                 |of currently selected option in the Dropdown's button. This can be
-                 |overridden by the `renderValue` prop:
-                 |
-                 |```scala
-                 |// A is the type of option's value
-                 |renderValue: Option[A => VdomNode] = None
-                 |```
-                 |
-        """.stripMargin)(),
+      Markdown(
+        """
+          |
+          |Note that both header and footer come with pre-defined styles
+          |(including padding, background and border). This is not customizable
+          |at the moment.
+          |
+          |# Advanced
+          |
+          |## Render value
+          |
+          |By default, Dropdown will use `getValueString` to render the value
+          |of currently selected option in the Dropdown's button. This can be
+          |overridden by the `renderValue` prop:
+          |
+          |```scala
+          |// A is the type of option's value
+          |renderValue: Option[A => VdomNode] = None
+          |```
+          |
+        """.stripMargin
+      )(),
       ExampleRich(Source.annotate({
         val renderValue = (country: Country) => {
           val flag = <.img(
@@ -505,20 +522,22 @@ object PageDropdown {
           )()
         })() /*<*/
       }))(),
-      Markdown(s"""
-                  |
-                  |## Render option
-                  |
-                  |By default, Dropdown will use `getValueString` to render the values
-                  |of available options in the Dropdown's menu. This can be
-                  |overridden by the `renderOption` prop:
-                  |
-                  |```scala
-                  |// A is the type of option's value
-                  |renderOption: Option[A => VdomNode] = None,
-                  |```
-                  |
-                  |""".stripMargin)(),
+      Markdown(
+        s"""
+           |
+           |## Render option
+           |
+           |By default, Dropdown will use `getValueString` to render the values
+           |of available options in the Dropdown's menu. This can be
+           |overridden by the `renderOption` prop:
+           |
+           |```scala
+           |// A is the type of option's value
+           |renderOption: Option[A => VdomNode] = None,
+           |```
+           |
+           |""".stripMargin
+      )(),
       ExampleRich(Source.annotate({
         val renderOption: Country => VdomNode = (country: Country) => {
           <.span(
@@ -534,47 +553,49 @@ object PageDropdown {
           )()
         })() /*<*/
       }))(),
-      Markdown("""
-                 |
-                 |This, however, can not control some UI elements like the hover
-                 |effect or the tick icon. These are essential for interaction and
-                 |are not customizable at the moment.
-                 |
-                 |## Performance
-                 |
-                 |**Under the hood, Dropdown did some expensive calculations in
-                 |initial render** to have necessary measurements for [some layout
-                 |features](#width). It is carefully optimized so that in most cases
-                 |there would be no significant performance penalty. In fact, this
-                 |even makes subsequent renders faster.
-                 |
-                 |However, in rare cases where `renderValue` is defined and/or the
-                 |list of options is very long, these calculations could
-                 |significantly slow down the initial render. **In these cases, it
-                 |is suggested that the engineer should provide these measurements
-                 |themselves.**
-                 |
-                 |These necessary measurements should be provided via the
-                 |`staticMeasurement` prop. Upon provided, the static measurement
-                 |will be used in all renders and no expensive calculation will be
-                 |done at all.
-                 |
-                 |```scala
-                 |staticMeasurement: Option[Measurement] = None
-                 |
-                 |case class Measurement[A](
-                 |  // The dropdown option that should have the
-                 |  // biggest width after render
-                 |  biggestWidthOption: Option[Dropdown.Opt[A]],
-                 |  // The height of each option
-                 |  optionHeight: Option[Int]
-                 |)
-                 |```
-                 |
-                 |For example, let's compare the mounting time of the following
-                 |dropdown with "Use static measurement" checked and unchecked:
-                 |
-        """.stripMargin)(),
+      Markdown(
+        """
+          |
+          |This, however, can not control some UI elements like the hover
+          |effect or the tick icon. These are essential for interaction and
+          |are not customizable at the moment.
+          |
+          |## Performance
+          |
+          |**Under the hood, Dropdown did some expensive calculations in
+          |initial render** to have necessary measurements for [some layout
+          |features](#width). It is carefully optimized so that in most cases
+          |there would be no significant performance penalty. In fact, this
+          |even makes subsequent renders faster.
+          |
+          |However, in rare cases where `renderValue` is defined and/or the
+          |list of options is very long, these calculations could
+          |significantly slow down the initial render. **In these cases, it
+          |is suggested that the engineer should provide these measurements
+          |themselves.**
+          |
+          |These necessary measurements should be provided via the
+          |`staticMeasurement` prop. Upon provided, the static measurement
+          |will be used in all renders and no expensive calculation will be
+          |done at all.
+          |
+          |```scala
+          |staticMeasurement: Option[Measurement] = None
+          |
+          |case class Measurement[A](
+          |  // The dropdown option that should have the
+          |  // biggest width after render
+          |  biggestWidthOption: Option[Dropdown.Opt[A]],
+          |  // The height of each option
+          |  optionHeight: Option[Int]
+          |)
+          |```
+          |
+          |For example, let's compare the mounting time of the following
+          |dropdown with "Use static measurement" checked and unchecked:
+          |
+        """.stripMargin
+      )(),
       ExampleSimple()({
         val m = Dropdown.Measurement(
           biggestWidthOption = Some(Dropdown.Opt("10000")),

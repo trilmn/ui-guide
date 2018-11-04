@@ -1,11 +1,10 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.vdom.html_<^._
-
 import anduin.component.button.{ButtonLink, ButtonStyle}
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.vdom.html_<^._
 
 object PageButtonLink {
   def render(ctl: Router.Ctl): VdomElement = {

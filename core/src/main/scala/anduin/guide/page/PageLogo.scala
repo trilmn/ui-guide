@@ -85,9 +85,11 @@ object PageLogo {
         )
       }, {
         renderSection(
-          Markdown("""
-            |### Default on dark background
-          """.stripMargin)(),
+          Markdown(
+            """
+              |### Default on dark background
+          """.stripMargin
+          )(),
           Logo("logo_white_anduin_rgb", "anduin_logo_white", isDark = true),
           "Use when a dark background is required"
         )
@@ -105,9 +107,11 @@ object PageLogo {
         )
       }, {
         renderSection(
-          Markdown("""
-            |### Logo only on dark background
-          """.stripMargin)(),
+          Markdown(
+            """
+              |### Logo only on dark background
+          """.stripMargin
+          )(),
           Logo("logo_mark_white_anduin_rgb", "anduin_logo_mark_white", isDark = true),
           "Similar to the case above but with a required dark background"
         )

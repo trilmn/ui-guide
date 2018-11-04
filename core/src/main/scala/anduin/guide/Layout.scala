@@ -1,9 +1,8 @@
 package anduin.guide
 
+import anduin.style.Style
 import japgolly.scalajs.react.extra.router._
 import japgolly.scalajs.react.vdom.html_<^._
-
-import anduin.style.Style
 
 object Layout {
   private type Res = Resolution[Pages.Page]

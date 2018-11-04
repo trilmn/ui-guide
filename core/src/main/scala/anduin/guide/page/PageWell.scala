@@ -1,12 +1,12 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.Callback
-import japgolly.scalajs.react.vdom.html_<^._
 import anduin.component.toggle.Toggle
 import anduin.component.well.Well
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.Callback
+import japgolly.scalajs.react.vdom.html_<^._
 
 object PageWell {
   def render(ctl: Router.Ctl): VdomElement = {
@@ -18,10 +18,10 @@ object PageWell {
       ),
       Markdown(
         s"""
-          |Well is a container like [Card][1] but with stronger visual
-          |attention:
-          |
-          |[1]: ${ctl.urlFor(Pages.Card()).value}
+           |Well is a container like [Card][1] but with stronger visual
+           |attention:
+           |
+           |[1]: ${ctl.urlFor(Pages.Card()).value}
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -55,39 +55,39 @@ object PageWell {
         val well = Well(
           title = "Hello World"
         )("""
-          |Accumsan ornare hendrerit parturient leo nibh tincidunt
-          |ullamcorper. Condimentum mus hac risus eleifend a elit mi.
+            |Accumsan ornare hendrerit parturient leo nibh tincidunt
+            |ullamcorper. Condimentum mus hac risus eleifend a elit mi.
         """.stripMargin)
         <.div(well)
       }))(),
       Markdown(
         s"""
-          |## Close
-          |
-          |**Well supports a common use case where it can be dismissed.**
-          |However, it is only appearance support (i.e. Well is state-less), so
-          |the engineer still needs to:
-          |
-          |1. Conditionally render the Well
-          |2. Implement the callback to close it via `close` prop
-          |
-          |```scala
-          |private case class State(didRead: Boolean)
-          |
-          |private def render(state: State): VdomNode = {
-          |  if (state.didRead)
-          |    Well(close = scope.setState(State(didRead = true)))(...)
-          |  else
-          |    EmptyVdom
-          |}
-          |```
-          |
-          |That boolean-toggling logic can be provided by the [Toggle][1]
-          |component:
-          |
-          |[1]: ${ctl.urlFor(Pages.Toggle()).value}
-          |
-          |""".stripMargin
+           |## Close
+           |
+           |**Well supports a common use case where it can be dismissed.**
+           |However, it is only appearance support (i.e. Well is state-less), so
+           |the engineer still needs to:
+           |
+           |1. Conditionally render the Well
+           |2. Implement the callback to close it via `close` prop
+           |
+           |```scala
+           |private case class State(didRead: Boolean)
+           |
+           |private def render(state: State): VdomNode = {
+           |  if (state.didRead)
+           |    Well(close = scope.setState(State(didRead = true)))(...)
+           |  else
+           |    EmptyVdom
+           |}
+           |```
+           |
+           |That boolean-toggling logic can be provided by the [Toggle][1]
+           |component:
+           |
+           |[1]: ${ctl.urlFor(Pages.Toggle()).value}
+           |
+           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
         // In practice this render should be an object's method

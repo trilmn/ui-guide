@@ -1,11 +1,10 @@
 package anduin.guide.page
 
-import japgolly.scalajs.react.vdom.html_<^._
-
 import anduin.component.icon.{Icon, IllusFolder}
 import anduin.guide.{Pages, Router}
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.vdom.html_<^._
 
 object PageIllusFolder {
   def render(ctl: Router.Ctl): VdomElement = {
@@ -17,10 +16,10 @@ object PageIllusFolder {
       ),
       Markdown(
         s"""
-          |This is a special [Illus][1] introduced due to the common needs
-          |of a customizable Folder symbol:
-          |
-          |[1]: ${ctl.urlFor(Pages.Illus()).value}
+           |This is a special [Illus][1] introduced due to the common needs
+           |of a customizable Folder symbol:
+           |
+           |[1]: ${ctl.urlFor(Pages.Illus()).value}
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -32,11 +31,11 @@ object PageIllusFolder {
       }))(),
       Markdown(
         s"""
-          |# Color
-          |
-          |To change the color of the folder, use the `color` prop with one
-          |of the predefined values:
-          |[1]: ${ctl.urlFor(Pages.Color()).value}
+           |# Color
+           |
+           |To change the color of the folder, use the `color` prop with one
+           |of the predefined values:
+           |[1]: ${ctl.urlFor(Pages.Color()).value}
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -53,12 +52,12 @@ object PageIllusFolder {
       }))(),
       Markdown(
         s"""
-          |# Icon
-          |
-          |To add an icon on the folder, use the `icon` prop with an [Icon's
-          |Name][1]:
-          |
-          |[1]: ${ctl.urlFor(Pages.Icon("#name")).value}
+           |# Icon
+           |
+           |To add an icon on the folder, use the `icon` prop with an [Icon's
+           |Name][1]:
+           |
+           |[1]: ${ctl.urlFor(Pages.Icon("#name")).value}
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -77,14 +76,14 @@ object PageIllusFolder {
       }))(),
       Markdown(
         s"""
-          |The icon will be dimmed and resized to suit the folder for you.
-          |
-          |# Size
-          |
-          |Like Illus, IllusFolder also accepts resizing via a `size` prop.
-          |It works exactly like [Illus's Size][1].
-          |
-          |[1]: ${ctl.urlFor(Pages.Illus("#size")).value}
+           |The icon will be dimmed and resized to suit the folder for you.
+           |
+           |# Size
+           |
+           |Like Illus, IllusFolder also accepts resizing via a `size` prop.
+           |It works exactly like [Illus's Size][1].
+           |
+           |[1]: ${ctl.urlFor(Pages.Illus("#size")).value}
         """.stripMargin
       )()
     )

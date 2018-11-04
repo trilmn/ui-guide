@@ -1,10 +1,9 @@
 package anduin.mcro
 
+import japgolly.scalajs.react.vdom.VdomElement
+
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
-import scala.util.matching.Regex
-
-import japgolly.scalajs.react.vdom.VdomElement
 
 object Source {
 

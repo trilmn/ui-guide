@@ -1,10 +1,9 @@
 package anduin.guide
 
-import japgolly.scalajs.react.extra.router.{BaseUrl, Router => RawRouter}
-import org.scalajs.dom
-
 import anduin.scalajs.focusvisible.FocusVisible
 import anduin.scalajs.prism.Prism
+import japgolly.scalajs.react.extra.router.{BaseUrl, Router => RawRouter}
+import org.scalajs.dom
 
 object Main {
   private val baseUrl = BaseUrl.fromWindowOrigin / ""

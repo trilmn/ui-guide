@@ -110,6 +110,7 @@ components=(
   portal/Position.scala
   portal/tooltip/Tooltip.scala
   stepper/Stepper.scala
+  stepper/StepperHeader.scala
   tab/Tab.scala
   tab/TabFull.scala
   table/Table.scala

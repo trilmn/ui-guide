@@ -74,7 +74,6 @@ components=(
   button/ButtonLink.scala
   button/ButtonStyle.scala
   card/Card.scala
-  date/DateTime.scala
   dropdown/Dropdown.scala
   dropdown/DropdownContent.scala
   dropdown/DropdownFilter.scala
@@ -86,10 +85,8 @@ components=(
   icon/Icon.scala
   icon/Illus.scala
   icon/IllusFolder.scala
-  input/Checkbox.scala
-  input/FileButtonInput.scala
-  input/Radio.scala
-  input/RadioBox.scala
+  input/checkbox/Checkbox.scala
+  input/radio/Radio.scala
   input/textbox/TextBox.scala
   input/textbox/TextBoxMask.scala
   input/textbox/TextBoxStyle.scala
@@ -97,18 +94,18 @@ components=(
   menu/MenuDivider.scala
   menu/MenuItem.scala
   menu/VerticalDivider.scala
-  portal/modal/Modal.scala
-  portal/modal/ModalBody.scala
-  portal/modal/ModalFooter.scala
-  portal/modal/ModalFooterWCancel.scala
-  portal/modal/ModalHeader.scala
-  portal/popover/Popover.scala
+  modal/Modal.scala
+  modal/ModalBody.scala
+  modal/ModalFooter.scala
+  modal/ModalFooterWCancel.scala
+  modal/ModalHeader.scala
+  popover/Popover.scala
   portal/Portal.scala
   portal/PortalContent.scala
   portal/PortalPopper.scala
   portal/PortalUtils.scala
   portal/Position.scala
-  portal/tooltip/Tooltip.scala
+  tooltip/Tooltip.scala
   stepper/Stepper.scala
   stepper/StepperHeader.scala
   tab/Tab.scala

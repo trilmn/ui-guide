@@ -1,3 +1,4 @@
+import org.scalajs.core.tools.sem.Semantics.RuntimeClassNameMapper
 name := "anduin-design"
 
 lazy val commonSettings = Seq(
@@ -22,8 +23,11 @@ lazy val core = (project in file("core"))
     commonSettings,
     scalacOptions += "-P:scalajs:sjsDefinedByDefault",
     scalaJSUseMainModuleInitializer := true,
+    scalaJSLinkerConfig ~= {
+      _.withESFeatures(_.withUseECMAScript2015(true))
+    },
     webpackBundlingMode in fastOptJS := BundlingMode.LibraryOnly(),
-    webpackBundlingMode in fullOptJS := BundlingMode.Application,
+    webpackBundlingMode in fullOptJS := BundlingMode.LibraryOnly(),
     version in webpack := "4.18.0",
     version in startWebpackDevServer := "3.1.4",
     libraryDependencies ++= Seq(

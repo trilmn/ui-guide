@@ -5,9 +5,12 @@ const express = require('express');
 const path = require("path");
 const app = express();
 
-const target = '../../core/target/scala-2.12/scalajs-bundler/main';
-
-app.use(express.static(path.join(__dirname, target)));
+[
+  '../../core/target/scala-2.12/scalajs-bundler/main',
+  '../../../scalajs-code-splitting/o/o',
+].forEach(target => {
+  app.use(express.static(path.join(__dirname, target)));
+})
 
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, './index.html'));

@@ -1,7 +1,7 @@
 package anduin.guide.app.router
 
 import anduin.guide.app.main.layout.Layout
-import anduin.guide.app.main.Loader
+import anduin.guide.app.main.PageWrapper
 import anduin.guide.app.main.Pages._
 import anduin.guide.pages.brand.logo.PageLogo
 import anduin.guide.pages.components.button.{PageButton, PageButtonLink, PageButtonStyle}
@@ -32,11 +32,6 @@ import scala.scalajs.js.Promise
 
 object Router {
 
-  // Prism only runs once on page load, so we need to manually tell it to
-  // run again on client routing
-  private val postRenderFn = (prev: Option[Page], _: Page) =>
-    Callback { if (prev.isDefined) { js.Dynamic.global.Prism.highlightAll() } }
-
   private type RenderFn = Ctl => VdomElement
 
   val config: RouterConfig[Page] = RouterConfigDsl[Page].buildConfig { dsl =>
@@ -45,7 +40,7 @@ object Router {
     val hash = string("(#.*|)$")
     
     def getRender(promiseFn: () => Promise[RenderFn]) = {
-      renderR(ctl => Loader(ctl, promiseFn)())
+      renderR(ctl => PageWrapper(ctl, promiseFn)())
     }
 
     (trimSlashes
@@ -126,6 +121,5 @@ object Router {
       | emptyRule)
       .notFound(redirectToPage(Welcome)(Redirect.Replace))
       .renderWith(Layout.render)
-      .onPostRender(postRenderFn)
   }
 }

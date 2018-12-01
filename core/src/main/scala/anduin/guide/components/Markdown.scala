@@ -4,6 +4,7 @@ import anduin.scalajs.markedjs.{Marked, MarkedOptions, MarkedRenderer}
 import anduin.style.Style
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
+import scala.scalajs.js
 
 final case class Markdown(source: String) {
   def apply(): VdomElement = Markdown.component(this)
@@ -47,7 +48,7 @@ object Markdown {
     rnd(<.div(Style.padding.ver16, codeBlock))
   }
 
-  private val renderBlockquote = (content: String) => {
+  private val renderBlockQuote = (content: String) => {
     val quoteBlock = QuoteBlock(content = content)()
     rnd(<.div(Style.padding.ver16, quoteBlock))
   }
@@ -67,21 +68,20 @@ object Markdown {
     rnd(<.div(Style.padding.ver16, element))
   }
 
-  private val renderTableCell =
-    (content: String, flags: scala.scalajs.js.Object) => {
-      val isHeader: Boolean = flags
-        .asInstanceOf[scala.scalajs.js.Dynamic]
-        .selectDynamic("header")
-        .asInstanceOf[Boolean]
+  private val renderTableCell = (content: String, flags: js.Object) => {
+    val isHeader: Boolean = flags
+      .asInstanceOf[js.Dynamic]
+      .selectDynamic("header")
+      .asInstanceOf[Boolean]
 
-      val styles = TagMod(
-        Style.border.all.borderColor.gray2.borderWidth.px1,
-        Style.padding.all12.textAlign.left.fontWeight.normal
-      )
-      val html = ^.dangerouslySetInnerHtml := content
-      val tag = if (isHeader) <.th else <.td
-      rnd(tag(styles, html))
-    }
+    val styles = TagMod(
+      Style.border.all.borderColor.gray2.borderWidth.px1,
+      Style.padding.all12.textAlign.left.fontWeight.normal
+    )
+    val html = ^.dangerouslySetInnerHtml := content
+    val tag = if (isHeader) <.th else <.td
+    rnd(tag(styles, html))
+  }
 
   private val options: MarkedOptions = MarkedOptions(
     renderer = MarkedRenderer(
@@ -89,7 +89,7 @@ object Markdown {
       codespan = renderCodeSpan,
       code = renderCode,
       hr = renderHr,
-      blockquote = renderBlockquote,
+      blockquote = renderBlockQuote,
       list = renderList,
       table = renderTable,
       tablecell = renderTableCell,

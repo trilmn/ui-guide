@@ -11,16 +11,15 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageComponent {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Toc(content = Source.toc())(),
+      Toc(headings = Source.getTocHeadings)(),
       <.header(
         Style.margin.bottom32,
-        Header(
-          title = "Components",
-          description = "Components helps you reuse styles and functionality."
-        )()
+        Header(title = "Components")()
       ),
       Markdown(
         """
+          |Components helps you reuse styles and functionality.
+          |
           |# Global
           |
           |**Components are global packages of `platform`.** They should be

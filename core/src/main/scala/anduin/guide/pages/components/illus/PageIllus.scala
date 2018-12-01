@@ -16,7 +16,7 @@ object PageIllus {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Toc(content = Source.toc())(),
+      Toc(headings = Source.getTocHeadings)(),
       <.header(
         Style.margin.bottom32,
         Header(title = "Illus")()

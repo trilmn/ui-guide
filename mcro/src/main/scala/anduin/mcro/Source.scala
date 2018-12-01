@@ -54,7 +54,7 @@ object Source {
 
   private val headingRx = "(#+) (.*)".r
 
-  def tocImpl(c: blackbox.Context)(): c.Expr[List[(Int, String)]] = {
+  def tocImpl(c: blackbox.Context): c.Expr[List[(Int, String)]] = {
     import c.universe.Quasiquote
 
     val source = String valueOf c.enclosingPosition.source.content
@@ -70,5 +70,5 @@ object Source {
     c.Expr[List[(Int, String)]](q"""$result""")
   }
 
-  def toc(): List[(Int, String)] = macro tocImpl
+  def getTocHeadings: List[(Int, String)] = macro tocImpl
 }

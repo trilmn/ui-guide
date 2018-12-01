@@ -90,11 +90,11 @@ object PageDropdown {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Toc(content = Source.toc())(),
       <.header(
         Style.margin.bottom32,
         Header("Dropdown", obj = Some(Dropdown))()
       ),
+      Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """
           |Dropdown let users select a value from a list of options:
@@ -109,96 +109,98 @@ object PageDropdown {
           }
         )()
       ),
-      Markdown(s"""
-                  |**Dropdown allows only one value selected at a time.** For selecting
-                  |multiple values, consider [MultiDropdown][md] or a list of
-                  |[Checkboxes][cb].
-                  |
-                  |[md]: ${ctl.urlFor(Pages.MultiDropdown()).value}
-                  |[cb]: ${ctl.urlFor(Pages.Checkbox()).value}
-                  |
-                  |**Dropdown's value can only come from the option list.** If users
-                  |should be able to freely input any value (like a text field),
-                  |consider [Suggest][ss] or [MultiSuggest][ms] component.
-                  |
-                  |[ss]: ${ctl.urlFor(Pages.Suggest()).value}
-                  |[ms]: ${ctl.urlFor(Pages.MultiSuggest()).value}
-                  |
-                  |**Dropdown's options are hidden in a pop-up menu.** This saves
-                  |space but require user's interaction to view more. If your options
-                  |should always be visible, consider a list of [Radio buttons][rb].
-                  |
-                  |[rb]: ${ctl.urlFor(Pages.Radio()).value}
-                  |
-                  |# Basic Usage
-                  |
-                  |## Initialize
-                  |
-                  |Dropdown is a [generic component][gc], so first you need to
-                  |initialize it with the type of your options's value:
-                  |
-                  |[gc]: https://docs.scala-lang.org/tour/generic-classes.html
-                  |
-                  |```scala
-                  |object YourComponent {
-                  |
-                  |  case class Fruit(name: String)
-                  |  val FruitDropdown = (new Dropdown[Fruit])()
-                  |
-                  |  def render(props: Props) {
-                  |    /* use your FruitDropdown here */
-                  |  }
-                  |
-                  |}
-                  |```
-                  |
-                  |**In practice, your option's type is usually available already,
-                  |as the id of something,** like `EntityId` or `UserId`. It does not
-                  |need to include all information that are necessary to render (like
-                  |`EntityModel` or `UserModel`), just enough to differentiate one
-                  |option from another.
-                  |
-                  |## Props
-                  |
-                  |After initialized, you can pass props to your `FruitDropdown` to
-                  |render it like any other components. Dropdown's props mimic closely
-                  |the HTML's [`select`][ms] element, so the following must be defined:
-                  |
-                  |[ms]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
-                  |
-                  |1. **`value:`**`scala::Option[A]`：The currently selected option.
-                  |Can be `None` to indicate no default value. Learn more in the
-                  |[Default value](#default-value) section.
-                  |
-                  |2. **`options:`**`scala::List[Dropdown.Opt[A]]`：The list of options
-                  |that users can select from. Each option should have the following
-                  |interface:
-                  |
-                  |    ```scala
-                  |    case class Dropdown.Opt[A](
-                  |      value: A,
-                  |      isDisabled: Boolean = false
-                  |    )
-                  |    ```
-                  |
-                  |3. **`onChange`**`scala::(selectedValue: A => Callback)`：A
-                  |function to be called when user selects a new option. It is called
-                  |with the value of the new option that was just selected.
-                  |
-                  |Moreover, since Dropdown is a generic component, it also requires:
-                  |
-                  |4. **`getValueString:`**`scala::(value: A => String)`：which should
-                  |return a string that represent your option's value. By default this
-                  |string will be used to [identify][rk], [render](#render-value) and
-                  |[filter](#search) your options.
-                  |
-                  |[rk]: https://reactjs.org/docs/lists-and-keys.html
-                  |
-                  |Putting together, these 4 props let you have a basic instance of
-                  |the Dropdown component. Although simple, it should be enough for
-                  |most use cases:
-                  |
-        """.stripMargin)(),
+      Markdown(
+        s"""
+           |**Dropdown allows only one value selected at a time.** For selecting
+           |multiple values, consider [MultiDropdown][md] or a list of
+           |[Checkboxes][cb].
+           |
+           |[md]: ${ctl.urlFor(Pages.MultiDropdown()).value}
+           |[cb]: ${ctl.urlFor(Pages.Checkbox()).value}
+           |
+           |**Dropdown's value can only come from the option list.** If users
+           |should be able to freely input any value (like a text field),
+           |consider [Suggest][ss] or [MultiSuggest][ms] component.
+           |
+           |[ss]: ${ctl.urlFor(Pages.Suggest()).value}
+           |[ms]: ${ctl.urlFor(Pages.MultiSuggest()).value}
+           |
+           |**Dropdown's options are hidden in a pop-up menu.** This saves
+           |space but require user's interaction to view more. If your options
+           |should always be visible, consider a list of [Radio buttons][rb].
+           |
+           |[rb]: ${ctl.urlFor(Pages.Radio()).value}
+           |
+           |# Basic Usage
+           |
+           |## Initialize
+           |
+           |Dropdown is a [generic component][gc], so first you need to
+           |initialize it with the type of your options's value:
+           |
+           |[gc]: https://docs.scala-lang.org/tour/generic-classes.html
+           |
+           |```scala
+           |object YourComponent {
+           |
+           |  case class Fruit(name: String)
+           |  val FruitDropdown = (new Dropdown[Fruit])()
+           |
+           |  def render(props: Props) {
+           |    /* use your FruitDropdown here */
+           |  }
+           |
+           |}
+           |```
+           |
+           |**In practice, your option's type is usually available already,
+           |as the id of something,** like `EntityId` or `UserId`. It does not
+           |need to include all information that are necessary to render (like
+           |`EntityModel` or `UserModel`), just enough to differentiate one
+           |option from another.
+           |
+           |## Props
+           |
+           |After initialized, you can pass props to your `FruitDropdown` to
+           |render it like any other components. Dropdown's props mimic closely
+           |the HTML's [`select`][ms] element, so the following must be defined:
+           |
+           |[ms]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+           |
+           |1. **`value:`**`scala::Option[A]`：The currently selected option.
+           |Can be `None` to indicate no default value. Learn more in the
+           |[Default value](#default-value) section.
+           |
+           |2. **`options:`**`scala::List[Dropdown.Opt[A]]`：The list of options
+           |that users can select from. Each option should have the following
+           |interface:
+           |
+           |    ```scala
+           |    case class Dropdown.Opt[A](
+           |      value: A,
+           |      isDisabled: Boolean = false
+           |    )
+           |    ```
+           |
+           |3. **`onChange`**`scala::(selectedValue: A => Callback)`：A
+           |function to be called when user selects a new option. It is called
+           |with the value of the new option that was just selected.
+           |
+           |Moreover, since Dropdown is a generic component, it also requires:
+           |
+           |4. **`getValueString:`**`scala::(value: A => String)`：which should
+           |return a string that represent your option's value. By default this
+           |string will be used to [identify][rk], [render](#render-value) and
+           |[filter](#search) your options.
+           |
+           |[rk]: https://reactjs.org/docs/lists-and-keys.html
+           |
+           |Putting together, these 4 props let you have a basic instance of
+           |the Dropdown component. Although simple, it should be enough for
+           |most use cases:
+           |
+        """.stripMargin
+      )(),
       ExampleRich(Source.annotate({
         /*>*/
         Fruit.State(

@@ -11,11 +11,8 @@ import japgolly.scalajs.react.{Callback, ReactEventFromInput}
 object PageButton {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Toc(content = Source.toc())(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Button", obj = Some(Button))()
-      ),
+      Header(title = "Button", obj = Some(Button))(),
+      Toc(headings = Source.getTocHeadings)(),
       ExampleRich(Source.annotate({
         val cancelBtn = Button(
           onClick = Callback.alert("You cancelled")

@@ -5,7 +5,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 final case class Toc(
-  content: List[(Int, String)]
+  headings: Seq[Toc.RawHeading]
 ) {
   def apply(): VdomElement = Toc.component(this)
 }
@@ -13,25 +13,45 @@ final case class Toc(
 object Toc {
 
   private type Props = Toc
+  private type RawHeading = (Int, String)
+  private case class Heading(text: String, children: Seq[String])
+
+  // Note in advance that we only care about the 1st and 2nd level
+  private def groupHeadings(props: Props)(
+    headings: Seq[Heading],
+    rawHeading: RawHeading
+  ): Seq[Heading] = {
+    val (level, text) = rawHeading
+    level match {
+      // first level => new entry
+      case 1 => headings :+ Heading(text = text, children = Seq.empty)
+      // second level => add to last entry
+      case 2 =>
+        val lastOpt = headings.lastOption.map { heading =>
+          val children = heading.children :+ text
+          heading.copy(children = children)
+        }
+        lastOpt.fold(headings)(last => headings.init :+ last)
+      case _ => headings
+    }
+  }
 
   private def render(props: Props): VdomElement = {
+    val headings = props.headings
+      .foldLeft[Seq[Heading]](Vector.empty)(groupHeadings(props))
     <.div(
-      Style.position.fixed.coordinate.top0,
-      Style.height.pc100.overflow.auto,
-      Style.fontSize.px12.lineHeight.ratio1p5.backgroundColor.white,
-      ^.width := "224px",
-      ^.padding := "64px 16px 64px 0",
-      ^.right := "12px", // Avoid right scrollbar
-      props.content.toVdomArray {
-        case (level, rawText) =>
-          val text = rawText.replace("`", "")
-          <.a(
-            Style.color.inherit.display.block.padding.ver4,
-            ^.key := text,
-            ^.marginLeft := s"${level * 16}px",
-            ^.href := s"#${Heading.getId(text)}",
-            text
-          )
+      headings.toVdomArray { heading =>
+        <.div(
+          heading.text,
+          heading.children.toVdomArray
+//          val text = rawText.replace("`", "")
+//          <.a(
+//            ^.key := text,
+//            ^.marginLeft := s"${level * 16}px",
+//            ^.href := s"#${Heading.getId(text)}",
+//            text
+//          )
+        )
       }
     )
   }

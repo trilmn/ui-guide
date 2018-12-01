@@ -11,11 +11,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageCard {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Card", obj = Some(Card))(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Card", obj = Some(Card))()
-      ),
       Markdown(
         """
           |Card is a simple container to group content:

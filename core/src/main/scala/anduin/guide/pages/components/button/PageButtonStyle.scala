@@ -17,11 +17,8 @@ import japgolly.scalajs.react.{Callback, React}
 object PageButtonStyle {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "ButtonStyle", obj = Some(ButtonStyle))(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "ButtonStyle", obj = Some(ButtonStyle))()
-      ),
       Markdown(
         """
           |ButtonStyle is not a component, so it cannot be used on its own.

@@ -10,11 +10,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageSpace {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Space")(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Space")()
-      ),
       Markdown(
         """
           |Space refers to the visual distance between or within objects.

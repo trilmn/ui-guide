@@ -9,17 +9,12 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageTypography {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Typography")(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(
-          title = "Typography",
-          description = "Typography structures and emphasizes content in a " +
-            "meaningful way."
-        )()
-      ),
       Markdown(
         """
+          |Typography structures and emphasizes content in a meaningful way.
+          |
           |# Font Family
           |
           |We use [system fonts][1] by default. This was set at global level

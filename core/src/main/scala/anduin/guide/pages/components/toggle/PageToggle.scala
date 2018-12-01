@@ -11,11 +11,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageToggle {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Toggle", obj = Some(Toggle))(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Toggle", obj = Some(Toggle))()
-      ),
       Markdown(
         """
           |Toggle, a.k.a Accordion or Collapsible, is a state-only component

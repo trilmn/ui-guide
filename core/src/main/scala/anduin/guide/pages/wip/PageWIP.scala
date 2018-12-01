@@ -10,11 +10,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageWIP {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Working in Progress")(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Working in Progress")()
-      ),
       ExampleRich(Source.annotate({
         <.div("a")
       }))(),

@@ -10,16 +10,13 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageFlexbox {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Flexbox")(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(
-          title = "Flexbox",
-          description = "Flexbox helps lay things out, align them, and distribute space in between."
-        )()
-      ),
       Markdown(
         """
+          |Flexbox helps lay things out, align them, and distribute space in 
+          |between.
+          |
           |# Overview
           |
           |```text

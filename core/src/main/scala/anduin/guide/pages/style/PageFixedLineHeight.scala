@@ -8,20 +8,17 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageFixedLineHeight {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Why fixed line height?")(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(
-          title = "Why fixed line height?",
-          description =
-            """
-              |In short, fixed line height gives us better control in building layout and aligning things, which is a main focus of building web apps.
-            """.stripMargin
-        )()
-      ),
       Markdown(
         """
-          |Let's have an example, in which we need to vertically centering an icon (whose height is 16 pixels) and a body, which has a title and a description.
+          |In short, fixed line height gives us better control in building 
+          |layout and aligning things, which is a main focus of building web 
+          |apps.
+          |
+          |Let's have an example, in which we need to vertically centering an
+          |icon (whose height is 16 pixels) and a body, which has a title 
+          |and a description.
           |
           |The HTML should look like below:
           |

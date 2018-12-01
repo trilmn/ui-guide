@@ -66,11 +66,8 @@ object PageLogo {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header("Logo")(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header("Logo")()
-      ),
       Markdown(
         """
           |Anduin’s logo has some variants as listing below.

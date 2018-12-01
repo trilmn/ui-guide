@@ -13,11 +13,8 @@ object PageStepper {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header("Stepper", obj = Some(Stepper))(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header("Stepper", obj = Some(Stepper))()
-      ),
       Markdown(
         """
           |

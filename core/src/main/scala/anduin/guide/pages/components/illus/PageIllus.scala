@@ -16,11 +16,8 @@ object PageIllus {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Illus")(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Illus")()
-      ),
       Markdown(
         """
           |Illus is the more complex version of Icon. Illus often has more

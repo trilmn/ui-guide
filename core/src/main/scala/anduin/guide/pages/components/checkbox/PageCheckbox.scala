@@ -11,11 +11,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageCheckbox {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Checkbox", obj = Some(Checkbox))(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Checkbox", obj = Some(Checkbox))()
-      ),
       Markdown(
         """
           |Checkbox follows the native [`<input type="checkbox">`][1] element

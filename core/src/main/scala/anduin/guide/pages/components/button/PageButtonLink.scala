@@ -10,11 +10,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageButtonLink {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "ButtonLink", obj = Some(ButtonLink))(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "ButtonLink", obj = Some(ButtonLink))()
-      ),
       Markdown(
         """
           |ButtonLink is a component that works like a link but has the visual of a Button.

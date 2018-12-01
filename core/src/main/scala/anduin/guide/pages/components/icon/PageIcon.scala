@@ -370,11 +370,8 @@ object PageIcon {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Icon")(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Icon")()
-      ),
       // format: off
       ExampleRich(Source.annotate({
         /*>*/

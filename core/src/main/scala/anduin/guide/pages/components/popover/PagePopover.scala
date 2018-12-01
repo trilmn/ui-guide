@@ -13,11 +13,8 @@ object PagePopover {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Popover", obj = Some(Popover))(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Popover", obj = Some(Popover))()
-      ),
       ExampleRich(Source.annotate({
         val p = Popover(
           renderTarget = (toggle, _) => {

@@ -29,13 +29,7 @@ object PageWelcome {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      <.header(
-        Style.margin.bottom32,
-        Header(
-          title = "Anduin UI Guide",
-          description = "How we think User Interface should be built at Anduin."
-        )()
-      ),
+      Header(title = "Anduin Design")(),
       <.div(
         Style.padding.ver32,
         <.img(
@@ -48,33 +42,60 @@ object PageWelcome {
       ),
       Markdown(
         """
-          |>To become the de-facto standard software to execute financial transactions in [primary](https://www.investopedia.com/terms/p/primarymarket.asp) and [secondary](https://www.investopedia.com/terms/s/secondarymarket.asp) markets
+          |How we think User Interface should be built at Anduin.
+          |
+          |>To become the de facto standard software to execute financial
+          |transactions in [primary][1] and [secondary][2] markets
           |>
           |>— Goals of Anduin Transactions
           |
-          |**At Anduin, we are solving huge, complex problems in a segmented industry.** The complete solutions for these problems are unknown. Therefore, our strategy is to follow fast execution cycle to get feedback at the earliest. With that in mind, we build our UI libraries and guides around these principles:
+          |[1]: https://www.investopedia.com/terms/p/primarymarket.asp
+          |[2]: https://www.investopedia.com/terms/s/secondarymarket.asp
+          |
+          |**At Anduin, we are solving huge, complex problems in a segmented
+          |industry.** The complete solutions for these problems are unknown.
+          |Therefore, our strategy is to follow fast execution cycle to get
+          |feedback at the earliest. With that in mind, we build our UI
+          |libraries and guides around these principles:
+          |
           """.stripMargin
       )(),
       <.div(
         renderGoal(
           "1. Changing",
           "eliminateErrors",
-          "Human changes, so does the UI Engineering. Our elements are designed so that changes are expected, effortless, and usually automated."
+          """
+            |Human changes, so does the UI Engineering. Our elements are
+            |designed so that changes are expected, effortless, and usually
+            |automated.
+          """.stripMargin
         ),
         renderGoal(
           "2. Scaling",
           "generateDoc",
-          "As a platform, one component could easily have hundreds of instances, while a style could have thousands. Scalability is always one of our first priorities."
+          """
+            |As a platform, one component could easily have hundreds of
+            |instances, while a style could have thousands. Scalability is
+            |always one of our first priorities.
+          """.stripMargin
         ),
         renderGoal(
           "3. Delighting",
           "saveTimeAndMoney",
-          "Using the library should feel like a privilege, not an effort. The library should save engineering time by solving complex UI issues via simple APIs."
+          """
+            |Using the library should feel like a privilege, not an effort.
+            |The library should save engineering time by solving complex UI
+            |issues via simple APIs.
+          """.stripMargin
         ),
         renderGoal(
           "4. Empowering",
           "alignDeal",
-          "Knowing \"How to\" is only the surface. Understanding \"Why\" and become an expert in UI Engineering yourself is our ultimate goal in this guide."
+          """
+            |Knowing "How to" is only the surface. Understanding "Why"
+            |and become an expert in UI Engineering yourself is our ultimate
+            |goal in this guide.
+          """.stripMargin
         )
       )
     )

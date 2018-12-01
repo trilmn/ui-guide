@@ -48,11 +48,8 @@ object PageModal {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Modal", obj = Some(Modal))(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Modal", obj = Some(Modal))()
-      ),
       Markdown(
         """
           |Modal focuses user on critical information or task. The task might

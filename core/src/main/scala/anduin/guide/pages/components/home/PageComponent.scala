@@ -3,19 +3,16 @@ package anduin.guide.pages.components.home
 import anduin.component.button.Button
 import anduin.component.icon.Icon
 import anduin.guide.app.main.Pages
-import anduin.guide.components.{ExampleRich, Header, Markdown, Toc}
 import anduin.mcro.Source
 import anduin.style.Style
 import japgolly.scalajs.react.vdom.html_<^._
+import anduin.guide.components._
 
 object PageComponent {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header(title = "Components")(),
       Toc(headings = Source.getTocHeadings)(),
-      <.header(
-        Style.margin.bottom32,
-        Header(title = "Components")()
-      ),
       Markdown(
         """
           |Components helps you reuse styles and functionality.

@@ -90,10 +90,7 @@ object PageDropdown {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      <.header(
-        Style.margin.bottom32,
-        Header("Dropdown", obj = Some(Dropdown))()
-      ),
+      Header("Dropdown", obj = Some(Dropdown))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

@@ -1,6 +1,7 @@
 // Copyright (C) 2014-2018 Anduin Transactions Inc.
 
 package anduin.guide.app.main.layout
+
 import anduin.guide.app.main.Pages
 import anduin.style.Style
 

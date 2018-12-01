@@ -31,7 +31,7 @@ object CodeBlock {
         Style.backgroundColor.gray1.padding.ver12.padding.hor8,
         Style.overflow.auto,
         <.pre(
-          Style.fontFamily.mono,
+          Style.fontFamily.mono.fontSize.px16.lineHeight.px24,
           ^.cls := "line-numbers",
           <.code(Style.display.block, cls, content)
         )

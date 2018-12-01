@@ -8,39 +8,42 @@ final case class Heading(
   content: String,
   level: Int,
 ) {
-  def apply(): VdomElement = {
-    Heading.component(this)
-  }
+  def apply(): VdomElement = Heading.component(this)
 }
 
 object Heading {
 
+  private type Props = Heading
+
   def getId(text: String): String =
     text
-      .replaceAll("<.*?>", "") // HTML tags like <code>Foo</code>
       .toLowerCase()
+      .replaceAll("<.*?>", "") // HTML tags like <code>Foo</code>
       .replaceAll("[^a-z]+", "-") // symbols like "," "." "("
       .replaceAll("-$", "") // trailing "-" (originally ".")
 
-  private val ComponentName = this.getClass.getSimpleName
-
-  private case class Backend(scope: BackendScope[Heading, _]) {
-    def render(props: Heading): VdomElement = {
-      val id = getId(props.content)
-      val tag = props.level match {
-        case 1 => <.h2
-        case 2 => <.h3
-        case 3 => <.h4
-      }
-      val hash = <.a(Style.position.absolute, ^.right := "calc(100% + 0.5em)", ^.href := s"#$id", "#")
-      val content = <.span(^.dangerouslySetInnerHtml := props.content)
-      tag(Style.position.relative, ^.id := id, content, hash)
+  private def render(props: Heading): VdomElement = {
+    val id = getId(props.content)
+    val tag = props.level match {
+      case 1 => <.h2(Style.fontSize.px32)
+      case 2 => <.h3(Style.fontSize.px24)
+      case 3 => <.h4(Style.fontSize.px20)
+      case 4 => <.h5(Style.fontSize.px20)
     }
+    val hash = <.a(
+      Style.position.absolute,
+      ^.left := "-1em",
+      ^.title := "Link to this heading",
+      ^.href := s"#$id",
+      "#"
+    )
+    val content = <.span(^.dangerouslySetInnerHtml := props.content)
+    tag(Style.position.relative, ^.id := id, content, hash)
   }
 
   private val component = ScalaComponent
-    .builder[Heading](ComponentName)
+    .builder[Props](this.getClass.getSimpleName)
     .stateless
-    .renderBackend[Backend]
+    .render_P(render)
     .build
 }

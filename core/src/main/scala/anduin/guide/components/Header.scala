@@ -19,7 +19,11 @@ object Header {
   private def render(props: Props): VdomElement = {
     <.div(
       Style.border.bottom.borderWidth.px2.borderColor.gray2,
-      <.h1(Style.margin.bottom32, props.title),
+      <.h1(
+        Style.lineHeight.px40.margin.bottom32,
+        ^.fontSize := "40px",
+        props.title
+      ),
       props.obj.whenDefined(obj => {
         val name = obj.getClass.getName.replace("$", "")
         <.div(Style.margin.bottom32, CodeBlock(name)())

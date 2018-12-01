@@ -5,12 +5,8 @@ import anduin.style.Style
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-final case class Markdown(
-  source: String
-) {
-  def apply(): VdomElement = {
-    Markdown.component(this)
-  }
+final case class Markdown(source: String) {
+  def apply(): VdomElement = Markdown.component(this)
 }
 
 object Markdown {
@@ -18,7 +14,7 @@ object Markdown {
   private val rnd = ReactDOMServer.renderToStaticMarkup _
 
   private val renderHead = (content: String, level: Int) => {
-    val styles = Style.padding.bottom12.padding.top32
+    val styles = Style.padding.bottom16.padding.top32
     val heading = Heading(content = content, level = level)()
     rnd(<.div(styles, heading))
   }
@@ -28,7 +24,7 @@ object Markdown {
   }
 
   private val renderParagraph = (content: String) => {
-    rnd(<.p(Style.padding.ver12, ^.dangerouslySetInnerHtml := content))
+    rnd(<.p(Style.padding.ver16, ^.dangerouslySetInnerHtml := content))
   }
 
   private val renderCodeSpan = (content: String) => {
@@ -48,18 +44,18 @@ object Markdown {
 
   private val renderCode = (content: String, language: String) => {
     val codeBlock = CodeBlock(content = content, language = language)()
-    rnd(<.div(Style.padding.ver12, codeBlock))
+    rnd(<.div(Style.padding.ver16, codeBlock))
   }
 
   private val renderBlockquote = (content: String) => {
     val quoteBlock = QuoteBlock(content = content)()
-    rnd(<.div(Style.padding.ver12, quoteBlock))
+    rnd(<.div(Style.padding.ver16, quoteBlock))
   }
 
   private val renderList = (content: String, ordered: Boolean) => {
     val tag = if (ordered) <.ol else <.ul
     val html = ^.dangerouslySetInnerHtml := content
-    rnd(tag(Style.padding.left32.padding.ver12, html))
+    rnd(tag(Style.padding.left32, html))
   }
 
   private val renderTable = (header: String, body: String) => {
@@ -68,7 +64,7 @@ object Markdown {
       <.thead(Style.backgroundColor.gray1, ^.dangerouslySetInnerHtml := header),
       <.tbody(^.dangerouslySetInnerHtml := body)
     )
-    rnd(<.div(Style.padding.ver12, element))
+    rnd(<.div(Style.padding.ver16, element))
   }
 
   private val renderTableCell =

@@ -37,8 +37,14 @@ object Toc {
     }
   }
 
+  private val linkStyles = TagMod(
+    Style.color.inherit.focus.outline.transition.allWithOutline,
+    Style.border.bottom.borderWidth.px2.borderColor.transparent,
+    Style.hover.underlineNone.hover.colorPrimary4.hover.borderPrimary3
+  )
+
   private def renderLink(text: String): VdomElement = {
-    <.a(Style.color.inherit, ^.href := s"#${getId(text)}", text)
+    <.a(linkStyles, ^.href := s"#${getId(text)}", text)
   }
 
   private def renderChild(heading: Heading)(tuple: (String, Int)): VdomElement = {
@@ -47,18 +53,37 @@ object Toc {
     <.span(^.key := text, renderLink(text), sep)
   }
 
-  private def render(props: Props): VdomElement = {
+  private def renderHeading(tuple: (Heading, Int)): VdomElement = {
+    val (heading, index) = tuple
+    val b = Style.fontWeight.bold
+    val t = Style.verticalAlign.top
+    <.tr(
+      ^.key := heading.text,
+      <.td(b, t, " ", index + 1,". "),
+      <.td(b, t, Style.whiteSpace.noWrap, renderLink(heading.text), " "),
+      <.td(t, heading.children.zipWithIndex.toVdomArray(renderChild(heading)))
+    )
+  }
+
+  private val mainStyles = TagMod(
+    Style.padding.bottom32.margin.bottom32,
+    Style.border.bottom.borderWidth.px2.borderColor.gray2,
+    Style.fontSize.px16.lineHeight.px32
+  )
+
+  private def render(props: Props): Option[VdomElement] = {
     val headings = props.headings
       .foldLeft[Seq[Heading]](Vector.empty)(groupHeadings(props))
-    <.div(
-      headings.toVdomArray { heading =>
-        <.div(
-          ^.key := heading.text,
-          <.span(Style.fontWeight.semiBold, renderLink(heading.text), ": "),
-          heading.children.zipWithIndex.toVdomArray(renderChild(heading))
-        )
-      }
-    )
+    if (headings.isEmpty) {
+      None
+    } else {
+      val element = <.div(
+        mainStyles,
+        <.h4(Style.color.gray6.margin.bottom16, "Table of contents:"),
+        <.table(headings.zipWithIndex.toVdomArray(renderHeading))
+      )
+      Some(element)
+    }
   }
 
   private val component = ScalaComponent

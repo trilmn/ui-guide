@@ -49,21 +49,12 @@ object LayoutNav {
         li(
           Title("Style", Some(Pages.Style()), Some(_.isInstanceOf[StyleT])),
           ul(
-            li(
-              Title("Layout", isExpanded = Some(_.isInstanceOf[LayoutT])),
-              ul(
-                li(Title("Space", Some(Space()))),
-                li(Title("Flexbox", Some(Flexbox())))
-              )
-            ),
-            li(
-              Title("Color", Some(Color()))
-            ),
+            li(Title("Space", Some(Space()))),
+            li(Title("Flexbox", Some(Flexbox()))),
+            li(Title("Color", Some(Color()))),
             li(
               Title("Typography", Some(Typography()), Some(_.isInstanceOf[TypographyT])),
-              ul(
-                li(Title("Fixed line height", Some(FixedLineHeight())))
-              )
+              ul(li(Title("Fixed line height", Some(FixedLineHeight()))))
             )
           )
         ),
@@ -80,26 +71,12 @@ object LayoutNav {
             li(Title("Card", Some(Card()))),
             li(Title("Dropdown", Some(Dropdown()))),
             li(Title("Field", Some(Field()))),
-            li(
-              Title("Icon", Some(Icon()), Some(_.isInstanceOf[IconT])),
-              ul(
-                li(Title("Illus", Some(Illus()))),
-                li(Title("Illus Folder", Some(IllusFolder())))
-              )
-            ),
-            li(
-              Title("Input", isExpanded = Some(_.isInstanceOf[InputT])),
-              ul(
-                li(Title("Text Box", Some(TextBox())))
-              )
-            ),
-            li(
-              Title("Portal", isExpanded = Some(_.isInstanceOf[PortalT])),
-              ul(
-                li(Title("Popover", Some(Popover()))),
-                li(Title("Modal", Some(Modal())))
-              )
-            ),
+            li(Title("Icon", Some(Icon()))),
+            li(Title("Illus", Some(Illus()))),
+            li(Title("Illus Folder", Some(IllusFolder()))),
+            li(Title("Text Box", Some(TextBox()))),
+            li(Title("Popover", Some(Popover()))),
+            li(Title("Modal", Some(Modal()))),
             li(Title("Stepper", Some(Stepper()))),
             li(Title("Tab", Some(Tab()))),
             li(Title("Table", Some(Table()))),

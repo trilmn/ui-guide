@@ -29,9 +29,17 @@ object Layout {
   private def renderSidebar(ctl: Pages.Ctl, res: Res) = {
     <.div(
       Style.position.fixed.coordinate.top0.coordinate.left0.zIndex.idx1,
-      ^.padding := "48px 0",
-      <.div(^.padding := "0 56px", Style.margin.bottom32, logo),
-      LayoutNav(ctl = ctl, page = res.page)()
+      Style.flexbox.flex.flexbox.column.height.pc100,
+      <.div(
+        Style.flexbox.none,
+        ^.padding := "48px 56px 32px",
+        logo
+      ),
+      <.div(
+        Style.flexbox.fixed.overflow.autoY,
+        Style.padding.bottom32,
+        LayoutNav(ctl = ctl, page = res.page)()
+      )
     )
   }
 

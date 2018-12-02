@@ -23,3 +23,14 @@ body {
 ::-webkit-scrollbar-thumb:active {
   background: var(--color-gray-5);
 }
+
+/* Override fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab:400,700');
+
+body {
+  font-family: 'Roboto Slab', sans-serif
+}
+
+.ad-ff-mono {
+  font-family: 'Roboto Mono', monospace
+}

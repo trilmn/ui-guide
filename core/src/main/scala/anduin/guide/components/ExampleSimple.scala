@@ -31,7 +31,7 @@ object ExampleSimple {
     val label = TagMod.when(!props.label.isEmpty) {
       <.figcaption(Style.padding.hor16.padding.top4, Markdown(props.label)())
     }
-    <.div(Style.padding.ver12, <.figure(styles, example, label))
+    <.div(Style.padding.ver16, <.figure(styles, example, label))
   }
 
   private val component = ScalaComponent

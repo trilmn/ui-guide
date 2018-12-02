@@ -21,7 +21,7 @@ object ExampleRich {
   private case class Backend(scope: BackendScope[ExampleRich, _]) {
     def render(props: ExampleRich): VdomElement = {
       <.figure(
-        Style.padding.ver12,
+        Style.padding.ver16,
         // original one
         OrgExample(props.content, props.isBgGray)()
       )

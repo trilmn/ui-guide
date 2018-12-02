@@ -26,7 +26,7 @@ object Heading {
     val id = getId(props.content)
     val tag = props.level match {
       case 1 => <.h2(Style.fontSize.px32)
-      case 2 => <.h3(Style.fontSize.px24)
+      case 2 => <.h3(Style.fontSize.px24.fontWeight.bold)
       case 3 => <.h4(Style.fontSize.px20)
       case 4 => <.h5(Style.fontSize.px20)
     }

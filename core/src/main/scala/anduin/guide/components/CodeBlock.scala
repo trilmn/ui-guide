@@ -31,7 +31,8 @@ object CodeBlock {
         Style.backgroundColor.gray1.padding.ver12.padding.hor8,
         Style.overflow.auto,
         <.pre(
-          Style.fontFamily.mono.fontSize.px16.lineHeight.px24,
+          Style.fontSize.px16.lineHeight.px24,
+          ^.fontFamily := "'Roboto Mono', monospace",
           ^.cls := "line-numbers",
           <.code(Style.display.block, cls, content)
         )

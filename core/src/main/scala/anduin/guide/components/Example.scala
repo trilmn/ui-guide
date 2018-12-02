@@ -8,41 +8,35 @@ final case class Example(
   content: (String, VdomElement),
   isBgGray: Boolean = false
 ) {
-  def apply(): VdomElement = {
-    Example.component(this)
-  }
+  def apply(): VdomElement = Example.component(this)
 }
 
 object Example {
 
-  private val ComponentName = this.getClass.getSimpleName
+  private type Props = Example
 
-  private case class Backend(scope: BackendScope[Example, _]) {
-    def render(props: Example): VdomElement = {
-      val (source, element) = props.content
+  private def render(props: Props): VdomElement = {
+    val (source, element) = props.content
+    <.div(
+      Style.backgroundColor.gray1.padding.all4,
       <.div(
-        Style.backgroundColor.gray1.padding.all4,
-        <.div(
-          Style.padding.all16,
-          // Sometimes we need a gray background
-          if (props.isBgGray) Style.backgroundColor.gray2
-          else Style.backgroundColor.white,
-          // Ensure the example is shown in correct font size
-          // and line height (since these values in Guide is
-          // bigger than in the actual app
-          Style.fontSize.px13,
-          // @TODO: Make this a valid Style.lineHeight
-          ^.lineHeight := "20px",
-          element
-        ),
-        <.div(CodeBlock(content = source)())
-      )
-    }
+        Style.padding.all16,
+        // Sometimes we need a gray background
+        if (props.isBgGray) Style.backgroundColor.gray2
+        else Style.backgroundColor.white,
+        // Ensure the example is shown in correct font size
+        // and line height (since these values in Guide is
+        // bigger than in the actual app
+        Style.fontSize.px13.lineHeight.px20.fontFamily.sans,
+        element
+      ),
+      <.div(CodeBlock(content = source)())
+    )
   }
 
   private val component = ScalaComponent
-    .builder[Example](ComponentName)
+    .builder[Props](this.getClass.getSimpleName)
     .stateless
-    .renderBackend[Backend]
+    .render_P(render)
     .build
 }

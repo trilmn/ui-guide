@@ -14,9 +14,9 @@ object Markdown {
 
   private val rnd = ReactDOMServer.renderToStaticMarkup _
 
-  private val renderHead = (content: String, level: Int) => {
+  private val renderHead = (string: String, level: Int) => {
     val styles = Style.padding.bottom16.padding.top32
-    val heading = Heading(content = content, level = level)()
+    val heading = Heading(content = string, level = level)()
     rnd(<.div(styles, heading))
   }
 
@@ -24,15 +24,19 @@ object Markdown {
     rnd(<.hr(^.height := "48px"))
   }
 
-  private val renderParagraph = (content: String) => {
-    rnd(<.p(Style.padding.ver16, ^.dangerouslySetInnerHtml := content))
+  private val renderStrong = (string: String) => {
+    rnd(<.strong(Style.fontWeight.medium, ^.dangerouslySetInnerHtml := string))
   }
 
-  private val renderCodeSpan = (content: String) => {
-    val parts: List[String] = content.split("::").toList
+  private val renderParagraph = (string: String) => {
+    rnd(<.p(Style.padding.ver16, ^.dangerouslySetInnerHtml := string))
+  }
+
+  private val renderCodeSpan = (string: String) => {
+    val parts: List[String] = string.split("::").toList
     val (lngOpt, newContent) = parts match {
       case a :: b :: Nil => (Some(a), b)
-      case _             => (None, content)
+      case _             => (None, string)
     }
     val codeSpan = <.code(
       Style.fontFamily.mono.backgroundColor.gray2,
@@ -43,19 +47,19 @@ object Markdown {
     rnd(codeSpan)
   }
 
-  private val renderCode = (content: String, language: String) => {
-    val codeBlock = CodeBlock(content = content, language = language)()
+  private val renderCode = (string: String, language: String) => {
+    val codeBlock = CodeBlock(content = string, language = language)()
     rnd(<.div(Style.padding.ver16, codeBlock))
   }
 
-  private val renderBlockQuote = (content: String) => {
-    val quoteBlock = QuoteBlock(content = content)()
+  private val renderBlockQuote = (string: String) => {
+    val quoteBlock = QuoteBlock(content = string)()
     rnd(<.div(Style.padding.ver16, quoteBlock))
   }
 
-  private val renderList = (content: String, ordered: Boolean) => {
+  private val renderList = (string: String, ordered: Boolean) => {
     val tag = if (ordered) <.ol else <.ul
-    val html = ^.dangerouslySetInnerHtml := content
+    val html = ^.dangerouslySetInnerHtml := string
     rnd(tag(Style.padding.left32, html))
   }
 
@@ -68,7 +72,7 @@ object Markdown {
     rnd(<.div(Style.padding.ver16, element))
   }
 
-  private val renderTableCell = (content: String, flags: js.Object) => {
+  private val renderTableCell = (string: String, flags: js.Object) => {
     val isHeader: Boolean = flags
       .asInstanceOf[js.Dynamic]
       .selectDynamic("header")
@@ -78,7 +82,7 @@ object Markdown {
       Style.border.all.borderColor.gray2.borderWidth.px1,
       Style.padding.all12.textAlign.left.fontWeight.normal
     )
-    val html = ^.dangerouslySetInnerHtml := content
+    val html = ^.dangerouslySetInnerHtml := string
     val tag = if (isHeader) <.th else <.td
     rnd(tag(styles, html))
   }
@@ -88,6 +92,7 @@ object Markdown {
       heading = renderHead,
       codespan = renderCodeSpan,
       code = renderCode,
+      strong = renderStrong,
       hr = renderHr,
       blockquote = renderBlockQuote,
       list = renderList,

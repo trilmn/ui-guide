@@ -128,7 +128,7 @@ object PageDropdown {
            |
            |[rb]: ${ctl.urlFor(Pages.Radio()).value}
            |
-           |# Basic Usage
+           |# Basic
            |
            |## Initialize
            |
@@ -160,13 +160,13 @@ object PageDropdown {
            |
            |After initialized, you can pass props to your `FruitDropdown` to
            |render it like any other components. Dropdown's props mimic closely
-           |the HTML's [`select`][ms] element, so the following must be defined:
+           |the HTML's [`select`][se] element, so the following must be defined:
            |
-           |[ms]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+           |[se]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
            |
            |1. **`value:`**`scala::Option[A]`：The currently selected option.
            |Can be `None` to indicate no default value. Learn more in the
-           |[Default value](#default-value) section.
+           |[Value](#value) section.
            |
            |2. **`options:`**`scala::List[Dropdown.Opt[A]]`：The list of options
            |that users can select from. Each option should have the following

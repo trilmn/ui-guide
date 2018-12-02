@@ -15,12 +15,17 @@ object Heading {
 
   private type Props = Heading
 
-  def getId(text: String): String =
-    text
-      .toLowerCase()
-      .replaceAll("<.*?>", "") // HTML tags like <code>Foo</code>
-      .replaceAll("[^a-z]+", "-") // symbols like "," "." "("
-      .replaceAll("-$", "") // trailing "-" (originally ".")
+  def getId(text: String): String = {
+    if (text == "_top") {
+      ""
+    } else {
+      text
+        .toLowerCase()
+        .replaceAll("<.*?>", "") // HTML tags like <code>Foo</code>
+        .replaceAll("[^a-z]+", "-") // symbols like "," "." "("
+        .replaceAll("-$", "") // trailing "-" (originally ".")
+    }
+  }
 
   private def getTag(props: Props) = props.level match {
     case 1 => <.h2(Style.fontSize.px32)
@@ -39,25 +44,13 @@ object Heading {
     )
   }
 
-  private val linkTop: VdomElement = {
-    <.a(
-      Style.position.absolute.fontWeight.normal,
-      Style.coordinate.right0.color.gray4.transition.all,
-      Style.hover.underlineNone.hover.colorPrimary4,
-      ^.title := "Go to top",
-      ^.href := "#",
-      "↑"
-    )
-  }
-
   private def render(props: Props): VdomElement = {
     val id = getId(props.content)
     getTag(props)(
       Style.position.relative,
       ^.id := id,
       <.span(^.dangerouslySetInnerHtml := props.content),
-      renderLinkSelf(id),
-      linkTop
+      renderLinkSelf(id)
     )
   }
 

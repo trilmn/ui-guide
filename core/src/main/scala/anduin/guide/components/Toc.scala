@@ -6,7 +6,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 final case class Toc(
-  headings: Seq[Toc.RawHeading]
+  headings: Seq[Toc.Heading]
 ) {
   def apply(): VdomElement = Toc.component(this)
 }
@@ -14,26 +14,26 @@ final case class Toc(
 object Toc {
 
   private type Props = Toc
-  private type RawHeading = (Int, String)
-  private case class Heading(text: String, children: Seq[String])
+  private type Heading = (Int, String)
+  private case class Section(title: String, children: Seq[String])
 
   // Note in advance that we only care about the 1st and 2nd level
   private def groupHeadings(props: Props)(
-    headings: Seq[Heading],
-    rawHeading: RawHeading
-  ): Seq[Heading] = {
-    val (level, text) = rawHeading
+    sections: Seq[Section],
+    heading: Heading
+  ): Seq[Section] = {
+    val (level, title) = heading
     level match {
       // first level => new entry
-      case 1 => headings :+ Heading(text = text, children = Seq.empty)
+      case 1 => sections :+ Section(title = title, children = Seq.empty)
       // second level => add to last entry
       case 2 =>
-        val lastOpt = headings.lastOption.map { heading =>
-          val children = heading.children :+ text
+        val lastOpt = sections.lastOption.map { heading =>
+          val children = heading.children :+ title
           heading.copy(children = children)
         }
-        lastOpt.fold(headings)(last => headings.init :+ last)
-      case _ => headings
+        lastOpt.fold(sections)(last => sections.init :+ last)
+      case _ => sections
     }
   }
 
@@ -43,46 +43,40 @@ object Toc {
     Style.hover.underlineNone.hover.colorPrimary4.hover.borderPrimary3
   )
 
-  private def renderLink(text: String): VdomElement = {
-    <.a(linkStyles, ^.href := s"#${getId(text)}", text)
+  private def renderLink(title: String): VdomElement = {
+    <.a(linkStyles, ^.href := s"#${getId(title)}", title)
   }
 
-  private def renderChild(heading: Heading)(tuple: (String, Int)): VdomElement = {
-    val (text, index) = tuple
-    val sep = TagMod.when(index < heading.children.size - 1)(", ")
-    <.span(^.key := text, renderLink(text), sep)
+  private def renderChild(title: String): VdomElement = {
+    <.li(^.key := title, renderLink(title))
   }
 
-  private def renderHeading(tuple: (Heading, Int)): VdomElement = {
-    val (heading, index) = tuple
-    val b = Style.fontWeight.bold
-    val t = Style.verticalAlign.top
-    <.tr(
-      ^.key := heading.text,
-      <.td(b, t, " ", index + 1,". "),
-      <.td(b, t, Style.whiteSpace.noWrap, renderLink(heading.text), " "),
-      <.td(t, heading.children.zipWithIndex.toVdomArray(renderChild(heading)))
+  private def renderSection(section: Section): VdomElement = {
+    <.li(
+      ^.key := section.title,
+      <.p(renderLink(section.title)),
+      <.ol(Style.listing.list, section.children.toVdomArray(renderChild))
     )
   }
 
   private val mainStyles = TagMod(
-    Style.padding.bottom32.margin.bottom32,
-    Style.border.bottom.borderWidth.px2.borderColor.gray2,
-    Style.fontSize.px16.lineHeight.px32
+    Style.position.fixed.coordinate.right0.coordinate.top0,
+    Style.fontSize.px15.lineHeight.px32,
+    Style.color.gray4.hover.colorGray7.transition.all,
+    Style.listing.list,
+    ^.left := "calc(50% + calc(576px / 2))",
+    ^.paddingLeft := "108px",
+    ^.paddingTop := "136px"
   )
 
   private def render(props: Props): Option[VdomElement] = {
-    val headings = props.headings
-      .foldLeft[Seq[Heading]](Vector.empty)(groupHeadings(props))
-    if (headings.isEmpty) {
+    val sections = props.headings
+      .foldLeft[Seq[Section]](Vector.empty)(groupHeadings(props))
+    if (sections.isEmpty) {
       None
     } else {
-      val element = <.div(
-        mainStyles,
-        <.h4(Style.color.gray6.margin.bottom16, "Table of contents:"),
-        <.table(headings.zipWithIndex.toVdomArray(renderHeading))
-      )
-      Some(element)
+      val sectionsWTop = Section("Top", Vector.empty) +: sections
+      Some(<.ol(mainStyles, sectionsWTop.toVdomArray(renderSection)))
     }
   }
 

@@ -20,7 +20,7 @@ object ExampleSimple {
   private def render(props: Props, children: PropsChildren): VdomElement = {
     val styles = TagMod(
       Style.backgroundColor.gray1.padding.all4,
-      Style.fontSize.px13.lineHeight.px20
+      Style.fontSize.px13.lineHeight.px20.fontFamily.sans
     )
     val example = <.div(
       Style.padding.all16,

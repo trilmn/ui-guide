@@ -4,6 +4,7 @@ import anduin.scalajs.markedjs.{Marked, MarkedOptions, MarkedRenderer}
 import anduin.style.Style
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
+
 import scala.scalajs.js
 
 final case class Markdown(source: String) {
@@ -12,6 +13,7 @@ final case class Markdown(source: String) {
 
 object Markdown {
 
+  private type Props = Markdown
   private val rnd = ReactDOMServer.renderToStaticMarkup _
 
   private val renderHead = (string: String, level: Int) => {
@@ -41,7 +43,7 @@ object Markdown {
     val codeSpan = <.code(
       Style.fontFamily.mono.backgroundColor.gray2,
       lngOpt.whenDefined(lng => ^.cls := s"language-$lng"),
-      ^.padding := "2px 4px",
+      ^.padding := "0 4px",
       ^.dangerouslySetInnerHtml := newContent
     )
     rnd(codeSpan)
@@ -87,6 +89,18 @@ object Markdown {
     rnd(tag(styles, html))
   }
 
+  private val renderLink = (href: String, title: String, text: String) => {
+    val link = <.a(
+      Style.color.gray7.hover.colorPrimary4.transition.all,
+      Style.border.bottom.borderColor.gray3.borderWidth.px2,
+      Style.hover.borderPrimary3.hover.underlineNone,
+      ^.title := title,
+      ^.href := href,
+      ^.dangerouslySetInnerHtml := text
+    )
+    rnd(link)
+  }
+
   private val options: MarkedOptions = MarkedOptions(
     renderer = MarkedRenderer(
       heading = renderHead,
@@ -96,22 +110,21 @@ object Markdown {
       hr = renderHr,
       blockquote = renderBlockQuote,
       list = renderList,
+      link = renderLink,
       table = renderTable,
       tablecell = renderTableCell,
       paragraph = renderParagraph
     )
   )
 
-  private case class Backend(scope: BackendScope[Markdown, _]) {
-    def render(props: Markdown): VdomElement = {
-      val html = Marked(props.source, options)
-      <.div(^.dangerouslySetInnerHtml := html)
-    }
+  private def render(props: Props): VdomElement = {
+    val html = Marked(props.source, options)
+    <.div(^.dangerouslySetInnerHtml := html)
   }
 
   private val component = ScalaComponent
-    .builder[Markdown](this.getClass.getSimpleName)
+    .builder[Props](this.getClass.getSimpleName)
     .stateless
-    .renderBackend[Backend]
+    .render_P(render)
     .build
 }

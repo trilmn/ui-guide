@@ -4,30 +4,13 @@
 
 /* Our own */
 @import "vendors/prism-custom";
-
-body {
-  min-width: auto;
-  background: white;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-  background: var(--color-gray-2);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-gray-4);
-}
-
-::-webkit-scrollbar-thumb:active {
-  background: var(--color-gray-5);
-}
-
-/* Override fonts */
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab:400,700');
 
 body {
+  background: white;
+}
+
+.ad-ff-sans {
   font-family: 'Roboto Slab', sans-serif
 }
 

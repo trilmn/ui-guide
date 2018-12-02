@@ -8,7 +8,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageFixedLineHeight {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Why fixed line height?")(),
+      Header("Why fixed line height?", None)(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

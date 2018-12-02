@@ -10,7 +10,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageIllusFolder {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "IllusFolder")(),
+      Header("IllusFolder", Some(IllusFolder))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         s"""

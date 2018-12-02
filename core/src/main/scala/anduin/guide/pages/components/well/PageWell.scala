@@ -12,7 +12,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageWell {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Well", obj = Some(Well))(),
+      Header("Well", Some(Well))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         s"""

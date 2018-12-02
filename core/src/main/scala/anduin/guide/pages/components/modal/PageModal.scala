@@ -48,7 +48,7 @@ object PageModal {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Modal", obj = Some(Modal))(),
+      Header("Modal", Some(Modal))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

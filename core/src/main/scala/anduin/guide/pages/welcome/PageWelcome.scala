@@ -29,7 +29,7 @@ object PageWelcome {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Anduin Design")(),
+      Header("Anduin Design", None)(),
       <.div(
         Style.padding.ver32,
         <.img(

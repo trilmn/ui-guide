@@ -10,7 +10,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageButtonLink {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "ButtonLink", obj = Some(ButtonLink))(),
+      Header("ButtonLink", Some(ButtonLink))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

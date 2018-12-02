@@ -33,7 +33,7 @@ object PageColor {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Color", obj = Some(Style.color))(),
+      Header("Color", Some(Style.color))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

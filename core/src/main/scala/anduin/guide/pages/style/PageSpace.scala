@@ -10,7 +10,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageSpace {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Space")(),
+      Header("Space", Some(Style))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

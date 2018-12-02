@@ -13,7 +13,7 @@ object PageField {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header("Field", obj = Some(Field))(),
+      Header("Field", Some(Field))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

@@ -12,7 +12,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageTab {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Tab", obj = Some(Tab))(),
+      Header("Tab", Some(Tab))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

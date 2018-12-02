@@ -13,7 +13,7 @@ object PagePopover {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Popover", obj = Some(Popover))(),
+      Header("Popover", Some(Popover))(),
       Toc(headings = Source.getTocHeadings)(),
       ExampleRich(Source.annotate({
         val p = Popover(

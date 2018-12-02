@@ -11,7 +11,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageCheckbox {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Checkbox", obj = Some(Checkbox))(),
+      Header("Checkbox", Some(Checkbox))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

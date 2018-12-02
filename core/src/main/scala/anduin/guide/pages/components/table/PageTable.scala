@@ -69,7 +69,7 @@ object PageTable {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Table", obj = Some(Table))(),
+      Header("Table", Some(Table))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

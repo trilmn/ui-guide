@@ -1,10 +1,11 @@
 package anduin.guide.pages.components.illus
 
-import anduin.guide.components._
 import anduin.component.icon.Illus
 import anduin.guide.app.main.Pages
 import anduin.mcro.Source
 import anduin.style.Style
+
+import anduin.guide.components._
 import japgolly.scalajs.react.vdom.html_<^._
 
 object PageIllus {
@@ -16,7 +17,7 @@ object PageIllus {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Illus")(),
+      Header("Illus", Some(Illus))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

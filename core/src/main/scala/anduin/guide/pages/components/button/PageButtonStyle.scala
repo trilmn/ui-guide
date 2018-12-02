@@ -17,7 +17,7 @@ import japgolly.scalajs.react.{Callback, React}
 object PageButtonStyle {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "ButtonStyle", obj = Some(ButtonStyle))(),
+      Header("ButtonStyle", Some(ButtonStyle))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

@@ -11,7 +11,7 @@ import anduin.guide.components._
 object PageComponent {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Components")(),
+      Header("Components", None)(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

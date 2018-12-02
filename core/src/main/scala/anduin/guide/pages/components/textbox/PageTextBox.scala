@@ -15,7 +15,7 @@ object PageTextBox {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header("Text Box", obj = Some(TextBox))(),
+      Header("Text Box", Some(TextBox))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

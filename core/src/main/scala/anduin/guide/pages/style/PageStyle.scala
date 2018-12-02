@@ -9,7 +9,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageStyle {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Style")(),
+      Header("Style", Some(Style))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         s"""

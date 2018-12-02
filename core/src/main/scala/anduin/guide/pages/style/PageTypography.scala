@@ -9,7 +9,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageTypography {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Typography")(),
+      Header("Typography", Some(Style))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

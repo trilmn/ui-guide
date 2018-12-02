@@ -11,7 +11,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageCard {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Card", obj = Some(Card))(),
+      Header("Card", Some(Card))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

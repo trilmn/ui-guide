@@ -1,5 +1,6 @@
 package anduin.guide.components
 
+import anduin.guide.components.Heading.getId
 import anduin.style.Style
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
@@ -36,21 +37,25 @@ object Toc {
     }
   }
 
+  private def renderLink(text: String): VdomElement = {
+    <.a(Style.color.inherit, ^.href := s"#${getId(text)}", text)
+  }
+
+  private def renderChild(heading: Heading)(tuple: (String, Int)): VdomElement = {
+    val (text, index) = tuple
+    val sep = TagMod.when(index < heading.children.size - 1)(", ")
+    <.span(^.key := text, renderLink(text), sep)
+  }
+
   private def render(props: Props): VdomElement = {
     val headings = props.headings
       .foldLeft[Seq[Heading]](Vector.empty)(groupHeadings(props))
     <.div(
       headings.toVdomArray { heading =>
         <.div(
-          heading.text,
-          heading.children.toVdomArray
-//          val text = rawText.replace("`", "")
-//          <.a(
-//            ^.key := text,
-//            ^.marginLeft := s"${level * 16}px",
-//            ^.href := s"#${Heading.getId(text)}",
-//            text
-//          )
+          ^.key := heading.text,
+          <.span(Style.fontWeight.semiBold, renderLink(heading.text), ": "),
+          heading.children.zipWithIndex.toVdomArray(renderChild(heading))
         )
       }
     )

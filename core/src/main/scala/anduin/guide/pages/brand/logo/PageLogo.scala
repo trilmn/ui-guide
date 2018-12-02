@@ -66,7 +66,7 @@ object PageLogo {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header("Logo")(),
+      Header("Logo", None)(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

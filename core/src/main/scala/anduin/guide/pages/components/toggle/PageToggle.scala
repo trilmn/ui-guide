@@ -11,7 +11,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageToggle {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Toggle", obj = Some(Toggle))(),
+      Header("Toggle", Some(Toggle))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

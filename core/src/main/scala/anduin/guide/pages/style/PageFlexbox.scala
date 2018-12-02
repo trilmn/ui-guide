@@ -10,7 +10,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageFlexbox {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header(title = "Flexbox")(),
+      Header("Flexbox", Some(Style))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """

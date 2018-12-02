@@ -29,7 +29,7 @@ object Heading {
     case 4 => <.h5(Style.fontSize.px20)
   }
 
-  private def renderHash(id: String): VdomElement = {
+  private def renderLinkSelf(id: String): VdomElement = {
     <.a(
       Style.position.absolute.fontWeight.normal,
       ^.left := "-1em",
@@ -39,11 +39,26 @@ object Heading {
     )
   }
 
+  private val linkTop: VdomElement = {
+    <.a(
+      Style.position.absolute.fontWeight.normal,
+      Style.coordinate.right0.color.gray4.transition.all,
+      Style.hover.underlineNone.hover.colorPrimary4,
+      ^.title := "Go to top",
+      ^.href := "#",
+      "↑"
+    )
+  }
+
   private def render(props: Props): VdomElement = {
     val id = getId(props.content)
-    val tag = getTag(props)
-    val content = <.span(^.dangerouslySetInnerHtml := props.content)
-    tag(Style.position.relative, ^.id := id, content, renderHash(id))
+    getTag(props)(
+      Style.position.relative,
+      ^.id := id,
+      <.span(^.dangerouslySetInnerHtml := props.content),
+      renderLinkSelf(id),
+      linkTop
+    )
   }
 
   private val component = ScalaComponent

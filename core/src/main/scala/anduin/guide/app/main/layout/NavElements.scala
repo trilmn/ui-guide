@@ -1,6 +1,5 @@
 package anduin.guide.app.main.layout
 
-import anduin.component.icon.Icon
 import anduin.component.toggle.Toggle
 import anduin.guide.app.main.Pages
 import anduin.guide.app.main.Pages.Page
@@ -21,11 +20,9 @@ object NavElements {
   // ===
 
   private def renderLiIcon(children: VdomNode, isExpanded: Boolean): VdomElement = {
-    val name =
-      if (children == EmptyVdom) Icon.NameBlank
-      else if (isExpanded) Icon.NameCaretDown
-      else Icon.NameCaretRight
-    Icon(name = name)()
+    val text = if (children == EmptyVdom) " " else if (isExpanded) "−" else "+"
+    // don't use left here as the link will be lost in the middle space
+    <.div(Style.position.absolute, ^.right := "100%", text, " ")
   }
 
   // This is similar to ScalaJS React's setOnLinkClick but we need it as a
@@ -36,8 +33,11 @@ object NavElements {
 
   private def getColor(current: Page, targetOpt: Option[Page]): TagMod = {
     targetOpt.fold[TagMod](Style.color.inherit) { target =>
-      val cond = target.getClass.getSimpleName == current.getClass.getSimpleName
-      if (cond) Style.color.primary4 else Style.color.inherit
+      if (target.getClass.getSimpleName == current.getClass.getSimpleName) {
+        Style.color.gray7.borderColor.gray3
+      } else {
+        Style.color.inherit.borderColor.transparent
+      }
     }
   }
 
@@ -46,23 +46,24 @@ object NavElements {
     children: VdomNode,
     props: Props
   )(toggle: Callback, isExpanded: Boolean): VdomElement = {
-    val titleBody = TagMod(
-      Style.flexbox.flex.flexbox.itemsCenter.width.maxContent,
-      Style.focus.outline.transition.allWithOutline.padding.hor8,
+    val common = TagMod(
+      Style.position.relative.hover.colorPrimary4.transition.all,
       getColor(props.page, title.page),
       renderLiIcon(children, isExpanded),
-      <.span(Style.margin.left8, title.text)
+      title.text
     )
-    val titleNode = title.page.fold[VdomElement] {
-      <.button(^.onClick --> toggle, titleBody)
+    val node = title.page.fold[VdomElement] {
+      <.button(^.onClick --> toggle, common)
     } { page =>
       <.a(
+        Style.hover.underlineNone.hover.borderPrimary3,
+        Style.border.bottom.borderWidth.px2,
         ^.href := props.ctl.urlFor(page).value,
-        ^.onClick ==> { e => setPage(page, props, e) >> toggle },
-        titleBody
+        ^.onClick ==> (e => setPage(page, props, e) >> toggle),
+        common
       )
     }
-    <.li(titleNode, TagMod.when(isExpanded) { children })
+    <.li(node, TagMod.when(isExpanded) { children })
   }
 
   def li(title: Title, children: VdomNode = EmptyVdom)(implicit props: Props): VdomElement = {

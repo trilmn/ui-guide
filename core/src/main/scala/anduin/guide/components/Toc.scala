@@ -60,13 +60,16 @@ object Toc {
   }
 
   private val mainStyles = TagMod(
-    Style.position.fixed.coordinate.right0.coordinate.top0,
+    Style.position.fixed.coordinate.top0.height.pc100,
+    ^.left := "calc(50% + calc(576px / 2))",
+    ^.paddingTop := "128px"
+  )
+
+  private val listStyles = TagMod(
     Style.fontSize.px15.lineHeight.px32,
     Style.color.gray4.hover.colorGray7.transition.all,
-    Style.listing.list,
-    ^.left := "calc(50% + calc(576px / 2))",
-    ^.paddingLeft := "108px",
-    ^.paddingTop := "136px"
+    Style.listing.list.height.pc100.overflow.autoY,
+    ^.padding := "8px 32px 32px 108px"
   )
 
   private def render(props: Props): Option[VdomElement] = {
@@ -76,7 +79,8 @@ object Toc {
       None
     } else {
       val sectionsWTop = Section("Top", Vector.empty) +: sections
-      Some(<.ol(mainStyles, sectionsWTop.toVdomArray(renderSection)))
+      val list = <.ol(listStyles, sectionsWTop.toVdomArray(renderSection))
+      Some(<.div(mainStyles, list))
     }
   }
 

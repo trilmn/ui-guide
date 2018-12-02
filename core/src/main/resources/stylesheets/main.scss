@@ -17,3 +17,14 @@ body {
 .ad-ff-mono {
   font-family: 'Roboto Mono', monospace
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: var(--color-white);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-3);
+}
+

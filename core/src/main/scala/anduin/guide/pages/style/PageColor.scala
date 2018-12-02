@@ -165,7 +165,7 @@ object PageColor {
            |>elsewhere in an app for noncritical reasons.
            |>
            |>Source: [Color - Visual Design - iOS Human Interface Guidelines
-           |(developer.apple.com)][1]
+           |>(developer.apple.com)][1]
            |
            |[1]: https://developer.apple.com/ios/human-interface-guidelines/visual-design/color/
            |

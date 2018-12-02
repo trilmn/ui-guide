@@ -20,8 +20,9 @@ object Header {
       Style.border.bottom.borderWidth.px2.borderColor.gray2,
       Style.margin.bottom32,
       <.h1(
-        Style.lineHeight.px40.margin.bottom32,
+        Style.margin.bottom32,
         ^.fontSize := "40px",
+        ^.lineHeight := "48px",
         props.title
       ),
       props.obj.whenDefined { obj =>

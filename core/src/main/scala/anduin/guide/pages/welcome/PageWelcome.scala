@@ -21,7 +21,7 @@ object PageWelcome {
       ),
       <.div(
         Style.flexbox.fixed,
-        <.h3(Style.margin.bottom8, title),
+        <.h3(Style.margin.bottom8.fontWeight.bold, title),
         <.p(description)
       )
     )
@@ -45,7 +45,7 @@ object PageWelcome {
           |How we think User Interface should be built at Anduin.
           |
           |>To become the de facto standard software to execute financial
-          |transactions in [primary][1] and [secondary][2] markets
+          |>transactions in [primary][1] and [secondary][2] markets
           |>
           |>— Goals of Anduin Transactions
           |

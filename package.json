@@ -12,10 +12,10 @@
     "build": "bash ./scripts/build.sh"
   },
   "devDependencies": {
+    "@anduin/scalajs-split": "0.0.1-5",
     "@csstools/postcss-sass": "^2.0.0",
     "autoprefixer": "^9.1.0",
     "cssnano": "^4.0.5",
-    "postcss-cli": "^6.0.0",
-    "@anduin/scalajs-split": "0.0.1-3"
+    "postcss-cli": "^6.0.0"
   }
 }

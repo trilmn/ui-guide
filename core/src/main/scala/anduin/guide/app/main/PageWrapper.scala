@@ -2,7 +2,9 @@
 
 package anduin.guide.app.main
 
+import anduin.component.progress_indicators.RippleIndicator
 import anduin.guide.app.main.Pages.Ctl
+import anduin.style.Style
 
 import scala.scalajs.js
 import scala.scalajs.js.Promise
@@ -26,10 +28,20 @@ object PageWrapper {
 
   private case class State(renderFnOpt: Option[RenderFn])
 
+  private val loading: VdomElement = <.div(
+    Style.width.pc100.height.vh100,
+    Style.flexbox.flex.flexbox.itemsCenter.flexbox.justifyCenter,
+    RippleIndicator()()
+  )
+
+  private def renderPage(props: Props)(renderFn: RenderFn): VdomElement = {
+    <.div(^.padding := "48px 0", renderFn(props.ctl))
+  }
+
   private class Backend(scope: BackendScope[Props, State]) {
 
     def render(props: Props, state: State): VdomElement = {
-      state.renderFnOpt.fold[VdomElement](<.div("loading"))(_(props.ctl))
+      state.renderFnOpt.fold(loading)(renderPage(props))
     }
 
     private def setRenderFn(renderFn: RenderFn): Unit = {

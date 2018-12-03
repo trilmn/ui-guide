@@ -47,7 +47,6 @@ object Layout {
     <.div(
       Style.margin.horAuto,
       ^.width := "576px",
-      ^.padding := "48px 0",
       res.render()
     )
   }

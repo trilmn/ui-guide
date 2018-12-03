@@ -105,7 +105,7 @@ components=(
   portal/PortalPopper.scala
   portal/PortalUtils.scala
   portal/Position.scala
-  tooltip/Tooltip.scala
+  progress_indicators/RippleIndicator.scala
   stepper/Stepper.scala
   stepper/StepperHeader.scala
   tab/Tab.scala
@@ -116,6 +116,7 @@ components=(
   table/TableSticky.scala
   tag/Tag.scala
   toggle/Toggle.scala
+  tooltip/Tooltip.scala
   truncate/TruncateMarkup.scala
   util/ComponentUtils.scala
   util/EventUtils.scala

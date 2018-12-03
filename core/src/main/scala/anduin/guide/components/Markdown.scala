@@ -27,7 +27,7 @@ object Markdown {
   }
 
   private val renderStrong = (string: String) => {
-    rnd(<.strong(Style.fontWeight.medium, ^.dangerouslySetInnerHtml := string))
+    rnd(<.strong(Style.fontWeight.bold, ^.dangerouslySetInnerHtml := string))
   }
 
   private val renderParagraph = (string: String) => {

@@ -105,7 +105,7 @@ components=(
   portal/PortalPopper.scala
   portal/PortalUtils.scala
   portal/Position.scala
-  progress_indicators/RippleIndicator.scala
+  progressindicators/RippleIndicator.scala
   stepper/Stepper.scala
   stepper/StepperHeader.scala
   tab/Tab.scala

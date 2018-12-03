@@ -2,7 +2,7 @@
 
 package anduin.guide.app.main
 
-import anduin.component.progress_indicators.RippleIndicator
+import anduin.component.progressindicators.RippleIndicator
 import anduin.guide.app.main.Pages.Ctl
 import anduin.style.Style
 

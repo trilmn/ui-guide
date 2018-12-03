@@ -6,7 +6,6 @@ import anduin.component.input.textbox.TextBox
 import anduin.guide.app.main.Pages
 import anduin.guide.components.SimpleState
 import anduin.mcro.Source
-import anduin.style.Style
 import japgolly.scalajs.react.vdom.html_<^._
 
 object PageField {

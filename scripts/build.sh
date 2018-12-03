@@ -21,6 +21,6 @@ sbt fullOptJS::webpack
 echo "[info] Splitting JS (scalajs-split) ..."
 npx scalajs-split ./core
 echo "[info] Copying JS ..."
-cp -r ${core_target}/dist/scripts/ ${docs}/
+cp -r ${core_target}/scalajs-split ${docs}/scripts
 
 echo "[success] Successfully built"

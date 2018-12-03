@@ -16,9 +16,11 @@ echo "[info] Compiling CSS ..."
 postcss ${core_css_main} --config ${postcss_config} --output ${docs}/app.css
 
 # JS
-echo "[info] Compiling JS (fullOpt) ..."
+echo "[info] Compiling JS (fullOptJS::webpack) ..."
 sbt fullOptJS::webpack
+echo "[info] Splitting JS (scalajs-split) ..."
+npx scalajs-split ./core
 echo "[info] Copying JS ..."
-cp ${core_target}/core-opt-bundle.js ${docs}/app.js
+cp -r ${core_target}/dist/scripts/ ${docs}/
 
 echo "[success] Successfully built"

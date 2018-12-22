@@ -1,8 +1,8 @@
 package anduin.guide.pages.style
 
-import anduin.guide.components._
-import anduin.component.button.{Button, ButtonStyle}
+import anduin.component.button.Button
 import anduin.guide.app.main.Pages
+import anduin.guide.components._
 import anduin.mcro.Source
 import anduin.style.Style
 import japgolly.scalajs.react.vdom.html_<^._
@@ -34,16 +34,14 @@ object PageSpace {
           |Example:
         """.stripMargin
       )(),
-      ExampleRich(
-        // format: off
-        Source.annotate(
-          /*>*/<.div(Style.backgroundColor.gray2.flexbox.flex.flexbox.itemsCenter,/*<*/
-                Style.padding.all16/*>*/,
-                <.div(/*<*/Style.margin.right8/*>*/, Button()("Cancel")),
-                <.div(Button(color = ButtonStyle.ColorBlue)("Submit")))/*<*/
+      ExampleRich(Source.annotate({
+        <.div(
+          Style.backgroundColor.gray2.flexbox.flex.flexbox.itemsCenter,
+          Style.padding.all16,
+          <.div(Style.margin.right8, Button()("Cancel")),
+          <.div(Button(style = Button.Style.Full(color = Button.Color.Blue))("Submit"))
         )
-        // format: on
-      )(),
+      }))(),
       Markdown(
         """
           |# Usage Notes

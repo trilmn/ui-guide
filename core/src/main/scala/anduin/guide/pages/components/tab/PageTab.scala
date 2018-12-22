@@ -1,10 +1,10 @@
 package anduin.guide.pages.components.tab
 
-import anduin.guide.components._
-import anduin.component.button.{Button, ButtonStyle}
+import anduin.component.button.Button
 import anduin.component.icon.{Icon, IllusFolder}
 import anduin.component.tab.Tab
 import anduin.guide.app.main.Pages
+import anduin.guide.components._
 import anduin.mcro.Source
 import anduin.style.Style
 import japgolly.scalajs.react.vdom.html_<^._
@@ -84,19 +84,11 @@ object PageTab {
         )
         val panels = List(
           Tab.Panel(
-            title = renderTitle(
-              "Internal Folder",
-              "23 files",
-              IllusFolder()()
-            ),
+            title = renderTitle("Internal Folder", "23 files", IllusFolder()()),
             renderContent = () => "First tab"
           ),
           Tab.Panel(
-            title = renderTitle(
-              "Shared Folder",
-              "12 files",
-              IllusFolder(icon = Icon.NameUserGroup)()
-            ),
+            title = renderTitle("Shared Folder", "12 files", IllusFolder(icon = Icon.NameUserGroup)()),
             renderContent = () => "Second tab"
           )
         )
@@ -116,12 +108,12 @@ object PageTab {
           Tab.Panel(title = "First", renderContent_S = { switch =>
             Button(
               onClick = switch(1),
-              style = ButtonStyle.StyleLink
+              style = Button.Style.Link()
             )("Go to second tab")
-          }), /*>*/
+          }),
           Tab.Panel(title = "Second", renderContent = () => "Second tab")
         )
-        <.div(Tab(panels = panels)()) /*<*/
+        <.div(Tab(panels = panels)())
       }))(),
       Markdown(
         """

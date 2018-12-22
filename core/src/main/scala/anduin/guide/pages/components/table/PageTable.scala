@@ -1,7 +1,7 @@
 package anduin.guide.pages.components.table
 
 import anduin.guide.components._
-import anduin.component.button.{Button, ButtonStyle}
+import anduin.component.button.Button
 import anduin.component.table.Table
 import anduin.component.tag.Tag
 import anduin.guide.app.main.Pages
@@ -563,7 +563,9 @@ object PageTable {
           rows = Sample.BaseTable.rows.take(3), /*<*/
           footer = <.div(
             Style.flexbox.flex.flexbox.itemsCenter,
-            Button(color = ButtonStyle.ColorBlue)("Invite Member"),
+            Button(
+              style = Button.Style.Full(color = Button.Color.Blue)
+            )("Invite Member"),
             <.p(Style.margin.left16, "New member will see all history.")
           ) /*>*/
         )()

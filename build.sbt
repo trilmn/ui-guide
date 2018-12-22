@@ -1,4 +1,3 @@
-import org.scalajs.core.tools.sem.Semantics.RuntimeClassNameMapper
 name := "anduin-design"
 
 lazy val commonSettings = Seq(

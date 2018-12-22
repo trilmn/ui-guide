@@ -71,7 +71,7 @@ done
 echo "[info] Linking JS: components at anduin.component ..."
 components=(
   button/Button.scala
-  button/ButtonLink.scala
+  button/ButtonTpe.scala
   button/ButtonStyle.scala
   card/Card.scala
   dropdown/Dropdown.scala
@@ -106,6 +106,7 @@ components=(
   portal/PortalUtils.scala
   portal/Position.scala
   progressindicators/RippleIndicator.scala
+  progressindicators/CircleIndicator.scala
   stepper/Stepper.scala
   stepper/StepperHeader.scala
   tab/Tab.scala

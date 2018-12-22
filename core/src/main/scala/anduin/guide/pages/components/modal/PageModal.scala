@@ -1,7 +1,7 @@
 package anduin.guide.pages.components.modal
 
 import anduin.guide.components._
-import anduin.component.button.{Button, ButtonStyle}
+import anduin.component.button.Button
 import anduin.component.input.textbox.TextBox
 import anduin.component.portal.PortalUtils.IsClosable
 import anduin.component.modal._
@@ -39,7 +39,7 @@ object PageModal {
       sampleArchiveBody(isBold),
       ModalFooterWCancel(cancel = close)(
         Button(
-          color = ButtonStyle.ColorRed,
+          style = Button.Style.Full(color = Button.Color.Red),
           onClick = Callback.alert("Deal archived") >> close
         )("Archive Deal")
       )
@@ -119,7 +119,7 @@ object PageModal {
           }, /*<*/
           renderTarget = open => {
             Button(
-              style = ButtonStyle.StyleLink,
+              style = Button.Style.Link(),
               onClick = open
             )("open a modal")
           } /*>*/
@@ -194,7 +194,7 @@ object PageModal {
                 Style.flexbox.itemsCenter,
                 <.p(Style.color.gray6, "Error code: 8AS13FHS"),
                 Button(
-                  color = ButtonStyle.ColorBlue,
+                  style = Button.Style.Full(color = Button.Color.Blue),
                   onClick = close
                 )("Okay")
               )
@@ -225,9 +225,8 @@ object PageModal {
           renderContent = close => {
             val footer = ModalFooterWCancel(cancel = close)(
               Button(
-                color = ButtonStyle.ColorRed,
-                onClick =
-                  Callback.alert("Deal archived") >> close
+                style = Button.Style.Full(color = Button.Color.Red),
+                onClick = Callback.alert("Deal archived") >> close
               )("Archive Deal")
             ) /*>*/
             React.Fragment(sampleArchiveBody(), footer)
@@ -367,8 +366,8 @@ object PageModal {
             val body = ModalBody()("Content")
             val submit = Callback.alert("Submitted") >> close
             val button = Button(
-              color = ButtonStyle.ColorBlue,
-              autoFocus = true,
+              style = Button.Style.Full(color = Button.Color.Blue),
+              tpe = Button.Tpe.TpeButton(isAutoFocus = true),
               onClick = submit
             )("Submit")
             val footer = ModalFooterWCancel(close)(button)

@@ -1,7 +1,8 @@
 package anduin.guide.pages.components.dropdown
 
 import anduin.guide.components._
-import anduin.component.button.{Button, ButtonStyle}
+
+import anduin.component.button.Button
 import anduin.component.dropdown.Dropdown
 import anduin.component.icon.Icon
 import anduin.component.input.checkbox.Checkbox
@@ -422,15 +423,15 @@ object PageDropdown {
             )()
           }
         )()
-        val button = Button(size = ButtonStyle.SizeIcon, style = ButtonStyle.StyleMinimal)
+        val minimal = Button.Style.Minimal
         <.div(
           Style.flexbox.flex.flexbox.itemsCenter,
           <.div(Style.width.px128, dropdown),
           VerticalDivider()(),
-          button(Icon(name = Icon.NameBold)()),
-          button(Icon(name = Icon.NameItalic)()),
-          button(Icon(name = Icon.NameUnderline)()),
-          button(Icon(name = Icon.NameStrikeThrough)()),
+          Button(style = minimal(icon = Some(Icon.NameBold)))(),
+          Button(style = minimal(icon = Some(Icon.NameItalic)))(),
+          Button(style = minimal(icon = Some(Icon.NameUnderline)))(),
+          Button(style = minimal(icon = Some(Icon.NameStrikeThrough)))()
         )
       }),
       Markdown(

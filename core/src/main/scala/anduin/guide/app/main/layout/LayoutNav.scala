@@ -62,12 +62,13 @@ object LayoutNav {
           Title("Component", Some(Component()), Some(_.isInstanceOf[ComponentT])),
           ul(
             li(
-              Title("Button", Some(Button()), Some(_.isInstanceOf[ButtonT])),
+              Title("Button", Some(Button())),
               ul(
                 li(Title("ButtonStyle", Some(ButtonStyle()))),
                 li(Title("ButtonLink", Some(ButtonLink())))
               )
             ),
+            li(Title("Button Test", Some(ButtonTest()))),
             li(Title("Card", Some(Card()))),
             li(Title("Dropdown", Some(Dropdown()))),
             li(Title("Field", Some(Field()))),

@@ -4,7 +4,6 @@ import anduin.guide.app.main.layout.Layout
 import anduin.guide.app.main.PageWrapper
 import anduin.guide.app.main.Pages._
 import anduin.guide.pages.brand.logo.PageLogo
-import anduin.guide.pages.components.button._
 import anduin.guide.pages.components.card.PageCard
 import anduin.guide.pages.components.checkbox.PageCheckbox
 import anduin.guide.pages.components.dropdown.PageDropdown

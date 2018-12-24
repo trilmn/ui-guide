@@ -5,6 +5,7 @@
 echo "[info] Clearing linked JS ..."
 rm -rf ${core_js}/style
 rm -rf ${core_js}/component
+rm -rf ${core_js}/scalajs
 
 echo "[info] Clearing linked CSS ..."
 rm -rf ${core_css}/tachyons

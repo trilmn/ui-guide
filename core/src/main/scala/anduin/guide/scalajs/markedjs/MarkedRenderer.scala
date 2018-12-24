@@ -1,4 +1,4 @@
-package anduin.scalajs.markedjs
+package anduin.guide.scalajs.markedjs
 
 import scala.scalajs.js
 import scala.scalajs.js.UndefOr

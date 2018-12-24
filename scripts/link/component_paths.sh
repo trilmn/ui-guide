@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+link_paths=(
+  button
+  card
+  dropdown
+  field
+  icon
+  input/checkbox
+  input/radio
+  input/textbox
+  menu
+  modal/Modal.scala
+  modal/ModalBody.scala
+  modal/ModalFooter.scala
+  modal/ModalFooterWCancel.scala
+  modal/ModalHeader.scala
+  popover
+  portal
+  progressindicators/RippleIndicator.scala
+  progressindicators/CircleIndicator.scala
+  stepper
+  tab/Tab.scala
+  tab/TabFull.scala
+  table
+  tag
+  toggle
+  tooltip
+  truncate
+  util/ComponentUtils.scala
+  util/EventUtils.scala
+  util/NodeListSeq.scala
+  well
+)

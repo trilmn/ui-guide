@@ -1,41 +1,30 @@
+# NOTE: Don't put "docs" here, we need it for
+# ghpages publishing
+
 # Scala & SBT
 target
 
 # Local config
 sgz_src.txt
 
-# Linked config
+# Linked content
 .scalafmt.conf
-
-# Linked JS
-core/src/main/scala/anduin/component
 core/src/main/scala/anduin/style
-core/src/main/scala/anduin/scalajs/focusvisible
-core/src/main/scala/anduin/scalajs/popper
-core/src/main/scala/anduin/scalajs/downshift
-core/src/main/scala/anduin/scalajs/util
-core/src/main/scala/anduin/scalajs/reacttruncatemarkup
-core/src/main/scala/anduin/scalajs/textmask
-core/src/main/scala/anduin/scalajs/reactvirtualized
-
-# Linked CSS
+core/src/main/scala/anduin/component
+core/src/main/scala/anduin/scalajs
 core/src/main/resources/stylesheets/tachyons
 core/src/main/resources/stylesheets/_base.scss
 
-# Generated CSS (dev)
+# Generated content
 core/src/main/resources/stylesheets/core-fastopt.css
 core/src/main/resources/stylesheets/core-fastopt.css.map
 
 # IDE
 .idea
-
-# NOTE: Don't put "docs" here, we need it for
-# ghpages publishing
+*.iml
+*.swp
 
 # NPM
 node_modules
-scripts/dev-serve/node_modules
-scripts/dev-serve/yarn-error.log
+*.log
 .sass-cache/
-
-*.iml

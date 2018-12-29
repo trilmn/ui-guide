@@ -23,6 +23,9 @@ do
   # suffix
   if [[ ${path} == *".scala" ]]; then
     ln -sf ${source}/${path} ${target}/${path}
+  elif [[ ${path} == *"/"* ]]; then
+    parent_path="$(echo ${path} | rev | cut -d"/" -f2- | rev)"
+    ln -sf ${source}/${path} ${target}/${parent_path}/
   else
     ln -sf ${source}/${path} ${target}/
   fi

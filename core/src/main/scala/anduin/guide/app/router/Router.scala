@@ -7,6 +7,7 @@ import anduin.guide.pages.brand.logo.PageLogo
 import anduin.guide.pages.components.card.PageCard
 import anduin.guide.pages.components.checkbox.PageCheckbox
 import anduin.guide.pages.components.dropdown.PageDropdown
+import anduin.guide.pages.components.button.PageButton
 import anduin.guide.pages.components.field.PageField
 import anduin.guide.pages.components.home.PageComponent
 import anduin.guide.pages.components.icon.PageIcon
@@ -53,7 +54,7 @@ object Router {
       | dynamicRouteCT("typography-fixed" ~ hash.caseClass[FixedLineHeight]) ~> getRender(() => Promise.resolve[RenderFn](PageFixedLineHeight.render _))
       // Component
       | dynamicRouteCT("component" ~ hash.caseClass[Component]) ~> getRender(() => Promise.resolve[RenderFn](PageComponent.render _))
-      | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))
+      | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> getRender(() => Promise.resolve[RenderFn](PageButton.render _))
       | dynamicRouteCT("button-test" ~ hash.caseClass[ButtonTest]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))
       | dynamicRouteCT("button-link" ~ hash.caseClass[ButtonLink]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))
       | dynamicRouteCT("button-style" ~ hash.caseClass[ButtonStyle]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))

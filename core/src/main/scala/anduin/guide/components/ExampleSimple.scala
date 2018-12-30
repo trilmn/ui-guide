@@ -1,12 +1,13 @@
 package anduin.guide.components
 
+import anduin.guide.components.ExampleSimple.BgColor
 import anduin.style.Style
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 final case class ExampleSimple(
   label: String = "",
-  isBgGray: Boolean = false
+  bgColor: ExampleSimple.BgColor = BgColor.White
 ) {
   def apply(children: VdomNode*): VdomElement = {
     ExampleSimple.component(this)(children: _*)
@@ -17,17 +18,20 @@ object ExampleSimple {
 
   private type Props = ExampleSimple
 
+  sealed abstract class BgColor(val inner: TagMod, val outer: TagMod)
+  object BgColor {
+    object White extends BgColor(Style.backgroundColor.white, Style.backgroundColor.gray1)
+    object Gray2 extends BgColor(Style.backgroundColor.gray2, Style.backgroundColor.gray1)
+    object Gray8 extends BgColor(Style.backgroundColor.gray8, Style.backgroundColor.gray9)
+  }
+
   private def render(props: Props, children: PropsChildren): VdomElement = {
     val styles = TagMod(
-      Style.backgroundColor.gray1.padding.all4,
+      props.bgColor.outer,
+      Style.padding.all4,
       Style.fontSize.px13.lineHeight.px20.fontFamily.sans
     )
-    val example = <.div(
-      Style.padding.all16,
-      if (props.isBgGray) Style.backgroundColor.gray2
-      else Style.backgroundColor.white,
-      children
-    )
+    val example = <.div(Style.padding.all16, props.bgColor.inner, children)
     val label = TagMod.when(!props.label.isEmpty) {
       <.figcaption(Style.padding.hor16.padding.top4, Markdown(props.label)())
     }

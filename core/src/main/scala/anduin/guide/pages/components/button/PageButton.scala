@@ -1,7 +1,10 @@
 package anduin.guide.pages.components.button
 
 import anduin.component.button.Button
+import anduin.component.field.Field
+import anduin.component.icon.Icon
 import anduin.component.input.textbox.TextBox
+import anduin.component.modal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
 import anduin.guide.app.main.Pages
 import anduin.guide.components._
 import anduin.mcro.Source
@@ -146,19 +149,106 @@ object PageButton {
       }))(),
       Markdown(
         s"""
-           |
            |# Style
            |
+           |```scala
+           |style: Button.Style = Button.Style.Full
+           |```
+           |
+           |The `style` prop defines Button's appearance. There are four
+           |styles, with further customization (e.g. color) in each:
+           |
            |## Style Full
+           |
+           |```scala
+           |final case class Full(
+           |  color: Color = Color.White,
+           |  size: Size = Size.Fix32,
+           |  icon: Option[Icon.Name] = None,
+           |  isFullWidth: Boolean = false,
+           |  isSelected: Boolean = false,
+           |  isBusy: Boolean = false
+           |)
+           |```
+           |
+           |Button's default style, `Full`, has the highest emphasis with
+           |background color, border and shadow. They should be used when the
+           |Button(s) needs to stand out from nearby elements:
            |
            |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
-        Button(
-          )()
+        Button()("Full")
       }))(),
       Markdown(
         s"""
+           |### Color
+           |
+           |Style `Full` provides 4 colors to choose from. The name of each
+           |color indicates its background, with "White" is the default one:
+           |
+           |""".stripMargin
+      )(),
+      ExampleSimple()({
+        import Button.Color._
+        ColorIntro(
+          getStyle = color => Button.Style.Full(color = color),
+          colors = List(White, Black, Blue, Red),
+          default = White
+        )()
+      }),
+      Markdown(
+        s"""
+           |On light background, `White` should be used for most cases, with a
+           |`Blue` to highlight the primary one when necessary:
+           |""".stripMargin
+      )(),
+      FullColorEg(
+        bg = ExampleSimple.BgColor.White,
+        primary = Button.Color.Blue,
+        secondary = Button.Color.White
+      )(),
+      Markdown(
+        s"""
+           |`Black` can be used as an alternative primary on light background:
+         """.stripMargin
+      )(),
+      FullColorEg(
+        bg = ExampleSimple.BgColor.White,
+        primary = Button.Color.Black,
+        secondary = Button.Color.White
+      )(),
+      Markdown(
+        s"""
+           |…or as a secondary one on dark background:
+         """.stripMargin
+      )(),
+      FullColorEg(
+        bg = ExampleSimple.BgColor.Gray8,
+        primary = Button.Color.Blue,
+        secondary = Button.Color.Black
+      )(),
+      Markdown(
+        s"""
+           |`Red` should be used for destructive actions, such as archiving
+           |deals. Note that only the final action, usually in confirmation
+           |Modals, does need the color `Red`:
+           |
+           |""".stripMargin
+      )(),
+      ExampleSimple()(ArchiveExample()()),
+      Markdown(
+        s"""
+           |
+           |### Size
+           |
+           |### Icon
+           |
+           |### Width
+           |
+           |### Selected
+           |
+           |### Busy
            |
            |## Style Ghost
            |

@@ -18,6 +18,8 @@ object Heading {
   def getId(text: String): String = {
     if (text == "_top") {
       ""
+    } else if (text.contains("[") && text.endsWith("]")) {
+      text.substring(text.indexOf("[") + 1, text.indexOf("]"))
     } else {
       text
         .toLowerCase()
@@ -34,7 +36,7 @@ object Heading {
     case 4 => <.h5(Style.fontSize.px20)
   }
 
-  private def renderLinkSelf(id: String): VdomElement = {
+  private def renderLink(id: String): VdomElement = {
     <.a(
       Style.position.absolute.fontWeight.normal,
       ^.left := "-1em",
@@ -44,13 +46,18 @@ object Heading {
     )
   }
 
+  def getTitle(content: String): String = {
+    content
+      .replaceAll("\\[.*\\]", "")
+  }
+
   private def render(props: Props): VdomElement = {
     val id = getId(props.content)
     getTag(props)(
       Style.position.relative,
       ^.id := id,
-      <.span(^.dangerouslySetInnerHtml := props.content),
-      renderLinkSelf(id)
+      <.span(^.dangerouslySetInnerHtml := getTitle(props.content)),
+      renderLink(id)
     )
   }
 

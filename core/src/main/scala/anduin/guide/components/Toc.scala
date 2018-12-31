@@ -1,6 +1,6 @@
 package anduin.guide.components
 
-import anduin.guide.components.Heading.getId
+import anduin.guide.components.Heading.{getId, getTitle}
 import anduin.style.Style
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
@@ -44,7 +44,7 @@ object Toc {
   )
 
   private def renderLink(title: String): VdomElement = {
-    <.a(linkStyles, ^.href := s"#${getId(title)}", title)
+    <.a(linkStyles, ^.href := s"#${getId(title)}", getTitle(title))
   }
 
   private def renderChild(title: String): VdomElement = {

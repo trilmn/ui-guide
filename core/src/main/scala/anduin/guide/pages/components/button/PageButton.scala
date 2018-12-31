@@ -187,32 +187,31 @@ object PageButton {
            |
            |""".stripMargin
       )(),
-      ExampleSimple()({
-        ColorIntro(
-          getStyle = color => Button.Style.Full(color = color),
-          colors = List(Color.White, Color.Black, Color.Blue, Color.Red),
-          default = Color.White
-        )()
-      }),
+      CommonColorExample(
+        bgColor = ExampleSimple.BgColor.White,
+        getStyle = color => Button.Style.Full(color = color),
+        colors = List(Color.White, Color.Black, Color.Blue, Color.Red),
+        default = Some(Color.White)
+      )(),
       Markdown(
         s"""
            |On light background, `White` should be used for most cases, with a
            |`Blue` to highlight the primary one when necessary:
            |""".stripMargin
       )(),
-      FullColorEg(ExampleSimple.BgColor.White, Color.Blue, Color.White)(),
+      FullColorExample(ExampleSimple.BgColor.White, Color.Blue, Color.White)(),
       Markdown(
         s"""
            |`Black` can be used as an alternative primary on light background:
          """.stripMargin
       )(),
-      FullColorEg(ExampleSimple.BgColor.White, Button.Color.Black, Button.Color.White)(),
+      FullColorExample(ExampleSimple.BgColor.White, Button.Color.Black, Button.Color.White)(),
       Markdown(
         s"""
            |…or as a secondary one on dark background:
          """.stripMargin
       )(),
-      FullColorEg(ExampleSimple.BgColor.Gray8, Color.Blue, Color.Black)(),
+      FullColorExample(ExampleSimple.BgColor.Gray8, Color.Blue, Color.Black)(),
       Markdown(
         s"""
            |`Red` should be used for destructive actions, such as archiving
@@ -221,21 +220,47 @@ object PageButton {
            |
            |""".stripMargin
       )(),
-      ExampleSimple()(ArchiveExample()()),
+      ExampleSimple()(FullArchiveExample()()),
       Markdown(
         s"""
            |
            |### Size
            |
-           |### Icon
+           |""".stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        <.div(
+          Style.flexbox.flex,
+          Button(style = Button.Style.Full(size = Button.Size.Fix24))("Fix24"),
+          Button(style = Button.Style.Full(size = Button.Size.Fix32))("Fix32"),
+          Button(style = Button.Style.Full(size = Button.Size.Fix40))("Fix40")
+        )
+      }))(),
+      Markdown(
+        s"""
            |
            |### Width
+           |
+           |### Icon
            |
            |### Selected
            |
            |### Busy
            |
            |## Ghost
+           |
+           |### Color [ghost-color]
+           |
+           |""".stripMargin
+      )(),
+      CommonColorExample(
+        bgColor = ExampleSimple.BgColor.White,
+        getStyle = color => Button.Style.Ghost(color = color),
+        colors = List(Color.Black, Color.Blue, Color.Red),
+        default = Some(Color.Black)
+      )(),
+      Markdown(
+        s"""
            |
            |## Minimal
            |

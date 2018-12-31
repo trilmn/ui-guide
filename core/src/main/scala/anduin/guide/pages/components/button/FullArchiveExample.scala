@@ -11,14 +11,13 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-final case class ArchiveExample(
-                               ) {
-  def apply(): VdomElement = ArchiveExample.component(this)
+final case class FullArchiveExample() {
+  def apply(): VdomElement = FullArchiveExample.component(this)
 }
 
-object ArchiveExample {
+object FullArchiveExample {
 
-  private type Props = ArchiveExample
+  private type Props = FullArchiveExample
 
   private def render(props: Props): VdomElement = {
     Modal(

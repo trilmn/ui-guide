@@ -12,17 +12,17 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-final case class FullColorEg(
+final case class FullColorExample(
   bg: ExampleSimple.BgColor,
   primary: Button.Color,
   secondary: Button.Color
 ) {
-  def apply(): VdomElement = FullColorEg.component(this)
+  def apply(): VdomElement = FullColorExample.component(this)
 }
 
-object FullColorEg {
+object FullColorExample {
 
-  private type Props = FullColorEg
+  private type Props = FullColorExample
 
   private def renderButton(color: Button.Color, icon: Icon.Name, text: VdomNode): VdomElement = {
     val button = Button(style = Button.Style.Full(color, icon = Some(icon)))(text)

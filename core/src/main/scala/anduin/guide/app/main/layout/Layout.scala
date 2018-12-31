@@ -45,8 +45,7 @@ object Layout {
 
   private def renderBody(res: Res) = {
     <.div(
-      // Style.margin.horAuto,
-      Style.padding.left32,
+      Style.margin.horAuto,
       ^.width := "576px",
       res.render()
     )
@@ -57,7 +56,7 @@ object Layout {
       Style.lineHeight.px32,
       ^.fontSize := "19px",
       ^.className := "ad-ff-sans",
-      // renderSidebar(ctl, res),
+      renderSidebar(ctl, res),
       renderBody(res)
     )
   }

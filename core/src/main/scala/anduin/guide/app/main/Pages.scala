@@ -21,9 +21,6 @@ object Pages {
   // component
   sealed trait ComponentT extends Page
   case class Button(hash: String = "") extends ComponentT
-  case class ButtonLink(hash: String = "") extends ComponentT
-  case class ButtonStyle(hash: String = "") extends ComponentT
-  case class ButtonTest(hash: String = "") extends ComponentT
   case class Card(hash: String = "") extends ComponentT
   case class Checkbox(hash: String = "") extends ComponentT
   case class Component(hash: String = "") extends ComponentT

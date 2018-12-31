@@ -2,10 +2,8 @@
 
 package anduin.guide.pages.components.button
 
-import anduin.component.button.Button
-import anduin.component.button.Button.Color
 import anduin.guide.app.main.Pages
-import anduin.guide.components.{ExampleSimple, Markdown}
+import anduin.guide.components.Markdown
 import anduin.mcro.Source
 
 // scalastyle:off underscore.import
@@ -22,7 +20,10 @@ private[button] object PageButtonStyle {
   private type Props = PageButtonStyle
 
   def getHeadings: Seq[(Int, String)] =
-    Source.getTocHeadings ++ PageButtonStyleFull.getHeadings
+    Source.getTocHeadings ++
+      PageButtonStyleFull.getHeadings ++
+      PageButtonStyleGhost.getHeadings ++
+      PageButtonStyleMinimal.getHeadings
 
   private def render(props: Props): VdomElement = <.div(
     Markdown(
@@ -39,29 +40,8 @@ private[button] object PageButtonStyle {
         |""".stripMargin
     )(),
     PageButtonStyleFull(props.ctl)(),
-    Markdown(
-      """
-        |## Ghost
-        |
-        |### Color [ghost-color]
-        |
-        |""".stripMargin
-    )(),
-    CommonColorExample(
-      bgColor = ExampleSimple.BgColor.White,
-      getStyle = color => Button.Style.Ghost(color = color),
-      colors = List(Color.Black, Color.Blue, Color.Red),
-      default = Some(Color.Black)
-    )(),
-    Markdown(
-      """
-        |
-        |## Minimal
-        |
-        |## Link [style-link]
-        |
-        |""".stripMargin
-    )(),
+    PageButtonStyleGhost()(),
+    PageButtonStyleMinimal()()
   )
 
   private val component = ScalaComponent

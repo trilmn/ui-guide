@@ -32,17 +32,28 @@ private[button] object PageButtonStyleFull {
           |## Full
           |
           |```scala
-          |case class Full( /* further customization* / )
+          |case class Full(/* further customization */)
           |```
           |
-          |Button's default style, `Full`, has the highest emphasis with
-          |background color, border and shadow. They should be used when your
-          |Button(s) needs to stand out from nearby elements:
+          |Button's default style, `Full`, has the highest emphasis. They
+          |have background color, border and shadow all defined.
+          |
+          |`Full` should be used to make your Button stands out from nearby
+          |elements, or even attracts attention:
           |
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
-        Button()("Full")
+        <.div(
+          Style.flexbox.flex,
+          Button(
+            style = Button.Style.Full(color = Button.Color.Blue)
+          )("Submit"),
+          <.div(Style.margin.left8),
+          Button(
+            style = Button.Style.Full()
+          )("Cancel")
+        )
       }))(),
       Markdown(
         """
@@ -76,6 +87,8 @@ private[button] object PageButtonStyleFull {
       )(),
       Markdown(
         """
+          |### Color Usage
+          |
           |On light background, `White` should be used for most cases, with a
           |`Blue` to highlight the primary one when necessary:
           |""".stripMargin

@@ -106,7 +106,7 @@ object PageModal {
            |limitation:
            |
            |[1]: ${ctl.urlFor(Pages.Button()).value}
-           |[2]: ${ctl.urlFor(Pages.ButtonStyle()).value}
+           |[2]: ${ctl.urlFor(Pages.Button("#style")).value}
            |
            |""".stripMargin
       )(),

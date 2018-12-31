@@ -55,9 +55,6 @@ object Router {
       // Component
       | dynamicRouteCT("component" ~ hash.caseClass[Component]) ~> getRender(() => Promise.resolve[RenderFn](PageComponent.render _))
       | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> getRender(() => Promise.resolve[RenderFn](PageButton.render _))
-      | dynamicRouteCT("button-test" ~ hash.caseClass[ButtonTest]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))
-      | dynamicRouteCT("button-link" ~ hash.caseClass[ButtonLink]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))
-      | dynamicRouteCT("button-style" ~ hash.caseClass[ButtonStyle]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))
       | dynamicRouteCT("card" ~ hash.caseClass[Card]) ~> getRender(() => Promise.resolve[RenderFn](PageCard.render _))
       | dynamicRouteCT("checkbox" ~ hash.caseClass[Checkbox]) ~> getRender(() => Promise.resolve[RenderFn](PageCheckbox.render _))
       | dynamicRouteCT("collapse" ~ hash.caseClass[Toggle]) ~> getRender(() => Promise.resolve[RenderFn](PageToggle.render _))

@@ -1,10 +1,8 @@
 package anduin.guide.pages.components.button
 
 import anduin.component.button.Button
-import anduin.component.field.Field
-import anduin.component.icon.Icon
+import anduin.component.button.Button._
 import anduin.component.input.textbox.TextBox
-import anduin.component.modal.{Modal, ModalBody, ModalFooter, ModalFooterWCancel}
 import anduin.guide.app.main.Pages
 import anduin.guide.components._
 import anduin.mcro.Source
@@ -44,7 +42,7 @@ object PageButton {
       )(),
       Markdown(
         """
-          |## Type Button
+          |## Button
           |
           |```scala
           |Button.Tpe.TpeButton(isAutoFocus: Boolean = false)
@@ -65,7 +63,7 @@ object PageButton {
       }))(),
       Markdown(
         """
-          |## Type Submit
+          |## Submit
           |
           |```scala
           |Button.Tpe.Submit(isAutoFocus: Boolean = false)
@@ -106,7 +104,7 @@ object PageButton {
       Markdown(
         s"""
            |
-           |## Type Link
+           |## Link [type-link]
            |
            |```scala
            |Button.Tpe.Link(
@@ -158,7 +156,7 @@ object PageButton {
            |The `style` prop defines Button's appearance. There are four
            |styles, with further customization (e.g. color) in each:
            |
-           |## Style Full
+           |## Full
            |
            |```scala
            |final case class Full(
@@ -182,7 +180,7 @@ object PageButton {
       }))(),
       Markdown(
         s"""
-           |### Color
+           |### Color [full-color]
            |
            |Style `Full` provides 4 colors to choose from. The name of each
            |color indicates its background, with "White" is the default one:
@@ -190,11 +188,10 @@ object PageButton {
            |""".stripMargin
       )(),
       ExampleSimple()({
-        import Button.Color._
         ColorIntro(
           getStyle = color => Button.Style.Full(color = color),
-          colors = List(White, Black, Blue, Red),
-          default = White
+          colors = List(Color.White, Color.Black, Color.Blue, Color.Red),
+          default = Color.White
         )()
       }),
       Markdown(
@@ -203,31 +200,19 @@ object PageButton {
            |`Blue` to highlight the primary one when necessary:
            |""".stripMargin
       )(),
-      FullColorEg(
-        bg = ExampleSimple.BgColor.White,
-        primary = Button.Color.Blue,
-        secondary = Button.Color.White
-      )(),
+      FullColorEg(ExampleSimple.BgColor.White, Color.Blue, Color.White)(),
       Markdown(
         s"""
            |`Black` can be used as an alternative primary on light background:
          """.stripMargin
       )(),
-      FullColorEg(
-        bg = ExampleSimple.BgColor.White,
-        primary = Button.Color.Black,
-        secondary = Button.Color.White
-      )(),
+      FullColorEg(ExampleSimple.BgColor.White, Button.Color.Black, Button.Color.White)(),
       Markdown(
         s"""
            |…or as a secondary one on dark background:
          """.stripMargin
       )(),
-      FullColorEg(
-        bg = ExampleSimple.BgColor.Gray8,
-        primary = Button.Color.Blue,
-        secondary = Button.Color.Black
-      )(),
+      FullColorEg(ExampleSimple.BgColor.Gray8, Color.Blue, Color.Black)(),
       Markdown(
         s"""
            |`Red` should be used for destructive actions, such as archiving
@@ -250,11 +235,11 @@ object PageButton {
            |
            |### Busy
            |
-           |## Style Ghost
+           |## Ghost
            |
-           |## Style Minimal
+           |## Minimal
            |
-           |## Style Link
+           |## Link [style-link]
            |
            |# Disabled
            |

@@ -62,7 +62,7 @@ object PageButtonStyleMinimal {
         |[`isSelected`](#full-selected), [`isFullWidth`](#full-width) and
         |[`isBusy`](#full-busy). Their usages and default values are the same.
         |""".stripMargin
-    )(),
+    )()
   )
 
   private val component = ScalaComponent

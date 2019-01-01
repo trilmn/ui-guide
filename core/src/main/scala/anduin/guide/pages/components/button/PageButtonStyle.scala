@@ -23,7 +23,8 @@ private[button] object PageButtonStyle {
     Source.getTocHeadings ++
       PageButtonStyleFull.getHeadings ++
       PageButtonStyleGhost.getHeadings ++
-      PageButtonStyleMinimal.getHeadings
+      PageButtonStyleMinimal.getHeadings ++
+      PageButtonStyleLink.getHeadings
 
   private def render(props: Props): VdomElement = <.div(
     Markdown(
@@ -41,7 +42,8 @@ private[button] object PageButtonStyle {
     )(),
     PageButtonStyleFull(props.ctl)(),
     PageButtonStyleGhost()(),
-    PageButtonStyleMinimal()()
+    PageButtonStyleMinimal()(),
+    PageButtonStyleLink()()
   )
 
   private val component = ScalaComponent

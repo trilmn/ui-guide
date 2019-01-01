@@ -55,7 +55,7 @@ object PageButtonStyleGhost {
         |### Color [ghost-color]
         |
         |```scala
-        |color: Button.Color = Button.Color.White
+        |color: Button.Color = Button.Color.Black
         |```
         |
         |The `color` parameter of a Ghost Button controls its text and border

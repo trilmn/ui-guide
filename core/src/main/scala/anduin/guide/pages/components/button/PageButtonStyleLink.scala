@@ -90,7 +90,7 @@ object PageButtonStyleLink {
       bgColor = ExampleSimple.BgColor.White,
       getStyle = color => Button.Style.Link(color = color),
       colors = List(Color.Black, Color.Blue, Color.Red),
-      default = Some(Color.Blue)
+      default = None
     )()
   )
 

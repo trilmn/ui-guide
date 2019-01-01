@@ -82,13 +82,11 @@ private[button] object PageButtonType {
         SimpleState.Str(
           initialValue = "",
           render = (value, setValue) => {
-            val text = TextBox(value, setValue, placeholder = "Name...")()
-            val button = Button(tpe = Button.Tpe.Submit())("Submit")
             <.form(
               Style.flexbox.flex,
               ^.onSubmit ==> (_.preventDefaultCB >> Callback.alert("a")),
-              <.div(Style.width.px128, text),
-              <.div(Style.margin.left8, button)
+              <.div(Style.width.px128, TextBox(value, setValue, placeholder = "Name...")()),
+              <.div(Style.margin.left8, Button(tpe = Button.Tpe.Submit())("Submit"))
             )
           }
         )()

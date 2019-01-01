@@ -13,15 +13,15 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-final case class CommonSizeExample(
+final case class FullSizeExample(
   getStyle: Button.Size => Button.Style,
 ) {
-  def apply(): VdomElement = CommonSizeExample.component(this)
+  def apply(): VdomElement = FullSizeExample.component(this)
 }
 
-object CommonSizeExample {
+object FullSizeExample {
 
-  private type Props = CommonSizeExample
+  private type Props = FullSizeExample
 
   private val sizes = List(Fix24, Fix32, Fix40)
 

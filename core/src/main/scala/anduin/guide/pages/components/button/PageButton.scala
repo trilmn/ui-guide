@@ -14,7 +14,7 @@ object PageButton {
       Toc(
         headings = PageButtonType.getHeadings ++
           PageButtonStyle.getHeadings ++
-          Source.getTocHeadings
+          PageButtonDisabled.getHeadings
       )(),
       Markdown(
         """
@@ -28,13 +28,7 @@ object PageButton {
       }))(),
       PageButtonType()(),
       PageButtonStyle(ctl)(),
-      Markdown(
-        """
-          |
-          |# Disabled
-          |
-          """.stripMargin
-      )()
+      PageButtonDisabled()()
     )
   }
 }

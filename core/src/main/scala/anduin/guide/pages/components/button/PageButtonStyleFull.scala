@@ -138,7 +138,7 @@ private[button] object PageButtonStyleFull {
           |Buttons, which should be most cases:
           |""".stripMargin
       )(),
-      CommonSizeExample(size => Button.Style.Full(size = size))(),
+      FullSizeExample(size => Button.Style.Full(size = size))(),
       Markdown(
         """
           |The other one is `Free`, which has no pre-defined styles. It allows

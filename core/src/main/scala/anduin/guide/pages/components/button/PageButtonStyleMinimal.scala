@@ -48,8 +48,8 @@ object PageButtonStyleMinimal {
     Markdown(
       """
         |`Minimal` should only be used where the surrounding context already
-        |provided enough visual hint that they are interactive content. For 
-        |example, inside a Toolbar:
+        |provided enough visual hint that they are interactive content. A good
+        |example is actions inside a Toolbar:
         |""".stripMargin
     )(),
     MinimalToolbarExample()(),

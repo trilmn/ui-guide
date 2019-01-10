@@ -12,10 +12,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-final case class LayoutNav(
-  ctl: Pages.Ctl,
-  page: Page
-) {
+final case class LayoutNav(ctl: Pages.Ctl, page: Page) {
   def apply(): VdomElement = LayoutNav.component(this)
 }
 
@@ -65,6 +62,7 @@ object LayoutNav {
             li(Title("Card", Some(Card()))),
             li(Title("Dropdown", Some(Dropdown()))),
             li(Title("Field", Some(Field()))),
+            li(Title("Circle Indicator", Some(CircleIndicator()))),
             li(Title("Icon", Some(Icon()))),
             li(Title("Illus", Some(Illus()))),
             li(Title("Illus Folder", Some(IllusFolder()))),

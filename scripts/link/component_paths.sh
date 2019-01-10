@@ -10,11 +10,7 @@ link_paths=(
   input/radio
   input/textbox
   menu
-  modal/Modal.scala
-  modal/ModalBody.scala
-  modal/ModalFooter.scala
-  modal/ModalFooterWCancel.scala
-  modal/ModalHeader.scala
+  modal
   popover
   portal
   progressindicators/RippleIndicator.scala

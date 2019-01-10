@@ -302,7 +302,7 @@ object PageModal {
           renderTarget = open => Button(onClick = open)("Open 960px Modal"),
           renderContent = _ => ModalBody()("Hello world"),
           /*<*/
-          size = Modal.Size960 /*>*/
+          size = Modal.Size(Modal.Width.Px960) /*>*/
         )() /*<*/
       }))(),
       Markdown(
@@ -334,7 +334,7 @@ object PageModal {
               "Open a Full-screen Modal"
           ),
           renderContent = _ => ModalBody()("Hello world"), /*<*/
-          size = Modal.SizeFull /*>*/
+          size = Modal.Size(Modal.Width.Full, Modal.Height.Full) /*>*/
         )() /*<*/
       }))(),
       Markdown(
@@ -524,7 +524,7 @@ object PageModal {
           renderTarget = open => Button(onClick = open)("Open Modal"),
           renderContent = _ => ModalBody()("welcome content"), /*<*/
           /* url = ctl.pathFor(Pages.Welcome()).value, */ /*>*/
-          size = Modal.Size1160
+          size = Modal.Size(Modal.Width.Px1160)
         )() /*<*/
       }))(),
       Markdown(

@@ -3,7 +3,7 @@
 package anduin.guide.pages.components.button
 
 import anduin.component.button.Button
-import anduin.component.button.Button.Size._
+import anduin.component.button.Button.Height._
 import anduin.component.tag.Tag
 import anduin.guide.components.ExampleSimple
 import anduin.style.Style
@@ -13,15 +13,15 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-final case class FullSizeExample(
-  getStyle: Button.Size => Button.Style,
+final case class FullHeightExample(
+  getStyle: Button.Height => Button.Style,
 ) {
-  def apply(): VdomElement = FullSizeExample.component(this)
+  def apply(): VdomElement = FullHeightExample.component(this)
 }
 
-object FullSizeExample {
+object FullHeightExample {
 
-  private type Props = FullSizeExample
+  private type Props = FullHeightExample
 
   private val sizes = List(Fix24, Fix32, Fix40)
 
@@ -32,10 +32,10 @@ object FullSizeExample {
     )
   }
 
-  private def renderButton(props: Props)(size: Button.Size): VdomElement = {
-    val name = size.getClass.getSimpleName
-    val tagOpt = if (size == Fix32) Some(tag) else None
-    val button = Button(style = props.getStyle(size))(name)
+  private def renderButton(props: Props)(height: Button.Height): VdomElement = {
+    val name = height.getClass.getSimpleName
+    val tagOpt = if (height == Fix32) Some(tag) else None
+    val button = Button(style = props.getStyle(height))(name)
     <.div(^.key := name, Style.margin.right8, button, tagOpt)
   }
 

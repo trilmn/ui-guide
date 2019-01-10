@@ -116,29 +116,29 @@ private[button] object PageButtonStyleFull {
       ExampleSimple()(FullArchiveExample()()),
       Markdown(
         """
-          |### Size
+          |### Height
           |
           |```scala
-          |size: Button.Size = Button.Size.Fix32
+          |height: Button.Height = Button.Height.Fix32
           |```
           |
-          |The `size` parameter controls Button's height, with matching font
+          |The `height` parameter controls Button's height, with matching font
           |size and padding:
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
         Button(
-          style = Button.Style.Full(size = Button.Size.Fix40)
+          style = Button.Style.Full(height = Button.Height.Fix40)
         )("Big Button")
       }))(),
       Markdown(
         """
-          |There are 2 types of `size`. The first one are fixed values,
+          |There are 2 types of `height`. The first one are fixed values,
           |named by their height in pixel. These are suitable for single-line
           |Buttons, which should be most cases:
           |""".stripMargin
       )(),
-      FullSizeExample(size => Button.Style.Full(size = size))(),
+      FullHeightExample(height => Button.Style.Full(height = height))(),
       Markdown(
         """
           |The other one is `Free`, which has no pre-defined styles. It allows
@@ -153,7 +153,7 @@ private[button] object PageButtonStyleFull {
           <.span(Style.margin.top4, "Strike")
         )
         Button(
-          style = Button.Style.Full(size = Button.Size.Free)
+          style = Button.Style.Full(height = Button.Height.Free)
         )(content)
       }))(),
       Markdown(

@@ -2,9 +2,8 @@
 
 package anduin.guide.app.main
 
-import anduin.component.progressindicators.RippleIndicator
+import anduin.component.progressindicators.BlockIndicator
 import anduin.guide.app.main.Pages.Ctl
-import anduin.style.Style
 
 import scala.scalajs.js
 import scala.scalajs.js.Promise
@@ -28,11 +27,7 @@ object PageWrapper {
 
   private case class State(renderFnOpt: Option[RenderFn])
 
-  private val loading: VdomElement = <.div(
-    Style.width.pc100.height.vh100,
-    Style.flexbox.flex.flexbox.itemsCenter.flexbox.justifyCenter,
-    RippleIndicator()()
-  )
+  private val loading: VdomElement = BlockIndicator()()
 
   private def renderPage(props: Props)(renderFn: RenderFn): VdomElement = {
     <.div(^.padding := "48px 0", renderFn(props.ctl))

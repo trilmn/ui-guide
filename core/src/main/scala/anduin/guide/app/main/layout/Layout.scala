@@ -56,7 +56,7 @@ object Layout {
       Style.lineHeight.px32,
       ^.fontSize := "19px",
       ^.className := "ad-ff-sans",
-      renderSidebar(ctl, res),
+      // renderSidebar(ctl, res),
       renderBody(res)
     )
   }

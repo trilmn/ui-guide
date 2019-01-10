@@ -23,7 +23,7 @@ object Pages {
   case class Button(hash: String = "") extends ComponentT
   case class Card(hash: String = "") extends ComponentT
   case class Checkbox(hash: String = "") extends ComponentT
-  case class CircleIndicator(hash: String = "") extends ComponentT
+  case class ProgressIndicator(hash: String = "") extends ComponentT
   case class Component(hash: String = "") extends ComponentT
   case class Dropdown(hash: String = "") extends ComponentT
   case class Field(hash: String = "") extends ComponentT

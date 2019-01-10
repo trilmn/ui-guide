@@ -12,7 +12,7 @@ import anduin.guide.pages.components.field.PageField
 import anduin.guide.pages.components.home.PageComponent
 import anduin.guide.pages.components.icon.PageIcon
 import anduin.guide.pages.components.illus.{PageIllus, PageIllusFolder}
-import anduin.guide.pages.components.indicators.PageCircleIndicator
+import anduin.guide.pages.components.progressindicator.PageProgressIndicator
 import anduin.guide.pages.components.modal.PageModal
 import anduin.guide.pages.components.popover.PagePopover
 import anduin.guide.pages.components.stepper.PageStepper
@@ -58,7 +58,7 @@ object Router {
       | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> getRender(() => Promise.resolve[RenderFn](PageButton.render _))
       | dynamicRouteCT("card" ~ hash.caseClass[Card]) ~> getRender(() => Promise.resolve[RenderFn](PageCard.render _))
       | dynamicRouteCT("checkbox" ~ hash.caseClass[Checkbox]) ~> getRender(() => Promise.resolve[RenderFn](PageCheckbox.render _))
-      | dynamicRouteCT("circle-indicator" ~ hash.caseClass[CircleIndicator]) ~> getRender(() => Promise.resolve[RenderFn](PageCircleIndicator.render _))
+      | dynamicRouteCT("progress-indicator" ~ hash.caseClass[ProgressIndicator]) ~> getRender(() => Promise.resolve[RenderFn](PageProgressIndicator.render _))
       | dynamicRouteCT("collapse" ~ hash.caseClass[Toggle]) ~> getRender(() => Promise.resolve[RenderFn](PageToggle.render _))
       | dynamicRouteCT("dropdown" ~ hash.caseClass[Dropdown]) ~> getRender(() => Promise.resolve[RenderFn](PageDropdown.render _))
       | dynamicRouteCT("field" ~ hash.caseClass[Field]) ~> getRender(() => Promise.resolve[RenderFn](PageField.render _))

@@ -197,15 +197,13 @@ object PageTable {
           |
           |## Style
           |
-          |At the moment Table supports 2 styles: `StyleFull` and
-          |`StyleMinimal`.
+          |Table supports 2 styles: `Full` and `Minimal`.
           |
-          |**`StyleFull` has outer border** and thus should be used when
-          |there are other content around the table. This is the default value.
+          |**`Full` has outer border** and thus should be used when there are
+          |other content around the table. This is the default value.
           |
-          |**`StyleMinimal` does not have outer border,** so it should be
-          |used when your table can be separated clearly from nearby content
-          |already.
+          |**`Minimal` does not have outer border,** so it should be used when
+          |your table can be separated clearly from nearby content already.
           |
           """.stripMargin
       )(),
@@ -214,11 +212,11 @@ object PageTable {
         val rows = Sample.BaseTable.rows.take(3)
         val table1 = Sample.BaseTable.copy(
           rows = rows, /*<*/
-          style = Table.StyleFull /*>*/
+          style = Table.Style.Full /*>*/
         )()
         val table2 = Sample.BaseTable.copy(
           rows = rows, /*<*/
-          style = Table.StyleMinimal /*>*/
+          style = Table.Style.Minimal /*>*/
         )()
         val p = (content: String) => <.p(Style.lineHeight.px40, content)
         <.div(p("Full (default):"), table1, p("Minimal:"), table2) /*<*/
@@ -364,7 +362,7 @@ object PageTable {
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
-        Sample.BaseTable.copy(headIsSticky = true)()
+        Sample.BaseTable.copy(headIsSticky = Some(Table.Sticky()))()
       }))(),
       Markdown(
         s"""
@@ -496,7 +494,6 @@ object PageTable {
         /*>*/
         val table = Sample.BaseTable.copy( /*<*/
           renderRow = (
-            _: TagMod,
             key: String,
             cells: VdomArray,
             member: Sample.Member

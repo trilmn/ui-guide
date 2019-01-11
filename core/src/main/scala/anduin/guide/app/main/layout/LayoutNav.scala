@@ -62,7 +62,7 @@ object LayoutNav {
             li(Title("Card", Some(Card()))),
             li(Title("Dropdown", Some(Dropdown()))),
             li(Title("Field", Some(Field()))),
-            li(Title("Circle Indicator", Some(ProgressIndicator()))),
+            li(Title("Progress Indicator", Some(ProgressIndicator()))),
             li(Title("Icon", Some(Icon()))),
             li(Title("Illus", Some(Illus()))),
             li(Title("Illus Folder", Some(IllusFolder()))),

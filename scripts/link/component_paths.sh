@@ -13,8 +13,9 @@ link_paths=(
   modal
   popover
   portal
-  progressindicators/RippleIndicator.scala
   progressindicators/CircleIndicator.scala
+  progressindicators/BarIndicator.scala
+  progressindicators/BlockIndicator.scala
   stepper
   tab/Tab.scala
   tab/TabFull.scala

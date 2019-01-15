@@ -29,19 +29,19 @@ object MinimalToolbarExample {
     ExampleSimple()(
       <.div(
         Style.flexbox.flex,
-        button(Icon.NameAlignLeft),
-        button(Icon.NameAlignCenter),
-        button(Icon.NameAlignRight),
-        button(Icon.NameAlignJustify),
+        button(Icon.Glyph.AlignLeft),
+        button(Icon.Glyph.AlignCenter),
+        button(Icon.Glyph.AlignRight),
+        button(Icon.Glyph.AlignJustify),
         sep,
-        button(Icon.NameBold),
-        button(Icon.NameItalic),
-        button(Icon.NameUnderline),
-        button(Icon.NameStrikeThrough),
+        button(Icon.Glyph.Bold),
+        button(Icon.Glyph.Italic),
+        button(Icon.Glyph.Underline),
+        button(Icon.Glyph.StrikeThrough),
         sep,
-        button(Icon.NameListBullet),
-        button(Icon.NameListNumber),
-        button(Icon.NameTable)
+        button(Icon.Glyph.ListBullet),
+        button(Icon.Glyph.ListNumber),
+        button(Icon.Glyph.Table)
       )
     )
   }

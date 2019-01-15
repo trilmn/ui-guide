@@ -69,11 +69,11 @@ object PageButtonDisabled {
               <.div(Style.margin.left8),
               B.copy()("Cancel"),
               <.div(Style.margin.left8),
-              B.copy(style = Button.Style.Full(icon = Some(Icon.NameSign)))("Sign"),
+              B.copy(style = Button.Style.Full(icon = Some(Icon.Glyph.Sign)))("Sign"),
               <.div(Style.margin.left8),
-              B.copy(style = Button.Style.Full(icon = Some(Icon.NameDownload)))(),
+              B.copy(style = Button.Style.Full(icon = Some(Icon.Glyph.Download)))(),
               <.div(Style.margin.left8),
-              B.copy(style = Button.Style.Full(isBusy = true, icon = Some(Icon.NameSign)))("Sign")
+              B.copy(style = Button.Style.Full(isBusy = true, icon = Some(Icon.Glyph.Sign)))("Sign")
             ),
             <.div(
               Style.flexbox.flex.margin.top8,

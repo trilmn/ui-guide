@@ -77,7 +77,7 @@ object PageComponent {
           <.div(
             Style.flexbox.flex.flexbox.itemsCenter,
             // a "span" wrapper around the Icon
-            <.span(Style.margin.right8, Icon(name = Icon.NameDownload)()),
+            <.span(Style.margin.right8, Icon(name = Icon.Glyph.Download)()),
             "Download"
           )
         )
@@ -91,7 +91,7 @@ object PageComponent {
         Source.annotate(
           <.div(
             Style.flexbox.flex.flexbox.itemsCenter,
-            Icon(name = Icon.NameUpload)(),
+            Icon(name = Icon.Glyph.Upload)(),
             // a "span" wrapper around the text
             <.span(Style.margin.left8, "Upload")
           )
@@ -123,7 +123,7 @@ object PageComponent {
         <.div(
           /*<*/
           Style.flexbox.flex.flexbox.itemsCenter, /*>*/
-          <.div(Icon(name = Icon.NameLightBolt)()),
+          <.div(Icon(name = Icon.Glyph.LightBolt)()),
           <.div(Button()("Button"), margin),
           <.span("Text", margin)
         ) /*<*/

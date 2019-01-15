@@ -149,7 +149,7 @@ private[button] object PageButtonStyleFull {
         val content = <.span(
           Style.flexbox.flex.flexbox.column.flexbox.itemsCenter,
           Style.padding.ver8.padding.hor12,
-          Icon(name = Icon.NameLightBolt)(),
+          Icon(name = Icon.Glyph.LightBolt)(),
           <.span(Style.margin.top4, "Strike")
         )
         Button(
@@ -208,7 +208,7 @@ private[button] object PageButtonStyleFull {
       )(),
       ExampleRich(Source.annotate({
         Button(
-          style = Button.Style.Full(icon = Some(Icon.NameHome))
+          style = Button.Style.Full(icon = Some(Icon.Glyph.Home))
         )("Home")
       }))(),
       Markdown(
@@ -219,7 +219,7 @@ private[button] object PageButtonStyleFull {
       )(),
       ExampleRich(Source.annotate({
         Button(
-          style = Button.Style.Full(icon = Some(Icon.NameHome))
+          style = Button.Style.Full(icon = Some(Icon.Glyph.Home))
         )()
       }))(),
       Markdown(
@@ -282,7 +282,7 @@ private[button] object PageButtonStyleFull {
           initialValue = false,
           render = (isBusy, setIsBusy) => {
             Button(
-              style = Button.Style.Full(isBusy = isBusy, icon = Some(Icon.NameDownload)),
+              style = Button.Style.Full(isBusy = isBusy, icon = Some(Icon.Glyph.Download)),
               onClick = for {
                 _ <- setIsBusy(true)
                 _ <- setIsBusy(false).delayMs(3000)

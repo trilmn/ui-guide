@@ -47,6 +47,8 @@ object Layout {
     <.div(
       Style.margin.horAuto,
       ^.width := "576px",
+      // Should always on top
+      Style.position.relative.zIndex.idx1.backgroundColor.white,
       res.render()
     )
   }

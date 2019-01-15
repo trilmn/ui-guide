@@ -62,7 +62,7 @@ object Markdown {
   private val renderList = (string: String, ordered: Boolean) => {
     val tag = if (ordered) <.ol else <.ul
     val html = ^.dangerouslySetInnerHtml := string
-    rnd(tag(Style.padding.left32, html))
+    rnd(tag(Style.padding.left32.padding.bottom16, html))
   }
 
   private val renderTable = (header: String, body: String) => {

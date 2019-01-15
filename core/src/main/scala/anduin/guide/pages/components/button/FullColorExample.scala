@@ -33,10 +33,10 @@ object FullColorExample {
     ExampleSimple(bgColor = props.bg)({
       <.div(
         Style.flexbox.flex,
-        renderButton(props.primary, Icon.NameCheck, "Mark as final"),
-        renderButton(props.secondary, Icon.NameUpload, "Upload"),
-        renderButton(props.secondary, Icon.NameShare, "Share"),
-        renderButton(props.secondary, Icon.NameEllipsisHorizontal, EmptyVdom)
+        renderButton(props.primary, Icon.Glyph.Check, "Mark as final"),
+        renderButton(props.secondary, Icon.Glyph.Upload, "Upload"),
+        renderButton(props.secondary, Icon.Glyph.Share, "Share"),
+        renderButton(props.secondary, Icon.Glyph.EllipsisHorizontal, EmptyVdom)
       )
     })
   }

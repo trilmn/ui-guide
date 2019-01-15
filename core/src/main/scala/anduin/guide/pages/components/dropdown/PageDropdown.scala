@@ -390,7 +390,7 @@ object PageDropdown {
           <.div(Style.width.px128, dropdown),
           <.div(
             Style.flexbox.flex.flexbox.itemsCenter.color.gray6.margin.left16,
-            Icon(name = Icon.NameInfo)(),
+            Icon(name = Icon.Glyph.Info)(),
             <.p(Style.margin.left8, "Additional information")
           )
         )
@@ -428,10 +428,10 @@ object PageDropdown {
           Style.flexbox.flex.flexbox.itemsCenter,
           <.div(Style.width.px128, dropdown),
           VerticalDivider()(),
-          Button(style = minimal(icon = Some(Icon.NameBold)))(),
-          Button(style = minimal(icon = Some(Icon.NameItalic)))(),
-          Button(style = minimal(icon = Some(Icon.NameUnderline)))(),
-          Button(style = minimal(icon = Some(Icon.NameStrikeThrough)))()
+          Button(style = minimal(icon = Some(Icon.Glyph.Bold)))(),
+          Button(style = minimal(icon = Some(Icon.Glyph.Italic)))(),
+          Button(style = minimal(icon = Some(Icon.Glyph.Underline)))(),
+          Button(style = minimal(icon = Some(Icon.Glyph.StrikeThrough)))()
         )
       }),
       Markdown(

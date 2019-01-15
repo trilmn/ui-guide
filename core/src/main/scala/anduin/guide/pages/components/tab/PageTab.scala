@@ -88,7 +88,7 @@ object PageTab {
             renderContent = () => "First tab"
           ),
           Tab.Panel(
-            title = renderTitle("Shared Folder", "12 files", IllusFolder(icon = Icon.NameUserGroup)()),
+            title = renderTitle("Shared Folder", "12 files", IllusFolder(icon = Icon.Glyph.UserGroup)()),
             renderContent = () => "Second tab"
           )
         )

@@ -48,7 +48,7 @@ object PageLogo {
       <.a(
         logoLinkStyles,
         ^.href := renderLink(s"${logo.zip}.zip"),
-        <.span(Style.margin.right8, Icon(name = Icon.NameFileDownload)()),
+        <.span(Style.margin.right8, Icon(name = Icon.Glyph.FileDownload)()),
         <.span(
           <.strong(Style.fontWeight.bold, ".zip"),
           <.span(" (ai, png, eps included)")

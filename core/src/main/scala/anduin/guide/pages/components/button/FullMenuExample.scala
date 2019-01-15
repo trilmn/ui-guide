@@ -39,7 +39,7 @@ object FullMenuExample {
   private def renderTarget(toggle: Callback, isSelected: Boolean): VdomElement = {
     Button(
       style = Button.Style.Full(
-        icon = Some(Icon.NameEllipsisHorizontal),
+        icon = Some(Icon.Glyph.EllipsisHorizontal),
         isSelected = isSelected
       ),
       onClick = toggle

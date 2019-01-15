@@ -31,12 +31,12 @@ object FullFormatExample {
         <.div(
           Style.flexbox.flex.flexbox.itemsCenter,
           Button(
-            style = Button.Style.Full(isSelected = state.isBold, icon = Some(Icon.NameBold)),
+            style = Button.Style.Full(isSelected = state.isBold, icon = Some(Icon.Glyph.Bold)),
             onClick = scope.modState(_.copy(isBold = !state.isBold))
           )(),
           <.div(Style.margin.left8),
           Button(
-            style = Button.Style.Full(isSelected = state.isItalic, icon = Some(Icon.NameItalic)),
+            style = Button.Style.Full(isSelected = state.isItalic, icon = Some(Icon.Glyph.Italic)),
             onClick = scope.modState(_.copy(isItalic = !state.isItalic))
           )(),
           <.div(Style.margin.left16),

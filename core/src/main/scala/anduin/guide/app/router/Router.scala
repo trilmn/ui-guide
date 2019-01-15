@@ -10,8 +10,8 @@ import anduin.guide.pages.components.dropdown.PageDropdown
 import anduin.guide.pages.components.button.PageButton
 import anduin.guide.pages.components.field.PageField
 import anduin.guide.pages.components.home.PageComponent
-import anduin.guide.pages.components.icon.PageIcon
-import anduin.guide.pages.components.illus.{PageIllus, PageIllusFolder}
+import anduin.guide.pages.components.icon.{PageIcon, PageIconFile, PageIconGlyph, PageIconNego}
+import anduin.guide.pages.components.illus.PageIllusFolder
 import anduin.guide.pages.components.progressindicator.PageProgressIndicator
 import anduin.guide.pages.components.modal.PageModal
 import anduin.guide.pages.components.popover.PagePopover
@@ -63,7 +63,9 @@ object Router {
       | dynamicRouteCT("dropdown" ~ hash.caseClass[Dropdown]) ~> getRender(() => Promise.resolve[RenderFn](PageDropdown.render _))
       | dynamicRouteCT("field" ~ hash.caseClass[Field]) ~> getRender(() => Promise.resolve[RenderFn](PageField.render _))
       | dynamicRouteCT("icon" ~ hash.caseClass[Icon]) ~> getRender(() => Promise.resolve[RenderFn](PageIcon.render _))
-      | dynamicRouteCT("illus" ~ hash.caseClass[Illus]) ~> getRender(() => Promise.resolve[RenderFn](PageIllus.render _))
+      | dynamicRouteCT("icon-file" ~ hash.caseClass[IconFile]) ~> getRender(() => Promise.resolve[RenderFn](PageIconFile.render _))
+      | dynamicRouteCT("icon-negotiation" ~ hash.caseClass[IconNego]) ~> getRender(() => Promise.resolve[RenderFn](PageIconNego.render _))
+      | dynamicRouteCT("icon-glyph" ~ hash.caseClass[IconGlyph]) ~> getRender(() => Promise.resolve[RenderFn](PageIconGlyph.render _))
       | dynamicRouteCT("illus-folder" ~ hash.caseClass[IllusFolder]) ~> getRender(() => Promise.resolve[RenderFn](PageIllusFolder.render _))
       | dynamicRouteCT("modal" ~ hash.caseClass[Modal]) ~> getRender(() => Promise.resolve[RenderFn](PageModal.render _))
       | dynamicRouteCT("multi-dropdown" ~ hash.caseClass[MultiDropdown]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))

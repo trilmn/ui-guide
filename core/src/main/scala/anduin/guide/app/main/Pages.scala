@@ -27,9 +27,14 @@ object Pages {
   case class Component(hash: String = "") extends ComponentT
   case class Dropdown(hash: String = "") extends ComponentT
   case class Field(hash: String = "") extends ComponentT
-  case class Icon(hash: String = "") extends ComponentT
-  case class Illus(hash: String = "") extends ComponentT
-  case class IllusFolder(hash: String = "") extends ComponentT
+
+  sealed trait IconT extends ComponentT
+  case class Icon(hash: String = "") extends IconT
+  case class IconFile(hash: String = "") extends IconT
+  case class IconGlyph(hash: String = "") extends IconT
+  case class IconNego(hash: String = "") extends IconT
+  case class IllusFolder(hash: String = "") extends IconT
+
   case class Modal(hash: String = "") extends ComponentT
   case class MultiDropdown(hash: String = "") extends ComponentT
   case class MultiSuggest(hash: String = "") extends ComponentT

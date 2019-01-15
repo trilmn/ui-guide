@@ -62,10 +62,16 @@ object LayoutNav {
             li(Title("Card", Some(Card()))),
             li(Title("Dropdown", Some(Dropdown()))),
             li(Title("Field", Some(Field()))),
-            li(Title("Progress Indicator", Some(ProgressIndicator()))),
-            li(Title("Icon", Some(Icon()))),
-            li(Title("Illus", Some(Illus()))),
-            li(Title("Illus Folder", Some(IllusFolder()))),
+            li(Title("Progress", Some(ProgressIndicator()))),
+            li(
+              Title("Icon", Some(Icon()), Some(_.isInstanceOf[IconT])),
+              ul(
+                li(Title("Glyph", Some(IconGlyph()))),
+                li(Title("Negotiation", Some(IconNego()))),
+                li(Title("File", Some(IconFile()))),
+                li(Title("Folder \uD83D\uDEAB", Some(IllusFolder()))),
+              )
+            ),
             li(Title("Text Box", Some(TextBox()))),
             li(Title("Popover", Some(Popover()))),
             li(Title("Modal", Some(Modal()))),

@@ -10,20 +10,18 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageIllusFolder {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header("IllusFolder", Some(IllusFolder))(),
+      Header("IllusFolder (Deprecated)", Some(IllusFolder))(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         s"""
-           |This is a special [Illus][1] introduced due to the common needs
+           |This is a special Illus introduced due to the common needs
            |of a customizable Folder symbol:
-           |
-           |[1]: ${ctl.urlFor(Pages.Illus()).value}
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
         val illus = IllusFolder(
           color = IllusFolder.ColorWarning,
-          icon = Icon.NameLightBolt
+          icon = Icon.Glyph.LightBolt
         )()
         <.div(illus)
       }))(),
@@ -62,11 +60,11 @@ object PageIllusFolder {
         val margin = Style.margin.right8
         <.div(
           Style.flexbox.flex,
-          <.div(IllusFolder(icon = Icon.NameCaretDown)(), margin),
-          <.div(IllusFolder(icon = Icon.NameCheckList)(), margin),
+          <.div(IllusFolder(icon = Icon.Glyph.CaretDown)(), margin),
+          <.div(IllusFolder(icon = Icon.Glyph.CheckList)(), margin),
           <.div(
             IllusFolder(
-              icon = Icon.NameCheckList,
+              icon = Icon.Glyph.CheckList,
               color = IllusFolder.ColorNeutral
             )()
           )
@@ -79,9 +77,7 @@ object PageIllusFolder {
            |# Size
            |
            |Like Illus, IllusFolder also accepts resizing via a `size` prop.
-           |It works exactly like [Illus's Size][1].
-           |
-           |[1]: ${ctl.urlFor(Pages.Illus("#size")).value}
+           |It works exactly like Illus's Size.
         """.stripMargin
       )()
     )

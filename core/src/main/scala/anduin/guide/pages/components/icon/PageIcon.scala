@@ -118,21 +118,24 @@ object PageIcon {
            |
            |[l]: ${ctl.urlFor(Pages.IconFile()).value}
            |
+           |### [`Icon.Folder`](${ctl.urlFor(Pages.IconFolder()).value})
            |""".stripMargin
       )(), {
         import Icon.Size._
         renderSet(
           Vector(Px32, Px24, Px16),
-          Icon.Folder(color = Icon.Folder.Brown)
+          Icon.Folder(color = Icon.Folder.Blue),
+          Icon.Folder(color = Icon.Folder.Orange, glyph = Some(Icon.Glyph.Warning)),
+          Icon.Folder(color = Icon.Folder.Green, glyph = Some(Icon.Glyph.Check))
         )
       },
       Markdown(
         s"""
-           |`Icon.Folder` contains enhanced versions of file and folder icons.
-           |They are colorful and usually have different designs for each size.
-           |Learn more at the [File Icons][l] page.
+           |`Icon.Folder` is a special version of folder icon that offers
+           |further customization, such as having a glyph on it. Learn more at
+           |the [Folder Icon][l] page.
            |
-           |[l]: ${ctl.urlFor(Pages.IconFile()).value}
+           |[l]: ${ctl.urlFor(Pages.IconFolder()).value}
            |
            |""".stripMargin
       )(),

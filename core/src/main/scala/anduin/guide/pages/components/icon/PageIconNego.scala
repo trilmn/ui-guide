@@ -51,7 +51,7 @@ object PageIconNego {
            |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
-        Icon(name = Sign, size = Icon.Size.Px24)()
+        Icon(name = Icon.Nego.Sign, size = Icon.Size.Px24)()
       }))(),
       Markdown(
         s"""

@@ -10,34 +10,12 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object PageIconFile {
 
-  private def renderSize(name: Icon.Name)(size: Icon.Size): VdomElement = {
-    <.div(
-      ^.key := size.getClass.getSimpleName,
-      IconSample(name, size, Style.padding.all4)()
-    )
-  }
-
-  private def renderSizes(name: Icon.Name): VdomElement = {
-    <.div(
-      Style.flexbox.flex.flexbox.itemsEnd,
-      Vector(Icon.Size.Px32, Icon.Size.Px24, Icon.Size.Px16).toVdomArray(renderSize(name))
-    )
-  }
-
-  private def renderLabel(name: Icon.Name): VdomElement = {
-    <.p(
-      Style.padding.top4.margin.top4.border.top.borderColor.gray3.color.gray7,
-      Style.fontSize.px13.lineHeight.px20.textAlign.center,
-      name.getClass.getSimpleName
-    )
-  }
-
   private def renderIcon(name: Icon.Name): VdomElement = {
     <.div(
       ^.key := name.getClass.getSimpleName,
       Style.flexbox.none.padding.ver16,
       ^.width := "25%",
-      <.div(Style.width.maxContent, renderSizes(name), renderLabel(name))
+      <.div(Style.width.maxContent, IconSizeSample(name)())
     )
   }
 
@@ -59,7 +37,7 @@ object PageIconFile {
            |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
-        Icon(name = Signed, size = Icon.Size.Px32)()
+        Icon(name = Icon.File.Signed, size = Icon.Size.Px32)()
       }))(),
       Markdown(
         s"""

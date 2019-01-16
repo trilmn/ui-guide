@@ -57,7 +57,19 @@ object PageIcon {
            |""".stripMargin
       )(), {
         import Icon.Glyph._
-        renderSet(Vector(Icon.Size.Px16), Check, Cross, Download, LightBolt, Reply, Star, DataRoom, Vault, Question, Anduin)
+        renderSet(
+          Vector(Icon.Size.Px16),
+          Check,
+          Cross,
+          Download,
+          LightBolt,
+          Reply,
+          Star,
+          DataRoom,
+          Vault,
+          Question,
+          Anduin
+        )
       },
       Markdown(
         s"""
@@ -71,7 +83,17 @@ object PageIcon {
         """.stripMargin
       )(), {
         import Icon.Nego._
-        renderSet(Vector(Icon.Size.Px24), RequestDocs, UploadDoc, ReviewDoc, MarkAsFinal, RequestToSign, Sign, ShareBankInfo, ConfirmFundReceived)
+        renderSet(
+          Vector(Icon.Size.Px24),
+          RequestDocs,
+          UploadDoc,
+          ReviewDoc,
+          MarkAsFinal,
+          RequestToSign,
+          Sign,
+          ShareBankInfo,
+          ConfirmFundReceived
+        )
       },
       Markdown(
         s"""
@@ -91,6 +113,22 @@ object PageIcon {
       Markdown(
         s"""
            |`Icon.File` contains enhanced versions of file and folder icons.
+           |They are colorful and usually have different designs for each size.
+           |Learn more at the [File Icons][l] page.
+           |
+           |[l]: ${ctl.urlFor(Pages.IconFile()).value}
+           |
+           |""".stripMargin
+      )(), {
+        import Icon.Size._
+        renderSet(
+          Vector(Px32, Px24, Px16),
+          Icon.Folder(color = Icon.Folder.Brown)
+        )
+      },
+      Markdown(
+        s"""
+           |`Icon.Folder` contains enhanced versions of file and folder icons.
            |They are colorful and usually have different designs for each size.
            |Learn more at the [File Icons][l] page.
            |
@@ -129,11 +167,11 @@ object PageIcon {
       }))(),
       Markdown(
         s"""
-          |[Negotiation Icons], on the other hand, only have designs at 24
-          |pixels, which will be scaled to 16 or 32 pixels when used:
-          |
-          |[Negotiation Icons]: ${ctl.urlFor(Pages.IconNego()).value}
-          |""".stripMargin
+           |[Negotiation Icons], on the other hand, only have designs at 24
+           |pixels, which will be scaled to 16 or 32 pixels when used:
+           |
+           |[Negotiation Icons]: ${ctl.urlFor(Pages.IconNego()).value}
+           |""".stripMargin
       )(),
       ExampleSimple()(
         <.div(

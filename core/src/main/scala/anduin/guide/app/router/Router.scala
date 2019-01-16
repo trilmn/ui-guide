@@ -10,8 +10,7 @@ import anduin.guide.pages.components.dropdown.PageDropdown
 import anduin.guide.pages.components.button.PageButton
 import anduin.guide.pages.components.field.PageField
 import anduin.guide.pages.components.home.PageComponent
-import anduin.guide.pages.components.icon.{PageIcon, PageIconFile, PageIconGlyph, PageIconNego}
-import anduin.guide.pages.components.illus.PageIllusFolder
+import anduin.guide.pages.components.icon._
 import anduin.guide.pages.components.progressindicator.PageProgressIndicator
 import anduin.guide.pages.components.modal.PageModal
 import anduin.guide.pages.components.popover.PagePopover
@@ -66,7 +65,7 @@ object Router {
       | dynamicRouteCT("icon-file" ~ hash.caseClass[IconFile]) ~> getRender(() => Promise.resolve[RenderFn](PageIconFile.render _))
       | dynamicRouteCT("icon-negotiation" ~ hash.caseClass[IconNego]) ~> getRender(() => Promise.resolve[RenderFn](PageIconNego.render _))
       | dynamicRouteCT("icon-glyph" ~ hash.caseClass[IconGlyph]) ~> getRender(() => Promise.resolve[RenderFn](PageIconGlyph.render _))
-      | dynamicRouteCT("illus-folder" ~ hash.caseClass[IllusFolder]) ~> getRender(() => Promise.resolve[RenderFn](PageIllusFolder.render _))
+      | dynamicRouteCT("illus-folder" ~ hash.caseClass[IllusFolder]) ~> getRender(() => Promise.resolve[RenderFn](PageIconFolder.render _))
       | dynamicRouteCT("modal" ~ hash.caseClass[Modal]) ~> getRender(() => Promise.resolve[RenderFn](PageModal.render _))
       | dynamicRouteCT("multi-dropdown" ~ hash.caseClass[MultiDropdown]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))
       | dynamicRouteCT("multi-suggest" ~ hash.caseClass[MultiSuggest]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))

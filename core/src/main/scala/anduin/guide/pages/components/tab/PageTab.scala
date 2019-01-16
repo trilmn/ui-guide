@@ -1,7 +1,7 @@
 package anduin.guide.pages.components.tab
 
 import anduin.component.button.Button
-import anduin.component.icon.{Icon, IllusFolder}
+import anduin.component.icon.Icon
 import anduin.component.tab.Tab
 import anduin.guide.app.main.Pages
 import anduin.guide.components._
@@ -84,11 +84,19 @@ object PageTab {
         )
         val panels = List(
           Tab.Panel(
-            title = renderTitle("Internal Folder", "23 files", IllusFolder()()),
+            title = renderTitle(
+              "Internal Folder",
+              "23 files",
+              Icon(name = Icon.Folder(), size = Icon.Size.Px32)()
+            ),
             renderContent = () => "First tab"
           ),
           Tab.Panel(
-            title = renderTitle("Shared Folder", "12 files", IllusFolder(icon = Icon.Glyph.UserGroup)()),
+            title = renderTitle(
+              "Shared Folder",
+              "12 files",
+              Icon(name = Icon.Folder(glyph = Some(Icon.Glyph.UserGroup)), size = Icon.Size.Px32)()
+            ),
             renderContent = () => "Second tab"
           )
         )

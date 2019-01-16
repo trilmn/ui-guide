@@ -69,7 +69,7 @@ object LayoutNav {
                 li(Title("Glyph", Some(IconGlyph()))),
                 li(Title("Negotiation", Some(IconNego()))),
                 li(Title("File", Some(IconFile()))),
-                li(Title("Folder \uD83D\uDEAB", Some(IllusFolder()))),
+                li(Title("Folder", Some(IconFolder()))),
               )
             ),
             li(Title("Text Box", Some(TextBox()))),

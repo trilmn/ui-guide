@@ -65,7 +65,7 @@ object Router {
       | dynamicRouteCT("icon-file" ~ hash.caseClass[IconFile]) ~> getRender(() => Promise.resolve[RenderFn](PageIconFile.render _))
       | dynamicRouteCT("icon-negotiation" ~ hash.caseClass[IconNego]) ~> getRender(() => Promise.resolve[RenderFn](PageIconNego.render _))
       | dynamicRouteCT("icon-glyph" ~ hash.caseClass[IconGlyph]) ~> getRender(() => Promise.resolve[RenderFn](PageIconGlyph.render _))
-      | dynamicRouteCT("illus-folder" ~ hash.caseClass[IllusFolder]) ~> getRender(() => Promise.resolve[RenderFn](PageIconFolder.render _))
+      | dynamicRouteCT("illus-folder" ~ hash.caseClass[IconFolder]) ~> getRender(() => Promise.resolve[RenderFn](PageIconFolder.render _))
       | dynamicRouteCT("modal" ~ hash.caseClass[Modal]) ~> getRender(() => Promise.resolve[RenderFn](PageModal.render _))
       | dynamicRouteCT("multi-dropdown" ~ hash.caseClass[MultiDropdown]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))
       | dynamicRouteCT("multi-suggest" ~ hash.caseClass[MultiSuggest]) ~> getRender(() => Promise.resolve[RenderFn](PageWIP.render _))

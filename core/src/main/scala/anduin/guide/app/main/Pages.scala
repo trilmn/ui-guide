@@ -33,7 +33,7 @@ object Pages {
   case class IconFile(hash: String = "") extends IconT
   case class IconGlyph(hash: String = "") extends IconT
   case class IconNego(hash: String = "") extends IconT
-  case class IllusFolder(hash: String = "") extends IconT
+  case class IconFolder(hash: String = "") extends IconT
 
   case class Modal(hash: String = "") extends ComponentT
   case class MultiDropdown(hash: String = "") extends ComponentT

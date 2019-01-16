@@ -2,7 +2,7 @@
 
 package anduin.guide.pages.components.progressindicator
 
-import anduin.component.icon.Illus
+import anduin.component.icon.Icon
 import anduin.component.progressindicators.BarIndicator
 import anduin.guide.components.ExampleSimple
 import anduin.style.Style
@@ -12,8 +12,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-final case class BarExample(
-  ) {
+final case class BarExample() {
   def apply(): VdomElement = BarExample.component(this)
 }
 
@@ -30,7 +29,7 @@ object BarExample {
           Style.padding.all8.flexbox.flex.flexbox.itemsCenter,
           <.div(
             Style.margin.right4,
-            Illus(name = Illus.NameDoc)()
+            Icon(name = Icon.File.Word, size = Icon.Size.Px32)()
           ),
           <.div(
             Style.lineHeight.px16,

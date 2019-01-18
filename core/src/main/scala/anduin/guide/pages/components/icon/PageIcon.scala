@@ -1,5 +1,6 @@
 package anduin.guide.pages.components.icon
 
+import anduin.component.button.Button
 import anduin.component.icon.Icon
 import anduin.guide.app.main.Pages
 import anduin.guide.components._
@@ -30,6 +31,19 @@ object PageIcon {
     )
   }
 
+  private def renderButton(label: String, ctl: Pages.Ctl, page: Pages.Page): VdomElement = {
+    <.div(
+      Style.fontFamily.sans.padding.ver12,
+      Button(
+        tpe = Button.Tpe.Link(ctl.urlFor(page).value),
+        style = Button.Style.Full(color = Button.Color.Blue, height = Button.Height.Fix40)
+      )(
+        <.span(Style.margin.right12, s"View all $label icons"),
+        Icon(name = Icon.Glyph.ArrowRight)()
+      )
+    )
+  }
+
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
       Header("Icon", Some(Icon))(),
@@ -51,59 +65,43 @@ object PageIcon {
            |```
            |
            |The `name` prop of an Icon defines what will be rendered. There
-           |are 3 sets of Icon's names:
+           |are 4 sets of Icon's names:
            |
-           |### [`Icon.Glyph`](${ctl.urlFor(Pages.IconGlyph()).value})
+           |## Icon.Glyph
            |""".stripMargin
       )(), {
         import Icon.Glyph._
-        renderSet(
-          Vector(Icon.Size.Px16),
-          Check,
-          Cross,
-          Download,
-          LightBolt,
-          Reply,
-          Star,
-          DataRoom,
-          Vault,
-          Question,
-          Anduin
-        )
+        // format: off
+        renderSet(Vector(Icon.Size.Px16), Check, Cross, Download, LightBolt, Reply, Star, DataRoom, Vault, Question, Anduin)
+        // format: on
       },
       Markdown(
         s"""
            |`Icon.Glyph` is the main set. It contains many generic icons that
-           |should be used primarily around the platform. Learn more at the
-           |[Glyph Icons][l] page.
-           |
-           |[l]: ${ctl.urlFor(Pages.IconGlyph()).value}
-           |
-           |### [`Icon.Nego`](${ctl.urlFor(Pages.IconNego()).value})
+           |should be used primarily around the platform.
+        """.stripMargin
+      )(),
+      renderButton("Glyph", ctl, Pages.IconGlyph()),
+      Markdown(
+        """
+          |## Icon.Nego
         """.stripMargin
       )(), {
         import Icon.Nego._
-        renderSet(
-          Vector(Icon.Size.Px24),
-          RequestDocs,
-          UploadDoc,
-          ReviewDoc,
-          MarkAsFinal,
-          RequestToSign,
-          Sign,
-          ShareBankInfo,
-          ConfirmFundReceived
-        )
+        // format: off
+        renderSet(Vector(Icon.Size.Px24), RequestDocs, UploadDoc, ReviewDoc, MarkAsFinal, RequestToSign, Sign, ShareBankInfo, ConfirmFundReceived)
+        // format: on
       },
       Markdown(
         s"""
            |`Icon.Nego` contains enhanced versions of negotiation action icons.
-           |They work best at 24 pixels. Learn more at the [Negotiation
-           |Icons][l] page.
-           |
-           |[l]: ${ctl.urlFor(Pages.IconNego()).value}
-           |
-           |### [`Icon.File`](${ctl.urlFor(Pages.IconFile()).value})
+           |They work best at 24 pixels.
+        """.stripMargin
+      )(),
+      renderButton("Negotiation", ctl, Pages.IconNego()),
+      Markdown(
+        """
+          |## Icon.File
         """.stripMargin
       )(), {
         import Icon.Size._
@@ -114,12 +112,13 @@ object PageIcon {
         s"""
            |`Icon.File` contains enhanced versions of file and folder icons.
            |They are colorful and usually have different designs for each size.
-           |Learn more at the [File Icons][l] page.
-           |
-           |[l]: ${ctl.urlFor(Pages.IconFile()).value}
-           |
-           |### [`Icon.Folder`](${ctl.urlFor(Pages.IconFolder()).value})
            |""".stripMargin
+      )(),
+      renderButton("File", ctl, Pages.IconFile()),
+      Markdown(
+        """
+          |## Icon.Folder
+        """.stripMargin
       )(), {
         import Icon.Size._
         renderSet(
@@ -132,13 +131,10 @@ object PageIcon {
       Markdown(
         s"""
            |`Icon.Folder` is a special version of folder icon that offers
-           |further customization, such as having a glyph on it. Learn more at
-           |the [Folder Icon][l] page.
-           |
-           |[l]: ${ctl.urlFor(Pages.IconFolder()).value}
-           |
+           |further customization, such as having a glyph on it.
            |""".stripMargin
       )(),
+      renderButton("Folder", ctl, Pages.IconFolder()),
       Markdown(
         s"""
            |# Size

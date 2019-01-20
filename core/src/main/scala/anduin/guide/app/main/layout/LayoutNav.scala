@@ -30,13 +30,13 @@ object LayoutNav {
       // The padding was defined here instead of the parent to increase the
       // hit area for the above hover effect
       ^.padding := "0 56px",
-      ^.lineHeight := "48px",
       // eliminate the first ul
       ^.marginLeft := "-20px",
       ul(
         li(
           Title("Welcome", Some(Welcome))
         ),
+        h("Guide"),
         li(
           Title("Style", Some(Pages.Style()), Some(_.isInstanceOf[StyleT])),
           ul(
@@ -71,22 +71,47 @@ object LayoutNav {
                 li(Title("Folder", Some(IconFolder()))),
               ),
             ),
+            li(Title("Avatar", Some(Avatar()))),
             li(Title("Progress", Some(ProgressIndicator()))),
-            // Container
+            li(Title("DateTime", Some(DateTime()))),
+            h("Container"),
+            li(Title("Tag", Some(Tag()))),
             li(Title("Card", Some(Card()))),
             li(Title("Well", Some(Well()))),
-            li(Title("Stepper", Some(Stepper()))),
-            li(Title("Tab", Some(Tab()))),
+            li(Title("Menu", Some(Menu()))),
             li(Title("Table", Some(Table()))),
-            // Toggler
-            li(Title("Modal", Some(Modal()))),
-            li(Title("Toggle", Some(Toggle()))),
-            // Form
-            li(Title("Dropdown", Some(Dropdown()))),
+            h("Form"),
             li(Title("Field", Some(Field()))),
             li(Title("Text Box", Some(TextBox()))),
+            li(Title("Checkbox", Some(Checkbox()))),
+            li(
+              Title("Radio", Some(Radio()), Some(_.isInstanceOf[RadioT])),
+              ul(li(Title("Radio Box", Some(RadioBox())))),
+            ),
+            li(
+              Title("Dropdown", Some(Dropdown()), Some(_.isInstanceOf[DropdownT])),
+              ul(li(Title("MultiDropdown", Some(MultiDropdown())))),
+            ),
+            li(
+              Title("Suggest", Some(Suggest()), Some(_.isInstanceOf[SuggestT])),
+              ul(li(Title("MultiSuggest", Some(MultiSuggest())))),
+            ),
+            h("Expansion"),
+            li(Title("Toggle", Some(Toggle()))),
+            li(Title("Tree", Some(Tree()))),
+            li(Title("Tab", Some(Tab()))),
+            li(Title("Stepper", Some(Stepper()))),
+            li(Title("Modal", Some(Modal()))),
+            li(Title("Popover", Some(Popover()))),
+            li(Title("Tooltip", Some(Tooltip()))),
           )
-        )
+        ),
+        li(
+          Title("Copy", Some(Copy()))
+        ),
+        h(""),
+        li(Title("Resources", Some(Resources()))),
+        li(Title("Work with us", Some(Careers()))),
       )
     )
   }

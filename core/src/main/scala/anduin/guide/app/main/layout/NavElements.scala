@@ -63,7 +63,11 @@ object NavElements {
         common
       )
     }
-    <.li(node, TagMod.when(isExpanded) { children })
+    <.li(
+      Style.padding.ver8,
+      node,
+      TagMod.when(isExpanded) { children }
+    )
   }
 
   def li(title: Title, children: VdomNode = EmptyVdom)(implicit props: Props): VdomElement = {
@@ -75,8 +79,21 @@ object NavElements {
 
   // ===
 
+  def h(content: String): VdomElement = {
+    <.li(
+      Style.fontSize.px16.color.gray4,
+      Style.padding.top24.padding.bottom8,
+      content
+    )
+  }
+
+  // ===
+
   def ul(content: VdomNode*): VdomElement = {
-    <.ul(Style.listing.list.padding.left20, React.Fragment(content: _*))
+    <.ul(
+      Style.listing.list.padding.left20.padding.ver8,
+      React.Fragment(content: _*)
+    )
   }
 
 }

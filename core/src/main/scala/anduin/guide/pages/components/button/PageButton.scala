@@ -13,7 +13,6 @@ object PageButton {
       Header("Button", Some(Button))(),
       Toc(
         headings = PageButtonType.getHeadings ++
-          PageButtonStyle.getHeadings ++
           PageButtonDisabled.getHeadings
       )(),
       Markdown(

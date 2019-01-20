@@ -4,7 +4,6 @@ package anduin.guide.pages.components.button
 
 import anduin.guide.app.main.Pages
 import anduin.guide.components.Markdown
-import anduin.mcro.Source
 
 // scalastyle:off underscore.import
 import japgolly.scalajs.react._
@@ -19,13 +18,6 @@ private[button] object PageButtonStyle {
 
   private type Props = PageButtonStyle
 
-  def getHeadings: Seq[(Int, String)] =
-    Source.getTocHeadings ++
-      PageButtonStyleFull.getHeadings ++
-      PageButtonStyleGhost.getHeadings ++
-      PageButtonStyleMinimal.getHeadings ++
-      PageButtonStyleLink.getHeadings
-
   private def render(props: Props): VdomElement = <.div(
     Markdown(
       """
@@ -39,11 +31,7 @@ private[button] object PageButtonStyle {
         |styles, with further customization (e.g. color) in each:
         |
         |""".stripMargin
-    )(),
-    PageButtonStyleFull(props.ctl)(),
-    PageButtonStyleGhost()(),
-    PageButtonStyleMinimal()(),
-    PageButtonStyleLink()()
+    )()
   )
 
   private val component = ScalaComponent

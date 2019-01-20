@@ -6,11 +6,10 @@ object Pages {
   // entry
   case object Welcome extends Page
   case object WIP extends Page
-  // brand
-  sealed trait BrandT extends Page
-  case class Logo(hash: String = "") extends BrandT
+
   // style
   sealed trait StyleT extends Page
+  case class Logo(hash: String = "") extends StyleT
   case class Style(hash: String = "") extends StyleT
   case class Space(hash: String = "") extends StyleT
   case class Flexbox(hash: String = "") extends StyleT
@@ -18,9 +17,17 @@ object Pages {
   sealed trait TypographyT extends StyleT
   case class Typography(hash: String = "") extends TypographyT
   case class FixedLineHeight(hash: String = "") extends TypographyT
+
   // component
   sealed trait ComponentT extends Page
-  case class Button(hash: String = "") extends ComponentT
+
+  sealed trait ButtonT extends ComponentT
+  case class Button(hash: String = "") extends ButtonT
+  case class ButtonFull(hash: String = "") extends ButtonT
+  case class ButtonGhost(hash: String = "") extends ButtonT
+  case class ButtonMinimal(hash: String = "") extends ButtonT
+  case class ButtonLink(hash: String = "") extends ButtonT
+
   case class Card(hash: String = "") extends ComponentT
   case class Checkbox(hash: String = "") extends ComponentT
   case class ProgressIndicator(hash: String = "") extends ComponentT

@@ -2,6 +2,7 @@
 
 package anduin.guide.pages.components.button
 
+import anduin.guide.components._
 import anduin.component.button.Button
 import anduin.component.button.Button.Color
 import anduin.component.icon.Icon
@@ -11,26 +12,16 @@ import anduin.mcro.Source
 import anduin.style.Style
 
 // scalastyle:off underscore.import
-import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-private[button] final case class PageButtonStyleFull(ctl: Pages.Ctl) {
-  def apply(): VdomElement = PageButtonStyleFull.component(this)
-}
-
-private[button] object PageButtonStyleFull {
-
-  private type Props = PageButtonStyleFull
-
-  def getHeadings: List[(Int, String)] = Source.getTocHeadings
-
-  private def render(props: Props): VdomElement = {
+object PageButtonFull {
+  def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
+      Header("Full Button", Some(Button.Style.Full))(),
+      Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """
-          |## Full
-          |
           |```scala
           |case class Full(/* further customization */)
           |```
@@ -203,7 +194,7 @@ private[button] object PageButtonStyleFull {
            |The `icon` parameter provides an [Icon][icon] on the left side of
            |Button's body:
            |
-           |[icon]: ${props.ctl.urlFor(Pages.Icon()).value}
+           |[icon]: ${ctl.urlFor(Pages.Icon()).value}
            |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
@@ -293,10 +284,4 @@ private[button] object PageButtonStyleFull {
       })
     )
   }
-
-  private val component = ScalaComponent
-    .builder[Props](this.getClass.getSimpleName)
-    .stateless
-    .render_P(render)
-    .build
 }

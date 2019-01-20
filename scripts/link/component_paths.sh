@@ -17,8 +17,7 @@ link_paths=(
   progressindicators/BarIndicator.scala
   progressindicators/BlockIndicator.scala
   stepper
-  tab/Tab.scala
-  tab/TabFull.scala
+  tab
   table
   tag
   toggle

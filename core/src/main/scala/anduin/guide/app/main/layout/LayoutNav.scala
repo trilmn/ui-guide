@@ -38,14 +38,9 @@ object LayoutNav {
           Title("Welcome", Some(Welcome))
         ),
         li(
-          Title("Brand", isExpanded = Some(_.isInstanceOf[BrandT])),
-          ul(
-            li(Title("Logo", Some(Logo())))
-          )
-        ),
-        li(
           Title("Style", Some(Pages.Style()), Some(_.isInstanceOf[StyleT])),
           ul(
+            li(Title("Logo", Some(Logo()))),
             li(Title("Space", Some(Space()))),
             li(Title("Flexbox", Some(Flexbox()))),
             li(Title("Color", Some(Color()))),
@@ -58,11 +53,15 @@ object LayoutNav {
         li(
           Title("Component", Some(Component()), Some(_.isInstanceOf[ComponentT])),
           ul(
-            li(Title("Button", Some(Button()))),
-            li(Title("Card", Some(Card()))),
-            li(Title("Dropdown", Some(Dropdown()))),
-            li(Title("Field", Some(Field()))),
-            li(Title("Progress", Some(ProgressIndicator()))),
+            li(
+              Title("Button", Some(Button()), Some(_.isInstanceOf[ButtonT])),
+              ul(
+                li(Title("Full", Some(ButtonFull()))),
+                li(Title("Ghost", Some(ButtonGhost()))),
+                li(Title("Minimal", Some(ButtonMinimal()))),
+                li(Title("Text", Some(ButtonLink()))),
+              ),
+            ),
             li(
               Title("Icon", Some(Icon()), Some(_.isInstanceOf[IconT])),
               ul(
@@ -70,16 +69,22 @@ object LayoutNav {
                 li(Title("Negotiation", Some(IconNego()))),
                 li(Title("File", Some(IconFile()))),
                 li(Title("Folder", Some(IconFolder()))),
-              )
+              ),
             ),
-            li(Title("Text Box", Some(TextBox()))),
-            li(Title("Popover", Some(Popover()))),
-            li(Title("Modal", Some(Modal()))),
+            li(Title("Progress", Some(ProgressIndicator()))),
+            // Container
+            li(Title("Card", Some(Card()))),
+            li(Title("Well", Some(Well()))),
             li(Title("Stepper", Some(Stepper()))),
             li(Title("Tab", Some(Tab()))),
             li(Title("Table", Some(Table()))),
+            // Toggler
+            li(Title("Modal", Some(Modal()))),
             li(Title("Toggle", Some(Toggle()))),
-            li(Title("Well", Some(Well())))
+            // Form
+            li(Title("Dropdown", Some(Dropdown()))),
+            li(Title("Field", Some(Field()))),
+            li(Title("Text Box", Some(TextBox()))),
           )
         )
       )

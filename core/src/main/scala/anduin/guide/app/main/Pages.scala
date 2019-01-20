@@ -26,7 +26,7 @@ object Pages {
   case class ButtonFull(hash: String = "") extends ButtonT
   case class ButtonGhost(hash: String = "") extends ButtonT
   case class ButtonMinimal(hash: String = "") extends ButtonT
-  case class ButtonLink(hash: String = "") extends ButtonT
+  case class ButtonText(hash: String = "") extends ButtonT
 
   case class Card(hash: String = "") extends ComponentT
   case class Checkbox(hash: String = "") extends ComponentT

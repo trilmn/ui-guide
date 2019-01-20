@@ -12,7 +12,7 @@ import anduin.mcro.Source
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-object PageButtonLink {
+object PageButtonText {
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(

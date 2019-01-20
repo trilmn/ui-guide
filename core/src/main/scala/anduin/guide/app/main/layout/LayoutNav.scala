@@ -59,7 +59,7 @@ object LayoutNav {
                 li(Title("Full", Some(ButtonFull()))),
                 li(Title("Ghost", Some(ButtonGhost()))),
                 li(Title("Minimal", Some(ButtonMinimal()))),
-                li(Title("Text", Some(ButtonLink()))),
+                li(Title("Text", Some(ButtonText()))),
               ),
             ),
             li(

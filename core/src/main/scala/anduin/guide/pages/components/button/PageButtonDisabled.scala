@@ -89,9 +89,9 @@ object PageButtonDisabled {
             ),
             <.p(
               Style.margin.top8,
-              B.copy(style = Button.Style.Link())("Accept"),
+              B.copy(style = Button.Style.Text())("Accept"),
               " or ",
-              B.copy(style = Button.Style.Link(color = Button.Color.Red))("Decline")
+              B.copy(style = Button.Style.Text(color = Button.Color.Red))("Decline")
             )
           )
         }

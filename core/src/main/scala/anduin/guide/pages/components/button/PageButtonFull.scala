@@ -110,7 +110,7 @@ object PageButtonFull {
           |### Height
           |
           |```scala
-          |height: Button.Height = Button.Height.Fix32
+          |height: ButtonStyle.Height = Button.Height.Fix32
           |```
           |
           |The `height` parameter controls Button's height, with matching font

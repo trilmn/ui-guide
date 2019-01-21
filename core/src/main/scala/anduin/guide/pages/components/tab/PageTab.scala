@@ -116,7 +116,7 @@ object PageTab {
           Tab.Panel(title = "First", renderContent_S = { switch =>
             Button(
               onClick = switch(1),
-              style = Button.Style.Link()
+              style = Button.Style.Text()
             )("Go to second tab")
           }),
           Tab.Panel(title = "Second", renderContent = () => "Second tab")

@@ -119,7 +119,7 @@ object PageModal {
           }, /*<*/
           renderTarget = open => {
             Button(
-              style = Button.Style.Link(),
+              style = Button.Style.Text(),
               onClick = open
             )("open a modal")
           } /*>*/
@@ -367,7 +367,7 @@ object PageModal {
             val submit = Callback.alert("Submitted") >> close
             val button = Button(
               style = Button.Style.Full(color = Button.Color.Blue),
-              tpe = Button.Tpe.TpeButton(isAutoFocus = true),
+              tpe = Button.Tpe.Plain(isAutoFocus = true),
               onClick = submit
             )("Submit")
             val footer = ModalFooterWCancel(close)(button)

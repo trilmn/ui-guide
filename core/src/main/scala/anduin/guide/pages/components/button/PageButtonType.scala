@@ -30,7 +30,7 @@ private[button] object PageButtonType {
           |# Type
           |
           |```scala
-          |tpe: Button.Tpe = Button.Tpe.TpeButton
+          |tpe: Button.Tpe = Button.Tpe.Plain
           |```
           |
           |The `tpe` prop defines the behaviour of a Button: whether it
@@ -45,11 +45,11 @@ private[button] object PageButtonType {
           |## Button
           |
           |```scala
-          |Button.Tpe.TpeButton(isAutoFocus: Boolean = false)
+          |Button.Tpe.Plain(isAutoFocus: Boolean = false)
           |// same as <.button(^.tpe := "button")
           |```
           |
-          |The default value of `tpe` is `Tpe.TpeButton`, which has no
+          |The default value of `tpe` is `Tpe.Plain`, which has no
           |built-in behaviour. They usually have the actual action defined via
           |the `onClick` or `onDoubleClick` prop:
           |
@@ -57,7 +57,7 @@ private[button] object PageButtonType {
       )(),
       ExampleRich(Source.annotate({
         Button(
-          tpe = Button.Tpe.TpeButton(), // usually omitted
+          tpe = Button.Tpe.Plain(), // usually omitted
           onClick = Callback.alert("You clicked!")
         )("Click me")
       }))(),

@@ -2,7 +2,7 @@
 
 package anduin.guide.pages.components.button
 
-import anduin.component.button.Button
+import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.button.Button.Height._
 import anduin.component.tag.Tag
 import anduin.guide.components.ExampleSimple
@@ -14,7 +14,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
 final case class FullHeightExample(
-  getStyle: Button.Height => Button.Style,
+  getStyle: ButtonStyle.Height => ButtonStyle,
 ) {
   def apply(): VdomElement = FullHeightExample.component(this)
 }
@@ -32,7 +32,7 @@ object FullHeightExample {
     )
   }
 
-  private def renderButton(props: Props)(height: Button.Height): VdomElement = {
+  private def renderButton(props: Props)(height: ButtonStyle.Height): VdomElement = {
     val name = height.getClass.getSimpleName
     val tagOpt = if (height == Fix32) Some(tag) else None
     val button = Button(style = props.getStyle(height))(name)

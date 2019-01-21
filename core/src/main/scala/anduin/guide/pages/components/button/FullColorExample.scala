@@ -2,7 +2,7 @@
 
 package anduin.guide.pages.components.button
 
-import anduin.component.button.Button
+import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.icon.Icon
 import anduin.guide.components.ExampleSimple
 import anduin.style.Style
@@ -14,8 +14,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 final case class FullColorExample(
   bg: ExampleSimple.BgColor,
-  primary: Button.Color,
-  secondary: Button.Color
+  primary: ButtonStyle.Color,
+  secondary: ButtonStyle.Color
 ) {
   def apply(): VdomElement = FullColorExample.component(this)
 }
@@ -24,7 +24,7 @@ object FullColorExample {
 
   private type Props = FullColorExample
 
-  private def renderButton(color: Button.Color, icon: Icon.Name, text: VdomNode): VdomElement = {
+  private def renderButton(color: ButtonStyle.Color, icon: Icon.Name, text: VdomNode): VdomElement = {
     val button = Button(style = Button.Style.Full(color, icon = Some(icon)))(text)
     <.div(Style.margin.right8, button)
   }

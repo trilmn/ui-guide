@@ -2,7 +2,7 @@
 
 package anduin.guide.pages.components.button
 
-import anduin.component.button.Button
+import anduin.component.button.{Button, ButtonStyle}
 import anduin.component.tag.Tag
 import anduin.guide.components.ExampleSimple
 import anduin.style.Style
@@ -14,9 +14,9 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 private[button] final case class CommonColorExample(
   bgColor: ExampleSimple.BgColor,
-  getStyle: Button.Color => Button.Style,
-  colors: Seq[Button.Color],
-  default: Option[Button.Color]
+  getStyle: ButtonStyle.Color => ButtonStyle,
+  colors: Seq[ButtonStyle.Color],
+  default: Option[ButtonStyle.Color]
 ) {
   def apply(): VdomElement = CommonColorExample.component(this)
 }
@@ -32,7 +32,7 @@ private[button] object CommonColorExample {
     )
   }
 
-  private def renderButton(props: Props)(color: Button.Color): VdomElement = {
+  private def renderButton(props: Props)(color: ButtonStyle.Color): VdomElement = {
     val name = color.getClass.getSimpleName
     val tagOpt = if (props.default.contains(color)) Some(tag) else None
     val button = Button(style = props.getStyle(color))(name)

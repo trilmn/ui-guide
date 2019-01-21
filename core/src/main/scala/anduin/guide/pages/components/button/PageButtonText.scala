@@ -35,11 +35,11 @@ object PageButtonText {
       ExampleRich(Source.annotate({
         <.p(
           Button(
-            style = Button.Style.Link()
+            style = Button.Style.Text()
           )("Accept"),
           " or ",
           Button(
-            style = Button.Style.Link(color = Button.Color.Red)
+            style = Button.Style.Text(color = Button.Color.Red)
           )("Decline")
         )
       }))(),
@@ -54,9 +54,9 @@ object PageButtonText {
       ExampleSimple()({
         <.p(
           "John has not accepted your invitation yet. You can ",
-          Button(style = Button.Style.Link())("remind him"),
+          Button(style = Button.Style.Text())("remind him"),
           " or ",
-          Button(style = Button.Style.Link(color = Button.Color.Red))("cancel it"),
+          Button(style = Button.Style.Text(color = Button.Color.Red))("cancel it"),
           "."
         )
       }),
@@ -73,7 +73,7 @@ object PageButtonText {
       )(),
       ExampleRich(Source.annotate({
         Button(
-          style = Button.Style.Link(color = Button.Color.Red)
+          style = Button.Style.Text(color = Button.Color.Red)
         )("Decline")
       }))(),
       Markdown(
@@ -83,7 +83,7 @@ object PageButtonText {
       )(),
       CommonColorExample(
         bgColor = ExampleSimple.BgColor.White,
-        getStyle = color => Button.Style.Link(color = color),
+        getStyle = color => Button.Style.Text(color = color),
         colors = List(Color.Black, Color.Blue, Color.Red),
         default = None
       )()

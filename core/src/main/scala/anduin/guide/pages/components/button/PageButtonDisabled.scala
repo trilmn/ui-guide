@@ -4,7 +4,7 @@ package anduin.guide.pages.components.button
 
 import anduin.component.button.Button
 import anduin.component.icon.Icon
-import anduin.guide.components.{ExampleRich, ExampleSimple, Markdown, SimpleState}
+import anduin.guide.components.{ExampleRich, ExampleSimple, Markdown, DemoState}
 import anduin.mcro.Source
 import anduin.style.Style
 
@@ -53,7 +53,7 @@ object PageButtonDisabled {
       """.stripMargin
     )(),
     ExampleSimple()({
-      SimpleState.Bool(
+      DemoState.Bool(
         initialValue = false,
         render = (isDisabled, setIsDisabled) => {
           val B = Button(isDisabled = isDisabled)

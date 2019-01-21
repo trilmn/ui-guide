@@ -6,7 +6,7 @@ import anduin.component.input.textbox.TextBox
 import anduin.component.portal.PortalUtils.IsClosable
 import anduin.component.modal._
 import anduin.guide.app.main.Pages
-import anduin.guide.components.SimpleState
+import anduin.guide.components.DemoState
 import anduin.mcro.Source
 import anduin.style.Style
 import japgolly.scalajs.react._
@@ -449,7 +449,7 @@ object PageModal {
       )(),
       ExampleRich(Source.annotate({
         val renderContent = (close: Callback) =>
-          SimpleState.Str(
+          DemoState.Str(
             initialValue = "",
             render = (value, onChange) => {
               val input = TextBox(value = value, onChange = onChange)()
@@ -594,7 +594,7 @@ object PageModal {
             }
           )()
         } /*<*/
-        SimpleState.Bool(
+        DemoState.Bool(
           initialValue = true,
           render = (value, setValue) => {
             if (value) {
@@ -673,7 +673,7 @@ object PageModal {
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
-        SimpleState.Bool(
+        DemoState.Bool(
           initialValue = false, /*<*/
           render = (isOpened, setIsOpened) => {
             val modal = Modal(

@@ -8,7 +8,7 @@ import anduin.component.icon.Icon
 import anduin.component.input.checkbox.Checkbox
 import anduin.component.menu.VerticalDivider
 import anduin.guide.app.main.Pages
-import anduin.guide.components.SimpleState
+import anduin.guide.components.DemoState
 import anduin.mcro.Source
 import anduin.style.Style
 import japgolly.scalajs.react.vdom.html_<^._
@@ -29,12 +29,12 @@ private object Fruit {
     getValueString = _.name
   )
 
-  val State = (new SimpleState[Fruit])()
+  val State = (new DemoState[Fruit])()
   val StateSample = State(
     initialValue = options.head.value,
     render = (_, _) => EmptyVdom
   )
-  val OptionState = (new SimpleState[Option[Fruit]])()
+  val OptionState = (new DemoState[Option[Fruit]])()
 
   val dropdownSample = StateSample.copy(render = (value, onChange) => {
     DropdownSample.copy(value = Some(value), onChange = onChange)()
@@ -74,7 +74,7 @@ private object Country {
     getFilterValue = Some(c => c.name + c.continent)
   )
 
-  val State = (new SimpleState[Country])()
+  val State = (new DemoState[Country])()
   val StateSample = State(
     initialValue = options.head.value,
     render = (_, _) => EmptyVdom
@@ -410,7 +410,7 @@ object PageDropdown {
           |are placed next to each other is enough to call out the interaction.
         """.stripMargin
       )({
-        val dropdown = SimpleState.Str(
+        val dropdown = DemoState.Str(
           initialValue = "Arial",
           render = (value, onChange) => {
             StringDropdown(
@@ -602,7 +602,7 @@ object PageDropdown {
           optionHeight = Some(32)
         )
         val dropdown = (isStatic: Boolean) =>
-          SimpleState.Str(
+          DemoState.Str(
             initialValue = "0",
             render = (value, onChange) => {
               StringDropdown(
@@ -614,8 +614,8 @@ object PageDropdown {
               )()
             }
           )()
-        SimpleState.BoolF.copy(render = (isMounted, setIsMounted) => {
-          SimpleState.BoolF.copy(render = (isStaticMeasurement, setIsStaticMeasurement) => {
+        DemoState.BoolF.copy(render = (isMounted, setIsMounted) => {
+          DemoState.BoolF.copy(render = (isStaticMeasurement, setIsStaticMeasurement) => {
             <.div(
               Checkbox(isStaticMeasurement, onChange = setIsStaticMeasurement)("Use static measurement"),
               <.div(Style.height.px8),

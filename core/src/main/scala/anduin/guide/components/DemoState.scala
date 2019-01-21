@@ -7,7 +7,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-class SimpleState[V] {
+class DemoState[V] {
 
   case class Props(
     initialValue: V,
@@ -38,8 +38,8 @@ class SimpleState[V] {
   def apply(): Props.type = Props
 }
 
-object SimpleState {
-  val Str = (new SimpleState[String])()
-  val Bool = (new SimpleState[Boolean])()
+object DemoState {
+  val Str = (new DemoState[String])()
+  val Bool = (new DemoState[Boolean])()
   val BoolF = Bool(initialValue = false, render = (_, _) => EmptyVdom)
 }

@@ -7,7 +7,7 @@ import anduin.component.button.Button
 import anduin.component.button.Button.Color
 import anduin.component.icon.Icon
 import anduin.guide.app.main.Pages
-import anduin.guide.components.{ExampleRich, ExampleSimple, Markdown, SimpleState}
+import anduin.guide.components.{ExampleRich, ExampleSimple, Markdown, DemoState}
 import anduin.mcro.Source
 import anduin.style.Style
 
@@ -269,7 +269,7 @@ object PageButtonFull {
            |""".stripMargin
       )(),
       ExampleSimple()({
-        SimpleState.Bool(
+        DemoState.Bool(
           initialValue = false,
           render = (isBusy, setIsBusy) => {
             Button(

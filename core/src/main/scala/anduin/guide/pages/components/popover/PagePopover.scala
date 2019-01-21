@@ -4,7 +4,7 @@ import anduin.guide.components._
 import anduin.component.button.Button
 import anduin.component.popover.Popover
 import anduin.guide.app.main.Pages
-import anduin.guide.components.SimpleState
+import anduin.guide.components.DemoState
 import anduin.mcro.Source
 import anduin.style.Style
 import japgolly.scalajs.react.vdom.html_<^._
@@ -21,7 +21,7 @@ object PagePopover {
             Button(onClick = toggle)("show")
           },
           renderContent = _ => {
-            SimpleState.Bool(
+            DemoState.Bool(
               initialValue = false,
               render = (value, onChange) => {
                 <.div(

@@ -3,14 +3,14 @@ package anduin.guide.pages.components.textbox
 import anduin.guide.components._
 import anduin.component.input.textbox.TextBox
 import anduin.guide.app.main.Pages
-import anduin.guide.components.SimpleState
+import anduin.guide.components.DemoState
 import anduin.mcro.Source
 import anduin.scalajs.textmask.TextMask
 import japgolly.scalajs.react.vdom.html_<^._
 
 object PageTextBox {
 
-  private val StrState = SimpleState.Str("1000", (_, _) => EmptyVdom)
+  private val StrState = DemoState.Str("1000", (_, _) => EmptyVdom)
 
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
@@ -22,32 +22,32 @@ object PageTextBox {
         """.stripMargin
       )(),
       ExampleRich(Source.annotate({
-        SimpleState.Str("No mask", {
+        DemoState.Str("No mask", {
           TextBox(_, _, mask = None)()
         })()
       }))(),
       ExampleRich(Source.annotate({
-        SimpleState.Str("1000", {
+        DemoState.Str("1000", {
           TextBox(_, _, mask = Some(TextBox.MaskNumber))()
         })()
       }))(),
       ExampleRich(Source.annotate({
-        SimpleState.Str("1000", {
+        DemoState.Str("1000", {
           TextBox(_, _, mask = Some(TextBox.MaskCurrency))()
         })()
       }))(),
       ExampleRich(Source.annotate({
-        SimpleState.Str("43", {
+        DemoState.Str("43", {
           TextBox(_, _, mask = Some(TextBox.MaskPercentage))()
         })()
       }))(),
       ExampleRich(Source.annotate({
-        SimpleState.Str("thien@anduin.co", {
+        DemoState.Str("thien@anduin.co", {
           TextBox(_, _, mask = Some(TextBox.MaskEmail))()
         })()
       }))(),
       ExampleRich(Source.annotate({
-        SimpleState.Str(
+        DemoState.Str(
           "(122) 222-2222", {
             val n = TextMask.RegExp("\\d")
             val c = TextMask.Char

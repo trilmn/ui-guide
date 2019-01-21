@@ -4,7 +4,7 @@ import anduin.guide.components._
 import anduin.component.field.Field
 import anduin.component.input.textbox.TextBox
 import anduin.guide.app.main.Pages
-import anduin.guide.components.SimpleState
+import anduin.guide.components.DemoState
 import anduin.mcro.Source
 import japgolly.scalajs.react.vdom.html_<^._
 
@@ -21,7 +21,7 @@ object PageField {
       )(),
       // xxxxxxxxxxxxxxx
       ExampleRich(Source.annotate({
-        SimpleState.Str(
+        DemoState.Str(
           "",
           (value, onChange) => {
             Field(
@@ -35,7 +35,7 @@ object PageField {
         )()
       }))(),
       ExampleRich(Source.annotate({
-        SimpleState.Str(
+        DemoState.Str(
           "",
           (value, onChange) => {
             Field(
@@ -50,7 +50,7 @@ object PageField {
         )()
       }))(),
       ExampleRich(Source.annotate({
-        SimpleState.Str(
+        DemoState.Str(
           "",
           (value, onChange) => {
             Field(

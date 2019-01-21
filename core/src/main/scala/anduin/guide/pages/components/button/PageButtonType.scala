@@ -4,7 +4,7 @@ package anduin.guide.pages.components.button
 
 import anduin.component.button.Button
 import anduin.component.input.textbox.TextBox
-import anduin.guide.components.{ExampleRich, Markdown, SimpleState}
+import anduin.guide.components.{ExampleRich, Markdown, DemoState}
 import anduin.mcro.Source
 import anduin.style.Style
 
@@ -79,7 +79,7 @@ private[button] object PageButtonType {
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
-        SimpleState.Str(
+        DemoState.Str(
           initialValue = "",
           render = (value, setValue) => {
             <.form(

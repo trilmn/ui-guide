@@ -18,7 +18,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 object PageButtonBox {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
-      Header("Full Button", Some(Button.Style.Full))(),
+      Header("Box Button")(),
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """
@@ -48,7 +48,7 @@ object PageButtonBox {
       }))(),
       Markdown(
         """
-          |### Color [full-color]
+          |# Color
           |
           |```scala
           |color: Button.Color = Button.Color.White
@@ -78,8 +78,6 @@ object PageButtonBox {
       )(),
       Markdown(
         """
-          |### Color Usage
-          |
           |On light background, `White` should be used for most cases, with a
           |`Blue` to highlight the primary one when necessary:
           |""".stripMargin
@@ -107,7 +105,7 @@ object PageButtonBox {
       ExampleSimple()(FullArchiveExample()()),
       Markdown(
         """
-          |### Height
+          |# Height
           |
           |```scala
           |height: ButtonStyle.Height = Button.Height.Fix32
@@ -159,7 +157,7 @@ object PageButtonBox {
       )(),
       Markdown(
         """
-          |### Width [full-width]
+          |# Width
           |
           |By default, Button's width depends on its content, similar to
           |[`width: max-content`][csswg]. To make Button's width the same as
@@ -185,7 +183,7 @@ object PageButtonBox {
       )(),
       Markdown(
         s"""
-           |### Icon [full-icon]
+           |# Icon
            |
            |```scala
            |icon: Option[Icon.Name] = None
@@ -215,7 +213,7 @@ object PageButtonBox {
       }))(),
       Markdown(
         s"""
-           |### Selected [full-selected]
+           |# Selected
            |
            |```scala
            |isSelected: Boolean = false
@@ -245,7 +243,7 @@ object PageButtonBox {
       FullMenuExample()(),
       Markdown(
         s"""
-           |### Busy [full-busy]
+           |# Busy
            |
            |```scala
            |isBusy: Boolean = false

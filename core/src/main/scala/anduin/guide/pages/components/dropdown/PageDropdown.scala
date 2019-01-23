@@ -113,7 +113,7 @@ object PageDropdown {
            |multiple values, consider [MultiDropdown][md] or a list of
            |[Checkboxes][cb].
            |
-           |[md]: ${ctl.urlFor(Pages.MultiDropdown()).value}
+           |[md]: ${ctl.urlFor(Pages.DropdownMulti()).value}
            |[cb]: ${ctl.urlFor(Pages.Checkbox()).value}
            |
            |**Dropdown's value can only come from the option list.** If users
@@ -121,7 +121,7 @@ object PageDropdown {
            |consider [Suggest][ss] or [MultiSuggest][ms] component.
            |
            |[ss]: ${ctl.urlFor(Pages.Suggest()).value}
-           |[ms]: ${ctl.urlFor(Pages.MultiSuggest()).value}
+           |[ms]: ${ctl.urlFor(Pages.SuggestMulti()).value}
            |
            |**Dropdown's options are hidden in a pop-up menu.** This saves
            |space but require user's interaction to view more. If your options

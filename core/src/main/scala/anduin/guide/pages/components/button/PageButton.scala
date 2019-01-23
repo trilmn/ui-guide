@@ -96,6 +96,12 @@ object PageButton {
           |## Box
           |""".stripMargin
       )(),
+      Markdown(
+        """
+          |`Style.Full`, `Style.Ghost` and `Style.Minimal` provide box-like
+          |looks for a button by having a padding around its label:
+          |""".stripMargin
+      )(),
       ExampleSimple()({
         import Button.Style._
         import Button.Color._
@@ -131,18 +137,23 @@ object PageButton {
       }),
       Markdown(
         """
-          |`Full`, `Ghost` and `Minimal` styles provide box-like appearances
-          |by having a padding around buttons' labels. These buttons are
-          |usually places in their own areas (like a Toolbar).
+          |These buttons are usually placed in their own areas (like in a
+          |Toolbar or Modal's footer). Learn more in their guide:
           |""".stripMargin
       )(),
       BigButtonLink(ctl, Pages.ButtonBox(), "View Box Button guide")(),
       Markdown(
         """
           |## Text
-          |""".stripMargin
+          |
+          |`Style.Text` provides a text-only look, similar to [HTML's `<a>`
+          |element][a]. These buttons are usually parts of sentences, such as
+          |words or phrases:
+          |
+          |[a]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+        """.stripMargin
       )(),
-      ExampleSimple()({
+      ExampleRich(Source.annotate({
         <.p(
           "You can ",
           Button(style = Button.Style.Text())("Accept"),
@@ -150,17 +161,22 @@ object PageButton {
           Button(style = Button.Style.Text(color = Button.Color.Red))("Decline"),
           " this invitation."
         )
-      }),
+      }))(),
       Markdown(
         """
-          |`Button.Style.Text` provides a text-only appearance, similar to
-          |[HTML's `<a>` element][a]. These buttons are usually parts of
-          |sentences, such as words or phrases.
-          |
-          |[a]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+          |Their color can be changed via the `color` parameter, with
+          |`Button.Color.Blue` is the default one:
         """.stripMargin
       )(),
-      BigButtonLink(ctl, Pages.ButtonText(), "View Text Button guide")(),
+      ExampleRich(Source.annotate({
+        <.p(
+          Button(style = Button.Style.Text())("Blue (Default)"),
+          <.span(", "),
+          Button(style = Button.Style.Text(color = Button.Color.Red))("Red"),
+          <.span(", "),
+          Button(style = Button.Style.Text(color = Button.Color.Black))("Black"),
+        )
+      }))(),
       Markdown(
         """
           |# Type

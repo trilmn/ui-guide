@@ -9,6 +9,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import anduin.component.icon.Icon
+import anduin.component.input.textbox.TextBox
 
 object PageButton {
   def render(ctl: Pages.Ctl): VdomElement = {
@@ -130,9 +131,9 @@ object PageButton {
       }),
       Markdown(
         """
-          |`Full`, `Ghost` and `Minimal` styles provide box-like appearances to
-          |buttons via a padding around their labels. These buttons are usually
-          |places in their own areas (like a Toolbar).
+          |`Full`, `Ghost` and `Minimal` styles provide box-like appearances
+          |by having a padding around buttons' labels. These buttons are
+          |usually places in their own areas (like a Toolbar).
           |""".stripMargin
       )(),
       BigButtonLink(ctl, Pages.ButtonBox(), "View Box Button guide")(),
@@ -152,9 +153,11 @@ object PageButton {
       }),
       Markdown(
         """
-          |The `Text` style provides a text-only appearance, similar to
-          |HTML's `a` tag. These buttons are usually parts of sentences, such
-          |as words or phrases.
+          |`Button.Style.Text` provides a text-only appearance, similar to
+          |[HTML's `<a>` element][a]. These buttons are usually parts of
+          |sentences, such as words or phrases.
+          |
+          |[a]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
         """.stripMargin
       )(),
       BigButtonLink(ctl, Pages.ButtonText(), "View Text Button guide")(),
@@ -176,10 +179,16 @@ object PageButton {
           |  isAutoFocus: Boolean = false
           |)
           |```
+          |
+          |The default `Tpe.Plain` has no built-in behaviour. It is similar to
+          |HTML's `<button type="button"/>`. These Buttons usually have [event
+          |listeners](#event-listener) attached to make them useful:
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
-        Button()()
+        Button(
+          onClick = Callback.alert("Hello")
+        )("Say Hi")
       }))(),
       Markdown(
         """
@@ -188,26 +197,78 @@ object PageButton {
           |```scala
           |case class Button.Tpe.Submit(...)
           |```
+          |
+          |`Tpe.Submit` automatically triggers the `onSubmit` handler of the
+          |associated [form] when users click on the button. This is a native,
+          |built-in behaviour so no `onClick` needs to be defined:
+          |
+          |[form]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
-        Button()()
+        DemoState.Str(
+          initialValue = "",
+          render = (value, setValue) => {
+            <.form(
+              Style.flexbox.flex,
+              ^.onSubmit ==> (_.preventDefaultCB >> Callback.alert(value)),
+              <.div(Style.width.px128, TextBox(value, setValue, placeholder = "Name...")()),
+              <.div(Style.margin.left8, Button(tpe = Button.Tpe.Submit())("Submit"))
+            )
+          }
+        )()
       }))(),
       Markdown(
         """
+          |In general, prefer form's `onSubmit` to button's `onClick` when
+          |for submit handlers because the former allows users to submit
+          |via other ways, such as pressing "Enter" at an input.
           |
           |## Link
           |
           |```scala
-          |case class Button.Tpe.Link(...)
+          |case class Button.Tpe.Link(
+          |  href: String,
+          |  target: ButtonType.Target = Target.Self
+          |)
           |```
+          |
+          |`Tpe.Link` renders the button as an [HTML `<a>` element][a]. It
+          |should be used when the button's target is a page, location
+          |on a page, file, email address, or other URL:
+          |
+          |[a]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
           |""".stripMargin
       )(),
       ExampleRich(Source.annotate({
-        Button()()
+        Button(
+          tpe = Button.Tpe.Link("https://anduintransact.com")
+        )("Go to Anduin Transact website")
       }))(),
       Markdown(
         """
+          |Similar to `<a>` elements, `Tpe.Link` accepts a `target` parameter
+          |to specify where to display the linked URL:
+          |- `Target.Self`, which use the same browsing context, like the
+          |current tab.
+          |- `Target.Blank`, which create a new browsing context, like a new
+          |tab or window.
+        """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        Button(
+          tpe = Button.Tpe.Link(
+            href = "https://anduintransact.com",
+            target = Button.Target.Blank
+          )
+        )("Open Anduin Transact website in new tab")
+      }))(),
+      Markdown(
+        """
+          |`Target.Self` is the default value. Before switching to `Blank`,
+          |make sure you have [good reasons] to do so.
+          |
+          |[good reasons]: https://css-tricks.com/use-target_blank/
         """.stripMargin
       )()
     )

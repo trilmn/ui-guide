@@ -79,8 +79,12 @@ object Toc {
     if (sections.isEmpty) {
       None
     } else {
-      val sectionsWTop = Section("Top", Vector.empty) +: sections
-      val list = <.ol(listStyles, sectionsWTop.toVdomArray(renderSection))
+      val list = <.ol(
+        listStyles,
+        renderSection(Section("Top", Vector.empty)),
+        <.li(Style.margin.bottom24),
+        sections.toVdomArray(renderSection)
+      )
       Some(<.div(mainStyles, list))
     }
   }

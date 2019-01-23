@@ -23,9 +23,7 @@ object Pages {
 
   sealed trait ButtonT extends ComponentT
   case class Button(hash: String = "") extends ButtonT
-  case class ButtonFull(hash: String = "") extends ButtonT
-  case class ButtonGhost(hash: String = "") extends ButtonT
-  case class ButtonMinimal(hash: String = "") extends ButtonT
+  case class ButtonBox(hash: String = "") extends ButtonT
   case class ButtonText(hash: String = "") extends ButtonT
   sealed trait IconT extends ComponentT
   case class Icon(hash: String = "") extends IconT

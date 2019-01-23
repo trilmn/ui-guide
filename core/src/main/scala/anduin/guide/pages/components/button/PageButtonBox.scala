@@ -15,7 +15,7 @@ import anduin.style.Style
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-object PageButtonFull {
+object PageButtonBox {
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
       Header("Full Button", Some(Button.Style.Full))(),

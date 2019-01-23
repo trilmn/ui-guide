@@ -56,9 +56,7 @@ object LayoutNav {
             li(
               Title("Button", Some(Button()), Some(_.isInstanceOf[ButtonT])),
               ul(
-                li(Title("Full", Some(ButtonFull()))),
-                li(Title("Ghost", Some(ButtonGhost()))),
-                li(Title("Minimal", Some(ButtonMinimal()))),
+                li(Title("Box", Some(ButtonBox()))),
                 li(Title("Text", Some(ButtonText()))),
               ),
             ),

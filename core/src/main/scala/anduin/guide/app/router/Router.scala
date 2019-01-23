@@ -56,9 +56,7 @@ object Router {
       | dynamicRouteCT("component" ~ hash.caseClass[Component]) ~> getRender(() => Promise.resolve[RenderFn](PageComponent.render _))
       // Component - Core
       | dynamicRouteCT("button" ~ hash.caseClass[Button]) ~> getRender(() => Promise.resolve[RenderFn](PageButton.render _))
-      | dynamicRouteCT("button-full" ~ hash.caseClass[ButtonFull]) ~> getRender(() => Promise.resolve[RenderFn](PageButtonFull.render _))
-      | dynamicRouteCT("button-ghost" ~ hash.caseClass[ButtonGhost]) ~> getRender(() => Promise.resolve[RenderFn](PageButtonGhost.render _))
-      | dynamicRouteCT("button-minimal" ~ hash.caseClass[ButtonMinimal]) ~> getRender(() => Promise.resolve[RenderFn](PageButtonMinimal.render _))
+      | dynamicRouteCT("button-box" ~ hash.caseClass[ButtonBox]) ~> getRender(() => Promise.resolve[RenderFn](PageButtonBox.render _))
       | dynamicRouteCT("button-text" ~ hash.caseClass[ButtonText]) ~> getRender(() => Promise.resolve[RenderFn](PageButtonText.render _))
       | dynamicRouteCT("icon" ~ hash.caseClass[Icon]) ~> getRender(() => Promise.resolve[RenderFn](PageIcon.render _))
       | dynamicRouteCT("icon-file" ~ hash.caseClass[IconFile]) ~> getRender(() => Promise.resolve[RenderFn](PageIconFile.render _))

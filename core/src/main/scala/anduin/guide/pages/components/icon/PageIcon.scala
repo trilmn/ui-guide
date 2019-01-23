@@ -1,6 +1,5 @@
 package anduin.guide.pages.components.icon
 
-import anduin.component.button.Button
 import anduin.component.icon.Icon
 import anduin.guide.app.main.Pages
 import anduin.guide.components._
@@ -32,16 +31,7 @@ object PageIcon {
   }
 
   private def renderButton(label: String, ctl: Pages.Ctl, page: Pages.Page): VdomElement = {
-    <.div(
-      Style.fontFamily.sans.padding.ver12,
-      Button(
-        tpe = Button.Tpe.Link(ctl.urlFor(page).value),
-        style = Button.Style.Full(color = Button.Color.Blue, height = Button.Height.Fix40)
-      )(
-        <.span(Style.margin.right12, s"View all $label icons"),
-        Icon(name = Icon.Glyph.ArrowRight)()
-      )
-    )
+    BigButtonLink(ctl, page, s"View all $label icons")()
   }
 
   def render(ctl: Pages.Ctl): VdomElement = {

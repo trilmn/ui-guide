@@ -69,6 +69,7 @@ object Toc {
     Style.fontSize.px15.lineHeight.px32,
     Style.color.gray4.hover.colorGray7.transition.all,
     Style.listing.list.height.pc100.overflow.autoY,
+    ^.cls := "ad-scroll-hidden",
     ^.padding := "8px 32px 32px 108px"
   )
 

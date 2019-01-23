@@ -10,6 +10,8 @@ body {
   background: white;
 }
 
+/* Anduin Design Font */
+
 .ad-ff-sans {
   font-family: 'Roboto Slab', sans-serif
 }
@@ -18,13 +20,26 @@ body {
   font-family: 'Roboto Mono', monospace
 }
 
+/* Anduin Design Scroll Bar */
+
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-  background: var(--color-white);
+  width: 12px;
+  height: 12px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-gray-3);
+.ad-scroll-hidden::-webkit-scrollbar,
+.ad-scroll-hidden::-webkit-scrollbar-thumb {
+  background: transparent;
+  transition: all 0.2s;
+}
+
+::-webkit-scrollbar,
+.ad-scroll-hidden:hover::-webkit-scrollbar {
+  background: var(--color-gray-2);
+}
+
+::-webkit-scrollbar-thumb,
+.ad-scroll-hidden:hover::-webkit-scrollbar-thumb {
+  background: var(--color-gray-4);
 }
 

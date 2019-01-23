@@ -36,8 +36,8 @@ object Layout {
         logo
       ),
       <.div(
-        Style.flexbox.fixed.overflow.autoY,
-        Style.padding.bottom32,
+        Style.flexbox.fixed.overflow.autoY.padding.bottom32,
+        ^.cls := "ad-scroll-hidden",
         LayoutNav(ctl = ctl, page = res.page)()
       )
     )

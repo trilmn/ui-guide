@@ -136,8 +136,29 @@ object PageButtonBox {
           |isFullWidth: Boolean = false
           |```
           |
+          |By default, a button's width depends on its content. To make
+          |the button's width the same as its container's (so it's
+          |controllable), set `isFullWidth = true`:
           |""".stripMargin
       )(),
+      ExampleRich(Source.annotate({
+        <.div(
+          Style.width.px256,
+          Button(
+            style = Button.Style.Full(isFullWidth = true)
+          )("Full Width Button")
+        )
+      }))(),
+      Markdown(
+        """
+          |The content of a full-width button, including its icon if defined,
+          |is centered by default:
+        """.stripMargin
+      )(),
+      ExampleSimple()({
+        val s = Button.Style.Full(isFullWidth = true, icon = Some(Icon.Glyph.Reply))
+        <.div(Style.width.px256, Button(s)("Reply"))
+      }),
       Markdown(
         """
           |## Height

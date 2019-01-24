@@ -67,7 +67,7 @@ private[button] object BoxExampleColor {
           Button(
             style = Full(color = if (isDark) Black else White),
             onClick = setDark(!isDark)
-          )("Toggle Bg Color"),
+          )(s"Use ${if (isDark) "light" else "dark"} background"),
           List(
             StyleRow("Full", White, c => Full(c)),
             StyleRow("Ghost", Black, c => Ghost(c)),

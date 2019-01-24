@@ -5,9 +5,10 @@ package anduin.guide.pages.components.button
 import anduin.component.button.Button
 import anduin.component.icon.Icon
 import anduin.guide.app.main.Pages
-import anduin.guide.components.{ExampleRich, ExampleSimple, Markdown, _}
+import anduin.guide.components._
 import anduin.mcro.Source
 import anduin.style.Style
+import japgolly.scalajs.react.React
 
 // scalastyle:off underscore.import
 import japgolly.scalajs.react.vdom.html_<^._
@@ -15,15 +16,36 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object PageButtonBox {
 
-  private val border = <.div(Style.border.top.borderColor.gray3.margin.top16.padding.top16)
-
   def render(ctl: Pages.Ctl): VdomElement = {
     <.div(
       Header("Box Button")(),
       Toc(headings = Source.getTocHeadings)(),
-      ExampleSimple()(BoxExampleButtons()()),
+      Markdown(
+        """
+          |Box buttons are buttons that use `Style.Full`, `Style.Ghost` or
+          |`Style.Minimal`. They all have padding around their label, result
+          |in box-like appearances:
+        """.stripMargin
+      )(),
+      ExampleSimple()({
+        import Button.Style._
+        import Button.Color._
+        val small = <.div(Style.margin.right8)
+        val big = <.div(Style.border.right.borderColor.gray3.height.px16.padding.right16.margin.right16)
+        <.div(
+          Style.flexbox.flex.flexbox.itemsCenter,
+          React.Fragment(Button(Full(Blue))("Text"), small),
+          React.Fragment(Button(Full(White))("Text"), big),
+          React.Fragment(Button(Ghost(Blue))("Text"), small),
+          React.Fragment(Button(Ghost(Black))("Text"), big),
+          React.Fragment(Button(Minimal(Blue))("Text"), small),
+          React.Fragment(Button(Minimal(Black))("Text")),
+        )
+      }),
       Markdown(
         s"""
+           |
+           |
            |Box buttons have the following in common:
            |
            |# Icon
@@ -33,7 +55,7 @@ object PageButtonBox {
            |```
            |
            |Box buttons support an `icon` parameter which places [an icon] next
-           |to a button's label to clarify its action:
+           |to the button's label to clarify its action:
            |
            |[an icon]: ${ctl.urlFor(Pages.Icon("#name")).value}
            |""".stripMargin
@@ -167,30 +189,67 @@ object PageButtonBox {
           |height: ButtonStyle.Height = Height.Fix32
           |```
           |
+          |The `height` parameter controls not ony a button's height but
+          |also its font size, padding and icon to have unified results:
           |""".stripMargin
-      )(), {
-        import Button.Height._
-        val i = Some(Icon.Glyph.Home)
-        ExampleSimple()(
-          BoxExampleButtons(icon = i, height = Fix24, content = "Fix24")(),
-          border,
-          BoxExampleButtons(icon = i, height = Fix32, content = "Fix32")(),
-          border,
-          BoxExampleButtons(icon = i, height = Fix40, content = "Fix40")(),
+      )(),
+      ExampleRich(Source.annotate({
+        Button(
+          style = Button.Style.Full(
+            icon = Some(Icon.Glyph.FileGenerate),
+            height = Button.Height.Fix40
+          )
+        )("New file")
+      }))(),
+      Markdown(
+        """
+          |There are 2 types of height. The first one are fixed values, named
+          |by their height in pixel. These are suitable for single-line
+          |buttons, which should be most cases:
+          |""".stripMargin
+      )(),
+      BoxExampleHeight()(),
+      Markdown(
+        """
+          |The other one is `Free`, which has no pre-defined styles. It allows
+          |having multiple lines or other complex layout inside the button's
+          |body:
+        """.stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        Button(
+          style = Button.Style.Full(height = Button.Height.Free)
+        )(
+          <.span(
+            Style.flexbox.flex.flexbox.column.flexbox.itemsCenter,
+            Style.padding.ver8.padding.hor12,
+            Icon(name = Icon.Glyph.LightBolt)(),
+            <.span(Style.margin.top4, "Strike")
+          )
         )
-      },
+      }))(),
+      Markdown(
+        """
+          |Note that buttons will be rendered as `a` or `button` tags, so
+          |ensure your custom body is valid as their's children. For example,
+          |[avoid having `div` inside buttons' body][so].
+          |
+          |[so]: https://stackoverflow.com/q/12982269
+          |
+          |""".stripMargin
+      )(),
       Markdown(
         """
           |# Status
           |
           |## Selected
           |
-          |Set `isSelected = true` to always display a button in its active
-          |state:
-          |
           |```scala
           |isSelected: Boolean = false
           |```
+          |
+          |Set `isSelected = true` to always display a button in its
+          |active/pressed state:
           |
           |""".stripMargin
       )(),
@@ -199,13 +258,18 @@ object PageButtonBox {
           style = Button.Style.Full(isSelected = true)
         )("Full")
       }))(),
-      ExampleSimple()(BoxExampleButtons(isSelected = true)()),
       Markdown(
         """
           |This is useful for on-off actions, like text formatting:
         """.stripMargin
       )(),
       BoxExampleFormat()(),
+      Markdown(
+        """
+          |Or to indicate the connection between elements, such as a popover's
+          |content (e.g. a menu) and its target (e.g. a button):
+        """.stripMargin
+      )(),
       BoxExampleMenu()(),
       Markdown(
         s"""
@@ -228,12 +292,12 @@ object PageButtonBox {
         )("Title")
       }))(),
       Markdown(
-        """
+        s"""
           |This reassures users that our app is not hang or waiting for their
-          |input.
+          |input. It also displays the button's active/pressed appearance
+          |(similar to having [`isSelected = true`](#selected)).
         """.stripMargin
-      )(),
-      ExampleSimple()(BoxExampleButtons(isBusy = true)())
+      )()
     )
   }
 }

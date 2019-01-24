@@ -21,18 +21,45 @@ object PageButtonBox {
     <.div(
       Header("Box Button")(),
       Toc(headings = Source.getTocHeadings)(),
-      Markdown(
-        s"""
-           |Button's box [styles], such as `Style.Full`, `Style.Ghost` and
-           |`Style.Minimal`, have padding wraps around their label:
-           |
-           |[styles]: ${ctl.urlFor(Pages.Button("#style")).value}
-           |""".stripMargin
-      )(),
       ExampleSimple()(BoxExampleButtons()()),
       Markdown(
+        s"""
+           |# Icon
+           |
+           |```scala
+           |icon: Option[Icon.Name] = None
+           |```
+           |
+           |The `icon` parameter can be used to place [an icon] next to the
+           |button's label to clarify its action:
+           |
+           |[an icon]: ${ctl.urlFor(Pages.Icon("#name")).value}
+           |""".stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        Button(
+          style = Button.Style.Full(icon = Some(Icon.Glyph.Search))
+        )("Search")
+      }))(),
+      Markdown(
         """
-          |# Emphasis
+          |Button's label can be omitted when the icon (and nearby context) can
+          |clearly represent the action. This is common in toolbars where
+          |related icons are grouped together:
+        """.stripMargin
+      )(),
+      ExampleSimple()({
+        import Button.Style.Minimal
+        <.div(
+          Style.flexbox.flex,
+          Button(Minimal(icon = Some(Icon.Glyph.Bold)))(),
+          Button(Minimal(icon = Some(Icon.Glyph.Italic)))(),
+          Button(Minimal(icon = Some(Icon.Glyph.Underline)))(),
+        )
+      }),
+      Markdown(
+        """
+          |# Hierarchy
           |
           |## Type
           |""".stripMargin
@@ -64,9 +91,9 @@ object PageButtonBox {
       BoxExampleArchive()(),
       Markdown(
         """
-          |## Size
+          |# Size
           |
-          |### Width
+          |## Width
           |
           |```scala
           |isFullWidth: Boolean = false
@@ -76,39 +103,29 @@ object PageButtonBox {
       )(),
       Markdown(
         """
-          |### Height
+          |## Height
           |
           |```scala
           |height: ButtonStyle.Height = Height.Fix32
           |```
           |
           |""".stripMargin
-      )(),
-      ExampleSimple()(
-        BoxExampleButtons(height = Button.Height.Fix24, content = "Fix24")(),
-        border,
-        BoxExampleButtons(height = Button.Height.Fix32, content = "Fix32")(),
-        border,
-        BoxExampleButtons(height = Button.Height.Fix40, content = "Fix40")(),
-      ),
+      )(), {
+        import Button.Height._
+        val i = Some(Icon.Glyph.Home)
+        ExampleSimple()(
+          BoxExampleButtons(icon = i, height = Fix24, content = "Fix24")(),
+          border,
+          BoxExampleButtons(icon = i, height = Fix32, content = "Fix32")(),
+          border,
+          BoxExampleButtons(icon = i, height = Fix40, content = "Fix40")(),
+        )
+      },
       Markdown(
         """
-          |# Icon
+          |# Status
           |
-          |```scala
-          |icon: Option[Icon.Name] = None
-          |```
-          |
-          |""".stripMargin
-      )(),
-      ExampleSimple()(
-        BoxExampleButtons(icon = Some(Icon.Glyph.Search), content = "Go")(),
-        border,
-        BoxExampleButtons(icon = Some(Icon.Glyph.Search), content = EmptyVdom)(),
-      ),
-      Markdown(
-        """
-          |# Selected
+          |## Selected
           |
           |Set `isSelected = true` to always display a button in its active
           |state:
@@ -134,7 +151,7 @@ object PageButtonBox {
       BoxExampleMenu()(),
       Markdown(
         s"""
-           |# Busy
+           |## Busy
            |
            |```scala
            |isBusy: Boolean = false

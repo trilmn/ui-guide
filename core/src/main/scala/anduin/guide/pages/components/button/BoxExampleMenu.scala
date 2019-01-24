@@ -14,13 +14,13 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-final case class FullMenuExample() {
-  def apply(): VdomElement = FullMenuExample.component(this)
+final case class BoxExampleMenu() {
+  def apply(): VdomElement = BoxExampleMenu.component(this)
 }
 
-object FullMenuExample {
+object BoxExampleMenu {
 
-  private type Props = FullMenuExample
+  private type Props = BoxExampleMenu
 
   private def renderContent(close: Callback): VdomElement = {
     val Item = MenuItem(onClick = close)
@@ -38,7 +38,7 @@ object FullMenuExample {
 
   private def renderTarget(toggle: Callback, isSelected: Boolean): VdomElement = {
     Button(
-      style = Button.Style.Full(
+      style = Button.Style.Ghost(
         icon = Some(Icon.Glyph.EllipsisHorizontal),
         isSelected = isSelected
       ),

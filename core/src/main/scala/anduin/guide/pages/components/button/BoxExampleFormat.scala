@@ -13,14 +13,14 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 // scalastyle:on underscore.import
 
-final case class FullFormatExample(
+final case class BoxExampleFormat(
   ) {
-  def apply(): VdomElement = FullFormatExample.component(this)
+  def apply(): VdomElement = BoxExampleFormat.component(this)
 }
 
-object FullFormatExample {
+object BoxExampleFormat {
 
-  private type Props = FullFormatExample
+  private type Props = BoxExampleFormat
 
   private case class State(isBold: Boolean, isItalic: Boolean)
 
@@ -31,12 +31,12 @@ object FullFormatExample {
         <.div(
           Style.flexbox.flex.flexbox.itemsCenter,
           Button(
-            style = Button.Style.Full(isSelected = state.isBold, icon = Some(Icon.Glyph.Bold)),
+            style = Button.Style.Minimal(isSelected = state.isBold, icon = Some(Icon.Glyph.Bold)),
             onClick = scope.modState(_.copy(isBold = !state.isBold))
           )(),
-          <.div(Style.margin.left8),
+          <.div(Style.margin.left4),
           Button(
-            style = Button.Style.Full(isSelected = state.isItalic, icon = Some(Icon.Glyph.Italic)),
+            style = Button.Style.Minimal(isSelected = state.isItalic, icon = Some(Icon.Glyph.Italic)),
             onClick = scope.modState(_.copy(isItalic = !state.isItalic))
           )(),
           <.div(Style.margin.left16),

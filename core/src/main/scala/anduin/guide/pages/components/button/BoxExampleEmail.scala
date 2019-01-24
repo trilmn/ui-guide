@@ -29,7 +29,7 @@ private[button] object BoxExampleEmail {
   private val toolbarSep =
     <.div(Style.margin.left8.padding.left8.border.left.borderColor.gray3)
 
-  private val toolbar: VdomElement = {
+  val toolbar: VdomElement = {
     <.div(
       Style.flexbox.flex,
       renderToolbarButton(Icon.Glyph.AlignLeft),
@@ -72,7 +72,15 @@ private[button] object BoxExampleEmail {
       <.div(Style.margin.bottom8, editor),
       <.div(footer)
     )
-    ExampleSimple()(content)
+    ExampleSimple(
+      """
+        |For example, in the above email editor:
+        |- Text format actions (eg. "Bold" and "Italic") uses
+        |`Style.Minimal` (low emphasis)
+        |- Main actions (eg. "Save" or "Send") uses `Style.Full` (high
+        |emphasis)
+      """.stripMargin
+    )(content)
   }
 
   private val component = ScalaComponent

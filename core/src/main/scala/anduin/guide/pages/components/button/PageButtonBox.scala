@@ -24,14 +24,16 @@ object PageButtonBox {
       ExampleSimple()(BoxExampleButtons()()),
       Markdown(
         s"""
+           |Box buttons have the following in common:
+           |
            |# Icon
            |
            |```scala
            |icon: Option[Icon.Name] = None
            |```
            |
-           |The `icon` parameter can be used to place [an icon] next to the
-           |button's label to clarify its action:
+           |Box buttons support an `icon` parameter which places [an icon] next
+           |to a button's label to clarify its action:
            |
            |[an icon]: ${ctl.urlFor(Pages.Icon("#name")).value}
            |""".stripMargin
@@ -43,39 +45,68 @@ object PageButtonBox {
       }))(),
       Markdown(
         """
-          |Button's label can be omitted when the icon (and nearby context) can
-          |clearly represent the action. This is common in toolbars where
+          |Button's label can also be omitted when the icon (and nearby context)
+          |is enough to represent the action. This is common in toolbars where
           |related icons are grouped together:
         """.stripMargin
       )(),
-      ExampleSimple()({
-        import Button.Style.Minimal
-        <.div(
-          Style.flexbox.flex,
-          Button(Minimal(icon = Some(Icon.Glyph.Bold)))(),
-          Button(Minimal(icon = Some(Icon.Glyph.Italic)))(),
-          Button(Minimal(icon = Some(Icon.Glyph.Underline)))(),
-        )
-      }),
+      ExampleSimple()(BoxExampleEmail.toolbar),
       Markdown(
         """
           |# Hierarchy
           |
-          |## Type
+          |It's common to have multiple buttons the same view. In these cases,
+          |use their appearances and placements to communicate their levels
+          |of emphasis to users.
+          |
+          |## Style
+          |
+          |```scala
+          |style: ButtonStyle = Button.Style.Full()
+          |```
+          |
+          |The `style` prop define a button's essential appearance. Buttons
+          |in the same group should have the same style, which represent the
+          |level of emphasis of the whole group:
           |""".stripMargin
       )(),
       BoxExampleEmail()(),
       Markdown(
         """
+          |Because of this, avoid mixing different button styles in the same
+          |group of buttons. Color should be used to separate primary from
+          |secondary actions in the same group.
+          |
           |## Color
           |
           |```scala
           |color: ButtonStyle.Color = /* ... */
           |```
           |
-          |The `color` parameter controls the color of a box style. Depend on
+          |The `color` parameter controls the color of a button. Depend on
           |each style, it could be text, background or other properties:
           |""".stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        Button(
+          style = Button.Style.Full(color = Button.Color.Blue)
+        )("Submit")
+      }))(),
+      Markdown(
+        """
+          |Most colors work best on white background, with the exception of
+          |`White` of `Ghost` and `Minimal` styles, which are prepared for
+          |dark or colorful background only:
+        """.stripMargin
+      )(),
+      BoxExampleColor()(),
+      Markdown(
+        """
+          |### Color Usage
+          |
+          |`Color.Blue` is usually used to highlight the primary action among
+          |a group of related buttons:
+        """.stripMargin
       )(),
       ExampleSimple()({
         val m = <.div(Style.margin.right8)
@@ -87,7 +118,13 @@ object PageButtonBox {
           m(Button(style = f(icon = Some(Icon.Glyph.Share)))("Share")),
         )
       }),
-      BoxExampleColor()(),
+      Markdown(
+        """
+          |`Color.Red` should be used for destructive actions, such as
+          |archiving deals. Usually only the final actions, like those in
+          |confirmation modals, need the color Red:
+        """.stripMargin
+      )(),
       BoxExampleArchive()(),
       Markdown(
         """

@@ -1,5 +1,6 @@
-# Anduin Design
-Following is local development guide for engineers. For a user-friendly Welcome, please see at home page: [Anduin UI Guide](https://anduintransaction.github.io/design/).
+# [Anduin Design](https://anduin.design)
+
+Following is local development guide for engineers. For a user-friendly Welcome, please see at home page: [Anduin UI Guide](https://anduin.design).
 
 ## 1. Install dependencies
 These are necessary packages for local development. You only need to install them once.

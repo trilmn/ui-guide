@@ -38,6 +38,7 @@ object Layout {
       <.div(
         Style.flexbox.fixed.overflow.autoY.padding.bottom32,
         ^.cls := "ad-scroll-hidden",
+        ^.tabIndex := 0, // so it can be focused and scroll with keyboard
         LayoutNav(ctl = ctl, page = res.page)()
       )
     )

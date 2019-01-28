@@ -9,8 +9,13 @@ const app = express();
   '../../core/target/scala-2.12/scalajs-bundler/main',
   '../../../scalajs-code-splitting/o/o',
 ].forEach(target => {
-  app.use(express.static(path.join(__dirname, target)));
+    app.use(express.static(path.join(__dirname, target)));
 })
+
+// favicon
+app.get('/icon.png', function (req, res) {
+    res.sendFile(path.join(__dirname, '../../core/src/main/resources/public/icon.png'));
+});
 
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, './index.html'));

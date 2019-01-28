@@ -34,12 +34,12 @@ object PageButtonBox {
         val big = <.div(Style.border.right.borderColor.gray3.height.px16.padding.right16.margin.right16)
         <.div(
           Style.flexbox.flex.flexbox.itemsCenter,
-          React.Fragment(Button(Full(Blue))("Text"), small),
-          React.Fragment(Button(Full(White))("Text"), big),
-          React.Fragment(Button(Ghost(Blue))("Text"), small),
-          React.Fragment(Button(Ghost(Black))("Text"), big),
-          React.Fragment(Button(Minimal(Blue))("Text"), small),
-          React.Fragment(Button(Minimal(Black))("Text")),
+          React.Fragment(Button(Full(Blue))("Full"), small),
+          React.Fragment(Button(Full(White))("Full"), big),
+          React.Fragment(Button(Ghost(Blue))("Ghost"), small),
+          React.Fragment(Button(Ghost(Black))("Ghost"), big),
+          React.Fragment(Button(Minimal(Blue))("Minimal"), small),
+          React.Fragment(Button(Minimal(Black))("Minimal")),
         )
       }),
       Markdown(
@@ -87,9 +87,17 @@ object PageButtonBox {
           |style: ButtonStyle = Button.Style.Full()
           |```
           |
-          |The `style` prop define a button's essential appearance. Buttons
-          |in the same group should have the same style, which represent the
-          |level of emphasis of the whole group:
+          |The `style` prop define a button's essential appearance:
+          |""".stripMargin
+      )(),
+      ExampleRich(Source.annotate({
+        Button(style = Button.Style.Ghost())("Label")
+      }))(),
+      Markdown(
+        """
+          |There are 03 styles, from high to low emphasis: `Full`, `Ghost` and
+          |`Minimal`. Buttons in the same group should have the same style,
+          |which represent the level of emphasis of that group:
           |""".stripMargin
       )(),
       BoxExampleEmail()(),

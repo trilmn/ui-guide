@@ -50,8 +50,7 @@ object PageLogo {
         ^.href := renderLink(s"${logo.zip}.zip"),
         <.span(Style.margin.right8, Icon(name = Icon.Glyph.FileDownload)()),
         <.span(
-          <.strong(Style.fontWeight.bold, ".zip"),
-          <.span(" (ai, png, eps included)")
+          "Download"
         )
       )
     )
@@ -70,7 +69,7 @@ object PageLogo {
       Toc(headings = Source.getTocHeadings)(),
       Markdown(
         """
-          |Anduin’s logo has some variants as listing below.
+          |Anduin’s logo has some variants as listing below. Each package is already included ai, png, eps format.
           |
           |## Default
         """.stripMargin
